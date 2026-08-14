@@ -1,0 +1,37 @@
+Dataset: MSRC-v1
+GPU: True
+Reproducibility seed: 20
+Python random seeded: True
+NumPy random seeded: True
+Torch random seeded: True
+KMeans random_state: 20
+cuDNN deterministic: True
+cuDNN benchmark: False
+Weak-quality corruption: none
+Model seed: 20
+Corruption seed: none
+Cluster number: 7
+View number: 5
+(210, 24)
+(210, 576)
+(210, 512)
+(210, 256)
+(210, 254)
+ROUND: 1
+Initialization...
+ACC:0.3000, NMI:0.2044, ARI:0.0784
+ACC:0.4810, NMI:0.3800, ARI:0.2446
+ACC:0.4524, NMI:0.3258, ARI:0.1961
+ACC:0.3857, NMI:0.3401, ARI:0.1981
+ACC:0.4429, NMI:0.3600, ARI:0.2141
+Epoch: 0
+ACC:0.5762, NMI:0.4922, ARI:0.3734
+Epoch: 1
+ACC:0.5524, NMI:0.4403, ARI:0.3183
+Epoch: 2
+ACC:0.5524, NMI:0.4014, ARI:0.2793
+time: 8.45068621635437
+Saving...
+[0.5523809523809524] 0.5523809523809524 0.0
+[0.4013538417280085] 0.4013538417280085 0.0
+[0.2793018712953274] 0.2793018712953274 0.0

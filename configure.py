@@ -219,6 +219,26 @@ def get_default_config(data_name):
                 lambda1=0.01,
             ),
         )
+    elif data_name in ['MSRC-v1']:
+        return dict(
+            Autoencoder=dict(
+                arch=[10],
+                channal=[1],
+                activations='relu',
+                batchnorm=False,
+                FCN=True
+            ),
+            training=dict(
+                seed=20,
+                batch_size=256,
+                init_epoch=200,
+                T_1=2,
+                T_2=100,
+                epoch=1000,
+                lr=0.0001,
+                lambda1=0.01,
+            ),
+        )
     elif data_name in ['YoutubeVideo']:
         return dict(
             Autoencoder=dict(

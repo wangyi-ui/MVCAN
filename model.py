@@ -160,10 +160,11 @@ class MvCAN():
         self._latent_dim = config['Autoencoder']['arch'][-1]
         self.autoencoders = []
         self.n_clusters = n_clusters
+        self.seed = int(seed)
         for i in range(view_num):
             # Set random seeds for model initialization
-            torch.manual_seed(seed)
-            torch.cuda.manual_seed(seed)
+            torch.manual_seed(self.seed)
+            torch.cuda.manual_seed(self.seed)
             torch.backends.cudnn.deterministic = True
             # np.random.seed(seed)
             # random.seed(seed)
@@ -191,6 +192,8 @@ class MvCAN():
         # Get complete data for training
         Y_list = torch.tensor(Y_list).int().to(device).squeeze(dim=0).unsqueeze(dim=1)
         batch_size = config['training']['batch_size']
+        generator = torch.Generator()
+        generator.manual_seed(self.seed)
 
         if self.view_num == 1:
             dataset = Data.TensorDataset(X_train[0], Y_list)
@@ -219,7 +222,8 @@ class MvCAN():
                 dataset,
                 batch_size=batch_size,
                 shuffle=True,
-                drop_last=False
+                drop_last=False,
+                generator=generator,
             )
             for batch_idx, (X_data) in enumerate(loader):
                 Z_A = []
@@ -234,9 +238,18 @@ class MvCAN():
                     loss.backward()
                     optimizers[v].step()
 
-        kmeans = KMeans(n_clusters=self.n_clusters, n_init=100)
+        kmeans = KMeans(
+            n_clusters=self.n_clusters,
+            n_init=100,
+            random_state=self.seed,
+        )
         if self.data_size > 10000:
-            kmeans = MiniBatchKMeans(n_clusters=self.n_clusters, n_init=100, batch_size=10000)
+            kmeans = MiniBatchKMeans(
+                n_clusters=self.n_clusters,
+                n_init=100,
+                batch_size=10000,
+                random_state=self.seed,
+            )
         for batch_idx, (X_data) in enumerate(All_data):
             Y_list = X_data[-1]
             for v in range(self.view_num):
@@ -320,7 +333,8 @@ class MvCAN():
                 dataset,
                 batch_size=batch_size,
                 shuffle=True,
-                drop_last=False
+                drop_last=False,
+                generator=generator,
             )
             for batch_idx, (X_data) in enumerate(loader):
                 Z_A = []

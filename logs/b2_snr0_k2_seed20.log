@@ -1,0 +1,62 @@
+Dataset: MSRC-v1
+GPU: True
+Reproducibility seed: 20
+Python random seeded: True
+NumPy random seeded: True
+Torch random seeded: True
+KMeans random_state: 20
+cuDNN deterministic: True
+cuDNN benchmark: False
+Weak-quality corruption: heterogeneous_gaussian
+Model seed: 20
+Corruption seed: 20
+Corruption k: 2
+Target SNR dB: 0.0
+Total sample-view pairs: 1050
+Corrupted sample-view pairs: 420
+Per-view corruption counts: [84, 84, 84, 84, 84]
+Balanced mask: True
+Mask SHA256: ba38855ec9f381ccd00a6c1dde785c3b3031a753863aa0fd90f1403a3ef1012f
+Global achieved SNR dB: 8.211074797981038e-10
+Per-view achieved SNR dB: [-3.944563663669453e-09, 1.1596693526432238e-09, -1.0080597171731779e-10, 9.507670936145426e-10, -3.6263741725281844e-09]
+Cluster number: 7
+View number: 5
+(210, 24)
+(210, 576)
+(210, 512)
+(210, 256)
+(210, 254)
+ROUND: 1
+Initialization...
+ACC:0.2524, NMI:0.1199, ARI:0.0412
+ACC:0.5286, NMI:0.4612, ARI:0.2973
+ACC:0.5476, NMI:0.4575, ARI:0.3166
+ACC:0.3048, NMI:0.2010, ARI:0.0771
+ACC:0.4238, NMI:0.3541, ARI:0.1971
+Epoch: 0
+ACC:0.6762, NMI:0.5714, ARI:0.4716
+Epoch: 100
+ACC:0.6905, NMI:0.6214, ARI:0.4967
+Epoch: 200
+ACC:0.7000, NMI:0.6262, ARI:0.5180
+Epoch: 300
+ACC:0.5762, NMI:0.5439, ARI:0.4030
+Epoch: 400
+ACC:0.5667, NMI:0.5269, ARI:0.3774
+Epoch: 500
+ACC:0.5619, NMI:0.4909, ARI:0.3579
+Epoch: 600
+ACC:0.5476, NMI:0.5018, ARI:0.3570
+Epoch: 700
+ACC:0.5476, NMI:0.4927, ARI:0.3558
+Epoch: 800
+ACC:0.5381, NMI:0.4710, ARI:0.3394
+Epoch: 900
+ACC:0.5429, NMI:0.4938, ARI:0.3566
+Epoch: 1000
+ACC:0.5476, NMI:0.5020, ARI:0.3646
+time: 40.060829877853394
+Saving...
+[0.5476190476190477] 0.5476190476190477 0.0
+[0.5020318606100687] 0.5020318606100687 0.0
+[0.3645804576598115] 0.3645804576598115 0.0

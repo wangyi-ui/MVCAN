@@ -1,0 +1,17 @@
+Dataset: BDGP
+GPU: True
+Cluster number: 5
+View number: 2
+(2500, 1750)
+(2500, 79)
+ROUND: 1
+Loading models...
+Initialization...
+ACC:0.9852, NMI:0.9541, ARI:0.9635
+ACC:0.9780, NMI:0.9415, ARI:0.9461
+Epoch: 0
+ACC:0.9856, NMI:0.9559, ARI:0.9645
+2026-08-14 01:49:33 - matplotlib.pyplot - DEBUG: - Loaded backend agg version v2.2.
+[0 1 2 3 4]
+Visualization of Z_(t)...
+time: 16.525593519210815

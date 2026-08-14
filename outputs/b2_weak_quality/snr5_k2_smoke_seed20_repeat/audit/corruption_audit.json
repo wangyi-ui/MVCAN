@@ -1,0 +1,62 @@
+{
+  "all_finite_pass": true,
+  "balanced_mask_pass": true,
+  "clean_view_sha256": [
+    "a8904a56c606cbe06cc69b640f58aa4129ab3d1365c9081ba63f4af415d65730",
+    "d42a8156d9366b8d8eae7936f6973a36f1af597266e881b62a112ef4c7abc54f",
+    "0974b4cb2f4720145a9df50f6e4de8f5bb2ca1b1ca3449637bd3ea92779cc21f",
+    "a7eea7485a9fcca21dc5aac7e2c60f6fa9e9665308a710faa925ca3f70ccb01a",
+    "89a34a6388247c9c3787abd44f13c94e324bf1a2b41171a94087fa44fefa9466"
+  ],
+  "corrupted_pair_count": 420,
+  "corrupted_pairs_changed_fraction": 1.0,
+  "corrupted_view_sha256": [
+    "1f30e3d0c703dcaa95dd6de65ea2b9e931c7709042af11b2e1dda9ecb3fb6a70",
+    "f820aeb66ae08c2ca1ec991785bc980f31b4725b7c77b145245fc58cc4b17547",
+    "73bd9700a37073688a9e86f2e3c7d7230c69144ca7a6c2e61bbd8985a5f4d700",
+    "3fc35f2af260ac32911e57ce6a82ac729d7298200060fa75701295c8a41af506",
+    "5ab1f3578315704e9e45edfcbf8923727c61b680bbe896e1a6ade70c3f83c635"
+  ],
+  "corruption_k": 2,
+  "corruption_seed": 20,
+  "dataset": "MSRC-v1",
+  "dtype_preserved_pass": true,
+  "expected_corrupted_pair_count": 420,
+  "global_aggregate_achieved_snr_db": 4.999999999480904,
+  "mask_seed": 20,
+  "mask_sha256": "ba38855ec9f381ccd00a6c1dde785c3b3031a753863aa0fd90f1403a3ef1012f",
+  "mode": "heterogeneous_gaussian",
+  "model_seed": 20,
+  "n_clusters": 7,
+  "n_samples": 210,
+  "n_views": 5,
+  "no_op_exact_pass": false,
+  "noise_seed": 1000023,
+  "per_sample_corrupted_count_max": 2,
+  "per_sample_corrupted_count_min": 2,
+  "per_sample_corrupted_count_unique": [
+    2
+  ],
+  "per_view_aggregate_achieved_snr_db": [
+    4.999999987250984,
+    5.00000000090232,
+    4.999999995731964,
+    4.99999999935445,
+    5.00000000393497
+  ],
+  "per_view_corrupted_counts": [
+    84,
+    84,
+    84,
+    84,
+    84
+  ],
+  "per_view_count_max": 84,
+  "per_view_count_min": 84,
+  "protocol_version": "b2-fallback-v1",
+  "shape_preserved_pass": true,
+  "snr_target_pass": true,
+  "target_snr_db": 5.0,
+  "total_sample_view_pairs": 1050,
+  "unchanged_clean_pairs_max_abs_error": 0.0
+}

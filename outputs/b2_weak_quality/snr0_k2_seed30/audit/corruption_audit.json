@@ -1,0 +1,62 @@
+{
+  "all_finite_pass": true,
+  "balanced_mask_pass": true,
+  "clean_view_sha256": [
+    "a8904a56c606cbe06cc69b640f58aa4129ab3d1365c9081ba63f4af415d65730",
+    "d42a8156d9366b8d8eae7936f6973a36f1af597266e881b62a112ef4c7abc54f",
+    "0974b4cb2f4720145a9df50f6e4de8f5bb2ca1b1ca3449637bd3ea92779cc21f",
+    "a7eea7485a9fcca21dc5aac7e2c60f6fa9e9665308a710faa925ca3f70ccb01a",
+    "89a34a6388247c9c3787abd44f13c94e324bf1a2b41171a94087fa44fefa9466"
+  ],
+  "corrupted_pair_count": 420,
+  "corrupted_pairs_changed_fraction": 1.0,
+  "corrupted_view_sha256": [
+    "f334e7b731cce6b495616073b858630ce8a3a5d818e63f9763aff591ca4426ec",
+    "fc13d1a0e579402b1a03a181a35811c42cfdfd53b07641d6dfd0b638e6b03183",
+    "c4c42eae7237074ccf5323c352c55eb5292b2e0e5cde877905ecb478b635c3ab",
+    "37546e84dfd28087480b4af9b5a458b03be57ee74c528d90fcb55689c63f3167",
+    "bfc8605134cfd7d707f0b3238878a3b99eb828562f9ff55af49940137f770ba8"
+  ],
+  "corruption_k": 2,
+  "corruption_seed": 30,
+  "dataset": "MSRC-v1",
+  "dtype_preserved_pass": true,
+  "expected_corrupted_pair_count": 420,
+  "global_aggregate_achieved_snr_db": -9.32305526635255e-10,
+  "mask_seed": 30,
+  "mask_sha256": "1c57bea5ef067532164e3506fc87e4c756f450cabaa98cb137b8914d4bbb91f2",
+  "mode": "heterogeneous_gaussian",
+  "model_seed": 30,
+  "n_clusters": 7,
+  "n_samples": 210,
+  "n_views": 5,
+  "no_op_exact_pass": false,
+  "noise_seed": 1000033,
+  "per_sample_corrupted_count_max": 2,
+  "per_sample_corrupted_count_min": 2,
+  "per_sample_corrupted_count_unique": [
+    2
+  ],
+  "per_view_aggregate_achieved_snr_db": [
+    -8.15658741157414e-09,
+    4.191229464689081e-09,
+    -5.88077265817548e-09,
+    -9.007107836781688e-10,
+    -1.9631209615323453e-09
+  ],
+  "per_view_corrupted_counts": [
+    84,
+    84,
+    84,
+    84,
+    84
+  ],
+  "per_view_count_max": 84,
+  "per_view_count_min": 84,
+  "protocol_version": "b2-fallback-v1",
+  "shape_preserved_pass": true,
+  "snr_target_pass": true,
+  "target_snr_db": 0.0,
+  "total_sample_view_pairs": 1050,
+  "unchanged_clean_pairs_max_abs_error": 0.0
+}

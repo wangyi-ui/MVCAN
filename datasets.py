@@ -1,8 +1,87 @@
+import os
 import numpy as np
 import scipy.io as sio
 from sklearn import preprocessing
 min_max_scaler = preprocessing.MinMaxScaler()
 from ClusteringTest import test
+
+
+MSRC_V1_PATHS = (
+    "./data/MSRC-v1.mat",
+    "./data/MSRC_v1.mat",
+)
+
+
+def _load_msrcv1():
+    data_path = next((path for path in MSRC_V1_PATHS if os.path.isfile(path)), None)
+    if data_path is None:
+        expected = " or ".join(MSRC_V1_PATHS)
+        raise FileNotFoundError(
+            "missing MSRC-v1 data file; expected " + expected
+        )
+
+    mat = sio.loadmat(data_path)
+    missing_keys = {'fea', 'gt'} - set(mat)
+    if missing_keys:
+        raise KeyError(
+            "MSRC-v1 data file is missing MATLAB keys: "
+            + ", ".join(sorted(missing_keys))
+        )
+
+    raw_views = mat['fea']
+    if not isinstance(raw_views, np.ndarray) or raw_views.dtype != object:
+        raise ValueError("MSRC-v1 key 'fea' must be a MATLAB cell array")
+    if raw_views.size != 5:
+        raise ValueError(
+            "MSRC-v1 must contain 5 views; found " + str(raw_views.size)
+        )
+
+    raw_y = np.squeeze(np.asarray(mat['gt']))
+    if raw_y.ndim != 1:
+        raise ValueError(
+            "MSRC-v1 labels must squeeze to shape [N]; found " + str(raw_y.shape)
+        )
+    if raw_y.shape[0] != 210:
+        raise ValueError(
+            "MSRC-v1 must contain 210 labels; found " + str(raw_y.shape[0])
+        )
+    if not np.isfinite(raw_y).all():
+        raise ValueError("MSRC-v1 labels contain NaN or Inf")
+    _, y = np.unique(raw_y, return_inverse=True)
+    y = y.astype(np.int64, copy=False)
+    if not np.array_equal(np.unique(y), np.arange(7)):
+        raise ValueError("MSRC-v1 must contain exactly 7 label classes")
+
+    # The inspected MSRC_v1.mat stores precomputed features in `fea`. The
+    # requested legacy MFLVC loader is unavailable on this server, so preserve
+    # those feature values without adding normalization; only orient each view
+    # to [N, D] and convert it to MVCAN's float32 input dtype.
+    X_list = []
+    for view_index, raw_view in enumerate(raw_views.ravel(), start=1):
+        view = np.asarray(raw_view)
+        if view.ndim != 2:
+            raise ValueError(
+                "MSRC-v1 view " + str(view_index)
+                + " must be a matrix; found shape " + str(view.shape)
+            )
+        if view.shape[0] == y.shape[0]:
+            oriented_view = view
+        elif view.shape[1] == y.shape[0] and view.shape[0] != y.shape[0]:
+            oriented_view = view.T
+        else:
+            raise ValueError(
+                "MSRC-v1 view " + str(view_index)
+                + " has no unambiguous sample axis of length 210; found shape "
+                + str(view.shape)
+            )
+        oriented_view = oriented_view.astype(np.float32, copy=False)
+        if not np.isfinite(oriented_view).all():
+            raise ValueError(
+                "MSRC-v1 view " + str(view_index) + " contains NaN or Inf"
+            )
+        X_list.append(np.ascontiguousarray(oriented_view))
+
+    return X_list, [y]
 
 
 def load_data(config):
@@ -104,5 +183,7 @@ def load_data(config):
         X_list.append(mat['X3'].astype('float32'))
         y = np.squeeze(mat['Y']).astype('int')
         Y_list.append(y - 1)    # cleaning labels to [0, 1, 2 ... K-1] for visualization
+    elif data_name in ['MSRC-v1']:
+        X_list, Y_list = _load_msrcv1()
 
     return X_list, Y_list

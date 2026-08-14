@@ -1,0 +1,25 @@
+Dataset: Caltech-6V
+GPU: True
+Cluster number: 7
+View number: 6
+(1400, 48)
+(1400, 40)
+(1400, 254)
+(1400, 1984)
+(1400, 512)
+(1400, 928)
+ROUND: 1
+Loading models...
+Initialization...
+ACC:0.3957, NMI:0.2168, ARI:0.1448
+ACC:0.4700, NMI:0.3274, ARI:0.2564
+ACC:0.7186, NMI:0.5415, ARI:0.5198
+ACC:0.9271, NMI:0.8701, ARI:0.8551
+ACC:0.9343, NMI:0.8824, ARI:0.8668
+ACC:0.9300, NMI:0.8766, ARI:0.8605
+Epoch: 0
+ACC:0.9371, NMI:0.8901, ARI:0.8725
+2026-08-14 17:04:39 - matplotlib.pyplot - DEBUG: - Loaded backend agg version v2.2.
+[0 1 2 3 4 5 6]
+Visualization of Z_(t)...
+time: 13.166208028793335
