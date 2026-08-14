@@ -8,7 +8,8 @@ import torch
 import torch.nn.functional as F
 
 from configure import get_default_config
-from irv.b3_audit import hash_semantic_heads, hash_state_dict
+from irv.b3_audit import hash_backbone, hash_semantic_heads, hash_state_dict
+from irv.semantic_loss import uniform_cross_view_infonce
 from irv.semantic_head import DetachedSemanticHeadBank
 from model import MvCAN
 
@@ -19,6 +20,27 @@ def _semantic_config(seed=1020):
         "semantic_dim": 10,
         "semantic_seed": seed,
     }
+
+
+def _uniform_config(seed=1020):
+    return {
+        "mode": "uniform",
+        "semantic_dim": 10,
+        "semantic_seed": seed,
+        "semantic_lr": 1e-4,
+        "semantic_temperature": 0.2,
+    }
+
+
+def _deterministic_z_views(requires_grad=False):
+    # base: [batch_size=8, latent_dim=10]
+    base = torch.arange(80, dtype=torch.float32).reshape(8, 10) / 80.0
+    z_views = []
+    for view_idx in range(5):
+        # z_v: [batch_size=8, latent_dim=10]
+        z_v = torch.roll(base, shifts=view_idx, dims=1) + view_idx * 0.01
+        z_views.append(z_v.clone().requires_grad_(requires_grad))
+    return z_views
 
 
 def _audit_fixture(semantic_enabled):
@@ -236,3 +258,313 @@ def test_compare_audit_script_passes_exact_pair_and_fails_hash_change(tmp_path):
     assert failed.returncode != 0
     assert b"backbone_per_view_hash_exact: FAIL" in failed.stdout
     assert b"B3_A0_EXACT_PROTECTION_PASS=false" in failed.stdout
+
+
+
+def _a1_audit_fixture(semantic_mode):
+    semantic_enabled = semantic_mode == "uniform"
+    backbone_per_view = ["a1-backbone-" + str(index) for index in range(5)]
+    audit = {
+        "stage": "B3-A1",
+        "dataset": "MSRC-v1",
+        "model_seed": 20,
+        "corruption_protocol_version": "b2-fallback-v1",
+        "corruption_mode": "none",
+        "corruption_seed": None,
+        "corruption_k": None,
+        "target_snr_db": None,
+        "corruption_mask_sha256": None,
+        "semantic_mode": semantic_mode,
+        "semantic_enabled": semantic_enabled,
+        "latent_dim": 10,
+        "semantic_dim": 10 if semantic_enabled else None,
+        "semantic_seed": 1020 if semantic_enabled else None,
+        "semantic_lr": 1e-4 if semantic_enabled else None,
+        "semantic_temperature": 0.2 if semantic_enabled else None,
+        "view_num": 5,
+        "native_metrics": {
+            "acc": 0.5333333333333333,
+            "nmi": 0.3901793186908467,
+            "ari": 0.26623285214890685,
+        },
+        "backbone_hash": {
+            "aggregate": "a1-backbone-aggregate",
+            "per_view": backbone_per_view,
+        },
+        "semantic_hash_initial": None,
+        "semantic_hash_final": None,
+        "runtime": {
+            "semantic_forward_calls": 0,
+            "semantic_optimizer_steps": 0,
+            "semantic_pair_count": 0,
+            "semantic_loss_first": None,
+            "semantic_loss_last": None,
+            "semantic_loss_mean": None,
+            "semantic_loss_min": None,
+            "semantic_loss_max": None,
+            "semantic_loss_finite_pass": True,
+            "semantic_grad_l2_last": None,
+            "semantic_grad_l2_mean": None,
+            "semantic_grad_nonzero_pass": True,
+            "semantic_grad_finite_pass": True,
+            "semantic_all_heads_grad_pass": True,
+            "semantic_head_hash_initial": None,
+            "semantic_head_hash_final": None,
+            "semantic_head_updated_pass": False,
+            "semantic_shape_pass": True,
+            "semantic_finite_pass": True,
+            "semantic_input_detached_pass": True,
+            "semantic_norm_finite_pass": True,
+        },
+    }
+    if semantic_enabled:
+        initial_per_view = [
+            "a1-semantic-initial-" + str(index) for index in range(5)
+        ]
+        final_per_view = [
+            "a1-semantic-final-" + str(index) for index in range(5)
+        ]
+        audit["semantic_hash_initial"] = {
+            "aggregate": "a1-semantic-initial",
+            "per_view": initial_per_view,
+        }
+        audit["semantic_hash_final"] = {
+            "aggregate": "a1-semantic-final",
+            "per_view": final_per_view,
+        }
+        audit["runtime"].update({
+            "semantic_forward_calls": 3,
+            "semantic_optimizer_steps": 3,
+            "semantic_pair_count": 10,
+            "semantic_loss_first": 2.4,
+            "semantic_loss_last": 2.3,
+            "semantic_loss_mean": 2.35,
+            "semantic_loss_min": 2.3,
+            "semantic_loss_max": 2.4,
+            "semantic_grad_l2_last": 0.8,
+            "semantic_grad_l2_mean": 0.9,
+            "semantic_head_hash_initial": "a1-semantic-initial",
+            "semantic_head_hash_final": "a1-semantic-final",
+            "semantic_head_updated_pass": True,
+        })
+    return audit
+
+
+def test_uniform_infonce_pair_count_for_five_views():
+    semantic_views = [
+        F.normalize(z_v, p=2, dim=1) for z_v in _deterministic_z_views()
+    ]
+    _, diagnostics = uniform_cross_view_infonce(
+        semantic_views,
+        temperature=0.2,
+    )
+
+    assert diagnostics["pair_count"] == 10
+
+
+def test_uniform_infonce_returns_finite_scalar_loss():
+    semantic_views = [
+        F.normalize(z_v, p=2, dim=1) for z_v in _deterministic_z_views()
+    ]
+    loss, diagnostics = uniform_cross_view_infonce(
+        semantic_views,
+        temperature=0.2,
+    )
+
+    assert loss.ndim == 0
+    assert torch.isfinite(loss)
+    assert diagnostics["loss_finite"] is True
+    assert diagnostics["batch_size"] == 8
+    assert diagnostics["semantic_dim"] == 10
+
+
+def test_uniform_infonce_rewards_symmetric_sample_correspondence():
+    # aligned: [batch_size=8, semantic_dim=10]
+    aligned = torch.eye(8, 10, dtype=torch.float32)
+    permutation = torch.tensor([1, 2, 3, 4, 5, 6, 7, 0])
+    # permuted: [batch_size=8, semantic_dim=10]
+    permuted = aligned[permutation]
+
+    aligned_loss, _ = uniform_cross_view_infonce(
+        [aligned, aligned.clone()],
+        temperature=0.2,
+    )
+    permuted_loss, _ = uniform_cross_view_infonce(
+        [aligned, permuted],
+        temperature=0.2,
+    )
+
+    assert aligned_loss.item() < permuted_loss.item()
+
+
+def test_uniform_infonce_gives_all_five_semantic_heads_gradient():
+    head_bank = DetachedSemanticHeadBank(5, 10, 10, 1020)
+    # z_views[v]: [batch_size=8, latent_dim=10]
+    z_views = _deterministic_z_views()
+    # semantic_views[v]: [batch_size=8, semantic_dim=10]
+    semantic_views = head_bank.forward_views(z_views)
+    semantic_loss, _ = uniform_cross_view_infonce(
+        semantic_views,
+        temperature=0.2,
+    )
+    semantic_loss.backward()
+
+    for head in head_bank.heads:
+        head_grad_l1 = 0.0
+        for parameter in head.parameters():
+            assert parameter.grad is not None
+            assert torch.isfinite(parameter.grad).all()
+            head_grad_l1 += parameter.grad.abs().sum().item()
+        assert head_grad_l1 > 0.0
+
+
+def test_uniform_infonce_has_no_gradient_into_all_five_latent_inputs():
+    head_bank = DetachedSemanticHeadBank(5, 10, 10, 1020)
+    # z_views[v]: [batch_size=8, latent_dim=10]
+    z_views = _deterministic_z_views(requires_grad=True)
+    # semantic_views[v]: [batch_size=8, semantic_dim=10]
+    semantic_views = head_bank.forward_views(z_views)
+    semantic_loss, _ = uniform_cross_view_infonce(
+        semantic_views,
+        temperature=0.2,
+    )
+    semantic_loss.backward()
+
+    assert all(z_v.grad is None for z_v in z_views)
+
+
+def test_uniform_semantic_optimizer_parameters_are_native_disjoint():
+    config = get_default_config("MSRC-v1")
+    model = MvCAN(
+        config,
+        view_num=2,
+        view_size=[4, 6],
+        n_clusters=2,
+        seed=20,
+        data_size=8,
+        semantic_config=_uniform_config(),
+    )
+    semantic_optimizer = torch.optim.Adam(
+        model.semantic_heads.parameters(),
+        lr=1e-4,
+    )
+    semantic_optimizer_ids = {
+        id(parameter)
+        for group in semantic_optimizer.param_groups
+        for parameter in group["params"]
+    }
+    backbone_ids = {
+        id(parameter)
+        for autoencoder in model.autoencoders
+        for parameter in autoencoder.parameters()
+    }
+
+    assert semantic_optimizer_ids
+    assert semantic_optimizer_ids.isdisjoint(backbone_ids)
+
+
+def test_one_uniform_optimizer_step_changes_only_semantic_hash():
+    config = get_default_config("MSRC-v1")
+    model = MvCAN(
+        config,
+        view_num=5,
+        view_size=[4, 5, 6, 7, 8],
+        n_clusters=2,
+        seed=20,
+        data_size=8,
+        semantic_config=_uniform_config(),
+    )
+    semantic_optimizer = torch.optim.Adam(
+        model.semantic_heads.parameters(),
+        lr=1e-4,
+    )
+    backbone_before = hash_backbone(model.autoencoders)
+    semantic_before = hash_semantic_heads(model.semantic_heads)
+    # z_views[v]: [batch_size=8, latent_dim=10]
+    z_views = _deterministic_z_views()
+    # semantic_views[v]: [batch_size=8, semantic_dim=10]
+    semantic_views = model.semantic_heads.forward_views(z_views)
+    semantic_loss, _ = uniform_cross_view_infonce(
+        semantic_views,
+        temperature=0.2,
+    )
+
+    semantic_optimizer.zero_grad()
+    semantic_loss.backward()
+    semantic_optimizer.step()
+
+    assert hash_backbone(model.autoencoders) == backbone_before
+    assert hash_semantic_heads(model.semantic_heads) != semantic_before
+
+
+def test_detached_mode_probe_does_not_update_semantic_head():
+    config = get_default_config("MSRC-v1")
+    model = MvCAN(
+        config,
+        view_num=5,
+        view_size=[4, 5, 6, 7, 8],
+        n_clusters=2,
+        seed=20,
+        data_size=8,
+        semantic_config=_semantic_config(),
+    )
+    semantic_optimizer = None
+    semantic_before = hash_semantic_heads(model.semantic_heads)
+    # z_views[v]: [batch_size=8, latent_dim=10]
+    z_views = _deterministic_z_views()
+    with torch.no_grad():
+        model.semantic_heads.forward_views(z_views)
+
+    assert semantic_optimizer is None
+    assert model.semantic_mode == "detached"
+    assert hash_semantic_heads(model.semantic_heads) == semantic_before
+
+
+def test_a1_comparator_passes_and_rejects_backbone_or_update_tampering(tmp_path):
+    repository_root = Path(__file__).resolve().parents[1]
+    script = (
+        repository_root
+        / "experiments"
+        / "b3_semantic"
+        / "compare_b3_a1_protection.py"
+    )
+    off_path = tmp_path / "a1_off.json"
+    uniform_path = tmp_path / "a1_uniform.json"
+    off_path.write_text(json.dumps(_a1_audit_fixture("off")))
+    uniform = _a1_audit_fixture("uniform")
+    uniform_path.write_text(json.dumps(uniform))
+    command = [
+        sys.executable,
+        str(script),
+        "--off_audit",
+        str(off_path),
+        "--uniform_audit",
+        str(uniform_path),
+    ]
+
+    passed = subprocess.run(command, cwd=str(repository_root), capture_output=True)
+    assert passed.returncode == 0, passed.stdout.decode() + passed.stderr.decode()
+    assert b"B3_A1_BACKBONE_PROTECTION_PASS=true" in passed.stdout
+    assert b"B3_A1_SEMANTIC_UPDATE_PASS=true" in passed.stdout
+
+    uniform["backbone_hash"]["per_view"][0] = "tampered"
+    uniform_path.write_text(json.dumps(uniform))
+    backbone_failed = subprocess.run(
+        command,
+        cwd=str(repository_root),
+        capture_output=True,
+    )
+    assert backbone_failed.returncode != 0
+    assert b"backbone_per_view_hash_exact: FAIL" in backbone_failed.stdout
+
+    uniform = _a1_audit_fixture("uniform")
+    uniform["runtime"]["semantic_head_updated_pass"] = False
+    uniform_path.write_text(json.dumps(uniform))
+    update_failed = subprocess.run(
+        command,
+        cwd=str(repository_root),
+        capture_output=True,
+    )
+    assert update_failed.returncode != 0
+    assert b"semantic_head_updated: FAIL" in update_failed.stdout
+    assert b"B3_A1_SEMANTIC_UPDATE_PASS=false" in update_failed.stdout

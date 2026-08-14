@@ -6,6 +6,7 @@ from ClusteringTest import test
 import ClusteringTest
 import numpy as np
 import random
+import math
 from torch.nn.parameter import Parameter
 from sklearn.cluster import KMeans, MiniBatchKMeans
 from sklearn import preprocessing
@@ -14,6 +15,8 @@ from numpy import hstack
 import time
 from TSNE import TSNE_PLOT
 from irv.semantic_head import DetachedSemanticHeadBank
+from irv.semantic_loss import uniform_cross_view_infonce
+from irv.b3_audit import hash_semantic_heads
 
 
 class Autoencoder(nn.Module):
@@ -184,13 +187,17 @@ class MvCAN():
         self.semantic_mode = 'off'
         self.semantic_dim = None
         self.semantic_seed = None
+        self.semantic_lr = None
+        self.semantic_temperature = None
         self.semantic_heads = None
 
         if semantic_config is not None:
             self.semantic_mode = semantic_config.get('mode', 'detached')
-            if self.semantic_mode not in ('off', 'detached'):
-                raise ValueError("semantic mode must be 'off' or 'detached'")
-            if self.semantic_mode == 'detached':
+            if self.semantic_mode not in ('off', 'detached', 'uniform'):
+                raise ValueError(
+                    "semantic mode must be 'off', 'detached', or 'uniform'"
+                )
+            if self.semantic_mode in ('detached', 'uniform'):
                 self.semantic_dim = int(
                     semantic_config.get('semantic_dim', self._latent_dim)
                 )
@@ -203,9 +210,50 @@ class MvCAN():
                     semantic_dim=self.semantic_dim,
                     semantic_seed=self.semantic_seed,
                 )
+            if self.semantic_mode == 'uniform':
+                self.semantic_lr = float(
+                    semantic_config.get('semantic_lr', 1e-4)
+                )
+                self.semantic_temperature = float(
+                    semantic_config.get('semantic_temperature', 0.2)
+                )
+                if not math.isfinite(self.semantic_lr) or self.semantic_lr <= 0.0:
+                    raise ValueError("semantic_lr must be positive and finite")
+                if (
+                    not math.isfinite(self.semantic_temperature)
+                    or self.semantic_temperature <= 0.0
+                ):
+                    raise ValueError(
+                        "semantic_temperature must be positive and finite"
+                    )
+
+        self.semantic_hash_initial = hash_semantic_heads(self.semantic_heads)
+        self.semantic_hash_final = None
+        initial_aggregate = (
+            self.semantic_hash_initial['aggregate']
+            if self.semantic_hash_initial is not None
+            else None
+        )
 
         self.semantic_runtime_audit = {
+            'semantic_mode': self.semantic_mode,
             'semantic_forward_calls': 0,
+            'semantic_optimizer_steps': 0,
+            'semantic_pair_count': 0,
+            'semantic_loss_first': None,
+            'semantic_loss_last': None,
+            'semantic_loss_mean': None,
+            'semantic_loss_min': None,
+            'semantic_loss_max': None,
+            'semantic_loss_finite_pass': True,
+            'semantic_grad_l2_last': None,
+            'semantic_grad_l2_mean': None,
+            'semantic_grad_nonzero_pass': True,
+            'semantic_grad_finite_pass': True,
+            'semantic_all_heads_grad_pass': True,
+            'semantic_head_hash_initial': initial_aggregate,
+            'semantic_head_hash_final': None,
+            'semantic_head_updated_pass': None,
             'semantic_shape_pass': True,
             'semantic_finite_pass': True,
             'semantic_input_detached_pass': True,
@@ -213,11 +261,16 @@ class MvCAN():
             'last_batch_size': None,
             'latent_dim': self._latent_dim,
             'semantic_dim': self.semantic_dim,
+            'semantic_temperature': self.semantic_temperature,
+            'semantic_lr': self.semantic_lr,
             'view_num': self.view_num,
             'semantic_norm_mean': None,
             'semantic_norm_min': None,
             'semantic_norm_max': None,
         }
+        self._semantic_loss_sum = 0.0
+        self._semantic_loss_count = 0
+        self._semantic_grad_l2_sum = 0.0
 
     def to_device(self, device):
         """ to cuda if gpu is used """
@@ -273,9 +326,117 @@ class MvCAN():
         runtime['semantic_norm_min'] = float(semantic_norms.min().item())
         runtime['semantic_norm_max'] = float(semantic_norms.max().item())
 
-    def train(self, config, X_train, Y_list, optimizers, device, ROUND=1):
+    def _update_semantic_loss_runtime_audit(self, semantic_loss, diagnostics):
+        """Record scalar loss diagnostics without retaining pairwise logits."""
+        loss_value = float(semantic_loss.detach().item())
+        loss_finite = bool(
+            diagnostics['loss_finite'] and math.isfinite(loss_value)
+        )
+        runtime = self.semantic_runtime_audit
+        runtime['semantic_pair_count'] = int(diagnostics['pair_count'])
+        if runtime['semantic_loss_first'] is None:
+            runtime['semantic_loss_first'] = loss_value
+            runtime['semantic_loss_min'] = loss_value
+            runtime['semantic_loss_max'] = loss_value
+        runtime['semantic_loss_last'] = loss_value
+        runtime['semantic_loss_min'] = min(
+            runtime['semantic_loss_min'],
+            loss_value,
+        )
+        runtime['semantic_loss_max'] = max(
+            runtime['semantic_loss_max'],
+            loss_value,
+        )
+        self._semantic_loss_sum += loss_value
+        self._semantic_loss_count += 1
+        runtime['semantic_loss_mean'] = (
+            self._semantic_loss_sum / self._semantic_loss_count
+        )
+        runtime['semantic_loss_finite_pass'] = bool(
+            runtime['semantic_loss_finite_pass'] and loss_finite
+        )
+
+    def _update_semantic_gradient_runtime_audit(self):
+        """Audit finite, non-zero gradients for every semantic head."""
+        total_squared_norm = 0.0
+        all_gradients_finite = True
+        all_heads_grad_pass = True
+        for head in self.semantic_heads.heads:
+            head_squared_norm = 0.0
+            head_has_gradient = False
+            head_gradients_finite = True
+            for parameter in head.parameters():
+                gradient = parameter.grad
+                if gradient is None:
+                    head_gradients_finite = False
+                    continue
+                head_has_gradient = True
+                gradient_finite = bool(torch.isfinite(gradient).all().item())
+                head_gradients_finite = (
+                    head_gradients_finite and gradient_finite
+                )
+                if gradient_finite:
+                    head_squared_norm += float(
+                        gradient.detach().double().pow(2).sum().item()
+                    )
+            total_squared_norm += head_squared_norm
+            all_gradients_finite = (
+                all_gradients_finite and head_gradients_finite
+            )
+            all_heads_grad_pass = all_heads_grad_pass and (
+                head_has_gradient
+                and head_gradients_finite
+                and head_squared_norm > 0.0
+            )
+
+        grad_l2 = math.sqrt(total_squared_norm)
+        grad_nonzero = grad_l2 > 0.0
+        grad_finite = all_gradients_finite and math.isfinite(grad_l2)
+        runtime = self.semantic_runtime_audit
+        runtime['semantic_grad_l2_last'] = grad_l2
+        self._semantic_grad_l2_sum += grad_l2
+        next_step_count = runtime['semantic_optimizer_steps'] + 1
+        runtime['semantic_grad_l2_mean'] = (
+            self._semantic_grad_l2_sum / next_step_count
+        )
+        runtime['semantic_grad_nonzero_pass'] = bool(
+            runtime['semantic_grad_nonzero_pass'] and grad_nonzero
+        )
+        runtime['semantic_grad_finite_pass'] = bool(
+            runtime['semantic_grad_finite_pass'] and grad_finite
+        )
+        runtime['semantic_all_heads_grad_pass'] = bool(
+            runtime['semantic_all_heads_grad_pass'] and all_heads_grad_pass
+        )
+
+    def _finalize_semantic_hash_runtime_audit(self):
+        """Record the final semantic hash and whether training changed it."""
+        self.semantic_hash_final = hash_semantic_heads(self.semantic_heads)
+        final_aggregate = (
+            self.semantic_hash_final['aggregate']
+            if self.semantic_hash_final is not None
+            else None
+        )
+        initial_aggregate = self.semantic_runtime_audit[
+            'semantic_head_hash_initial'
+        ]
+        self.semantic_runtime_audit['semantic_head_hash_final'] = final_aggregate
+        self.semantic_runtime_audit['semantic_head_updated_pass'] = bool(
+            initial_aggregate is not None
+            and final_aggregate is not None
+            and initial_aggregate != final_aggregate
+        )
+
+    def train(self, config, X_train, Y_list, optimizers, device, ROUND=1,
+              semantic_optimizer=None):
         """Training the model.
         """
+        if self.semantic_mode == 'uniform' and semantic_optimizer is None:
+            raise ValueError("uniform semantic mode requires a semantic optimizer")
+        if self.semantic_mode != 'uniform' and semantic_optimizer is not None:
+            raise ValueError(
+                "semantic optimizer is only allowed in uniform semantic mode"
+            )
         time_begin = time.time()
         # Get complete data for training
         Y_list = torch.tensor(Y_list).int().to(device).squeeze(dim=0).unsqueeze(dim=1)
@@ -352,6 +513,7 @@ class MvCAN():
                 acc, nmi, ari = test(Y_list.cpu().detach().numpy().T[0], y_a)
 
         if self.view_num == 1:
+            self._finalize_semantic_hash_runtime_audit()
             return acc, nmi, ari
 
         iteration = config['training']['T_2']
@@ -437,12 +599,30 @@ class MvCAN():
                     Q_A.append(q)
                     P_A.append(torch.mm(P, torch.from_numpy(MMM[v]).float().to(device)))
 
-                if self.semantic_heads is not None:
+                semantic_loss = None
+                if self.semantic_mode == 'detached':
                     # Z_A[v]: [batch_size, latent_dim]
                     # S_A[v]: [batch_size, semantic_dim]
                     with torch.no_grad():
                         S_A = self.semantic_heads.forward_views(Z_A)
                     self._update_semantic_runtime_audit(Z_A, S_A)
+                elif self.semantic_mode == 'uniform':
+                    # Z_A[v]: [batch_size, latent_dim]
+                    # forward_views explicitly constructs:
+                    # z_detached: [batch_size, latent_dim]
+                    # S_A[v]: [batch_size, semantic_dim]
+                    S_A = self.semantic_heads.forward_views(Z_A)
+                    semantic_loss, semantic_diagnostics = (
+                        uniform_cross_view_infonce(
+                            S_A,
+                            temperature=self.semantic_temperature,
+                        )
+                    )
+                    self._update_semantic_runtime_audit(Z_A, S_A)
+                    self._update_semantic_loss_runtime_audit(
+                        semantic_loss,
+                        semantic_diagnostics,
+                    )
 
                 for v in range(self.view_num):
                     REC_loss = F.mse_loss(X_H[v], X_data[v])
@@ -459,6 +639,15 @@ class MvCAN():
 
                     LOSS[v][0] = LOSS[v][0] + CLU_loss
 
+                if self.semantic_mode == 'uniform':
+                    semantic_optimizer.zero_grad()
+                    semantic_loss.backward()
+                    self._update_semantic_gradient_runtime_audit()
+                    semantic_optimizer.step()
+                    self.semantic_runtime_audit[
+                        'semantic_optimizer_steps'
+                    ] += 1
+
             for v in range(self.view_num):
                 LOSS[v].append(LOSS[v][0])
                 LOSS[v][0] = 0
@@ -472,6 +661,7 @@ class MvCAN():
         time_end = time.time()
         print('time:', time_end - time_begin)
 
+        self._finalize_semantic_hash_runtime_audit()
         return acc, nmi, ari
 
     def target_distribution(self, q):

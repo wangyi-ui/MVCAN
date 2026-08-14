@@ -75,12 +75,15 @@ parser.add_argument('--corruption_seed', type=int, default=None)
 parser.add_argument('--corruption_audit_dir', type=str, default=None)
 parser.add_argument(
     '--semantic_mode',
-    choices=('off', 'detached'),
+    choices=('off', 'detached', 'uniform'),
     default='off',
 )
 parser.add_argument('--semantic_dim', type=int, default=None)
 parser.add_argument('--semantic_seed', type=int, default=None)
+parser.add_argument('--semantic_lr', type=float, default=1e-4)
+parser.add_argument('--semantic_temperature', type=float, default=0.2)
 parser.add_argument('--semantic_audit_dir', type=str, default=None)
+parser.add_argument('--semantic_save_dir', type=str, default=None)
 args = parser.parse_args()
 dataset = dataset[args.dataset]
 
@@ -133,6 +136,57 @@ def save_b3_a0_audit(
     print('B3 audit: ' + audit_path)
 
 
+def save_b3_a1_audit(
+    audit_dir,
+    config,
+    model_seed,
+    corruption_audit,
+    models,
+    acc,
+    nmi,
+    ari,
+):
+    """Save B3-A1 backbone protection and semantic update diagnostics."""
+    noisy = corruption_audit['mode'] != 'none'
+    semantic_enabled = models.semantic_heads is not None
+    audit = {
+        'stage': 'B3-A1',
+        'dataset': config['dataset'],
+        'model_seed': int(model_seed),
+        'corruption_protocol_version': corruption_audit.get('protocol_version'),
+        'corruption_mode': corruption_audit['mode'],
+        'corruption_seed': corruption_audit.get('corruption_seed'),
+        'corruption_k': corruption_audit.get('corruption_k') if noisy else None,
+        'target_snr_db': corruption_audit.get('target_snr_db') if noisy else None,
+        'corruption_mask_sha256': (
+            corruption_audit.get('mask_sha256') if noisy else None
+        ),
+        'semantic_mode': models.semantic_mode,
+        'semantic_enabled': bool(semantic_enabled),
+        'latent_dim': int(models._latent_dim),
+        'semantic_dim': models.semantic_dim,
+        'semantic_seed': models.semantic_seed,
+        'semantic_lr': models.semantic_lr,
+        'semantic_temperature': models.semantic_temperature,
+        'view_num': int(models.view_num),
+        'native_metrics': {
+            'acc': float(acc),
+            'nmi': float(nmi),
+            'ari': float(ari),
+        },
+        'backbone_hash': hash_backbone(models.autoencoders),
+        'semantic_hash_initial': models.semantic_hash_initial,
+        'semantic_hash_final': models.semantic_hash_final,
+        'runtime': dict(models.semantic_runtime_audit),
+    }
+    os.makedirs(audit_dir, exist_ok=True)
+    audit_path = os.path.join(audit_dir, 'b3_a1_audit.json')
+    with open(audit_path, 'w') as audit_file:
+        json.dump(audit, audit_file, indent=2, sort_keys=True)
+        audit_file.write('\n')
+    print('B3-A1 audit: ' + audit_path)
+
+
 def main():
     accs = []
     nmis = []
@@ -163,7 +217,9 @@ def main():
     semantic_config = None
     semantic_dim = None
     semantic_seed = None
-    if args.semantic_mode == 'detached':
+    semantic_lr = None
+    semantic_temperature = None
+    if args.semantic_mode in ('detached', 'uniform'):
         semantic_dim = (
             config['Autoencoder']['arch'][-1]
             if args.semantic_dim is None
@@ -175,10 +231,17 @@ def main():
             else int(args.semantic_seed)
         )
         semantic_config = {
-            'mode': 'detached',
+            'mode': args.semantic_mode,
             'semantic_dim': semantic_dim,
             'semantic_seed': semantic_seed,
         }
+        if args.semantic_mode == 'uniform':
+            semantic_lr = float(args.semantic_lr)
+            semantic_temperature = float(args.semantic_temperature)
+            semantic_config.update({
+                'semantic_lr': semantic_lr,
+                'semantic_temperature': semantic_temperature,
+            })
 
     logger = get_logger()
     print("Dataset: " + config['dataset'])
@@ -195,8 +258,24 @@ def main():
     print("B3 semantic dim: " + (str(semantic_dim) if semantic_dim is not None else "none"))
     print("B3 semantic seed: " + (str(semantic_seed) if semantic_seed is not None else "none"))
     print(
-        "B3 backbone protection: "
-        + ("detached" if args.semantic_mode == 'detached' else "semantic off")
+        "B3 semantic learning rate: "
+        + (str(semantic_lr) if semantic_lr is not None else "none")
+    )
+    print(
+        "B3 semantic temperature: "
+        + (
+            str(semantic_temperature)
+            if semantic_temperature is not None
+            else "none"
+        )
+    )
+    print(
+        "B3 semantic backbone protection: "
+        + (
+            "detached"
+            if args.semantic_mode in ('detached', 'uniform')
+            else "semantic off"
+        )
     )
     device = torch.device('cuda:0' if use_cuda else 'cpu')
     # Load data
@@ -286,6 +365,12 @@ def main():
             optimizers.append(torch.optim.Adam(
                 itertools.chain(Models.autoencoders[v].parameters()),
                 lr=config['training']['lr']))
+        semantic_optimizer = None
+        if args.semantic_mode == 'uniform':
+            semantic_optimizer = torch.optim.Adam(
+                Models.semantic_heads.parameters(),
+                lr=semantic_lr,
+            )
         # Print the models
         # logger.info(Models.autoencoders)
         # logger.info(optimizers)
@@ -297,10 +382,25 @@ def main():
             print("Loading models...")
             config['training']['init_epoch'] = 0
             config['training']['epoch'] = 0
-            Models.train(config, X_train, Y_list, optimizers, device)
+            Models.train(
+                config,
+                X_train,
+                Y_list,
+                optimizers,
+                device,
+                semantic_optimizer=semantic_optimizer,
+            )
         else:
             # Training
-            acc, nmi, ari = Models.train(config, X_train, Y_list, optimizers, device, ROUND)
+            acc, nmi, ari = Models.train(
+                config,
+                X_train,
+                Y_list,
+                optimizers,
+                device,
+                ROUND,
+                semantic_optimizer=semantic_optimizer,
+            )
             if acc > acc_max:
                 acc_max = acc
                 os.makedirs(args.save_dir, exist_ok=True)
@@ -309,6 +409,20 @@ def main():
                     checkpoint_name = config['dataset'] + str(v+1) + 'V.pth'
                     torch.save(state, os.path.join(args.save_dir, checkpoint_name))
                 print('Saving...')
+            if (
+                args.semantic_mode == 'uniform'
+                and args.semantic_save_dir is not None
+            ):
+                os.makedirs(args.semantic_save_dir, exist_ok=True)
+                semantic_checkpoint_path = os.path.join(
+                    args.semantic_save_dir,
+                    'semantic_heads.pth',
+                )
+                torch.save(
+                    Models.semantic_heads.state_dict(),
+                    semantic_checkpoint_path,
+                )
+                print('Saving semantic heads: ' + semantic_checkpoint_path)
         if Test:
             return 0
         accs.append(acc)
@@ -316,7 +430,7 @@ def main():
         aris.append(ari)
 
     if args.semantic_audit_dir is not None:
-        save_b3_a0_audit(
+        save_b3_a1_audit(
             args.semantic_audit_dir,
             config,
             seed,
