@@ -1,6 +1,7 @@
 import os
 import argparse
 import itertools
+import json
 import torch
 import random
 import numpy as np
@@ -9,6 +10,7 @@ from util import get_logger
 from datasets import *
 from configure import get_default_config
 from weak_quality import apply_weak_quality_protocol, save_corruption_audit
+from irv.b3_audit import hash_backbone, hash_semantic_heads
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -71,8 +73,64 @@ parser.add_argument('--corruption_k', type=int, default=2)
 parser.add_argument('--snr_db', type=float, default=5.0)
 parser.add_argument('--corruption_seed', type=int, default=None)
 parser.add_argument('--corruption_audit_dir', type=str, default=None)
+parser.add_argument(
+    '--semantic_mode',
+    choices=('off', 'detached'),
+    default='off',
+)
+parser.add_argument('--semantic_dim', type=int, default=None)
+parser.add_argument('--semantic_seed', type=int, default=None)
+parser.add_argument('--semantic_audit_dir', type=str, default=None)
 args = parser.parse_args()
 dataset = dataset[args.dataset]
+
+
+def save_b3_a0_audit(
+    audit_dir,
+    config,
+    model_seed,
+    corruption_audit,
+    models,
+    acc,
+    nmi,
+    ari,
+):
+    """Save the detached-semantic protection audit without serializing tensors."""
+    noisy = corruption_audit['mode'] != 'none'
+    semantic_enabled = models.semantic_heads is not None
+    audit = {
+        'stage': 'B3-A0',
+        'dataset': config['dataset'],
+        'model_seed': int(model_seed),
+        'corruption_protocol_version': corruption_audit.get('protocol_version'),
+        'corruption_mode': corruption_audit['mode'],
+        'corruption_seed': corruption_audit.get('corruption_seed'),
+        'corruption_k': corruption_audit.get('corruption_k') if noisy else None,
+        'target_snr_db': corruption_audit.get('target_snr_db') if noisy else None,
+        'corruption_mask_sha256': (
+            corruption_audit.get('mask_sha256') if noisy else None
+        ),
+        'semantic_mode': models.semantic_mode,
+        'semantic_enabled': bool(semantic_enabled),
+        'latent_dim': int(models._latent_dim),
+        'semantic_dim': models.semantic_dim,
+        'semantic_seed': models.semantic_seed,
+        'view_num': int(models.view_num),
+        'native_metrics': {
+            'acc': float(acc),
+            'nmi': float(nmi),
+            'ari': float(ari),
+        },
+        'backbone_hash': hash_backbone(models.autoencoders),
+        'semantic_hash': hash_semantic_heads(models.semantic_heads),
+        'runtime': dict(models.semantic_runtime_audit),
+    }
+    os.makedirs(audit_dir, exist_ok=True)
+    audit_path = os.path.join(audit_dir, 'b3_a0_audit.json')
+    with open(audit_path, 'w') as audit_file:
+        json.dump(audit, audit_file, indent=2, sort_keys=True)
+        audit_file.write('\n')
+    print('B3 audit: ' + audit_path)
 
 
 def main():
@@ -102,6 +160,26 @@ def main():
     seed = int(config['training']['seed'])
     set_global_seed(seed)
 
+    semantic_config = None
+    semantic_dim = None
+    semantic_seed = None
+    if args.semantic_mode == 'detached':
+        semantic_dim = (
+            config['Autoencoder']['arch'][-1]
+            if args.semantic_dim is None
+            else int(args.semantic_dim)
+        )
+        semantic_seed = (
+            seed + 1000
+            if args.semantic_seed is None
+            else int(args.semantic_seed)
+        )
+        semantic_config = {
+            'mode': 'detached',
+            'semantic_dim': semantic_dim,
+            'semantic_seed': semantic_seed,
+        }
+
     logger = get_logger()
     print("Dataset: " + config['dataset'])
     use_cuda = torch.cuda.is_available()
@@ -113,6 +191,13 @@ def main():
     print("KMeans random_state: " + str(seed))
     print("cuDNN deterministic: " + str(torch.backends.cudnn.deterministic))
     print("cuDNN benchmark: " + str(torch.backends.cudnn.benchmark))
+    print("B3 semantic mode: " + args.semantic_mode)
+    print("B3 semantic dim: " + (str(semantic_dim) if semantic_dim is not None else "none"))
+    print("B3 semantic seed: " + (str(semantic_seed) if semantic_seed is not None else "none"))
+    print(
+        "B3 backbone protection: "
+        + ("detached" if args.semantic_mode == 'detached' else "semantic off")
+    )
     device = torch.device('cuda:0' if use_cuda else 'cpu')
     # Load data
     X_list, Y_list = load_data(config)
@@ -186,7 +271,15 @@ def main():
         set_global_seed(round_seed)
         print("ROUND: " + str(ROUND+1))
         # Build the model
-        Models = MvCAN(config, view_num, view_size, n_clusters=n_clusters, seed=round_seed, data_size=X_list[0].shape[0])
+        Models = MvCAN(
+            config,
+            view_num,
+            view_size,
+            n_clusters=n_clusters,
+            seed=round_seed,
+            data_size=X_list[0].shape[0],
+            semantic_config=semantic_config,
+        )
         Models.to_device(device)
         optimizers = []
         for v in range(view_num):
@@ -221,6 +314,18 @@ def main():
         accs.append(acc)
         nmis.append(nmi)
         aris.append(ari)
+
+    if args.semantic_audit_dir is not None:
+        save_b3_a0_audit(
+            args.semantic_audit_dir,
+            config,
+            seed,
+            corruption_audit,
+            Models,
+            acc,
+            nmi,
+            ari,
+        )
 
     print(accs, np.mean(accs), np.std(accs))
     print(nmis, np.mean(nmis), np.std(nmis))

@@ -13,6 +13,7 @@ min_max_scaler = preprocessing.MinMaxScaler()
 from numpy import hstack
 import time
 from TSNE import TSNE_PLOT
+from irv.semantic_head import DetachedSemanticHeadBank
 
 
 class Autoencoder(nn.Module):
@@ -149,7 +150,8 @@ class Autoencoder(nn.Module):
 class MvCAN():
     """MvCAN module."""
     def __init__(self,
-                 config, view_num, view_size, n_clusters=20, seed=0, data_size=10000):
+                 config, view_num, view_size, n_clusters=20, seed=0,
+                 data_size=10000, semantic_config=None):
         """Constructor.
 
         Args:
@@ -179,11 +181,97 @@ class MvCAN():
                             )
             )
         self.data_size = data_size
+        self.semantic_mode = 'off'
+        self.semantic_dim = None
+        self.semantic_seed = None
+        self.semantic_heads = None
+
+        if semantic_config is not None:
+            self.semantic_mode = semantic_config.get('mode', 'detached')
+            if self.semantic_mode not in ('off', 'detached'):
+                raise ValueError("semantic mode must be 'off' or 'detached'")
+            if self.semantic_mode == 'detached':
+                self.semantic_dim = int(
+                    semantic_config.get('semantic_dim', self._latent_dim)
+                )
+                self.semantic_seed = int(
+                    semantic_config.get('semantic_seed', self.seed + 1000)
+                )
+                self.semantic_heads = DetachedSemanticHeadBank(
+                    view_num=self.view_num,
+                    latent_dim=self._latent_dim,
+                    semantic_dim=self.semantic_dim,
+                    semantic_seed=self.semantic_seed,
+                )
+
+        self.semantic_runtime_audit = {
+            'semantic_forward_calls': 0,
+            'semantic_shape_pass': True,
+            'semantic_finite_pass': True,
+            'semantic_input_detached_pass': True,
+            'semantic_norm_finite_pass': True,
+            'last_batch_size': None,
+            'latent_dim': self._latent_dim,
+            'semantic_dim': self.semantic_dim,
+            'view_num': self.view_num,
+            'semantic_norm_mean': None,
+            'semantic_norm_min': None,
+            'semantic_norm_max': None,
+        }
 
     def to_device(self, device):
         """ to cuda if gpu is used """
         for i in range(self.view_num):
             self.autoencoders[i].to(device)
+        if self.semantic_heads is not None:
+            self.semantic_heads.to(device)
+
+    def _update_semantic_runtime_audit(self, z_views, s_views):
+        """Record scalar-only shape, detach, finite, and norm audit data."""
+        batch_size = int(z_views[0].shape[0]) if z_views else 0
+        shape_pass = len(z_views) == self.view_num and len(s_views) == self.view_num
+        for z_v, s_v in zip(z_views, s_views):
+            # z_v: [batch_size, latent_dim]
+            # s_v: [batch_size, semantic_dim]
+            shape_pass = shape_pass and tuple(z_v.shape) == (
+                batch_size,
+                self._latent_dim,
+            )
+            shape_pass = shape_pass and tuple(s_v.shape) == (
+                batch_size,
+                self.semantic_dim,
+            )
+
+        finite_pass = all(bool(torch.isfinite(s_v).all().item()) for s_v in s_views)
+        # semantic_norms: [batch_size * view_num]
+        semantic_norms = torch.cat(
+            [torch.linalg.vector_norm(s_v, ord=2, dim=1) for s_v in s_views]
+        )
+        norm_finite_pass = bool(torch.isfinite(semantic_norms).all().item())
+        input_detached_pass = bool(
+            self.semantic_heads.last_forward_audit[
+                'semantic_input_detached_pass'
+            ]
+        )
+
+        runtime = self.semantic_runtime_audit
+        runtime['semantic_forward_calls'] += 1
+        runtime['semantic_shape_pass'] = bool(
+            runtime['semantic_shape_pass'] and shape_pass
+        )
+        runtime['semantic_finite_pass'] = bool(
+            runtime['semantic_finite_pass'] and finite_pass
+        )
+        runtime['semantic_input_detached_pass'] = bool(
+            runtime['semantic_input_detached_pass'] and input_detached_pass
+        )
+        runtime['semantic_norm_finite_pass'] = bool(
+            runtime['semantic_norm_finite_pass'] and norm_finite_pass
+        )
+        runtime['last_batch_size'] = batch_size
+        runtime['semantic_norm_mean'] = float(semantic_norms.mean().item())
+        runtime['semantic_norm_min'] = float(semantic_norms.min().item())
+        runtime['semantic_norm_max'] = float(semantic_norms.max().item())
 
     def train(self, config, X_train, Y_list, optimizers, device, ROUND=1):
         """Training the model.
@@ -348,6 +436,13 @@ class MvCAN():
                     X_H.append(x_hat)
                     Q_A.append(q)
                     P_A.append(torch.mm(P, torch.from_numpy(MMM[v]).float().to(device)))
+
+                if self.semantic_heads is not None:
+                    # Z_A[v]: [batch_size, latent_dim]
+                    # S_A[v]: [batch_size, semantic_dim]
+                    with torch.no_grad():
+                        S_A = self.semantic_heads.forward_views(Z_A)
+                    self._update_semantic_runtime_audit(Z_A, S_A)
 
                 for v in range(self.view_num):
                     REC_loss = F.mse_loss(X_H[v], X_data[v])
