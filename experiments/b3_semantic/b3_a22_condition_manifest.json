@@ -1,0 +1,67 @@
+[
+  {
+    "condition": "snr2p5_k2_seed20",
+    "dataset": "MSRC-v1",
+    "model_seed": 20,
+    "corruption_seed": 20,
+    "corruption_k": 2,
+    "snr_db": 2.5,
+    "backbone_dir": "outputs/b2_weak_quality/snr2p5_k2_seed20/models",
+    "corruption_audit": "outputs/b2_weak_quality/snr2p5_k2_seed20/audit/corruption_audit.json",
+    "corruption_mask": "outputs/b2_weak_quality/snr2p5_k2_seed20/audit/corruption_mask.npy",
+    "source_log": "logs/b2_snr2p5_k2_seed20.log",
+    "expected_mask_sha256": "ba38855ec9f381ccd00a6c1dde785c3b3031a753863aa0fd90f1403a3ef1012f"
+  },
+  {
+    "condition": "snr2p5_k2_seed30",
+    "dataset": "MSRC-v1",
+    "model_seed": 30,
+    "corruption_seed": 30,
+    "corruption_k": 2,
+    "snr_db": 2.5,
+    "backbone_dir": "outputs/b2_weak_quality/snr2p5_k2_seed30/models",
+    "corruption_audit": "outputs/b2_weak_quality/snr2p5_k2_seed30/audit/corruption_audit.json",
+    "corruption_mask": "outputs/b2_weak_quality/snr2p5_k2_seed30/audit/corruption_mask.npy",
+    "source_log": "logs/b2_snr2p5_k2_seed30.log",
+    "expected_mask_sha256": "1c57bea5ef067532164e3506fc87e4c756f450cabaa98cb137b8914d4bbb91f2"
+  },
+  {
+    "condition": "snr2p5_k2_seed50",
+    "dataset": "MSRC-v1",
+    "model_seed": 50,
+    "corruption_seed": 50,
+    "corruption_k": 2,
+    "snr_db": 2.5,
+    "backbone_dir": "outputs/b2_weak_quality/snr2p5_k2_seed50/models",
+    "corruption_audit": "outputs/b2_weak_quality/snr2p5_k2_seed50/audit/corruption_audit.json",
+    "corruption_mask": "outputs/b2_weak_quality/snr2p5_k2_seed50/audit/corruption_mask.npy",
+    "source_log": "logs/b2_snr2p5_k2_seed50.log",
+    "expected_mask_sha256": "a2627842735724faaa4dbf6e4cfc97081a5a4327ac353c010e9c9a4d96c4b839"
+  },
+  {
+    "condition": "snr5_k2_seed20",
+    "dataset": "MSRC-v1",
+    "model_seed": 20,
+    "corruption_seed": 20,
+    "corruption_k": 2,
+    "snr_db": 5.0,
+    "backbone_dir": "outputs/b2_weak_quality/snr5_k2_seed20/models",
+    "corruption_audit": "outputs/b2_weak_quality/snr5_k2_seed20/audit/corruption_audit.json",
+    "corruption_mask": "outputs/b2_weak_quality/snr5_k2_seed20/audit/corruption_mask.npy",
+    "source_log": "logs/b2_snr5_k2_seed20.log",
+    "expected_mask_sha256": "ba38855ec9f381ccd00a6c1dde785c3b3031a753863aa0fd90f1403a3ef1012f"
+  },
+  {
+    "condition": "snr0_k2_seed20",
+    "dataset": "MSRC-v1",
+    "model_seed": 20,
+    "corruption_seed": 20,
+    "corruption_k": 2,
+    "snr_db": 0.0,
+    "backbone_dir": "outputs/b2_weak_quality/snr0_k2_seed20/models",
+    "corruption_audit": "outputs/b2_weak_quality/snr0_k2_seed20/audit/corruption_audit.json",
+    "corruption_mask": "outputs/b2_weak_quality/snr0_k2_seed20/audit/corruption_mask.npy",
+    "source_log": "logs/b2_snr0_k2_seed20.log",
+    "expected_mask_sha256": "ba38855ec9f381ccd00a6c1dde785c3b3031a753863aa0fd90f1403a3ef1012f"
+  }
+]

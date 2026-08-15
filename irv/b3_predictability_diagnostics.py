@@ -100,16 +100,37 @@ def ordered_view_pairs(view_num):
     ]
 
 
-def oof_ridge_predictability(
+def deterministic_derangement(size, seed):
+    """Return a deterministic permutation with exactly zero fixed points."""
+    size = int(size)
+    if size < 2:
+        raise ValueError("derangement size must be at least two")
+    ordering = np.random.RandomState(int(seed)).permutation(size)
+    permutation = np.empty(size, dtype=np.int64)
+    permutation[ordering] = np.roll(ordering, -1)
+    if not np.array_equal(np.sort(permutation), np.arange(size)):
+        raise RuntimeError("derangement is not a permutation")
+    if np.any(permutation == np.arange(size)):
+        raise RuntimeError("derangement contains a fixed point")
+    return permutation
+
+
+def _pair_shuffle_seed(base_seed, source_view, target_view, fold_id):
+    value = (
+        int(base_seed) * 1000003
+        + int(source_view) * 1009
+        + int(target_view) * 9176
+        + int(fold_id) * 65537
+    )
+    return int(value % (2 ** 32 - 1))
+
+
+def _oof_ridge_predictability_core(
     representation_views,
     fold_assignment,
-    alpha=1.0,
+    alpha,
+    correspondence_shuffle_seed,
 ):
-    """Fit label-free ordered cross-view Ridge models and score OOF predictions.
-
-    This API intentionally accepts representations, fold IDs, and Ridge alpha
-    only. Class labels and corruption masks cannot enter predictor fitting.
-    """
     representations = normalize_representation_views(representation_views)
     sample_num, view_num, feature_dim = representations.shape
     assignment = np.asarray(fold_assignment, dtype=np.int64)
@@ -132,6 +153,8 @@ def oof_ridge_predictability(
     )
     oof_coverage = np.zeros(sample_num, dtype=np.int64)
     train_test_disjoint_pass = True
+    fixed_point_count = 0
+    target_training_permutation_pass = True
 
     for fold_id in fold_ids:
         test_ids = np.flatnonzero(assignment == fold_id)
@@ -151,10 +174,32 @@ def oof_ridge_predictability(
             ]
             source_view_ids[target_view] = sources
             for source_position, source_view in enumerate(sources):
+                target_train_ids = train_ids
+                if correspondence_shuffle_seed is not None:
+                    permutation = deterministic_derangement(
+                        train_ids.size,
+                        _pair_shuffle_seed(
+                            correspondence_shuffle_seed,
+                            source_view,
+                            target_view,
+                            fold_id,
+                        ),
+                    )
+                    fixed_point_count += int(
+                        np.sum(permutation == np.arange(train_ids.size))
+                    )
+                    target_train_ids = train_ids[permutation]
+                    target_training_permutation_pass = bool(
+                        target_training_permutation_pass
+                        and np.array_equal(
+                            np.sort(target_train_ids), np.sort(train_ids)
+                        )
+                        and np.intersect1d(target_train_ids, test_ids).size == 0
+                    )
                 predictor = Ridge(alpha=float(alpha), fit_intercept=True)
                 predictor.fit(
                     representations[train_ids, source_view],
-                    representations[train_ids, target_view],
+                    representations[target_train_ids, target_view],
                 )
                 predicted = predictor.predict(
                     representations[test_ids, source_view]
@@ -202,8 +247,54 @@ def oof_ridge_predictability(
             "oof_coverage_pass": bool(np.all(oof_coverage == 1)),
             "oof_coverage_count": int(np.sum(oof_coverage == 1)),
             "all_finite_pass": all_finite_pass,
+            "target_training_correspondence": (
+                "within_fold_deranged"
+                if correspondence_shuffle_seed is not None
+                else "aligned"
+            ),
+            "target_training_permutation_pass": bool(
+                target_training_permutation_pass
+            ),
+            "target_training_fixed_point_count": (
+                int(fixed_point_count)
+                if correspondence_shuffle_seed is not None
+                else None
+            ),
         },
     }
+
+
+def oof_ridge_predictability(
+    representation_views,
+    fold_assignment,
+    alpha=1.0,
+):
+    """Fit label-free ordered cross-view Ridge models and score OOF predictions.
+
+    This API intentionally accepts representations, fold IDs, and Ridge alpha
+    only. Class labels and corruption masks cannot enter predictor fitting.
+    """
+    return _oof_ridge_predictability_core(
+        representation_views,
+        fold_assignment,
+        alpha=float(alpha),
+        correspondence_shuffle_seed=None,
+    )
+
+
+def oof_ridge_predictability_with_shuffled_correspondence(
+    representation_views,
+    fold_assignment,
+    alpha=1.0,
+    shuffle_seed=20260815,
+):
+    """Fit the same OOF predictors after within-train-fold derangement."""
+    return _oof_ridge_predictability_core(
+        representation_views,
+        fold_assignment,
+        alpha=float(alpha),
+        correspondence_shuffle_seed=int(shuffle_seed),
+    )
 
 
 def score_summary(scores):
