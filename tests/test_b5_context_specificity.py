@@ -6,6 +6,8 @@ import math
 import numpy as np
 import torch
 
+import experiments.b5_semantic_rate.evaluate_b5_a0_context_specificity as specificity
+
 from experiments.b5_semantic_rate.evaluate_b5_a0_context_specificity import (
     compute_correct_context_rates,
 )
@@ -151,3 +153,57 @@ def test_500_permutation_output_shapes_are_exact():
     assert per_view_shuffle_rates.shape == (500, 5)
     assert torch.isfinite(shuffle_rates).all()
     assert torch.isfinite(per_view_shuffle_rates).all()
+
+
+def _specificity_cli(condition):
+    return [
+        "--input-dir", "input",
+        "--condition", condition,
+        "--permutations", "500",
+        "--permutation-seed", "20260816",
+        "--output-dir", "output",
+    ]
+
+
+def test_specificity_cli_accepts_clean():
+    args = specificity.parse_args(_specificity_cli("clean"))
+    assert args.condition == "clean"
+
+
+def test_specificity_cli_still_accepts_noisy():
+    args = specificity.parse_args(_specificity_cli("snr2p5_k2"))
+    assert args.condition == "snr2p5_k2"
+
+
+def test_clean_canonical_hash_comes_from_current_metadata():
+    clean_hash = "a" * 64
+    metadata = {
+        "expected_z_hash_b4_compatible": clean_hash,
+        "z_hash_b4_compatible": clean_hash,
+    }
+    assert specificity.expected_canonical_z_hash(metadata, "clean") == clean_hash
+    assert clean_hash != specificity.EXPECTED_NOISY_CANONICAL_Z_HASH
+
+
+def test_clean_correct_rate_reproduces_stored_rate_and_per_view_mean():
+    per_view = np.asarray([0.8, 1.0, 1.2, 1.4, 1.6])
+    correct = float(np.mean(per_view))
+    audit = specificity.correct_rate_reproduction_audit(
+        correct, per_view, correct
+    )
+    assert audit["stored_rate_abs_error"] == 0.0
+    assert audit["per_view_mean_abs_error"] == 0.0
+    assert audit["per_view_rates_finite_pass"]
+    assert audit["correct_rate_reproduction_pass"]
+
+
+def test_clean_and_noisy_use_identical_permutation_construction():
+    clean_bank = specificity.generate_sample_permutations(210, 500, 20260816)
+    noisy_bank = specificity.generate_sample_permutations(210, 500, 20260816)
+    assert torch.equal(clean_bank, noisy_bank)
+
+
+def test_clean_feature_condition_preserves_feature_rows_exactly():
+    views = [np.full((4, 3), view, dtype=np.float32) for view in range(5)]
+    clean = specificity.condition_evaluation_views(views, "clean")
+    assert all(np.array_equal(a, b) for a, b in zip(clean, views))

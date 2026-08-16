@@ -265,3 +265,99 @@ def test_public_context_api_explicitly_has_no_corruption_mask():
             a02.single_source_shuffled_contexts):
         names = [name.lower() for name in inspect.signature(function).parameters]
         assert all("mask" not in name for name in names)
+
+
+def _a02_cli(condition):
+    return [
+        "--input-dir", "input",
+        "--condition", condition,
+        "--permutations", "500",
+        "--permutation-seed", "20260816",
+        "--output-dir", "output",
+    ]
+
+
+def test_a02_cli_accepts_clean():
+    args = a02.parse_args(_a02_cli("clean"))
+    assert args.condition == "clean"
+
+
+def test_a02_cli_still_accepts_noisy():
+    args = a02.parse_args(_a02_cli("snr2p5_k2"))
+    assert args.condition == "snr2p5_k2"
+
+
+def test_clean_reproduction_never_uses_noisy_historical_rates():
+    clean_per_view = np.asarray([0.7, 0.9, 1.1, 1.3, 1.5])
+    clean_global = float(np.mean(clean_per_view))
+    audit = a02.condition_correct_rate_reproduction_audit(
+        "clean", clean_global, clean_per_view, clean_global
+    )
+    assert not audit["noisy_historical_per_view_reference_applied"]
+    assert audit["expected_noisy_R_correct_per_view"] is None
+    assert audit["noisy_historical_per_view_abs_errors"] is None
+    assert audit["noisy_historical_per_view_max_abs_error"] is None
+    assert audit["B5_A02_CORRECT_RATE_REPRO_PASS"]
+
+
+def test_noisy_historical_per_view_regression_remains_exact():
+    noisy_per_view = a02.EXPECTED_NOISY_CORRECT_PER_VIEW.copy()
+    noisy_global = float(np.mean(noisy_per_view))
+    audit = a02.condition_correct_rate_reproduction_audit(
+        "snr2p5_k2", noisy_global, noisy_per_view, noisy_global
+    )
+    assert audit["noisy_historical_per_view_reference_applied"]
+    assert audit["noisy_historical_per_view_max_abs_error"] == 0.0
+    assert audit["B5_A02_CORRECT_RATE_REPRO_PASS"]
+
+
+def test_noisy_historical_per_view_regression_cannot_be_weakened():
+    changed = a02.EXPECTED_NOISY_CORRECT_PER_VIEW.copy()
+    changed[2] += 1e-3
+    changed_global = float(np.mean(changed))
+    audit = a02.condition_correct_rate_reproduction_audit(
+        "snr2p5_k2", changed_global, changed, changed_global
+    )
+    assert not audit["noisy_historical_per_view_reproduction_pass"]
+    assert not audit["B5_A02_CORRECT_RATE_REPRO_PASS"]
+
+
+def test_same_n_and_seed_produce_expected_cross_condition_bank_hash():
+    clean_bank = a02.generate_sample_permutations(210, 500, 20260816)
+    noisy_bank = a02.generate_sample_permutations(210, 500, 20260816)
+    assert torch.equal(clean_bank, noisy_bank)
+    assert a02.permutation_bank_sha256(clean_bank) == (
+        a02.EXPECTED_SHARED_PERMUTATION_BANK_HASH
+    )
+
+
+def test_clean_noisy_comparison_reports_effect_and_sign_flips():
+    clean = np.asarray([
+        [np.nan, 1.0, -1.0],
+        [-1.0, np.nan, 1.0],
+        [1.0, -1.0, np.nan],
+    ])
+    noisy = np.asarray([
+        [np.nan, 2.0, -2.0],
+        [1.0, np.nan, -1.0],
+        [1.0, -1.0, np.nan],
+    ])
+    result = a02.compare_clean_noisy_delta_matrices(clean, noisy)
+    assert np.allclose(
+        result["noise_effect_matrix"][~np.eye(3, dtype=bool)],
+        (noisy - clean)[~np.eye(3, dtype=bool)],
+    )
+    assert result["positive_in_both_count"] == 2
+    assert result["negative_in_both_count"] == 2
+    assert result["clean_positive_noisy_negative_count"] == 1
+    assert result["clean_negative_noisy_positive_count"] == 1
+    assert sum(record["sign_flip"] for record in result["relations"]) == 2
+
+
+def test_new_generalization_api_has_no_labels_or_corruption_mask():
+    for function in (
+            a02.condition_correct_rate_reproduction_audit,
+            a02.directed_matrix_from_json,
+            a02.compare_clean_noisy_delta_matrices):
+        names = [name.lower() for name in inspect.signature(function).parameters]
+        assert all("label" not in name and "mask" not in name for name in names)

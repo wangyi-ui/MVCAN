@@ -16,7 +16,7 @@ if str(REPOSITORY_ROOT) not in sys.path:
     sys.path.insert(0, str(REPOSITORY_ROOT))
 
 from experiments.b5_semantic_rate.evaluate_b5_a0_context_specificity import (
-    EXPECTED_CANONICAL_Z_HASH,
+    SUPPORTED_CONDITIONS,
 )
 from experiments.b5_semantic_rate.evaluate_b5_a0_context_specificity import (
     EXPECTED_MODEL_SEED,
@@ -42,6 +42,15 @@ from experiments.b5_semantic_rate.evaluate_b5_a0_context_specificity import (
 from experiments.b5_semantic_rate.evaluate_b5_a0_context_specificity import (
     generate_sample_permutations,
 )
+from experiments.b5_semantic_rate.evaluate_b5_a0_context_specificity import (
+    _stored_correct_rate,
+)
+from experiments.b5_semantic_rate.evaluate_b5_a0_context_specificity import (
+    correct_rate_reproduction_audit as global_rate_reproduction_audit,
+)
+from experiments.b5_semantic_rate.evaluate_b5_a0_context_specificity import (
+    expected_canonical_z_hash,
+)
 from irv.b3_audit import hash_backbone, hash_state_dict
 from irv.b5_shared_semantic_rate import analytic_kl_diag_gaussian
 
@@ -49,7 +58,7 @@ from irv.b5_shared_semantic_rate import analytic_kl_diag_gaussian
 EXPECTED_PERMUTATIONS = 500
 EXPECTED_PERMUTATION_SEED = 20260816
 EXPECTED_TRAINING_STEPS = 100
-EXPECTED_CORRECT_PER_VIEW = np.asarray(
+EXPECTED_NOISY_CORRECT_PER_VIEW = np.asarray(
     [
         0.8893569111824036,
         1.2556895017623901,
@@ -58,6 +67,13 @@ EXPECTED_CORRECT_PER_VIEW = np.asarray(
         1.4715262651443481,
     ],
     dtype=np.float64,
+)
+EXPECTED_SHARED_PERMUTATION_BANK_HASH = (
+    "887e2c52c2ecc08f93f3351609e5ce499aa280423fb8c5c994aefb051d907635"
+)
+DEFAULT_NOISY_ATTRIBUTION = (
+    "outputs/b5_semantic_rate/a02_side_target_attribution_step100_seed20/"
+    "b5_a02_side_target_attribution.json"
 )
 
 
@@ -528,13 +544,149 @@ def matrix_for_json(matrix):
     ]
 
 
+def condition_correct_rate_reproduction_audit(condition, correct_global_rate,
+                                               correct_per_view_rates,
+                                               stored_correct_rate,
+                                               tolerance=1e-6):
+    """Apply historical per-view values only to the noisy condition."""
+    if condition not in SUPPORTED_CONDITIONS:
+        raise ValueError("unsupported B5-A0.2 condition")
+    base = global_rate_reproduction_audit(
+        correct_global_rate,
+        correct_per_view_rates,
+        stored_correct_rate,
+        tolerance,
+    )
+    per_view = np.asarray(correct_per_view_rates, dtype=np.float64)
+    noisy_reference_applied = condition == "snr2p5_k2"
+    if noisy_reference_applied:
+        noisy_errors = np.abs(per_view - EXPECTED_NOISY_CORRECT_PER_VIEW)
+        noisy_error = float(np.max(noisy_errors))
+        noisy_pass = bool(noisy_error < float(tolerance))
+        noisy_error_values = [float(value) for value in noisy_errors]
+        expected_values = [
+            float(value) for value in EXPECTED_NOISY_CORRECT_PER_VIEW
+        ]
+    else:
+        noisy_error = None
+        noisy_pass = True
+        noisy_error_values = None
+        expected_values = None
+    relevant_errors = [
+        base["stored_rate_abs_error"], base["per_view_mean_abs_error"]
+    ]
+    if noisy_error is not None:
+        relevant_errors.append(noisy_error)
+    result = dict(base)
+    result.update({
+        "noisy_historical_per_view_reference_applied": (
+            noisy_reference_applied
+        ),
+        "expected_noisy_R_correct_per_view": expected_values,
+        "noisy_historical_per_view_abs_errors": noisy_error_values,
+        "noisy_historical_per_view_max_abs_error": noisy_error,
+        "noisy_historical_per_view_reproduction_pass": noisy_pass,
+        "reproduction_max_abs_error": float(max(relevant_errors)),
+        "B5_A02_CORRECT_RATE_REPRO_PASS": bool(
+            base["correct_rate_reproduction_pass"] and noisy_pass
+        ),
+    })
+    return result
+
+
+def directed_matrix_from_json(rows):
+    """Restore a strict-JSON directed matrix, mapping null diagonal to NaN."""
+    if not isinstance(rows, list) or not rows:
+        raise ValueError("directed matrix JSON must be a non-empty list")
+    view_num = len(rows)
+    result = np.full((view_num, view_num), np.nan, dtype=np.float64)
+    for source_view, row in enumerate(rows):
+        if not isinstance(row, list) or len(row) != view_num:
+            raise ValueError("directed matrix JSON must have shape [V,V]")
+        for target_view, value in enumerate(row):
+            if source_view == target_view:
+                if value is not None:
+                    raise ValueError("directed matrix JSON diagonal must be null")
+            else:
+                result[source_view, target_view] = float(value)
+    off_diagonal = ~np.eye(view_num, dtype=bool)
+    if not np.isfinite(result[off_diagonal]).all():
+        raise ValueError("directed matrix off-diagonal entries must be finite")
+    return result
+
+
+def _contribution_sign(value):
+    value = float(value)
+    if value > 0.0:
+        return "positive"
+    if value < 0.0:
+        return "negative"
+    return "zero"
+
+
+def compare_clean_noisy_delta_matrices(clean_delta_matrix,
+                                       noisy_delta_matrix):
+    """Return M_noisy-M_clean and directed sign-transition diagnostics."""
+    clean = np.asarray(clean_delta_matrix, dtype=np.float64)
+    noisy = np.asarray(noisy_delta_matrix, dtype=np.float64)
+    if clean.shape != noisy.shape or clean.ndim != 2:
+        raise ValueError("clean and noisy matrices must have equal [V,V] shape")
+    view_num = int(clean.shape[0])
+    if clean.shape[1] != view_num:
+        raise ValueError("clean and noisy matrices must be square")
+    off_diagonal = ~np.eye(view_num, dtype=bool)
+    for value in (clean, noisy):
+        if (
+                not np.isfinite(value[off_diagonal]).all()
+                or not np.isnan(np.diag(value)).all()):
+            raise ValueError("directed matrix finite/diagonal convention failed")
+    noise_effect = noisy - clean
+    relations = []
+    counts = {
+        "positive_in_both_count": 0,
+        "negative_in_both_count": 0,
+        "clean_positive_noisy_negative_count": 0,
+        "clean_negative_noisy_positive_count": 0,
+    }
+    for source_view, target_view in ordered_source_target_relations(view_num):
+        clean_value = float(clean[source_view, target_view])
+        noisy_value = float(noisy[source_view, target_view])
+        clean_sign = _contribution_sign(clean_value)
+        noisy_sign = _contribution_sign(noisy_value)
+        if clean_sign == "positive" and noisy_sign == "positive":
+            counts["positive_in_both_count"] += 1
+        elif clean_sign == "negative" and noisy_sign == "negative":
+            counts["negative_in_both_count"] += 1
+        elif clean_sign == "positive" and noisy_sign == "negative":
+            counts["clean_positive_noisy_negative_count"] += 1
+        elif clean_sign == "negative" and noisy_sign == "positive":
+            counts["clean_negative_noisy_positive_count"] += 1
+        relations.append({
+            "source_view": source_view,
+            "target_view": target_view,
+            "relation": str(source_view) + "->" + str(target_view),
+            "clean_delta": clean_value,
+            "noisy_delta": noisy_value,
+            "noise_effect": float(noise_effect[source_view, target_view]),
+            "sign_clean": clean_sign,
+            "sign_noisy": noisy_sign,
+            "sign_flip": clean_sign != noisy_sign,
+        })
+    return {
+        "noise_effect_matrix": noise_effect,
+        "relations": relations,
+        **counts,
+    }
+
+
 def parse_args(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--input-dir", required=True)
-    parser.add_argument("--condition", choices=("snr2p5_k2",), required=True)
+    parser.add_argument("--condition", choices=SUPPORTED_CONDITIONS, required=True)
     parser.add_argument("--permutations", type=int, required=True)
     parser.add_argument("--permutation-seed", type=int, required=True)
     parser.add_argument("--output-dir", required=True)
+    parser.add_argument("--noisy-attribution", default=DEFAULT_NOISY_ATTRIBUTION)
     return parser.parse_args(argv)
 
 
@@ -561,8 +713,9 @@ def main(argv=None):
         == metadata.get("backbone_hash_after"),
         "input backbone changed during the frozen B5 run",
     )
+    expected_z_hash = expected_canonical_z_hash(metadata, args.condition)
     models, backbone_hash_before, z_views, z_hash, z_audit = (
-        _reconstruct_frozen_z(metadata)
+        _reconstruct_frozen_z(metadata, args.condition)
     )
     posterior, prior, posterior_hash_before, prior_hash_before = (
         _load_final_conditional_modules(arm_dir, metadata)
@@ -602,10 +755,19 @@ def main(argv=None):
         permutation_bank,
     )
     correct_values = attribution["correct_per_view_rates"]
-    correct_errors = np.abs(correct_values - EXPECTED_CORRECT_PER_VIEW)
-    correct_max_abs_error = float(np.max(correct_errors))
-    correct_repro_pass = bool(correct_max_abs_error < 1e-6)
-    _require(correct_repro_pass, "100-step target correct rates not reproduced")
+    stored_correct = _stored_correct_rate(arm_dir)
+    reproduction = condition_correct_rate_reproduction_audit(
+        args.condition,
+        attribution["correct_global_rate"],
+        correct_values,
+        stored_correct,
+    )
+    correct_max_abs_error = reproduction["reproduction_max_abs_error"]
+    correct_repro_pass = reproduction["B5_A02_CORRECT_RATE_REPRO_PASS"]
+    _require(
+        correct_repro_pass,
+        "current-condition target correct rates not reproduced",
+    )
 
     leave_out_delta = leave_one_source_out_delta(
         posterior_mu_views,
@@ -650,6 +812,11 @@ def main(argv=None):
         == attribution["permutation_bank_hash"]
     )
 
+    permutation_bank_match_pass = bool(
+        attribution["permutation_bank_hash"]
+        == EXPECTED_SHARED_PERMUTATION_BANK_HASH
+    )
+    _require(permutation_bank_match_pass, "cross-condition permutation bank mismatch")
     backbone_hash_after = hash_backbone(models.autoencoders)
     posterior_hash_after = hash_state_dict(posterior.state_dict())
     prior_hash_after = hash_state_dict(prior.state_dict())
@@ -675,10 +842,11 @@ def main(argv=None):
         and relation_count_pass
         and permutation_deterministic_pass
         and shared_bank_pass
+        and permutation_bank_match_pass
         and no_parameter_gradients_pass
         and parameter_state_unchanged_pass
         and backbone_unchanged_pass
-        and z_hash == EXPECTED_CANONICAL_Z_HASH
+        and z_hash == expected_z_hash
     )
     _require(attribution_complete, "B5-A0.2 attribution completion checks failed")
 
@@ -722,9 +890,13 @@ def main(argv=None):
         "permutations_per_relation": args.permutations,
         "permutation_seed": args.permutation_seed,
         "same_permutation_bank_across_all_relations": shared_bank_pass,
+        "expected_shared_permutation_bank_hash": (
+            EXPECTED_SHARED_PERMUTATION_BANK_HASH
+        ),
         "permutation_bank_shape": list(permutation_bank.shape),
         "permutation_bank_hash": attribution["permutation_bank_hash"],
         "permutation_deterministic_pass": permutation_deterministic_pass,
+        "B5_A03_PERMUTATION_BANK_MATCH_PASS": permutation_bank_match_pass,
         "posterior_checkpoint": str(
             posterior_checkpoint.relative_to(REPOSITORY_ROOT)
         ),
@@ -742,8 +914,8 @@ def main(argv=None):
         "parameter_state_unchanged_pass": parameter_state_unchanged_pass,
         "no_parameter_gradients_pass": no_parameter_gradients_pass,
         "canonical_z_hash": z_hash,
-        "expected_canonical_z_hash": EXPECTED_CANONICAL_Z_HASH,
-        "canonical_z_exact_match": z_hash == EXPECTED_CANONICAL_Z_HASH,
+        "expected_canonical_z_hash": expected_z_hash,
+        "canonical_z_exact_match": z_hash == expected_z_hash,
         "input_cross_stage_z_exact_match": bool(
             metadata.get("cross_stage_z_exact_match") is True
         ),
@@ -753,10 +925,28 @@ def main(argv=None):
         "backbone_unchanged_pass": backbone_unchanged_pass,
         "R_correct": attribution["correct_global_rate"],
         "R_correct_per_view": [float(value) for value in correct_values],
-        "expected_R_correct_per_view": [
-            float(value) for value in EXPECTED_CORRECT_PER_VIEW
+        "semantic_dim": int(posterior.semantic_dim),
+        "stored_current_condition_R_correct": stored_correct,
+        "R_correct_per_view_mean": reproduction["computed_per_view_mean"],
+        "noisy_historical_per_view_reference_applied": reproduction[
+            "noisy_historical_per_view_reference_applied"
         ],
-        "correct_rate_abs_errors": [float(value) for value in correct_errors],
+        "expected_R_correct_per_view": reproduction[
+            "expected_noisy_R_correct_per_view"
+        ],
+        "correct_rate_abs_errors": reproduction[
+            "noisy_historical_per_view_abs_errors"
+        ],
+        "noisy_historical_per_view_max_abs_error": reproduction[
+            "noisy_historical_per_view_max_abs_error"
+        ],
+        "correct_rate_stored_abs_error": reproduction["stored_rate_abs_error"],
+        "correct_rate_per_view_mean_abs_error": reproduction[
+            "per_view_mean_abs_error"
+        ],
+        "correct_rate_per_view_finite_pass": reproduction[
+            "per_view_rates_finite_pass"
+        ],
         "correct_rate_reproduction_max_abs_error": correct_max_abs_error,
         "B5_A02_CORRECT_RATE_REPRO_PASS": correct_repro_pass,
         "relation_count": attribution["relation_count"],
@@ -776,6 +966,121 @@ def main(argv=None):
         "B5_FINAL_SCIENTIFIC_PASS_DECLARED": False,
         "B5_A1_STARTED": False,
     }
+    comparison_output = None
+    if args.condition == "clean":
+        noisy_attribution_path = _resolve(args.noisy_attribution)
+        _require(
+            noisy_attribution_path.is_file(),
+            "noisy attribution reference is missing",
+        )
+        noisy_result = _load_json(noisy_attribution_path)
+        _require(
+            noisy_result.get("condition") == "snr2p5_k2",
+            "comparison reference must be noisy attribution",
+        )
+        noisy_delta_matrix = directed_matrix_from_json(
+            noisy_result.get("delta_matrix")
+        )
+        comparison = compare_clean_noisy_delta_matrices(
+            delta_matrix, noisy_delta_matrix
+        )
+        noise_effect_matrix = comparison["noise_effect_matrix"]
+        reference_bank_match_pass = bool(
+            attribution["permutation_bank_hash"]
+            == noisy_result.get("permutation_bank_hash")
+            == EXPECTED_SHARED_PERMUTATION_BANK_HASH
+        )
+        same_semantic_dim_pass = bool(
+            int(posterior.semantic_dim) == int(noisy_result.get("semantic_dim", -1))
+        )
+        same_context_definition_pass = bool(
+            result["context_definition"]
+            == noisy_result.get("context_definition")
+        )
+        same_permutation_spec_pass = bool(
+            result["permutations_per_relation"]
+            == noisy_result.get("permutations_per_relation")
+            and result["permutation_seed"]
+            == noisy_result.get("permutation_seed")
+        )
+        same_matrix_orientation_pass = bool(
+            result["matrix_orientation"]
+            == noisy_result.get("matrix_orientation")
+        )
+        comparison_complete = bool(
+            reference_bank_match_pass
+            and same_semantic_dim_pass
+            and same_context_definition_pass
+            and same_permutation_spec_pass
+            and same_matrix_orientation_pass
+            and len(comparison["relations"])
+            == EXPECTED_VIEW_NUM * (EXPECTED_VIEW_NUM - 1)
+        )
+        _require(
+            reference_bank_match_pass,
+            "clean/noisy permutation bank hash mismatch",
+        )
+        _require(
+            comparison_complete,
+            "clean/noisy attribution comparability checks failed",
+        )
+        np.save(output_dir / "noise_effect_matrix.npy", noise_effect_matrix)
+        comparison_output = {
+            "stage": "B5-A0.3 Clean-vs-Noisy Attribution Comparison",
+            "matrix_orientation": result["matrix_orientation"],
+            "noise_effect_definition": "M_noisy - M_clean",
+            "clean_attribution_file": str(
+                (output_dir / "b5_a02_side_target_attribution.json").relative_to(
+                    REPOSITORY_ROOT
+                )
+            ),
+            "noisy_attribution_file": str(
+                noisy_attribution_path.relative_to(REPOSITORY_ROOT)
+            ),
+            "permutation_bank_hash_clean": attribution[
+                "permutation_bank_hash"
+            ],
+            "permutation_bank_hash_noisy": noisy_result[
+                "permutation_bank_hash"
+            ],
+            "B5_A03_PERMUTATION_BANK_MATCH_PASS": reference_bank_match_pass,
+            "same_semantic_dim_pass": same_semantic_dim_pass,
+            "same_context_definition_pass": same_context_definition_pass,
+            "same_permutation_spec_pass": same_permutation_spec_pass,
+            "same_matrix_orientation_pass": same_matrix_orientation_pass,
+            "M_clean": matrix_for_json(delta_matrix),
+            "M_noisy": matrix_for_json(noisy_delta_matrix),
+            "Delta_noise_effect": matrix_for_json(noise_effect_matrix),
+            "relations": comparison["relations"],
+            "positive_in_both_count": comparison["positive_in_both_count"],
+            "negative_in_both_count": comparison["negative_in_both_count"],
+            "clean_positive_noisy_negative_count": comparison[
+                "clean_positive_noisy_negative_count"
+            ],
+            "clean_negative_noisy_positive_count": comparison[
+                "clean_negative_noisy_positive_count"
+            ],
+            "target_view2_incoming_relations": [
+                record for record in comparison["relations"]
+                if record["target_view"] == 2
+            ],
+            "source_view4_outgoing_relations": [
+                record for record in comparison["relations"]
+                if record["source_view"] == 4
+            ],
+            "B5_A03_CROSS_CONDITION_COMPARISON_COMPLETE": comparison_complete,
+            "B5_FINAL_SCIENTIFIC_PASS_DECLARED": False,
+        }
+        result["B5_A03_PERMUTATION_BANK_MATCH_PASS"] = (
+            reference_bank_match_pass
+        )
+        result["clean_vs_noisy_comparison_file"] = (
+            "b5_a03_clean_vs_noisy_attribution.json"
+        )
+        _write_json(
+            output_dir / "b5_a03_clean_vs_noisy_attribution.json",
+            comparison_output,
+        )
     _write_json(output_dir / "b5_a02_side_target_attribution.json", result)
 
     print("correct-rate reproduction max abs error=" + str(
@@ -814,6 +1119,47 @@ def main(argv=None):
                 record["fraction_shuffle_gt_correct"],
             ))
         )
+    if comparison_output is not None:
+        print("M_clean:")
+        print(np.array2string(
+            directed_matrix_from_json(comparison_output["M_clean"]),
+            precision=9,
+            suppress_small=False,
+        ))
+        print("M_noisy:")
+        print(np.array2string(
+            directed_matrix_from_json(comparison_output["M_noisy"]),
+            precision=9,
+            suppress_small=False,
+        ))
+        print("Delta_noise_effect=M_noisy-M_clean:")
+        print(np.array2string(
+            directed_matrix_from_json(comparison_output["Delta_noise_effect"]),
+            precision=9,
+            suppress_small=False,
+        ))
+        print("clean/noisy sign counts=" + str((
+            comparison_output["positive_in_both_count"],
+            comparison_output["negative_in_both_count"],
+            comparison_output["clean_positive_noisy_negative_count"],
+            comparison_output["clean_negative_noisy_positive_count"],
+        )))
+        print("clean-vs-noisy target view2 incoming relations:")
+        for record in comparison_output["target_view2_incoming_relations"]:
+            print(record["relation"] + " clean/noisy/effect/sign-flip=" + str((
+                record["clean_delta"], record["noisy_delta"],
+                record["noise_effect"], record["sign_flip"],
+            )))
+        print("clean-vs-noisy source4 outgoing relations:")
+        for record in comparison_output["source_view4_outgoing_relations"]:
+            print(record["relation"] + " clean/noisy/effect/sign-flip=" + str((
+                record["clean_delta"], record["noisy_delta"],
+                record["noise_effect"], record["sign_flip"],
+            )))
+    print(
+        "B5_A03_PERMUTATION_BANK_MATCH_PASS="
+        + str(result["B5_A03_PERMUTATION_BANK_MATCH_PASS"]).lower()
+    )
     print(
         "B5_A02_CORRECT_RATE_REPRO_PASS="
         + str(correct_repro_pass).lower()

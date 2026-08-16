@@ -37,10 +37,12 @@ EXPECTED_SEMANTIC_DIM = 10
 EXPECTED_MODEL_SEED = 20
 EXPECTED_PERMUTATIONS = 500
 EXPECTED_PERMUTATION_SEED = 20260816
-EXPECTED_CANONICAL_Z_HASH = (
+SUPPORTED_CONDITIONS = ("clean", "snr2p5_k2")
+EXPECTED_NOISY_CANONICAL_Z_HASH = (
     "6dd6f0d4c9fea4a5b44d61a0984daa7137541dcb0762489d668967fb610bc894"
 )
-EXPECTED_STORED_CORRECT_RATE = 1.2551292181015015
+# Backward-compatible alias for the historical noisy evaluator/tests.
+EXPECTED_CANONICAL_Z_HASH = EXPECTED_NOISY_CANONICAL_Z_HASH
 
 
 def _require(condition, message):
@@ -98,6 +100,51 @@ def load_msrc_feature_views():
         _require(np.isfinite(oriented).all(), "feature view must be finite")
         feature_views.append(oriented)
     return feature_views
+
+
+def expected_canonical_z_hash(metadata, condition):
+    """Read the current condition's registered canonical hash from metadata."""
+    if condition not in SUPPORTED_CONDITIONS:
+        raise ValueError("unsupported B5-A0 evaluation condition")
+    if not isinstance(metadata, dict):
+        raise TypeError("metadata must be a dictionary")
+    expected = metadata.get("expected_z_hash_b4_compatible")
+    if (
+            not isinstance(expected, str)
+            or len(expected) != 64
+            or any(character not in "0123456789abcdef" for character in expected)):
+        raise ValueError("metadata canonical z hash must be lowercase sha256")
+    _require(
+        metadata.get("z_hash_b4_compatible") == expected,
+        "metadata canonical z hash fields disagree",
+    )
+    if condition == "snr2p5_k2":
+        _require(
+            expected == EXPECTED_NOISY_CANONICAL_Z_HASH,
+            "noisy canonical z regression registration changed",
+        )
+    return expected
+
+
+def condition_evaluation_views(clean_feature_views, condition):
+    """Use one feature path, adding only the registered noisy perturbation."""
+    if condition not in SUPPORTED_CONDITIONS:
+        raise ValueError("unsupported B5-A0 evaluation condition")
+    if not isinstance(clean_feature_views, (list, tuple)):
+        raise TypeError("clean_feature_views must be a list or tuple")
+    if len(clean_feature_views) != EXPECTED_VIEW_NUM:
+        raise ValueError("MSRC-v1 must contain exactly five feature views")
+    if condition == "clean":
+        return list(clean_feature_views)
+    # No stored corruption state is loaded or returned. The noisy condition is
+    # deterministically regenerated from the same feature-only input path.
+    return apply_weak_quality_protocol(
+        clean_feature_views,
+        mode="heterogeneous_gaussian",
+        k=2,
+        snr_db=2.5,
+        corruption_seed=EXPECTED_MODEL_SEED,
+    )[0]
 
 
 def generate_sample_permutations(sample_num, permutation_count,
@@ -260,10 +307,58 @@ def per_target_view_summaries(correct_rates, per_view_shuffle_rates):
     return results
 
 
+def correct_rate_reproduction_audit(correct_rate, correct_per_view,
+                                    stored_correct_rate, tolerance=1e-6):
+    """Check current-condition stored/global/per-view consistency."""
+    correct_rate = float(correct_rate)
+    stored_correct_rate = float(stored_correct_rate)
+    tolerance = float(tolerance)
+    per_view = np.asarray(correct_per_view, dtype=np.float64)
+    if per_view.ndim != 1 or per_view.size == 0:
+        raise ValueError("correct_per_view must be a non-empty [V] array")
+    if not math.isfinite(tolerance) or tolerance <= 0.0:
+        raise ValueError("tolerance must be positive and finite")
+    finite_pass = bool(
+        math.isfinite(correct_rate)
+        and math.isfinite(stored_correct_rate)
+        and np.isfinite(per_view).all()
+    )
+    per_view_mean = float(np.mean(per_view))
+    stored_error = abs(correct_rate - stored_correct_rate)
+    mean_error = abs(per_view_mean - correct_rate)
+    result = {
+        "stored_current_condition_R_correct": stored_correct_rate,
+        "computed_R_correct": correct_rate,
+        "computed_R_correct_per_view": [float(value) for value in per_view],
+        "computed_per_view_mean": per_view_mean,
+        "stored_rate_abs_error": stored_error,
+        "per_view_mean_abs_error": mean_error,
+        "per_view_rates_finite_pass": finite_pass,
+    }
+    result["correct_rate_reproduction_pass"] = bool(
+        finite_pass and stored_error < tolerance and mean_error < tolerance
+    )
+    return result
+
+
+def _stored_correct_rate(arm_dir):
+    rate_audit = _load_json(arm_dir / "rate_audit.json")
+    if "conditional_context_correct_rate" in rate_audit:
+        return float(rate_audit["conditional_context_correct_rate"])
+    arm_audit = _load_json(arm_dir / "arm_audit.json")
+    nested = arm_audit.get("rate_audit", {})
+    _require(
+        "conditional_context_correct_rate" in nested,
+        "current-condition stored correct rate is missing",
+    )
+    return float(nested["conditional_context_correct_rate"])
+
+
 def _load_and_validate_input(input_dir, condition):
     condition_dir = input_dir / condition
     metadata = _load_json(condition_dir / "metadata.json")
     gates = metadata.get("gates", {})
+    _require(condition in SUPPORTED_CONDITIONS, "unsupported input condition")
     _require(metadata.get("stage") == "B5-A0", "input stage mismatch")
     _require(metadata.get("condition") == condition, "input condition mismatch")
     _require(gates.get("B5_A0_ENGINEERING_PASS") is True, "input engineering fail")
@@ -271,11 +366,7 @@ def _load_and_validate_input(input_dir, condition):
         metadata.get("cross_stage_z_exact_match") is True,
         "input cross-stage z audit failed",
     )
-    _require(
-        metadata.get("expected_z_hash_b4_compatible")
-        == EXPECTED_CANONICAL_Z_HASH,
-        "unexpected canonical z hash registration",
-    )
+    expected_canonical_z_hash(metadata, condition)
     arm_dir = condition_dir / "conditional_rate"
     required = (
         arm_dir / "posterior.pth",
@@ -287,17 +378,10 @@ def _load_and_validate_input(input_dir, condition):
     return condition_dir, arm_dir, metadata
 
 
-def _reconstruct_frozen_z(metadata):
+def _reconstruct_frozen_z(metadata, condition):
     clean_views = load_msrc_feature_views()
-    # The fixed noisy input is regenerated from features. No stored corruption
-    # mask is loaded or passed to this audit.
-    evaluation_views = apply_weak_quality_protocol(
-        clean_views,
-        mode="heterogeneous_gaussian",
-        k=2,
-        snr_db=2.5,
-        corruption_seed=EXPECTED_MODEL_SEED,
-    )[0]
+    evaluation_views = condition_evaluation_views(clean_views, condition)
+    expected_z_hash = expected_canonical_z_hash(metadata, condition)
     config = get_default_config(DATASET_NAME)
     models = MvCAN(
         config,
@@ -330,7 +414,7 @@ def _reconstruct_frozen_z(metadata):
     z_audit = z_l2_normalization_audit(z_views)
     z_hash = canonical_view_tensor_sha256(z_views)
     _require(z_audit["z_normalization_pass"], "reconstructed z not normalized")
-    _require(z_hash == EXPECTED_CANONICAL_Z_HASH, "reconstructed z hash mismatch")
+    _require(z_hash == expected_z_hash, "reconstructed z hash mismatch")
     return models, backbone_hash, z_views, z_hash, z_audit
 
 
@@ -377,7 +461,7 @@ def _load_final_conditional_modules(arm_dir, metadata):
 def parse_args(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--input-dir", required=True)
-    parser.add_argument("--condition", choices=("snr2p5_k2",), required=True)
+    parser.add_argument("--condition", choices=SUPPORTED_CONDITIONS, required=True)
     parser.add_argument("--permutations", type=int, required=True)
     parser.add_argument("--permutation-seed", type=int, required=True)
     parser.add_argument("--output-dir", required=True)
@@ -398,8 +482,9 @@ def main(argv=None):
     condition_dir, arm_dir, metadata = _load_and_validate_input(
         input_dir, args.condition
     )
+    expected_z_hash = expected_canonical_z_hash(metadata, args.condition)
     models, backbone_hash, z_views, z_hash, z_audit = _reconstruct_frozen_z(
-        metadata
+        metadata, args.condition
     )
     posterior, prior, posterior_hash, prior_hash = (
         _load_final_conditional_modules(arm_dir, metadata)
@@ -418,11 +503,19 @@ def main(argv=None):
             )
         )
     correct_value = float(correct_rate.item())
-    stored_audit = _load_json(arm_dir / "rate_audit.json")
-    stored_correct = float(stored_audit["conditional_context_correct_rate"])
-    correct_error = abs(correct_value - stored_correct)
-    correct_repro_pass = bool(correct_error < 1e-6)
-    _require(correct_repro_pass, "stored v2 correct-context rate not reproduced")
+    correct_per_view_values = correct_per_view.cpu().numpy().astype(
+        np.float64, copy=False
+    )
+    stored_correct = _stored_correct_rate(arm_dir)
+    reproduction = correct_rate_reproduction_audit(
+        correct_value, correct_per_view_values, stored_correct
+    )
+    correct_error = reproduction["stored_rate_abs_error"]
+    correct_repro_pass = reproduction["correct_rate_reproduction_pass"]
+    _require(
+        correct_repro_pass,
+        "current-condition correct-context rate not reproduced",
+    )
 
     sample_permutations = generate_sample_permutations(
         EXPECTED_SAMPLE_NUM, args.permutations, args.permutation_seed
@@ -451,7 +544,7 @@ def main(argv=None):
     )
     summary = permutation_test_summary(correct_value, shuffle_rates)
     per_view = per_target_view_summaries(
-        correct_per_view.cpu().numpy(), per_view_shuffle_rates
+        correct_per_view_values, per_view_shuffle_rates
     )
     backbone_after = hash_backbone(models.autoencoders)
     no_grad_pass = all(
@@ -491,8 +584,8 @@ def main(argv=None):
         "input_engineering_pass": True,
         "input_cross_stage_z_exact_match": True,
         "canonical_z_hash": z_hash,
-        "expected_canonical_z_hash": EXPECTED_CANONICAL_Z_HASH,
-        "canonical_z_exact_match": z_hash == EXPECTED_CANONICAL_Z_HASH,
+        "expected_canonical_z_hash": expected_z_hash,
+        "canonical_z_exact_match": z_hash == expected_z_hash,
         "z_l2_normalization_audit": z_audit,
         "backbone_hash_before": backbone_hash,
         "backbone_hash_after": backbone_after,
@@ -502,7 +595,16 @@ def main(argv=None):
         "no_parameter_gradients_pass": no_grad_pass,
         "R_correct": correct_value,
         "stored_v2_R_correct": stored_correct,
+        "stored_current_condition_R_correct": stored_correct,
+        "R_correct_per_view": [float(value) for value in correct_per_view_values],
+        "R_correct_per_view_mean": reproduction["computed_per_view_mean"],
         "correct_rate_max_abs_error": correct_error,
+        "correct_rate_per_view_mean_abs_error": reproduction[
+            "per_view_mean_abs_error"
+        ],
+        "correct_rate_per_view_finite_pass": reproduction[
+            "per_view_rates_finite_pass"
+        ],
         "B5_A0_SPECIFICITY_CORRECT_RATE_REPRO_PASS": correct_repro_pass,
         **summary,
         "per_target_view": per_view,
@@ -526,7 +628,7 @@ def main(argv=None):
     _write_json(output_dir / "b5_a0_context_specificity.json", result)
 
     print("R_correct=" + str(correct_value))
-    print("stored-v2 R_correct=" + str(stored_correct))
+    print("stored-current-condition R_correct=" + str(stored_correct))
     print("max abs error=" + str(correct_error))
     print(
         "shuffle mean/std="
