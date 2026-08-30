@@ -35,6 +35,7 @@ EXPECTED_CLUSTER_NUM = 7
 EXPECTED_LATENT_DIM = 10
 EXPECTED_SEMANTIC_DIM = 10
 EXPECTED_MODEL_SEED = 20
+SUPPORTED_MODEL_SEEDS = (20, 30, 50)
 EXPECTED_PERMUTATIONS = 500
 EXPECTED_PERMUTATION_SEED = 20260816
 SUPPORTED_CONDITIONS = ("clean", "snr2p5_k2")
@@ -118,15 +119,18 @@ def expected_canonical_z_hash(metadata, condition):
         metadata.get("z_hash_b4_compatible") == expected,
         "metadata canonical z hash fields disagree",
     )
-    if condition == "snr2p5_k2":
+    model_seed = int(metadata.get("model_seed", EXPECTED_MODEL_SEED))
+    _require(model_seed in SUPPORTED_MODEL_SEEDS, "unsupported metadata model seed")
+    if condition == "snr2p5_k2" and model_seed == EXPECTED_MODEL_SEED:
         _require(
             expected == EXPECTED_NOISY_CANONICAL_Z_HASH,
-            "noisy canonical z regression registration changed",
+            "seed20 noisy canonical z regression registration changed",
         )
     return expected
 
 
-def condition_evaluation_views(clean_feature_views, condition):
+def condition_evaluation_views(clean_feature_views, condition,
+                               model_seed=EXPECTED_MODEL_SEED):
     """Use one feature path, adding only the registered noisy perturbation."""
     if condition not in SUPPORTED_CONDITIONS:
         raise ValueError("unsupported B5-A0 evaluation condition")
@@ -134,6 +138,9 @@ def condition_evaluation_views(clean_feature_views, condition):
         raise TypeError("clean_feature_views must be a list or tuple")
     if len(clean_feature_views) != EXPECTED_VIEW_NUM:
         raise ValueError("MSRC-v1 must contain exactly five feature views")
+    model_seed = int(model_seed)
+    if model_seed not in SUPPORTED_MODEL_SEEDS:
+        raise ValueError("unsupported model seed")
     if condition == "clean":
         return list(clean_feature_views)
     # No stored corruption state is loaded or returned. The noisy condition is
@@ -143,7 +150,7 @@ def condition_evaluation_views(clean_feature_views, condition):
         mode="heterogeneous_gaussian",
         k=2,
         snr_db=2.5,
-        corruption_seed=EXPECTED_MODEL_SEED,
+        corruption_seed=model_seed,
     )[0]
 
 
@@ -380,7 +387,11 @@ def _load_and_validate_input(input_dir, condition):
 
 def _reconstruct_frozen_z(metadata, condition):
     clean_views = load_msrc_feature_views()
-    evaluation_views = condition_evaluation_views(clean_views, condition)
+    model_seed = int(metadata.get("model_seed", -1))
+    _require(model_seed in SUPPORTED_MODEL_SEEDS, "unsupported metadata model seed")
+    evaluation_views = condition_evaluation_views(
+        clean_views, condition, model_seed=model_seed
+    )
     expected_z_hash = expected_canonical_z_hash(metadata, condition)
     config = get_default_config(DATASET_NAME)
     models = MvCAN(
@@ -388,7 +399,7 @@ def _reconstruct_frozen_z(metadata, condition):
         view_num=EXPECTED_VIEW_NUM,
         view_size=[int(value.shape[1]) for value in evaluation_views],
         n_clusters=EXPECTED_CLUSTER_NUM,
-        seed=EXPECTED_MODEL_SEED,
+        seed=model_seed,
         data_size=EXPECTED_SAMPLE_NUM,
         semantic_config=None,
     )
@@ -560,7 +571,7 @@ def main(argv=None):
     result = {
         "stage": "B5-A0 Conditional Context Specificity Audit",
         "condition": args.condition,
-        "model_seed": EXPECTED_MODEL_SEED,
+        "model_seed": int(metadata["model_seed"]),
         "training_performed": False,
         "deterministic_posterior_evaluation": True,
         "posterior_sampling_used": False,

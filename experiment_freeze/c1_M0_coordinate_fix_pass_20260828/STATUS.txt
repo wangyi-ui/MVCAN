@@ -1,0 +1,20 @@
+C1 Frozen M0 Coordinate Provenance Repair PASS.
+
+C0 sealed native_global_cluster is the canonical auxiliary coordinate anchor.
+
+native_global_cluster SHA256:
+95b0dc0294272786164088565b78e9514586c833f91dd87375909dc45d68ee88
+
+rebuilt int64 M0 SHA256:
+aaa7be3a9b4516278e508330299f881b6e7c5855a80cb43101c715a455f5183d
+
+training float32 M0 SHA256:
+b75e0e23e7302919a52eea42e9cb8b0d6dd12ac84c7937dbec0569078c49ee4a
+
+py_compile PASS
+pytest 133 PASS
+
+No scientific C1 training has been run after the fix.
+
+Next:
+C1-A0 BASE vs CYCLE_ZERO, seed20, 1 epoch.

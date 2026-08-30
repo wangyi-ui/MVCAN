@@ -1,0 +1,21 @@
+C1-A0 pre-training failure:
+
+RuntimeError:
+frozen M0 does not match C0 sealed provenance
+
+Root cause:
+C1 replayed native KMeans and obtained the exact same partition as C0
+(ARI=1.0, NMI=1.0), but with a different global cluster-ID permutation.
+
+Therefore the reconstructed Match matrices were expressed in a different
+global coordinate system from the sealed C0 y_gen / U_cycle semantics.
+
+Secondary issue:
+C1 converted int64 M to float32 before provenance hashing, while the C0
+sealed M provenance corresponds to contiguous int64.
+
+Scientific protocol is unchanged.
+
+Required repair:
+use C0 PRE-GT sealed native_global_cluster as the canonical global
+coordinate anchor; hash int64 M before casting to float32 for training.

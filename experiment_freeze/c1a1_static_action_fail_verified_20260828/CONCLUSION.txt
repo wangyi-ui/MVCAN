@@ -1,0 +1,67 @@
+C1-A1 Frozen Cycle Action Pilot — FORMAL FAIL / FROZEN
+
+Formal decision:
+C1_ACTION_NOT_CORRESPONDENCE_SPECIFIC
+
+Gates:
+
+C1_NET_GAIN_PASS = True
+C1_CORRESPONDENCE_ACTION_SPECIFICITY_PASS = False
+C1_BEATS_CONFIDENCE_ACTION_PASS = False
+C1_BEATS_UNIFORM_ACTION_PASS = False
+
+Metrics:
+
+BASE
+ACC = 0.7814285714
+NMI = 0.7339738611
+ARI = 0.6878235652
+
+UNIFORM
+ACC = 0.7821428571
+NMI = 0.7340679459
+ARI = 0.6880995870
+
+CONF
+ACC = 0.7821428571
+NMI = 0.7340679459
+ARI = 0.6880995870
+
+CYCLE
+ACC = 0.7821428571
+NMI = 0.7340679459
+ARI = 0.6880995870
+
+SHUFFLED_CYCLE
+ACC = 0.7821428571
+NMI = 0.7340632714
+ARI = 0.6882756234
+
+Scientific interpretation:
+
+1. C0 Cycle Utility signal remains valid.
+2. CYCLE has a very small net gain over BASE.
+3. The gain is not correspondence-specific.
+4. CYCLE does not outperform UNIFORM.
+5. CYCLE does not outperform ordinary CONF.
+6. Therefore the current action interface is CLOSED:
+
+directional verified utility
+-> weighted sample-level soft target
+-> auxiliary soft CE.
+
+Do NOT:
+- run C1 multi-seed formal validation
+- run longer-horizon C1
+- tune lambda
+- use Top-k
+- tune thresholds
+- introduce sparse labels
+- enter dynamic cycle
+
+Next:
+C1-P0 Utility-to-Action Compression Audit.
+
+Purpose:
+Locate whether utility specificity is lost in:
+W -> T -> effective action -> pseudo gradient -> total gradient.

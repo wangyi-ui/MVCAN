@@ -7,17 +7,57 @@
     "corruption_mode": "none",
     "corruption_k": null,
     "snr_db": null,
-    "backbone_dir": "outputs/b3_semantic/a1_uniform_clean_seed20/models",
+    "backbone_dir": "outputs/b1_msrcv1_clean/seed20/models",
     "checkpoint_paths": [
-      "outputs/b3_semantic/a1_uniform_clean_seed20/models/MSRC-v11V.pth",
-      "outputs/b3_semantic/a1_uniform_clean_seed20/models/MSRC-v12V.pth",
-      "outputs/b3_semantic/a1_uniform_clean_seed20/models/MSRC-v13V.pth",
-      "outputs/b3_semantic/a1_uniform_clean_seed20/models/MSRC-v14V.pth",
-      "outputs/b3_semantic/a1_uniform_clean_seed20/models/MSRC-v15V.pth"
+      "outputs/b1_msrcv1_clean/seed20/models/MSRC-v11V.pth",
+      "outputs/b1_msrcv1_clean/seed20/models/MSRC-v12V.pth",
+      "outputs/b1_msrcv1_clean/seed20/models/MSRC-v13V.pth",
+      "outputs/b1_msrcv1_clean/seed20/models/MSRC-v14V.pth",
+      "outputs/b1_msrcv1_clean/seed20/models/MSRC-v15V.pth"
     ],
-    "source_audit": "outputs/b3_semantic/a1_uniform_clean_seed20/audit/b3_a1_audit.json",
-    "expected_backbone_hash": "c4ce4ad8a08bbdf5eeb5b83ec51c0666a5649f7a184b1d8423ccc3688b975426",
-    "expected_z_hash_b4_compatible": "10a5a99dde71de2429b17f7d5bb225be7c0e491df61819e61f9df0a8403f6886"
+    "source_audit": "outputs/b5_semantic_rate/a06_clean_b1_provenance/clean_seed20_provenance.json",
+    "expected_backbone_hash": "cf760073855cf3e354dea0363c7e02e36b2915b53145afe1143894aa641246ec",
+    "expected_z_hash_b4_compatible": "45debb660a40b8c6a90d33a5dbf920236d4725ad62538dfcb234809554dd84c3"
+  },
+  {
+    "condition": "clean",
+    "dataset": "MSRC-v1",
+    "model_seed": 30,
+    "corruption_seed": null,
+    "corruption_mode": "none",
+    "corruption_k": null,
+    "snr_db": null,
+    "backbone_dir": "outputs/b1_msrcv1_clean/seed30/models",
+    "checkpoint_paths": [
+      "outputs/b1_msrcv1_clean/seed30/models/MSRC-v11V.pth",
+      "outputs/b1_msrcv1_clean/seed30/models/MSRC-v12V.pth",
+      "outputs/b1_msrcv1_clean/seed30/models/MSRC-v13V.pth",
+      "outputs/b1_msrcv1_clean/seed30/models/MSRC-v14V.pth",
+      "outputs/b1_msrcv1_clean/seed30/models/MSRC-v15V.pth"
+    ],
+    "source_audit": "outputs/b5_semantic_rate/a06_clean_b1_provenance/clean_seed30_provenance.json",
+    "expected_backbone_hash": "a0ee5ceaceef7581d5cc511217afa8a2775b12ec4c488c12cf681d8ace08a54f",
+    "expected_z_hash_b4_compatible": "5911f5b71bf62b4ee917d5fd13fcb0ef582fbddd934801fcf1a147617e5c0ab0"
+  },
+  {
+    "condition": "clean",
+    "dataset": "MSRC-v1",
+    "model_seed": 50,
+    "corruption_seed": null,
+    "corruption_mode": "none",
+    "corruption_k": null,
+    "snr_db": null,
+    "backbone_dir": "outputs/b1_msrcv1_clean/seed50/models",
+    "checkpoint_paths": [
+      "outputs/b1_msrcv1_clean/seed50/models/MSRC-v11V.pth",
+      "outputs/b1_msrcv1_clean/seed50/models/MSRC-v12V.pth",
+      "outputs/b1_msrcv1_clean/seed50/models/MSRC-v13V.pth",
+      "outputs/b1_msrcv1_clean/seed50/models/MSRC-v14V.pth",
+      "outputs/b1_msrcv1_clean/seed50/models/MSRC-v15V.pth"
+    ],
+    "source_audit": "outputs/b5_semantic_rate/a06_clean_b1_provenance/clean_seed50_provenance.json",
+    "expected_backbone_hash": "ce351aaf247814577044c4cfa202c94f488996c6615594c94d478731b3e9acb4",
+    "expected_z_hash_b4_compatible": "a5e7bc71c716eec3df922da5816f90cc7e26a4a846cbd4725f2d75d0fd935680"
   },
   {
     "condition": "snr2p5_k2",
@@ -41,5 +81,57 @@
     "corruption_audit": "outputs/b2_weak_quality/snr2p5_k2_seed20/audit/corruption_audit.json",
     "corruption_mask": "outputs/b2_weak_quality/snr2p5_k2_seed20/audit/corruption_mask.npy",
     "expected_mask_sha256": "ba38855ec9f381ccd00a6c1dde785c3b3031a753863aa0fd90f1403a3ef1012f"
+  },
+  {
+    "condition": "snr2p5_k2",
+    "dataset": "MSRC-v1",
+    "model_seed": 30,
+    "corruption_seed": 30,
+    "corruption_mode": "heterogeneous_gaussian",
+    "corruption_k": 2,
+    "snr_db": 2.5,
+    "backbone_dir": "outputs/b2_weak_quality/snr2p5_k2_seed30/models",
+    "checkpoint_paths": [
+      "outputs/b2_weak_quality/snr2p5_k2_seed30/models/MSRC-v11V.pth",
+      "outputs/b2_weak_quality/snr2p5_k2_seed30/models/MSRC-v12V.pth",
+      "outputs/b2_weak_quality/snr2p5_k2_seed30/models/MSRC-v13V.pth",
+      "outputs/b2_weak_quality/snr2p5_k2_seed30/models/MSRC-v14V.pth",
+      "outputs/b2_weak_quality/snr2p5_k2_seed30/models/MSRC-v15V.pth"
+    ],
+    "source_audit": "outputs/b2_weak_quality/snr2p5_k2_seed30/audit/corruption_audit.json",
+    "expected_backbone_hash": "d553d1cd5627c5aa2c09de4914000a37efd1dca839c72712d5ec55db2e32c6e8",
+    "expected_z_hash_b4_compatible": "31bbf7426b0982ef301da938669a1ac482284fdf98e830663ca87b1ceaebbf27",
+    "corruption_audit": "outputs/b2_weak_quality/snr2p5_k2_seed30/audit/corruption_audit.json",
+    "corruption_mask": "outputs/b2_weak_quality/snr2p5_k2_seed30/audit/corruption_mask.npy",
+    "expected_mask_sha256": "1c57bea5ef067532164e3506fc87e4c756f450cabaa98cb137b8914d4bbb91f2",
+    "b3_predictability_reference": "outputs/b3_semantic/a23_reproduction/a23_scores_snr2p5_seed30.npz",
+    "expected_fold_sha256": "5780b9955895f03d53e22cfcba56b2608e87e986d647692faf258e2b7f97268f",
+    "expected_t_sha256": "a05606e6c012e68f38c5beb8daf88359dd83c673ff9117837f47a908c081b682"
+  },
+  {
+    "condition": "snr2p5_k2",
+    "dataset": "MSRC-v1",
+    "model_seed": 50,
+    "corruption_seed": 50,
+    "corruption_mode": "heterogeneous_gaussian",
+    "corruption_k": 2,
+    "snr_db": 2.5,
+    "backbone_dir": "outputs/b2_weak_quality/snr2p5_k2_seed50/models",
+    "checkpoint_paths": [
+      "outputs/b2_weak_quality/snr2p5_k2_seed50/models/MSRC-v11V.pth",
+      "outputs/b2_weak_quality/snr2p5_k2_seed50/models/MSRC-v12V.pth",
+      "outputs/b2_weak_quality/snr2p5_k2_seed50/models/MSRC-v13V.pth",
+      "outputs/b2_weak_quality/snr2p5_k2_seed50/models/MSRC-v14V.pth",
+      "outputs/b2_weak_quality/snr2p5_k2_seed50/models/MSRC-v15V.pth"
+    ],
+    "source_audit": "outputs/b2_weak_quality/snr2p5_k2_seed50/audit/corruption_audit.json",
+    "expected_backbone_hash": "a1c6560ab11844350ed6c22849f3a97010ed5be60ada7526529f1be0fc3a12d9",
+    "expected_z_hash_b4_compatible": "da83e291d70a787f9da4b237fbe6beb555eac8955e6fca2d867dbd41eee1b606",
+    "corruption_audit": "outputs/b2_weak_quality/snr2p5_k2_seed50/audit/corruption_audit.json",
+    "corruption_mask": "outputs/b2_weak_quality/snr2p5_k2_seed50/audit/corruption_mask.npy",
+    "expected_mask_sha256": "a2627842735724faaa4dbf6e4cfc97081a5a4327ac353c010e9c9a4d96c4b839",
+    "b3_predictability_reference": "outputs/b3_semantic/a23_reproduction/a23_scores_snr2p5_seed50.npz",
+    "expected_fold_sha256": "57e9426332aa3cec4b42eb14576b7e1dc33cf62185d42dbbb09e6e0f1f8e57ce",
+    "expected_t_sha256": "7a010ce5b0e6871f1f7c0d2fcfbc9bba589294920dcce08864aacf9e2dd4d396"
   }
 ]

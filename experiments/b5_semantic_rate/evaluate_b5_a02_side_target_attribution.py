@@ -547,7 +547,8 @@ def matrix_for_json(matrix):
 def condition_correct_rate_reproduction_audit(condition, correct_global_rate,
                                                correct_per_view_rates,
                                                stored_correct_rate,
-                                               tolerance=1e-6):
+                                               tolerance=1e-6,
+                                               model_seed=EXPECTED_MODEL_SEED):
     """Apply historical per-view values only to the noisy condition."""
     if condition not in SUPPORTED_CONDITIONS:
         raise ValueError("unsupported B5-A0.2 condition")
@@ -558,7 +559,12 @@ def condition_correct_rate_reproduction_audit(condition, correct_global_rate,
         tolerance,
     )
     per_view = np.asarray(correct_per_view_rates, dtype=np.float64)
-    noisy_reference_applied = condition == "snr2p5_k2"
+    model_seed = int(model_seed)
+    if model_seed not in (20, 30, 50):
+        raise ValueError("unsupported model seed")
+    noisy_reference_applied = (
+        condition == "snr2p5_k2" and model_seed == EXPECTED_MODEL_SEED
+    )
     if noisy_reference_applied:
         noisy_errors = np.abs(per_view - EXPECTED_NOISY_CORRECT_PER_VIEW)
         noisy_error = float(np.max(noisy_errors))
@@ -761,6 +767,7 @@ def main(argv=None):
         attribution["correct_global_rate"],
         correct_values,
         stored_correct,
+        model_seed=int(metadata["model_seed"]),
     )
     correct_max_abs_error = reproduction["reproduction_max_abs_error"]
     correct_repro_pass = reproduction["B5_A02_CORRECT_RATE_REPRO_PASS"]
@@ -869,6 +876,7 @@ def main(argv=None):
     result = {
         "stage": "B5-A0.2 Side-to-Target Context Attribution",
         "condition": args.condition,
+        "model_seed": int(metadata["model_seed"]),
         "input_dir": str(input_dir.relative_to(REPOSITORY_ROOT)),
         "condition_dir": str(condition_dir.relative_to(REPOSITORY_ROOT)),
         "training_steps": EXPECTED_TRAINING_STEPS,

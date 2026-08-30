@@ -1,0 +1,13 @@
+C1 pre-A0 engineering freeze.
+
+py_compile: PASS
+pytest: 116 passed
+
+C0 frozen source SHA256: PASS
+E1 LWC six checkpoint SHA256: PASS
+
+C1 formal training has NOT started.
+C1-A0 identity smoke has NOT started.
+
+Next:
+BASE vs CYCLE_ZERO, seed20, 1 epoch.

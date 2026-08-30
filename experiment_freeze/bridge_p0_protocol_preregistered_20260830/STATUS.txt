@@ -1,0 +1,47 @@
+Bridge-P0 Residual Utility Value Audit
+ENGINEERING PASS / PRE-REGISTERED BEFORE SCIENTIFIC RESULTS
+
+READ-ONLY weak-quality exit diagnostic.
+
+Seeds:
+20 / 30 / 50
+
+No training.
+No optimizer.
+No backward.
+No new utility.
+No R.
+No corruption mask.
+No sparse labels.
+No B7.
+GT only after durable Bridge input seal.
+Frozen C0 global mapping only.
+
+Confidence strata:
+5 deterministic equal-count rank quintiles.
+
+Minimum valid bins per direction:
+3 / 5
+
+Minimum valid directions:
+16 / 20
+
+Positive DeltaCondAUC directions:
+>= 12
+
+Wilcoxon:
+one-sided greater
+alpha = 0.05
+
+Seed PASS requires all frozen protocol conditions.
+
+Multi-seed PASS:
+>= 2/3 seed PASS
+and all frozen aggregate mean conditions positive.
+
+Final decisions:
+BRIDGE_P0_RESIDUAL_UTILITY_PASS
+or
+BRIDGE_P0_RESIDUAL_UTILITY_NOT_CONFIRMED
+
+No post-hoc gate modification.

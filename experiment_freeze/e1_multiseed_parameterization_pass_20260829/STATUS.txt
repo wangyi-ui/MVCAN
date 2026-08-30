@@ -1,0 +1,28 @@
+E1 Multi-seed Training Parameterization — ENGINEERING PASS
+
+Training seeds:
+20 / 30 / 50
+
+Weak-quality realization:
+FIXED at snr2p5_k3_seed20
+
+Fixed across seeds:
+- D1 initialization
+- D2 reliability
+- E0 noisy feature artifact
+- corruption mask
+- model architecture
+- loss
+- optimizer
+- hyperparameters
+
+Varied:
+- training RNG
+- KMeans RNG
+- sample/DataLoader order
+
+2-epoch seed30 and seed50 smoke:
+E1_ENGINEERING_PASS=True
+
+Next:
+formal E1 LWC 100ep seed30 / seed50.

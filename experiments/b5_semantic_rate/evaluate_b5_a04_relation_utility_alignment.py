@@ -55,6 +55,7 @@ from irv.b5_shared_semantic_rate import analytic_kl_diag_gaussian
 STAGE = "B5-A0.4"
 CONDITION = "snr2p5_k2"
 MODEL_SEED = 20
+SUPPORTED_MODEL_SEEDS = (20, 30, 50)
 EXPECTED_SAMPLE_NUM = 210
 EXPECTED_VIEW_NUM = 5
 EXPECTED_RELATION_COUNT = 20
@@ -63,6 +64,7 @@ EXPECTED_PERMUTATIONS = 500
 RIDGE_ALPHA = 1.0
 RIDGE_FIT_INTERCEPT = True
 EXPECTED_TRAINING_STEPS = 100
+# Backward-compatible seed20 regression aliases.
 EXPECTED_CANONICAL_Z_HASH = (
     "6dd6f0d4c9fea4a5b44d61a0984daa7137541dcb0762489d668967fb610bc894"
 )
@@ -85,9 +87,33 @@ DEFAULT_B4_UTILITY_REFERENCE = (
 )
 
 
+def default_b3_score_reference(model_seed):
+    model_seed = int(model_seed)
+    if model_seed not in SUPPORTED_MODEL_SEEDS:
+        raise ValueError("unsupported model seed")
+    return (
+        REPOSITORY_ROOT
+        / "outputs/b3_semantic/a23_reproduction/"
+        / ("a23_scores_snr2p5_seed" + str(model_seed) + ".npz")
+    )
+
+
 def _require(condition, message):
     if not condition:
         raise RuntimeError(message)
+
+
+def validate_requested_model_seed(metadata, requested_model_seed):
+    """Require the explicit evaluator seed to match checkpoint metadata."""
+    requested_model_seed = int(requested_model_seed)
+    if requested_model_seed not in SUPPORTED_MODEL_SEEDS:
+        raise ValueError("unsupported model seed")
+    actual_model_seed = int(metadata.get("model_seed", -1))
+    _require(
+        actual_model_seed == requested_model_seed,
+        "requested model seed does not match checkpoint metadata",
+    )
+    return actual_model_seed
 
 
 def _resolve(path):
@@ -299,24 +325,49 @@ def relation_benefit_reproduction_error(relation_benefit, aggregate_delta):
 def load_canonical_b3_folds(
     sample_num=EXPECTED_SAMPLE_NUM,
     model_seed=MODEL_SEED,
-    reference_path=DEFAULT_B3_FOLD_REFERENCE,
+    reference_path=None,
 ):
-    """Construct canonical B3 folds and require exact saved-reference match."""
+    """Construct seed-specific B3 folds and exact-match the saved artifact."""
+    model_seed = int(model_seed)
+    if model_seed not in SUPPORTED_MODEL_SEEDS:
+        raise ValueError("unsupported model seed")
     folds = make_fold_assignment(sample_num, n_splits=5, random_state=model_seed)
     fold_hash = fold_assignment_sha256(folds)
-    _require(fold_hash == EXPECTED_B3_FOLD_HASH, "canonical B3 fold hash mismatch")
-    reference_path = _resolve(reference_path)
+    reference_path = _resolve(
+        default_b3_score_reference(model_seed)
+        if reference_path is None
+        else reference_path
+    )
     _require(reference_path.is_file(), "canonical B3 fold reference is missing")
-    table = np.genfromtxt(reference_path, delimiter=",", names=True, dtype=np.int64)
-    reference_ids = np.asarray(table["sample_id"], dtype=np.int64)
-    reference_folds = np.asarray(table["fold_id"], dtype=np.int64)
+    if reference_path.suffix == ".npz":
+        with np.load(reference_path, allow_pickle=False) as archive:
+            _require(
+                "fold_assignment" in archive.files,
+                "B3 score artifact has no fold assignment",
+            )
+            reference_folds = np.asarray(
+                archive["fold_assignment"], dtype=np.int64
+            )
+    else:
+        table = np.genfromtxt(
+            reference_path, delimiter=",", names=True, dtype=np.int64
+        )
+        reference_ids = np.asarray(table["sample_id"], dtype=np.int64)
+        reference_folds = np.asarray(table["fold_id"], dtype=np.int64)
+        _require(
+            np.array_equal(
+                reference_ids, np.arange(sample_num, dtype=np.int64)
+            ),
+            "canonical B3 fold reference sample IDs mismatch",
+        )
     _require(
-        np.array_equal(reference_ids, np.arange(sample_num, dtype=np.int64)),
-        "canonical B3 fold reference sample IDs mismatch",
+        reference_folds.shape == (sample_num,)
+        and np.array_equal(reference_folds, folds),
+        "canonical B3 fold assignment mismatch",
     )
     _require(
-        np.array_equal(reference_folds, folds),
-        "canonical B3 fold assignment mismatch",
+        fold_assignment_sha256(reference_folds) == fold_hash,
+        "canonical B3 fold hash mismatch",
     )
     return folds, fold_hash, reference_path
 
@@ -408,33 +459,75 @@ def rank_percentile_relations(pairwise_predictability):
     return output
 
 
-def reconstruct_source_utility(predictability_result, b4_reference_path):
-    """Recompute frozen B4 U from B3 consensus T and hash-audit it."""
-    reference_path = _resolve(b4_reference_path)
-    _require(reference_path.is_file(), "verifiable B4 Utility reference is missing")
-    reference = _load_json(reference_path)
-    expected_utility_hash = reference.get("utility_sha256")
-    expected_t_hash = reference.get("t_sha256")
-    expected_fold_hash = reference.get("fold_sha256")
-    _require(
-        isinstance(expected_utility_hash, str) and len(expected_utility_hash) == 64,
-        "B4 utility_sha256 reference is missing",
-    )
+def reconstruct_source_utility(
+    predictability_result,
+    b4_reference_path=None,
+    b3_score_reference=None,
+    fold_hash=None,
+):
+    """Recompute frozen B4 U with seed-specific B3/B4 provenance."""
     consensus = np.asarray(
         predictability_result["oof_consensus_cosine"], dtype=np.float64
     )
     actual_t_hash = tensor_sha256(consensus)
-    _require(actual_t_hash == expected_t_hash, "B4 consensus T reproduction failed")
+    expected_utility_hash = None
+    expected_fold_hash = None
+    if b4_reference_path is not None:
+        reference_path = _resolve(b4_reference_path)
+        _require(
+            reference_path.is_file(), "verifiable B4 Utility reference is missing"
+        )
+        reference = _load_json(reference_path)
+        expected_utility_hash = reference.get("utility_sha256")
+        expected_t_hash = reference.get("t_sha256")
+        expected_fold_hash = reference.get("fold_sha256")
+        _require(
+            isinstance(expected_utility_hash, str)
+            and len(expected_utility_hash) == 64,
+            "B4 utility_sha256 reference is missing",
+        )
+        provenance = "historical_b4_utility_hash_exact_match"
+    else:
+        _require(
+            b3_score_reference is not None,
+            "seed-specific B3 score reference is required",
+        )
+        reference_path = _resolve(b3_score_reference)
+        _require(reference_path.is_file(), "B3 score reference is missing")
+        with np.load(reference_path, allow_pickle=False) as archive:
+            _require(
+                {"T", "fold_assignment"} <= set(archive.files),
+                "B3 score reference is incomplete",
+            )
+            historical_t = np.asarray(archive["T"], dtype=np.float64)
+            historical_folds = np.asarray(
+                archive["fold_assignment"], dtype=np.int64
+            )
+        _require(
+            np.array_equal(consensus, historical_t),
+            "current consensus T does not exact-match historical B3",
+        )
+        expected_t_hash = tensor_sha256(historical_t)
+        expected_fold_hash = fold_assignment_sha256(historical_folds)
+        provenance = "deterministic_frozen_b4_formula_from_historical_b3_T"
+    _require(actual_t_hash == expected_t_hash, "B3/B4 consensus T mismatch")
+    if fold_hash is not None:
+        _require(fold_hash == expected_fold_hash, "source U fold provenance mismatch")
     utility = compute_information_utility(consensus)
     utility_hash = tensor_sha256(utility)
-    _require(utility_hash == expected_utility_hash, "B4 source U hash mismatch")
+    if expected_utility_hash is not None:
+        _require(utility_hash == expected_utility_hash, "B4 source U hash mismatch")
     _require(np.isfinite(utility).all(), "source U is non-finite")
     _require(
         float(np.min(utility)) >= 0.0 and float(np.max(utility)) <= 1.0,
         "source U is outside [0,1]",
     )
     return utility, {
+        "source_utility_provenance": provenance,
+        "formula": "per-view (average_rank(T)-1)/(N-1)",
+        "rank_method": "average",
         "reference_path": str(reference_path.relative_to(REPOSITORY_ROOT)),
+        "historical_utility_hash_available": expected_utility_hash is not None,
         "expected_utility_sha256": expected_utility_hash,
         "utility_sha256": utility_hash,
         "expected_t_sha256": expected_t_hash,
@@ -863,38 +956,42 @@ def parse_args(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--input-dir", required=True)
     parser.add_argument("--condition", choices=(CONDITION,), required=True)
+    parser.add_argument(
+        "--model-seed", type=int, choices=SUPPORTED_MODEL_SEEDS, required=True
+    )
     parser.add_argument("--a02-dir", required=True)
     parser.add_argument("--clean-a02-dir", required=True)
+    parser.add_argument("--specificity-json")
     parser.add_argument("--bootstrap-repeats", type=int, default=2000)
     parser.add_argument("--bootstrap-seed", type=int, default=20260816)
     parser.add_argument("--evidence-null-repeats", type=int, default=500)
     parser.add_argument("--output-dir", required=True)
-    parser.add_argument(
-        "--b3-fold-reference", default=str(DEFAULT_B3_FOLD_REFERENCE)
-    )
-    parser.add_argument(
-        "--b4-utility-reference", default=str(DEFAULT_B4_UTILITY_REFERENCE)
-    )
+    parser.add_argument("--b3-fold-reference")
+    parser.add_argument("--b4-utility-reference")
     return parser.parse_args(argv)
 
 
 def main(argv=None):
     args = parse_args(argv)
     _require(args.condition == CONDITION, "B5-A0.4 primary condition mismatch")
+    _require(args.model_seed in SUPPORTED_MODEL_SEEDS, "unsupported model seed")
     _require(args.bootstrap_repeats > 0, "bootstrap repeats must be positive")
     _require(args.evidence_null_repeats > 0, "null repeats must be positive")
     input_dir = _resolve(args.input_dir)
     condition_dir, arm_dir, metadata = _load_and_validate_input(
         input_dir, args.condition
     )
-    _require(int(metadata.get("steps", -1)) == EXPECTED_TRAINING_STEPS, "B5-A0.4 requires the 100-step checkpoint")
+    validate_requested_model_seed(metadata, args.model_seed)
+    _require(
+        int(metadata.get("steps", -1)) == EXPECTED_TRAINING_STEPS,
+        "B5-A0.4 requires the 100-step checkpoint",
+    )
     expected_z_hash = expected_canonical_z_hash(metadata, args.condition)
-    _require(expected_z_hash == EXPECTED_CANONICAL_Z_HASH, "expected canonical z hash mismatch")
 
     models, backbone_hash_before, z_views, z_hash, z_audit = (
         _reconstruct_frozen_z(metadata, args.condition)
     )
-    _require(z_hash == EXPECTED_CANONICAL_Z_HASH, "canonical Native-z hash mismatch")
+    _require(z_hash == expected_z_hash, "canonical Native-z hash mismatch")
     posterior, prior, posterior_hash_before, prior_hash_before = (
         _load_final_conditional_modules(arm_dir, metadata)
     )
@@ -917,8 +1014,28 @@ def main(argv=None):
             permutation_bank,
         )
 
+    a02_result_path = (
+        _resolve(args.a02_dir) / "b5_a02_side_target_attribution.json"
+    )
+    _require(a02_result_path.is_file(), "A0.2 provenance JSON is missing")
+    a02_result = _load_json(a02_result_path)
+    a02_seed = a02_result.get("model_seed")
+    a02_seed_match = bool(
+        a02_seed == args.model_seed
+        or (args.model_seed == MODEL_SEED and a02_seed is None)
+    )
+    _require(a02_seed_match, "A0.2 model seed provenance mismatch")
+    _require(
+        a02_result.get("condition") == args.condition
+        and a02_result.get("canonical_z_hash") == z_hash
+        and a02_result.get("permutation_bank_hash") == bank_hash,
+        "A0.2 condition/z/permutation provenance mismatch",
+    )
     noisy_delta_path = _resolve(args.a02_dir) / "delta_matrix.npy"
-    _require(noisy_delta_path.is_file(), "full-precision A0.2 delta_matrix.npy is missing")
+    _require(
+        noisy_delta_path.is_file(),
+        "full-precision A0.2 delta_matrix.npy is missing",
+    )
     noisy_delta = np.load(noisy_delta_path, allow_pickle=False).astype(
         np.float64, copy=False
     )
@@ -928,8 +1045,14 @@ def main(argv=None):
     benefit_repro_pass = bool(reproduction_error < RELATION_BENEFIT_TOLERANCE)
     _require(benefit_repro_pass, "sample-level G does not reproduce A0.2 delta")
 
+    b3_score_reference = _resolve(
+        default_b3_score_reference(args.model_seed)
+        if args.b3_fold_reference is None
+        else args.b3_fold_reference
+    )
     folds, fold_hash, fold_reference_path = load_canonical_b3_folds(
-        reference_path=args.b3_fold_reference
+        model_seed=args.model_seed,
+        reference_path=b3_score_reference,
     )
     fold_audit = fold_integrity_audit(folds)
     _require(
@@ -941,12 +1064,14 @@ def main(argv=None):
         z_views, folds, alpha=RIDGE_ALPHA
     )
     pairwise_rank = rank_percentile_relations(pairwise)
+    b4_reference = args.b4_utility_reference
+    if b4_reference is None and args.model_seed == MODEL_SEED:
+        b4_reference = DEFAULT_B4_UTILITY_REFERENCE
     source_utility, source_utility_audit = reconstruct_source_utility(
-        predictability_result, args.b4_utility_reference
-    )
-    _require(
-        source_utility_audit["expected_fold_sha256"] == fold_hash,
-        "B4 Utility reference fold hash mismatch",
+        predictability_result,
+        b4_reference_path=b4_reference,
+        b3_score_reference=b3_score_reference,
+        fold_hash=fold_hash,
     )
     source_evidence = source_relation_evidence(source_utility)
 
@@ -959,6 +1084,34 @@ def main(argv=None):
         clean_delta, relation_benefit.shape[0]
     )
     relation_benefit_fe = relation_fixed_effect(relation_benefit)
+
+    global_specificity = None
+    if args.specificity_json is not None:
+        specificity_path = _resolve(args.specificity_json)
+        _require(specificity_path.is_file(), "specificity JSON is missing")
+        specificity = _load_json(specificity_path)
+        _require(
+            specificity.get("condition") == args.condition
+            and int(specificity.get("model_seed", -1)) == args.model_seed
+            and specificity.get("canonical_z_hash") == z_hash,
+            "specificity condition/seed/z provenance mismatch",
+        )
+        global_specificity = {
+            "reference_path": str(
+                specificity_path.relative_to(REPOSITORY_ROOT)
+            ),
+            "R_correct": float(specificity["R_correct"]),
+            "shuffle_rate_mean": float(specificity["shuffle_rate_mean"]),
+            "delta_mean": float(specificity["delta_mean"]),
+            "relative_delta_mean": float(specificity["relative_delta_mean"]),
+            "fraction_shuffle_gt_correct": float(
+                specificity["fraction_shuffle_gt_correct"]
+            ),
+            "permutation_p_value": float(specificity["permutation_p_value"]),
+            "specificity_pass": bool(
+                specificity["B5_A0_CONDITIONAL_CONTEXT_SPECIFICITY_PASS"]
+            ),
+        }
 
     raw_metrics = {
         "pair": alignment_metrics(pairwise_rank, relation_benefit),
@@ -1072,9 +1225,9 @@ def main(argv=None):
     engineering_complete = bool(
         bank_hash == EXPECTED_PERMUTATION_BANK_HASH
         and benefit_repro_pass
-        and fold_hash == EXPECTED_B3_FOLD_HASH
+        and fold_hash == source_utility_audit["expected_fold_sha256"]
         and source_utility_audit["exact_reproduction_pass"]
-        and z_hash == EXPECTED_CANONICAL_Z_HASH
+        and z_hash == expected_z_hash
         and shape_pass
         and finite_pass
         and no_parameter_gradients_pass
@@ -1085,7 +1238,7 @@ def main(argv=None):
     result = {
         "stage": STAGE,
         "condition": args.condition,
-        "model_seed": MODEL_SEED,
+        "model_seed": args.model_seed,
         "training_performed": False,
         "backward_performed": False,
         "utility_used_for_training": False,
@@ -1112,10 +1265,12 @@ def main(argv=None):
             "ordered_pair_direction": "source->target",
         },
         "z_hash": z_hash,
-        "expected_z_hash": EXPECTED_CANONICAL_Z_HASH,
+        "z_sha256": z_hash,
+        "expected_z_hash": expected_z_hash,
         "z_l2_normalization_audit": z_audit,
         "fold_hash": fold_hash,
-        "expected_fold_hash": EXPECTED_B3_FOLD_HASH,
+        "fold_sha256": fold_hash,
+        "expected_fold_hash": source_utility_audit["expected_fold_sha256"],
         "fold_reference": str(fold_reference_path.relative_to(REPOSITORY_ROOT)),
         "fold_integrity": {
             "train_test_disjoint_pass": fold_audit["train_test_disjoint_pass"],
@@ -1140,10 +1295,15 @@ def main(argv=None):
         "pairwise_predictability_shape": list(pairwise.shape),
         "pairwise_evidence_definition": "per-relation (average_rank(T)-1)/(N-1)",
         "source_utility": source_utility_audit,
+        "source_utility_provenance": source_utility_audit[
+            "source_utility_provenance"
+        ],
+        "source_utility_sha256": source_utility_audit["utility_sha256"],
         "source_evidence_definition": "E_source_i^(w->v)=U_i^w",
         "structural_reference_path": str(clean_delta_path.relative_to(REPOSITORY_ROOT)),
         "structural_evidence_definition": "E_struct_i^(w->v)=M_clean[w,v]",
         "structural_FE_not_applicable": True,
+        "global_specificity": global_specificity,
         "global_class_balance": {
             "positive_count": positive_count,
             "negative_count": negative_count,

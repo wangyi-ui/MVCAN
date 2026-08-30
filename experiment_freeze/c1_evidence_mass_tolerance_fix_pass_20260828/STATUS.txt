@@ -1,0 +1,20 @@
+C1 evidence-mass numerical invariant repair PASS.
+
+Root cause:
+Two mathematically equivalent float32 reduction paths differed by one ULP.
+
+Observed:
+max_abs_diff = 1.1920928955078125e-07
+
+Scientific tensors unchanged:
+y_gen, U_cycle, C_conf, U_cycle_shuffle, E, m, T, a, T_local.
+
+Guard retained with fixed FP32 tolerance:
+rtol = 1e-6
+atol = 1e-7
+
+Large mismatch regression still hard-fails.
+
+Next:
+C1-A0 BASE vs CYCLE_ZERO, seed20, 1 epoch,
+rerun both under identical post-fix source hash.

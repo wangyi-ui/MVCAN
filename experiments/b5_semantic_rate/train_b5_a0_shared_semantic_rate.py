@@ -160,16 +160,22 @@ def _optimizer_defaults(optimizer):
     return result
 
 
-def _load_and_validate_manifest(path):
+def _load_and_validate_manifest(path, model_seed=20,
+                                requested_conditions=("clean", "snr2p5_k2")):
     manifest = _load_json(path)
     _require(isinstance(manifest, list), "condition manifest must be a list")
+    model_seed = int(model_seed)
+    requested_conditions = tuple(requested_conditions)
+    _require(model_seed in (20, 30, 50), "unsupported model seed")
     entries = {}
     for entry in manifest:
+        if int(entry.get("model_seed", -1)) != model_seed:
+            continue
         condition = entry.get("condition")
         _require(condition in ("clean", "snr2p5_k2"), "unexpected condition")
         _require(condition not in entries, "duplicate condition")
         _require(entry.get("dataset") == DATASET_NAME, "dataset mismatch")
-        _require(entry.get("model_seed") == 20, "model seed mismatch")
+        _require(entry.get("model_seed") == model_seed, "model seed mismatch")
         expected_z_hash = entry.get("expected_z_hash_b4_compatible")
         _require(
             isinstance(expected_z_hash, str) and len(expected_z_hash) == 64,
@@ -181,12 +187,15 @@ def _load_and_validate_manifest(path):
         _require(len(checkpoints) == EXPECTED_VIEW_NUM, "expected 5 checkpoints")
         source_audit = _load_json(_resolve(entry["source_audit"]))
         source_pass = bool(
-            source_audit.get("stage") == "B3-A1"
-            and source_audit.get("dataset") == DATASET_NAME
-            and source_audit.get("model_seed") == 20
-            and source_audit.get("backbone_hash", {}).get("aggregate")
-            == entry["expected_backbone_hash"]
+            source_audit.get("dataset") == DATASET_NAME
+            and source_audit.get("model_seed") == model_seed
         )
+        if source_audit.get("stage") == "B3-A1":
+            source_pass = bool(
+                source_pass
+                and source_audit.get("backbone_hash", {}).get("aggregate")
+                == entry["expected_backbone_hash"]
+            )
         if condition == "clean":
             source_pass = bool(
                 source_pass
@@ -198,7 +207,7 @@ def _load_and_validate_manifest(path):
             source_pass = bool(
                 source_pass
                 and entry.get("corruption_mode") == "heterogeneous_gaussian"
-                and entry.get("corruption_seed") == 20
+                and entry.get("corruption_seed") == model_seed
                 and entry.get("corruption_k") == 2
                 and entry.get("snr_db") == 2.5
                 and corruption_audit.get("mask_sha256")
@@ -206,7 +215,10 @@ def _load_and_validate_manifest(path):
             )
         _require(source_pass, "manifest source audit mismatch for " + condition)
         entries[condition] = {**entry, "checkpoint_paths": checkpoints}
-    _require(set(entries) == {"clean", "snr2p5_k2"}, "manifest incomplete")
+    _require(
+        set(requested_conditions) <= set(entries),
+        "manifest incomplete for requested model seed",
+    )
     return entries
 
 
@@ -231,7 +243,7 @@ def _prepare_data(entry, clean_views):
             mode="heterogeneous_gaussian",
             k=2,
             snr_db=2.5,
-            corruption_seed=20,
+            corruption_seed=int(entry["corruption_seed"]),
         )
         reconstructed = reconstruct_changed_row_mask(clean_views, evaluation_views)
         stored = np.load(_resolve(entry["corruption_mask"]), allow_pickle=False)
@@ -254,7 +266,7 @@ def _load_frozen_backbone(entry, config, evaluation_views):
         view_num=EXPECTED_VIEW_NUM,
         view_size=view_sizes,
         n_clusters=EXPECTED_CLUSTER_NUM,
-        seed=20,
+        seed=int(entry["model_seed"]),
         data_size=EXPECTED_SAMPLE_NUM,
         semantic_config=None,
     )
@@ -769,14 +781,18 @@ def parse_args(argv=None):
 
 def main(argv=None):
     args = parse_args(argv)
-    _require(args.model_seed == 20, "B5-A0 currently requires model seed 20")
+    _require(args.model_seed in (20, 30, 50), "unsupported B5-A0 model seed")
     _require(args.arms == list(ARMS), "all three preregistered arms are required")
     _require(args.steps > 0, "steps must be positive")
     _require(args.temperature == EXPECTED_TEMPERATURE, "temperature must be 0.2")
     _require(args.semantic_lr == EXPECTED_SEMANTIC_LR, "semantic lr must be 1e-4")
     isotropic_null_audit = isotropic_directional_null_audit(EXPECTED_SEMANTIC_DIM)
     _require(args.beta == EXPECTED_BETA, "B5-A0 preregisters beta=0.1")
-    entries = _load_and_validate_manifest(args.condition_manifest)
+    entries = _load_and_validate_manifest(
+        args.condition_manifest,
+        model_seed=args.model_seed,
+        requested_conditions=args.conditions,
+    )
     analytic_audit = analytic_kl_reference_check()
     _require(analytic_audit["analytic_kl_check_pass"], "analytic KL mismatch")
 

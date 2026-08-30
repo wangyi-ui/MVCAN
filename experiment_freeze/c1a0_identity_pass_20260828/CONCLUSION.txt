@@ -1,0 +1,35 @@
+C1-A0 Engineering Identity Smoke — PASS
+
+BASE and CYCLE_ZERO:
+- same initial E1-LWC model
+- same sample order
+- same native training objective
+- same final model parameters
+- same final predictions
+- same ACC/NMI/ARI
+
+BASE:
+ACC = 0.7807142857
+NMI = 0.7323663677
+ARI = 0.6860949670
+
+CYCLE_ZERO:
+ACC = 0.7807142857
+NMI = 0.7323663677
+ARI = 0.6860949670
+
+Final model aggregate SHA256:
+99d09b55c2681d9eb9b8505fdbebcab429934e2e9f728948c0b4f21c629e84e4
+
+CYCLE_ZERO raw pseudo loss is computed,
+but lambda_pseudo = 0.0 and therefore has no effect.
+
+Conclusion:
+C1 auxiliary pseudo-supervision path does not perturb
+the native MVCAN+LWC training graph when disabled.
+
+Next:
+C1-A1 Frozen Cycle Action Pilot
+seed=20
+epochs=20
+five formal arms.

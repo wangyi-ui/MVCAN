@@ -1,0 +1,22 @@
+VSA-E0 Decoupled Runner Identity — PASS
+
+BASE == CYCLE_ZERO
+
+Final aggregate model SHA256:
+e318b38b7ad0f3b3230deb298a0183aa213fc634d071cb2ace3211feb69bb729
+
+ACC = 0.7814285714
+NMI = 0.7324617406
+ARI = 0.6863744016
+
+CYCLE_ZERO semantic loss:
+1.1101693908
+
+Semantic gradient was non-zero,
+but semantic lr=0 produced exact model identity.
+
+VSA path does not perturb native MVCAN
+when semantic action is disabled.
+
+Next:
+VSA-A0 seed20, 20 epochs, five formal arms.

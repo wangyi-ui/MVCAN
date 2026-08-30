@@ -1,0 +1,47 @@
+VSA-B Multi-seed Formal Validation
+PRE-REGISTERED BEFORE seed30/50 VSA RESULTS
+
+Seeds:
+20, 30, 50
+
+Metrics:
+ACC, NMI, ARI
+
+For comparator X:
+
+delta_s,m =
+metric(CYCLE, seed=s, metric=m)
+-
+metric(X, seed=s, metric=m)
+
+D_s_X =
+delta_ACC + delta_NMI + delta_ARI
+
+CORE GATES:
+
+1. BASE:
+D_s_BASE > 0 for all 3 seeds
+AND mean delta ACC/NMI/ARI are all > 0.
+
+2. SHUFFLED_CYCLE:
+D_s_SHUFFLED > 0 for all 3 seeds
+AND mean delta ACC/NMI/ARI are all > 0.
+
+UTILITY-SPECIFIC GATES:
+
+3. CONF:
+D_s_CONF > 0 in at least 2/3 seeds
+AND mean D_CONF > 0
+AND mean delta ACC/NMI/ARI are all > 0.
+
+4. UNIFORM:
+D_s_UNIFORM > 0 in at least 2/3 seeds
+AND mean D_UNIFORM > 0
+AND mean delta ACC/NMI/ARI are all > 0.
+
+All four gates PASS:
+VSA_B_MULTISEED_PASS
+
+No threshold changes after observing seed30/50 results.
+No significance claim from only three seeds.
+Report mean ± std and every seed individually.

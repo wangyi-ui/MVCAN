@@ -1,0 +1,38 @@
+Bridge-P0 Residual Utility Value Audit
+PRE-REGISTERED BEFORE SCIENTIFIC RESULTS
+
+SEEDS = 20, 30, 50
+CONFIDENCE_BIN_COUNT = 5
+MIN_VALID_BINS_PER_DIRECTION = 3
+MIN_VALID_DIRECTIONS_PER_SEED = 16
+POSITIVE_DIRECTION_MIN_COUNT = 12
+ALPHA = 0.05
+SEED_PASS_MIN_COUNT = 2
+
+Per-seed RESIDUAL_INFORMATION_SEED_PASS requires ALL:
+1. mean_DeltaCondAUC_cycle > 0
+2. positive_DeltaCondAUC_direction_count >= 12
+3. one-sided Wilcoxon greater p < 0.05
+4. mean_ActionLift_cycle > 0
+5. mean_CorrespondenceResidualGap > 0
+6. mean_CorrespondenceLiftGap > 0
+
+Multi-seed BRIDGE_P0_RESIDUAL_UTILITY_PASS requires ALL:
+1. at least 2/3 seed-level PASS
+2. mean_seed_DeltaCondAUC_cycle > 0
+3. mean_seed_ActionLift_cycle > 0
+4. mean_seed_CorrespondenceResidualGap > 0
+5. mean_seed_CorrespondenceLiftGap > 0
+
+READ-ONLY.
+No training.
+No optimizer.
+No backward.
+No new utility.
+No R.
+No corruption mask.
+No sparse labels.
+No B7.
+GT only after durable Bridge input seal.
+Use only frozen C0 global mapping.
+No post-hoc gate modification.

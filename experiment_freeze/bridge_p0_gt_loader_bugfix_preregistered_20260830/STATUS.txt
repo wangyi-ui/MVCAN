@@ -1,0 +1,38 @@
+Bridge-P0 GT-loader Interface Bugfix
+ENGINEERING PASS / BEFORE SCIENTIFIC METRICS
+
+Original Bridge-P0 scientific protocol remains unchanged.
+
+First formal seed20 attempt:
+- durable bridge_input_seal created
+- GT loader invoked
+- failure occurred before correctness construction completed
+- no Conditional AUC observed
+- no ActionLift observed
+- no Wilcoxon observed
+- no seed scientific decision observed
+
+Root cause:
+C0 load_full_ground_truth_after_seal() returns:
+(full_GT, full_GT_audit)
+
+Bridge incorrectly passed the complete tuple to np.ascontiguousarray().
+
+Bugfix:
+- schema-aware tuple unpacking
+- labels ndarray only passed to correctness
+- GT audit/provenance preserved and checked
+- labels validated as int64-compatible shape [1400]
+- class domain 0..6 validated
+- GT remains loaded only after durable input seal
+- frozen C0 global mapping unchanged
+- Bridge mapping fit count remains 0
+
+Scientific protocol unchanged.
+No threshold changed.
+No gate changed.
+No utility changed.
+No training executed.
+
+Regression:
+95 Bridge-P0 tests passed.

@@ -1,6 +1,7 @@
 """Synthetic and provenance tests for the B5-A0.4 alignment audit."""
 
 import inspect
+import json
 import math
 from pathlib import Path
 
@@ -410,6 +411,8 @@ def test_cli_matches_preregistered_invocation_surface():
         "input",
         "--condition",
         "snr2p5_k2",
+        "--model-seed",
+        "20",
         "--a02-dir",
         "a02",
         "--clean-a02-dir",
@@ -427,3 +430,131 @@ def test_cli_matches_preregistered_invocation_surface():
     assert args.bootstrap_seed == 20260816
     assert args.evidence_null_repeats == 500
     assert args.condition == "snr2p5_k2"
+    assert args.model_seed == 20
+
+
+def test_a04_cli_accepts_all_preregistered_model_seeds():
+    for seed in (20, 30, 50):
+        args = a04.parse_args([
+            "--input-dir", "input",
+            "--condition", "snr2p5_k2",
+            "--model-seed", str(seed),
+            "--a02-dir", "a02",
+            "--clean-a02-dir", "clean-a02",
+            "--output-dir", "output",
+        ])
+        assert args.model_seed == seed
+
+
+def test_requested_seed_must_match_checkpoint_metadata():
+    assert a04.validate_requested_model_seed({"model_seed": 30}, 30) == 30
+    try:
+        a04.validate_requested_model_seed({"model_seed": 30}, 50)
+    except RuntimeError as error:
+        assert "does not match checkpoint metadata" in str(error)
+    else:
+        raise AssertionError("mismatched checkpoint seed was accepted")
+
+
+def test_seed_specific_z_hash_comes_from_matching_metadata():
+    seed30_hash = "31bbf7426b0982ef301da938669a1ac482284fdf98e830663ca87b1ceaebbf27"
+    metadata = {
+        "model_seed": 30,
+        "expected_z_hash_b4_compatible": seed30_hash,
+        "z_hash_b4_compatible": seed30_hash,
+    }
+    assert a04.expected_canonical_z_hash(metadata, "snr2p5_k2") == seed30_hash
+    assert seed30_hash != a04.EXPECTED_CANONICAL_Z_HASH
+
+
+def test_seed_specific_fold_provenance_matches_historical_b3():
+    expected = {
+        20: a04.EXPECTED_B3_FOLD_HASH,
+        30: "5780b9955895f03d53e22cfcba56b2608e87e986d647692faf258e2b7f97268f",
+        50: "57e9426332aa3cec4b42eb14576b7e1dc33cf62185d42dbbb09e6e0f1f8e57ce",
+    }
+    for seed in (20, 30, 50):
+        folds, fold_hash, reference = a04.load_canonical_b3_folds(
+            model_seed=seed
+        )
+        assert folds.shape == (210,)
+        assert reference == a04.default_b3_score_reference(seed)
+        assert fold_hash == expected[seed]
+
+
+def test_seed30_source_u_reconstruction_is_deterministic_and_frozen():
+    reference = a04.default_b3_score_reference(30)
+    with np.load(reference, allow_pickle=False) as archive:
+        consensus_t = np.asarray(archive["T"], dtype=np.float64)
+        folds = np.asarray(archive["fold_assignment"], dtype=np.int64)
+    fold_hash = a04.fold_assignment_sha256(folds)
+    first, first_audit = a04.reconstruct_source_utility(
+        {"oof_consensus_cosine": consensus_t},
+        b3_score_reference=reference,
+        fold_hash=fold_hash,
+    )
+    second, second_audit = a04.reconstruct_source_utility(
+        {"oof_consensus_cosine": consensus_t},
+        b3_score_reference=reference,
+        fold_hash=fold_hash,
+    )
+    assert np.array_equal(first, second)
+    assert first_audit["utility_sha256"] == second_audit["utility_sha256"]
+    assert first_audit["formula"] == "per-view (average_rank(T)-1)/(N-1)"
+    assert first_audit["rank_method"] == "average"
+    assert first.min() >= 0.0 and first.max() <= 1.0
+
+
+def test_seed20_saved_alignment_regression_is_unchanged():
+    path = ROOT / (
+        "outputs/b5_semantic_rate/"
+        "a04_relation_utility_alignment_step100_seed20/"
+        "b5_a04_relation_utility_alignment.json"
+    )
+    result = json.loads(path.read_text())
+    assert abs(result["fe_adjusted_metrics"]["pair"]["auc"] - 0.475573254) < 1e-9
+    assert abs(result["fe_adjusted_metrics"]["pair"]["spearman"] + 0.070322753) < 1e-9
+    assert abs(result["fe_adjusted_metrics"]["source"]["auc"] - 0.570364971) < 1e-9
+    assert abs(result["fe_adjusted_metrics"]["source"]["spearman"] - 0.072709673) < 1e-9
+    assert result["relation_benefit_reproduction_error"] < 1e-6
+
+
+def test_b5_manifest_selects_seed_specific_checkpoint_provenance():
+    from experiments.b5_semantic_rate import train_b5_a0_shared_semantic_rate as train
+
+    manifest = ROOT / "experiments/b5_semantic_rate/b5_a0_condition_manifest.json"
+    expected_z = {
+        20: a04.EXPECTED_CANONICAL_Z_HASH,
+        30: "31bbf7426b0982ef301da938669a1ac482284fdf98e830663ca87b1ceaebbf27",
+        50: "da83e291d70a787f9da4b237fbe6beb555eac8955e6fca2d867dbd41eee1b606",
+    }
+    for seed in (20, 30, 50):
+        entries = train._load_and_validate_manifest(
+            manifest,
+            model_seed=seed,
+            requested_conditions=("snr2p5_k2",),
+        )
+        entry = entries["snr2p5_k2"]
+        assert entry["model_seed"] == seed
+        assert entry["corruption_seed"] == seed
+        assert entry["expected_z_hash_b4_compatible"] == expected_z[seed]
+
+
+def test_all_completed_seed_alignments_reproduce_their_own_a02_matrix():
+    directories = {
+        20: "a04_relation_utility_alignment_step100_seed20",
+        30: "a05_utility_alignment_step100_seed30",
+        50: "a05_utility_alignment_step100_seed50",
+    }
+    for seed, directory in directories.items():
+        path = (
+            ROOT
+            / "outputs/b5_semantic_rate"
+            / directory
+            / "b5_a04_relation_utility_alignment.json"
+        )
+        result = json.loads(path.read_text())
+        assert result["model_seed"] == seed
+        assert result["relation_benefit_reproduction_error"] < 1e-6
+        assert result["B5_A04_RELATION_BENEFIT_REPRO_PASS"]
+        assert result["B5_A04_ALIGNMENT_AUDIT_COMPLETE"]

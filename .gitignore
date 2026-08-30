@@ -1,38 +1,36 @@
 
 # ===== Local research artifacts =====
-
 # Python cache
 __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
-
 # IDE
 .vscode/
 .idea/
-
 # Datasets
 data/*.mat
-
 # Model checkpoints
 *.pth
 models/
 outputs/**/models/
-
 # Binary corruption masks
 outputs/**/audit/corruption_mask.npy
-
 # Backups / temporary files
 backups/
 *.original
 *.orig
 *.backup
-
 # Generated figures
 images/*.png
-
 # OS
 .DS_Store
-
 # Detailed per-pair audit tables (kept locally)
 outputs/**/audit/corruption_pairs.csv
+outputs/
+logs/
+*.pt
+*.ckpt
+*.npy
+*.npz
+*.mat

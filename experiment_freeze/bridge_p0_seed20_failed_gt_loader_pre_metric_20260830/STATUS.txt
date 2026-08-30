@@ -1,0 +1,18 @@
+Bridge-P0 seed20 first formal execution
+ENGINEERING FAILURE / NO SCIENTIFIC RESULT
+
+Failure stage:
+after durable bridge_input_seal
+after GT loader invocation
+before diagnostic correctness completed
+before confidence-stratified conditional AUC
+before action lift
+before Wilcoxon
+before seed decision
+
+Observed exception:
+ValueError while converting the structured return object of
+C0 load_full_ground_truth_after_seal() directly into an int64 ndarray.
+
+Scientific protocol/gates were not changed.
+No Bridge scientific metrics were observed.

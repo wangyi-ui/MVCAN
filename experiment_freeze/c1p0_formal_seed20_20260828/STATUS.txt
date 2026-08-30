@@ -1,0 +1,19 @@
+C1-P0 Utility-to-Action Compression Audit
+FORMAL READ-ONLY RUN COMPLETE
+
+C1_P0_READ_ONLY_AUDIT_COMPLETE=True
+
+No training.
+No optimizer step.
+No parameter update.
+
+Purpose:
+Locate loss of Cycle Utility specificity across:
+
+W
+-> T
+-> effective action A
+-> pseudo gradient
+-> total gradient
+
+Do not modify C1-P0 before interpretation.

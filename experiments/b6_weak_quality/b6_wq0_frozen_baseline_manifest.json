@@ -1,0 +1,50 @@
+{
+  "baseline_name": "B6-WQ0 Canonical Frozen Baseline",
+  "canonical_entries": {
+    "20": {
+      "backbone_dir": "outputs/b2_weak_quality/snr2p5_k2_seed20/models",
+      "expected_backbone_hash": "f4f026f47938c619bfdfb868cfcdb5eac354652a51d71199edbc997c0a5de0ab",
+      "expected_canonical_fused_hash": "00068715ad29924901b14d707774bb731df586e4ab10ffb07f17d6518b886ac8",
+      "expected_canonical_metrics": {
+        "acc": 0.7047619047619048,
+        "ari": 0.5365945661561063,
+        "nmi": 0.6367546962696464
+      },
+      "expected_normalized_z_hash": "6dd6f0d4c9fea4a5b44d61a0984daa7137541dcb0762489d668967fb610bc894",
+      "expected_prediction_hash": "ec8d221ab00a346ac2ec71e9f150506a73efb9a3b321e3790c69dc3c4b3ee696",
+      "model_seed": 20,
+      "source_provenance": "outputs/b6_weak_quality/wq0_frozen_baseline_provenance/seed20_provenance.json"
+    },
+    "30": {
+      "backbone_dir": "outputs/b2_weak_quality/snr2p5_k2_seed30/models",
+      "expected_backbone_hash": "d553d1cd5627c5aa2c09de4914000a37efd1dca839c72712d5ec55db2e32c6e8",
+      "expected_canonical_fused_hash": "295120ee65eba4f1efca3705e3e17c15d635022ffd2a1a3f042e165432793ef7",
+      "expected_canonical_metrics": {
+        "acc": 0.7476190476190476,
+        "ari": 0.5596131629235117,
+        "nmi": 0.6573789919252009
+      },
+      "expected_normalized_z_hash": "31bbf7426b0982ef301da938669a1ac482284fdf98e830663ca87b1ceaebbf27",
+      "expected_prediction_hash": "392299ebb3d6da4ca879c9f61392216273547bac47ba1f30eed015e2e68c5320",
+      "model_seed": 30,
+      "source_provenance": "outputs/b6_weak_quality/wq0_frozen_baseline_provenance/seed30_provenance.json"
+    },
+    "50": {
+      "backbone_dir": "outputs/b2_weak_quality/snr2p5_k2_seed50/models",
+      "expected_backbone_hash": "a1c6560ab11844350ed6c22849f3a97010ed5be60ada7526529f1be0fc3a12d9",
+      "expected_canonical_fused_hash": "8d838546b80ddb0e4c4ca2a9f5d5f194179cbb07f1b255a79f5a3d0e567eea19",
+      "expected_canonical_metrics": {
+        "acc": 0.8,
+        "ari": 0.6314757475424652,
+        "nmi": 0.6926823121298221
+      },
+      "expected_normalized_z_hash": "da83e291d70a787f9da4b237fbe6beb555eac8955e6fca2d867dbd41eee1b606",
+      "expected_prediction_hash": "d8f45c05ac18bbe87fde45d56d8c3d226f8e129e26b2a53d05de2f8a0b5db20d",
+      "model_seed": 50,
+      "source_provenance": "outputs/b6_weak_quality/wq0_frozen_baseline_provenance/seed50_provenance.json"
+    }
+  },
+  "registration_status": "registered",
+  "schema_version": "b6-wq0-frozen-baseline-v1",
+  "source_policy": "Entries must come from audited provenance candidates and be registered only after human review."
+}

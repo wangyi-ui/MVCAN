@@ -1,0 +1,51 @@
+C1-P0 Utility-to-Action Compression Audit
+FORMAL HUMAN DECISION
+
+Decision:
+NATIVE_GRADIENT_DOMINANCE_EVIDENCE
+
+Key observations:
+
+1. Cycle utility remains strongly different from controls.
+
+2. CYCLE vs SHUFFLED_CYCLE target/action information survives:
+   target normalized Frobenius distance ≈ 0.917823
+   effective-action normalized Frobenius distance ≈ 1.842576
+
+3. Pseudo gradients remain meaningfully different:
+   cosine(CYCLE, SHUFFLED) ≈ 0.869061
+   relative pseudo-gradient difference ≈ 0.581045
+
+4. Native gradient dominates:
+   ||g_native|| ≈ 161.550953
+   ||g_pseudo_cycle|| ≈ 0.222680
+
+5. With lambda_pseudo = 0.01:
+   pseudo/native gradient ratio ≈ 1.378e-5
+
+6. CYCLE vs SHUFFLED total-gradient cosine:
+   ≈ 0.999999999968
+
+Conclusion:
+
+The Cycle utility signal does not disappear in W -> T -> A
+or in the pseudo-gradient itself.
+
+The failure occurs primarily when utility-specific semantic action
+is added to the much larger native MVCAN+LWC gradient.
+
+Therefore CLOSE:
+
+L_total = L_native + 0.01 * L_pseudo
+
+as the static additive action carrier.
+
+KEEP:
+
+CRSV
+U_cycle
+frozen semantic hypotheses
+correspondence verification.
+
+Next:
+VSA — Verified Semantic Action Decoupling.

@@ -1,0 +1,22 @@
+E4-A0 Reliability-Conditioned Semantic Memory Write Feasibility
+
+Engineering/Audit:
+E4A0_AUDIT_PASS=True
+
+Scientific decision:
+E4A0_R_MEMORY_WRITE_FAIL
+
+Primary:
+R_MEMORY ACC = 0.8787878788
+SHUFFLED_R_MEMORY ACC = 0.8787878788
+
+R_MEMORY margin = 0.1325764954
+SHUFFLED_R_MEMORY margin = 0.1289057732
+
+ALL_MEMORY ACC = 0.8795093795
+ORACLE_CLEAN_MEMORY ACC = 0.8860028860
+
+Interpretation:
+Observation reliability R is NOT established as memory-write utility.
+Semantic memory itself remains feasible/promising.
+R must remain a reliability prior, not be renamed as final Information Utility.

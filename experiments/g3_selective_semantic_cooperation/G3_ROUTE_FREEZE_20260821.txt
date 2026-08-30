@@ -1,0 +1,34 @@
+G3 ROUTE FREEZE
+Date: 2026-08-21
+
+G3-A0 Frozen Utility Target Correction
+- Engineering: PASS
+- Scientific: NULL/FAIL
+- Status: CLOSED
+
+G3-A1 Read-only Target Interface
+- Verdict: CASE_B_INTERPOLATION_ERASES_UTILITY_SIGNAL
+- Status: CLOSED
+
+G3-A2 Confidence-Preserving Correction
+- Verdict: CASE_B_DIRECTION_STILL_ERASED
+- Status: CLOSED
+
+G3-A3 Semantic Target Risk
+- Code/output exists.
+- Read-only diagnostic only.
+- Not used for downstream development.
+- Main-route status: ARCHIVED / STOPPED
+
+Frozen conclusions:
+1. Sample-view reliability estimation is no longer the research bottleneck.
+2. Direct U-weighted feature/fusion/contrastive actions are closed.
+3. Hard Top-k semantic admission is closed.
+4. Direct rewriting/correction of P_all is closed.
+5. High-U -> low-U direct repair family is not pursued.
+6. No additional U-only reliability/confidence diagnostic should be added.
+
+Next route:
+External robust semantic cooperation carrier sanity,
+then integrate frozen reliability into an interaction-level carrier,
+then move to 1% weak supervision.

@@ -1,0 +1,52 @@
+VSA-A0 Decoupled Verified Semantic Action Feasibility — PASS
+
+Formal decision:
+VSA_A0_DECOUPLED_ACTION_PASS
+
+VSA_AUDIT_PASS=True
+
+Seed=20
+Epochs=20
+
+BASE:
+ACC=0.7814285714
+NMI=0.7340016972
+ARI=0.6876543850
+
+UNIFORM:
+ACC=0.8621428571
+NMI=0.7768220529
+ARI=0.7547675345
+
+CONF:
+ACC=0.8621428571
+NMI=0.7768220529
+ARI=0.7547675345
+
+CYCLE:
+ACC=0.8635714286
+NMI=0.7778333825
+ARI=0.7561292039
+
+SHUFFLED_CYCLE:
+ACC=0.7842857143
+NMI=0.7400715953
+ARI=0.6936282451
+
+All preregistered gates PASS:
+
+NET_GAIN=True
+CORRESPONDENCE_SPECIFICITY=True
+BEATS_CONFIDENCE=True
+BEATS_UNIFORM=True
+
+Interpretation:
+
+1. Decoupled semantic action produces substantial representation gain.
+2. Correct cross-view correspondence is essential.
+3. Cycle utility gives an additional but currently small gain over
+   CONF and UNIFORM.
+4. No further VSA-A0 modification is allowed.
+
+Next:
+VSA-B Multi-seed Formal Validation.

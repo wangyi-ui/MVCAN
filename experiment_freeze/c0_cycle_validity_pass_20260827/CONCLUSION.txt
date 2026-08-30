@@ -1,0 +1,42 @@
+C0 — Complementary-View Reciprocal Semantic Verification
+STATUS: SCIENTIFIC PASS / FROZEN
+
+Frozen result:
+
+AUC_cycle       = 0.9153223589
+AUC_confidence  = 0.8337466367
+AUC_JSD         = 0.7313489485
+AUC_shuffle     = 0.5101860500
+
+Paired Wilcoxon:
+cycle > confidence: p = 0.00116252899
+cycle > JSD:        p = 9.5367431640625e-07
+cycle > shuffle:    p = 9.5367431640625e-07
+
+Risk-coverage:
+Cycle precision @20% = 0.9914285714
+Cycle precision @40% = 0.9841071429
+Cycle precision @60% = 0.9658928571
+
+mean U | correct = 0.3740771960
+mean U | wrong   = 0.0827051714
+
+Final:
+C0_COMPLEMENTARY_CYCLE_VALIDITY_PASS
+
+Scientific conclusion:
+
+Independent complementary-view reciprocal semantic verification
+provides pseudo-label validity information beyond:
+1. ordinary confidence,
+2. historical JSD consistency,
+3. broken sample correspondence.
+
+Information Utility for the pseudo-semantic action is therefore
+interpreted as verified action-specific value rather than
+observation reliability.
+
+Next:
+C1 — Cycle-Verified Pseudo-Supervision Action Feasibility.
+
+C1 must NOT modify C0 score construction.

@@ -1,0 +1,56 @@
+E4 / Semantic Memory Branch — CLOSED
+
+Frozen conclusions:
+
+E4-A0:
+R-only static memory write failed.
+
+E4-A1:
+S_mem specificity PASS.
+R*S specificity PASS.
+Static memory net-gain gate FAIL.
+
+E4-CF0:
+Counterfactual memory action value Delta_mem is identifiable:
+delta_std = 0.0167938781
+positive fraction = 0.75
+negative fraction = 0.25
+
+Proxy identification:
+R:
+  Spearman = -0.1299206
+  pairwise ranking = 0.3809524
+
+S_mem:
+  Spearman = +0.2364078
+  pairwise ranking = 0.8333333
+  shuffled pairwise ranking = 0.1666667
+
+R*S:
+  Spearman = -0.1054369
+  pairwise ranking = 0.3809524
+  shuffled pairwise ranking = 0.6190476
+
+Scientific interpretation:
+
+1. Observation reliability is NOT equivalent to action utility.
+2. Memory-specific semantic usefulness can rank marginal memory action value.
+3. Multiplying semantic usefulness by observation reliability destroys that ranking.
+4. Static reliability/utility-weighted semantic memory is CLOSED.
+5. Memory is not part of the next forward path.
+6. Information Utility itself is NOT deleted.
+7. Utility is redefined as action-specific value validated by independent semantic evidence.
+
+Next branch:
+Cyclic Semantic Verification.
+
+Closed routes must NOT be silently reintroduced:
+R->feature/fusion
+R->target correction
+R*LWC
+R*S static weighting
+semantic memory
+direct semantic injection
+CAIP directional repair
+rate/KL carrier
+hard Top-k

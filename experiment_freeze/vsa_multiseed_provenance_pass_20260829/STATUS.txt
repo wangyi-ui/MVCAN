@@ -1,0 +1,30 @@
+VSA-B Multi-seed Provenance Parameterization — ENGINEERING PASS
+
+Allowed VSA training seeds:
+20 / 30 / 50
+
+Same-seed lineage required:
+VSA_s <-> E1_s <-> C0_s
+
+Weak-quality realization:
+FIXED at snr2p5_k3_seed20
+
+VSA mechanism:
+UNCHANGED
+
+Seed-specific M0:
+seed20 / seed30 / seed50 independently validated.
+
+VSA regression:
+183 passed.
+
+Historical C1/C1-P0 regression:
+2 stale source-SHA failures caused by the intentional E1
+multi-seed infrastructure modification.
+These are provenance-file-identity failures, not numerical
+or algorithmic VSA failures, and are non-blocking for VSA-B.
+
+No VSA seed30/50 training had been executed at freeze time.
+
+Next:
+seed30 VSA-B engineering smoke.

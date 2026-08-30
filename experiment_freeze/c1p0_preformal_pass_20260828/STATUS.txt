@@ -1,0 +1,39 @@
+C1-P0 Utility-to-Action Compression Audit
+PRE-FORMAL ENGINEERING PASS
+
+py_compile: PASS
+pytest: 100 passed
+
+Frozen upstream:
+C0: PASS
+E1-LWC checkpoints: PASS
+C1-A1 source: PASS
+
+C1-A1 formal decision:
+C1_ACTION_NOT_CORRESPONDENCE_SPECIFIC
+
+C1-P0 purpose:
+Locate where Cycle Utility specificity is lost:
+
+W
+-> T
+-> effective action A
+-> pseudo gradient
+-> total gradient
+
+Read-only constraints:
+- no optimizer
+- no optimizer.step
+- no parameter update
+- no GT
+- no R
+- no sparse labels
+- no corruption mask
+- no Memory
+- no P_corr/P_util
+- no dynamic cycle
+- no threshold/Top-k
+- no lambda sweep
+
+Next:
+Run C1-P0 formal seed20 exactly once.
