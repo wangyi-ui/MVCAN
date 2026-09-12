@@ -34,3 +34,37 @@ logs/
 *.npy
 *.npz
 *.mat
+
+# ============================================================
+# Local experiment artifacts / generated outputs
+# ============================================================
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Runtime logs
+*.log
+
+# Main experiment outputs
+outputs/
+
+# Model checkpoints
+*.pth
+*.pt
+*.ckpt
+
+# Generated data / arrays
+*.npy
+*.npz
+*.mat
+
+# Local formal/freeze archives
+# Scientific source is versioned separately in experiments/ and tests/.
+experiment_freeze/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
