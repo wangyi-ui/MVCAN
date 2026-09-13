@@ -1,0 +1,46 @@
+F0-A0 MULTI-SEED EXACT REPLAY PASS
+
+Stage:
+F0-A0 Final-Core Exact Replay
+
+Seeds:
+20 / 30 / 50
+
+Decision:
+PASS
+
+All seeds:
+- parent provenance PASS
+- sparse label identity PASS
+- frozen U_cycle identity PASS
+- relation target identity PASS
+- relation balance weight identity PASS
+- coordinate mapping PASS
+- final prediction exact equality PASS
+- final model hash exact equality PASS
+- pre-GT isolation PASS
+- forbidden routes all FALSE
+- ACC/NMI/ARI exact replay PASS
+
+Scientific result:
+The clean F0 final-core implementation exactly reproduces
+the frozen C3-B0 TRUE_U mechanism across all three seeds.
+
+Final scientific lineage:
+C0 frozen directional U_cycle
+-> C3-A0 sparse relation semantics
+-> C3-B0 TRUE_U relation action
+-> F0 final core
+
+No C4 memory.
+No pseudo-label expansion.
+No pseudo CE.
+No scalar utility recalibration.
+No continuous utility posterior weighting.
+No feature/fusion gating.
+No new loss term.
+
+F0-A0 is CLOSED and FROZEN.
+
+NEXT:
+F0-A1 Closed-Loop Dynamics Audit.

@@ -1,0 +1,50 @@
+{
+  "ACC_mean": 0.8604761904761905,
+  "ACC_population_std": 0.0008908708063747389,
+  "ARI_mean": 0.7522748347960999,
+  "ARI_population_std": 0.001942995957257057,
+  "NMI_mean": 0.7733661879130392,
+  "NMI_population_std": 0.0024189283801530513,
+  "all_seeds_pass": true,
+  "final_decision": "PASS",
+  "purpose": "Final-Core Multi-Seed Exact Replay",
+  "scientific_parent": "C3-B0 TRUE_U",
+  "seed_results": {
+    "20": {
+      "ACC": 0.8614285714285714,
+      "ARI": 0.753482395557614,
+      "NMI": 0.7734181958700173,
+      "decision": "PASS",
+      "final_model_hash_equal": true,
+      "post_seal_metric_exact_equal": true,
+      "pre_gt_exact_replay": true,
+      "prediction_exact_equal": true
+    },
+    "30": {
+      "ACC": 0.8592857142857143,
+      "ARI": 0.749533486243257,
+      "NMI": 0.7703779562016145,
+      "decision": "PASS",
+      "final_model_hash_equal": true,
+      "post_seal_metric_exact_equal": true,
+      "pre_gt_exact_replay": true,
+      "prediction_exact_equal": true
+    },
+    "50": {
+      "ACC": 0.8607142857142858,
+      "ARI": 0.7538086225874288,
+      "NMI": 0.7763024116674858,
+      "decision": "PASS",
+      "final_model_hash_equal": true,
+      "post_seal_metric_exact_equal": true,
+      "pre_gt_exact_replay": true,
+      "prediction_exact_equal": true
+    }
+  },
+  "seeds": [
+    20,
+    30,
+    50
+  ],
+  "stage": "F0-A0"
+}

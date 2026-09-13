@@ -1,0 +1,47 @@
+{
+  "ACC_exact_equal": true,
+  "ARI_exact_equal": true,
+  "GT_loaded_only_after_pre_gt_seal": true,
+  "GT_used_for_training": false,
+  "NMI_exact_equal": true,
+  "final_predictions_equal": true,
+  "frozen_C3_B0_TRUE_U_metrics": {
+    "ACC": 0.8592857142857143,
+    "ARI": 0.749533486243257,
+    "NMI": 0.7703779562016145
+  },
+  "frozen_metric_reference": {
+    "file_sha256": "283d32e583b15fceb2c3ae2e880568fe498fe57cf456a119633673cf6f56add7",
+    "frozen_reference_matches_audited_constants": true,
+    "path": "experiment_freeze/c3_b0_multiseed_pass_20260912/formal_outputs/c3_b0_relation_action_pilot_seed30_true_u/metrics.json"
+  },
+  "metrics": {
+    "ACC": {
+      "actual": 0.8592857142857143,
+      "exact_equal": true,
+      "expected": 0.8592857142857143
+    },
+    "ARI": {
+      "actual": 0.749533486243257,
+      "exact_equal": true,
+      "expected": 0.749533486243257
+    },
+    "NMI": {
+      "actual": 0.7703779562016145,
+      "exact_equal": true,
+      "expected": 0.7703779562016145
+    }
+  },
+  "parent_hashes_pass": true,
+  "pre_gt_provenance": {
+    "artifact_file_sha256": "5a2c7819d664ece6d03bab62a669a9973208649ed6a13895296ecc4cf7c2a84a",
+    "audit_file_sha256": "9253ea739fdf5ae731b75dc4a8fa70f815e8acd5c157d17fd051d95fb655af9e",
+    "pre_gt_seal_valid": true,
+    "pre_gt_seal_verified_before_GT_load": true,
+    "seal_file_sha256": "c24bb1859516dafff26be58b3c38b4f84088781b4ed9c1204d696f389be8e0f6"
+  },
+  "pre_gt_seal_valid": true,
+  "scientific_parent": "C3-B0 TRUE_U",
+  "seed": 30,
+  "stage": "F0-A0"
+}
