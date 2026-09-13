@@ -1,0 +1,46 @@
+F0-A0 SEED20 ENGINEERING EXACT REPLAY PASS
+
+Stage:
+F0-A0 Final-Core Exact Replay
+
+Seed:
+20
+
+Decision:
+PASS
+
+Pre-GT exact replay:
+PASS
+
+Final prediction equality:
+PASS
+
+Final model hash equality:
+PASS
+
+Parent provenance:
+PASS
+
+Forbidden paths:
+ALL FALSE
+
+GT isolation:
+PASS
+
+Post-seal metric exact replay:
+PASS
+
+ACC:
+0.8614285714285714
+
+NMI:
+0.7734181958700173
+
+ARI:
+0.753482395557614
+
+Scientific conclusion:
+Clean F0 final-core implementation exactly reproduces the
+frozen C3-B0 TRUE_U behavior for seed20.
+
+No scientific mechanism was changed.
