@@ -1,0 +1,66 @@
+F0-A0 FINAL CORE EXACT REPLAY
+=============================
+
+Scientific role:
+Implementation consolidation only.
+No new scientific mechanism is introduced.
+
+FINAL CORE:
+Frozen U_cycle
++
+Sparse relation semantics
++
+C3-B0 TRUE_U relation-level semantic action.
+
+PARENT:
+Frozen C3-B0 multi-seed PASS.
+
+SEEDS:
+20, 30, 50.
+
+PRIMARY REQUIREMENT:
+The clean final-core implementation must exactly replay
+the frozen C3-B0 TRUE_U behavior.
+
+MANDATORY GATES:
+
+1. All frozen parent hashes pass.
+2. Same dataset realization.
+3. Same weak-quality corruption realization.
+4. Same sample IDs.
+5. Same 14 sparse labeled anchors.
+6. Same frozen U_cycle [N,20].
+7. Same relation target construction.
+8. Same relation balance weights.
+9. Same optimizer.
+10. Same learning rate.
+11. Same training epochs and refresh schedule.
+12. Same initialization/checkpoint lineage.
+13. Same coordinate mapping.
+14. Final predictions exactly equal.
+15. ACC/NMI/ARI exactly equal.
+16. Final model hash equal when supported.
+
+FORBIDDEN:
+
+- C4 memory
+- C5 pseudo-semantic expansion
+- pseudo-label CE
+- memory bank
+- prototype memory
+- scalar U recalibration
+- continuous U posterior weighting
+- direct feature gating
+- direct fusion gating
+- recursive semantic expansion
+- new loss coefficient
+- hyperparameter tuning
+
+PASS:
+
+seed20, seed30 and seed50 all exact replay.
+
+Any mismatch:
+FAIL-CLOSED and debug implementation only.
+Do not modify scientific semantics to rescue replay.
+
