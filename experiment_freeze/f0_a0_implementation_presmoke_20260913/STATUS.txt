@@ -1,0 +1,55 @@
+F0-A0 IMPLEMENTATION PRESMOKE FREEZE
+
+Stage:
+F0-A0 Final-Core Exact Replay
+
+Scientific role:
+Implementation consolidation only.
+No new scientific mechanism.
+
+Implementation audit:
+PASS
+
+Preregistered protocol:
+PASS / unchanged
+
+Historical C0/C2/C3/C4/C5 source modification:
+NONE
+
+New final-core files:
+- experiments/final_core/__init__.py
+- experiments/final_core/final_core_protocol.py
+- experiments/final_core/train_final_core.py
+- experiments/final_core/evaluate_final_core.py
+- experiments/final_core/summarize_final_core.py
+- tests/test_final_core_exact_replay.py
+
+Verification:
+- py_compile PASS
+- F0 unit tests: 41 passed
+- C3-B0 regression tests: 121 passed
+- no F0 training output exists
+- no F0 smoke has been run
+- no F0 formal has been run
+- no new F0 GT result has been inspected
+
+Final-core scientific lineage:
+C0 frozen U_cycle
+-> C3-A0 sparse relation semantics
+-> C3-B0 TRUE_U relation action
+-> F0-A0 clean final core
+
+Forbidden routes remain closed:
+- C4 memory
+- C5 pseudo-semantic expansion
+- pseudo-label CE
+- prototype memory
+- continuous U weighting
+- scalar U recalibration
+- feature/fusion gating
+- recursive expansion
+- new loss terms
+
+NEXT:
+Commit this implementation freeze.
+Then run seed20 engineering exact-replay smoke only.
