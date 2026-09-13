@@ -1,0 +1,41 @@
+{
+  "GT_loaded_only_after_pre_gt_seal": true,
+  "carrier_parity_pass": true,
+  "final_PASS_FAIL_decision_implemented": false,
+  "metrics": {
+    "LABEL_ONLY": {
+      "ACC": 0.8303249097472925,
+      "ARI": 0.720801603226508,
+      "Balanced_ACC": 0.8245920745920746,
+      "NMI": 0.772152169387531
+    },
+    "SHUFFLE_U_WRITE": {
+      "ACC": 0.8303249097472925,
+      "ARI": 0.7223979059487787,
+      "Balanced_ACC": 0.8245920745920746,
+      "NMI": 0.7763911433020524
+    },
+    "TRUE_U_WRITE": {
+      "ACC": 0.8303249097472925,
+      "ARI": 0.7223979059487787,
+      "Balanced_ACC": 0.8245920745920746,
+      "NMI": 0.7763911433020524
+    },
+    "UNIFORM_WRITE": {
+      "ACC": 0.8303249097472925,
+      "ARI": 0.7223979059487787,
+      "Balanced_ACC": 0.8245920745920746,
+      "NMI": 0.7763911433020524
+    }
+  },
+  "pre_gt_artifact_file_sha256": "2231c0eb131845260f223fc8e5a881f09f5b58c9b23fe075f39254b29d70a5b6",
+  "pre_gt_audit_file_sha256": "304f50b459964bed74614d00fe6ecb0581bf563145b20bba00a6f529ae9aef23",
+  "primary_metric": "Balanced_ACC",
+  "secondary_metrics": [
+    "ACC",
+    "NMI",
+    "ARI"
+  ],
+  "seed": 20,
+  "stage": "C4-A0"
+}

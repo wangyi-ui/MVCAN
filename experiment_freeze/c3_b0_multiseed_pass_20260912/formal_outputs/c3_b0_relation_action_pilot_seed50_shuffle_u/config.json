@@ -1,0 +1,27 @@
+{
+  "anchor_count": 14,
+  "arm": "SHUFFLE_U",
+  "batch_size": 256,
+  "class_count": 7,
+  "dataset": "Caltech-6V",
+  "epochs": 20,
+  "model_training_config": {
+    "T_1": 2,
+    "T_2": 100,
+    "batch_size": 256,
+    "epoch": 1000,
+    "init_epoch": 200,
+    "lambda1": 0.01,
+    "lr": 0.0001,
+    "seed": 5
+  },
+  "native_objective": "REC + 0.01 * CLU",
+  "phase_order": [
+    "relation_semantic",
+    "native_consolidation"
+  ],
+  "relation_objective": "mean_v(sum(action_weight * BCE(dot(q_sample_v, detach(q_anchor_v)), PredRelation)) / sum(action_weight))",
+  "seed": 50,
+  "stage": "C3-B0",
+  "view_count": 6
+}

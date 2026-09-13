@@ -1,0 +1,44 @@
+C5-B0 MULTI-SEED FINAL DECISION
+
+Utility-Validated Semantic Expansion
+（效用验证语义扩散）
+
+seed=20
+BASE_ACC=0.8614285714285714
+TRUE_ACC=0.8607142857142858
+PERM_ACC=0.87
+Delta_TRUE_BASE=-0.0007142857142856673
+Delta_TRUE_PERM=-0.00928571428571423
+
+seed=30
+BASE_ACC=0.8592857142857143
+TRUE_ACC=0.8564285714285714
+PERM_ACC=0.87
+Delta_TRUE_BASE=-0.0028571428571428914
+Delta_TRUE_PERM=-0.013571428571428568
+
+seed=50
+BASE_ACC=0.8607142857142858
+TRUE_ACC=0.8578571428571429
+PERM_ACC=0.8635714285714285
+Delta_TRUE_BASE=-0.0028571428571428914
+Delta_TRUE_PERM=-0.005714285714285672
+
+mean_Delta_TRUE_BASE=-0.00214285714285715
+positive_TRUE_BASE_seeds=0/3
+GATE1_PASS=False
+
+mean_Delta_TRUE_PERM=-0.00952380952380949
+positive_TRUE_PERM_seeds=0/3
+GATE2_PASS=False
+
+FINAL_DECISION=FAIL-CLOSED
+
+Scientific interpretation:
+Frozen U_cycle predicts semantic-action validity,
+but action validity does not reliably translate into
+pseudo-anchor training priority.
+
+Pseudo-anchor semantic expansion is therefore closed.
+Do not tune expansion ratio, threshold, utility exponent,
+pseudo-label CE, or memory to rescue C5-B0.

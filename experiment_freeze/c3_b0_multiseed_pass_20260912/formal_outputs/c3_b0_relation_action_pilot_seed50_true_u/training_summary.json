@@ -1,0 +1,13 @@
+{
+  "additive_combined_loss_used": false,
+  "arm": "TRUE_U",
+  "best_epoch": null,
+  "epoch_selection": "none; final prediction only",
+  "final_epoch": 20,
+  "phase_A_before_phase_B_every_epoch": true,
+  "phase_A_executed": true,
+  "phase_B_executed": true,
+  "seed": 50,
+  "stage": "C3-B0",
+  "test_GT_used_for_epoch_selection": false
+}

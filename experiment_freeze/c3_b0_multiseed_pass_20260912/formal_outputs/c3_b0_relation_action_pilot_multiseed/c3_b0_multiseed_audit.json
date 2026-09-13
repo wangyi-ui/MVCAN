@@ -1,0 +1,232 @@
+{
+  "GT_loaded_by_summarizer": false,
+  "formal_arm_set_exact": true,
+  "formal_seed_set_exact": true,
+  "gate_preregistered_before_formal_execution": true,
+  "input_provenance": {
+    "20": {
+      "BASE": {
+        "audit.json": {
+          "file_sha256": "04b759f998f6ccaf83a672faf2b89c1f9de72142089f5de875398fa43d0e9e75",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_base/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "5595e43bafdbf13df53d146b14667c5a1ac601e56aeb8d75d211d8d8ad63e9b8",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_base/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "48e867ee2631f2e35fc5ccc2db23a59bd02fbdbc81f542fd9e44d70549d40642",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_base/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "2f79a8aeae7a83633af30e2fccbd55fa985a6276ec23e8d28fb8f2b384091d8f",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_base/training_summary.json"
+        }
+      },
+      "SHUFFLE_U": {
+        "audit.json": {
+          "file_sha256": "8f0b9b369bb34b6401bf43c69478d05335928ef7bc29637eacc1bb0564060eec",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_shuffle_u/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "9966f940ad764fead8bc4c89c698b65dcf36807cbb403f06e9ab33b2d0f8f151",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_shuffle_u/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "3e132bef143c6cecb314d1c7a927ff893623283280e8af60623cb93494a3184e",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_shuffle_u/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "c7b09a0b2c4be0a248c7f2483b325f3cd868739f2381cb4359cc1a417758c9f9",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_shuffle_u/training_summary.json"
+        }
+      },
+      "TRUE_U": {
+        "audit.json": {
+          "file_sha256": "ac36cfae1a9e4cf4a4b5e2f3ab74ff32c8ccb4252c55a6a027a5ce501432d81c",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_true_u/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "61a16bacd09e6ae9f092b8824040c75a4805f037b698c41aaf35f7dcc84bb40d",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_true_u/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "acb23af829b6573efb1c0af8f8e1d60d8e3c4da2931b128af73179281f4c09ec",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_true_u/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "1b269b4292a480954852506533ae196fb92aaa221a1817f6bc06f95fd5240df2",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_true_u/training_summary.json"
+        }
+      },
+      "TRUE_UNIFORM": {
+        "audit.json": {
+          "file_sha256": "51c07c43d6ea95a49ac4f47db6950177e53ed7c8eb1858ad5044a73e593b1cde",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_true_uniform/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "c600cda76e8d00e638c61fdd12ef2a712c0f3b2e87df8df9bfa4c6682190c3a7",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_true_uniform/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "15e406f79323b4a038c516864e423e43857254d1f00b4c72a22942880cd1983a",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_true_uniform/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "a3cbd9454ef60e13320337dee5545cdce75ab5387c95364da36cc42ca9c25f79",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed20_true_uniform/training_summary.json"
+        }
+      }
+    },
+    "30": {
+      "BASE": {
+        "audit.json": {
+          "file_sha256": "6ddcbaf4dba8f17ff8b3f898e9762c77c8cb051f40c61dfcf7b8caafc91ee522",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_base/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "b3b9a98b227fe7fbb0ac4b528a86bcabd6024e5a05174d03a54a8da41ffe5a6a",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_base/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "b49c645df579e19a211b5baa87b97a3026dff947204280fc41891df9af711918",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_base/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "98730dce8f9b6bbf7e42551b5c339a9724365fde01e809d42cfc68e1879a078e",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_base/training_summary.json"
+        }
+      },
+      "SHUFFLE_U": {
+        "audit.json": {
+          "file_sha256": "87e3f3f5cca53c686eaee51b65abfd520c7f66cec4fab0dbc86d26a724781399",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_shuffle_u/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "185803efbb14bef5311f3bce91704c6bd22dfb0bed2b8cd887cfe92dcecc74ed",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_shuffle_u/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "8b5b71fe140d4574a52b29f351c20828c98bc53708503378b613c5c22d6a3b2c",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_shuffle_u/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "1624c526c50443cb254ff126938445bbf3d65590d23410a69a34adfbbce1207d",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_shuffle_u/training_summary.json"
+        }
+      },
+      "TRUE_U": {
+        "audit.json": {
+          "file_sha256": "4c93eb395a5d96138fefde0820cf32b7b48239c83d814860b13b522f1092e51e",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_true_u/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "4fa0c65c12bae97f3d25ec01592e6d80c1c220c56f6ba1ff538dba82a6852e96",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_true_u/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "283d32e583b15fceb2c3ae2e880568fe498fe57cf456a119633673cf6f56add7",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_true_u/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "e556696caf7700515c90640dde1b4e6f1ece7680070af1686c2410dbe12bf030",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_true_u/training_summary.json"
+        }
+      },
+      "TRUE_UNIFORM": {
+        "audit.json": {
+          "file_sha256": "91580f3c8f047a7ead03a3e5b2704b1e40fd45a5c49dabaed52b60c526cb6826",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_true_uniform/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "57b420f9e4c6055dc4939163fc98e812ffc70f51f84762ab1f0ab3b1ec001f12",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_true_uniform/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "790fc33337494ecc8b30f29aa409e614b0ae2ba558db0a07ff2318a483630176",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_true_uniform/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "38efdf94ae992e9e57264314da016faef18076a459b991ed76f13bded80aab31",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_true_uniform/training_summary.json"
+        }
+      }
+    },
+    "50": {
+      "BASE": {
+        "audit.json": {
+          "file_sha256": "2ae617b3287a03577f789b673c0b958df3477db994cb8f4e98415f9f738fed35",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_base/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "cdbe28eb30be43a368aa60fe472bf5552d6e874e274bb3a172a9465c65212ace",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_base/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "e2d9451260dd00ca86ba28451e3f2493a2e9d9092df32f12778cd48e14c3fcbd",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_base/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "041a844cc5248fa0e15b363d6d2308704363582ae39140235b93a39005b4a390",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_base/training_summary.json"
+        }
+      },
+      "SHUFFLE_U": {
+        "audit.json": {
+          "file_sha256": "e264730fe00409d9d005152890bdd54bd81288dbdc6986fe0dec0dcbae524f82",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_shuffle_u/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "af9c7504af235093b142a872dc692e09093046ef1f888d86815c3a2acaea300c",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_shuffle_u/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "b0b88bb2da29d2234f313f2b7f14309924bc20a857b46fb89a0fd1bf697f6850",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_shuffle_u/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "648f53c06599949ad6a5bec95f5ac4c7b5498a70c2aaee805490e96a578f38ab",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_shuffle_u/training_summary.json"
+        }
+      },
+      "TRUE_U": {
+        "audit.json": {
+          "file_sha256": "fa21b568b501181b56a3758a45c2f0980d0a0636ef83b8af9de462fd157d71e1",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_true_u/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "0ee5e61bdf797f21cffe9c7fd85b47a60619b77dbaf811b98a43d7c2118b8c85",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_true_u/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "b20a602a789e3dbce675af3d167933ba9c895bfe6c05591a1529361da0f693a6",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_true_u/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "10e9076b94823f6ed8f06b1970f52f05625923bbc675bdba3119098a16fc9cf3",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_true_u/training_summary.json"
+        }
+      },
+      "TRUE_UNIFORM": {
+        "audit.json": {
+          "file_sha256": "8ca69d26763c113a5e0ba58ccb80e0c8f17e3ceab151850f69cfa4344e2cec7b",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_true_uniform/audit.json"
+        },
+        "config.json": {
+          "file_sha256": "eb6e66cf87c73be5edab20fe4a125b6e0fb8dade326d79b9ed397581486c8a06",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_true_uniform/config.json"
+        },
+        "metrics.json": {
+          "file_sha256": "3f6660c6e4d06c6b5c37f631df52f51b3a104f4bb3d6f6cb6522a41efe6655db",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_true_uniform/metrics.json"
+        },
+        "training_summary.json": {
+          "file_sha256": "fc8dac8361eac690528d48f07b8907bc2d38a1d13085bff9f710e06f2e2fa5df",
+          "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed50_true_uniform/training_summary.json"
+        }
+      }
+    }
+  },
+  "memory_automatically_enabled": false,
+  "stage": "C3-B0"
+}

@@ -1,0 +1,12 @@
+{
+  "GT_used_for_training": false,
+  "arm": "SHUFFLE_U",
+  "evaluation_epoch": 20,
+  "metrics": {
+    "ACC": 0.7457142857142857,
+    "ARI": 0.6403534048458533,
+    "NMI": 0.7150928839853053
+  },
+  "seed": 50,
+  "stage": "C3-B0"
+}

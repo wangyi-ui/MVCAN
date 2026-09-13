@@ -1,0 +1,1 @@
+88d1c395946c008ef64c117c6c56ff608d82ba2671658b6dad606d352af9b385  experiment_freeze/c5_b0_utility_validated_semantic_expansion_preregistered_20260913/PROTOCOL.txt

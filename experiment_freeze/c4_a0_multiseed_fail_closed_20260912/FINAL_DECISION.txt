@@ -1,0 +1,37 @@
+C4-A0 UTILITY-CONDITIONED SEMANTIC MEMORY ACTION
+FORMAL MULTI-SEED DECISION: FAIL-CLOSED
+
+Seeds: 20,30,50
+Primary metric: Balanced ACC
+
+TRUE_U - LABEL_ONLY:
+seed20 = +0.00000000
+seed30 = +0.00396825
+seed50 = +0.00000000
+mean   = +0.00132275
+positive seeds = 1/3
+
+TRUE_U - UNIFORM_WRITE:
+seed20 = +0.00000000
+seed30 = +0.00000000
+seed50 = +0.00000000
+mean   = +0.00000000
+positive seeds = 0/3
+
+TRUE_U - SHUFFLE_U_WRITE:
+seed20 = +0.00000000
+seed30 = +0.00000000
+seed50 = +0.00000000
+mean   = +0.00000000
+positive seeds = 0/3
+
+Engineering safety gates passed.
+Carrier parity passed.
+Memory states were action-separable in engineering diagnostics.
+However, utility-specific memory-state differences did not translate into clustering-decision gains.
+
+Scientific conclusion:
+Current class-prototype persistent memory compresses away the actionable advantage of directional U_cycle.
+
+C4-B0 training feedback is NOT authorized.
+No post-formal tuning of writer budget, thresholds, U_cycle, memory update, or readout is permitted under C4-A0.

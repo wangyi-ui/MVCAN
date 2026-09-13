@@ -1,0 +1,96 @@
+{
+  "C3_B0_RELATION_ACTION_PILOT_PASS": true,
+  "comparisons": {
+    "BASE": {
+      "delta_by_seed": {
+        "ACC": {
+          "20": 0.07928571428571429,
+          "30": 0.07857142857142863,
+          "50": 0.07928571428571429
+        },
+        "ARI": {
+          "20": 0.0657790125638309,
+          "30": 0.06334103075841113,
+          "50": 0.06727545217912856
+        },
+        "NMI": {
+          "20": 0.03854371984666771,
+          "30": 0.03695086650643542,
+          "50": 0.044213332403397865
+        }
+      },
+      "mean_delta": {
+        "ACC": 0.07904761904761907,
+        "ARI": 0.06546516516712353,
+        "NMI": 0.03990263958550033
+      },
+      "positive_ACC_seed_count": 3
+    },
+    "SHUFFLE_U": {
+      "delta_by_seed": {
+        "ACC": {
+          "20": 0.11357142857142855,
+          "30": 0.09857142857142864,
+          "50": 0.1150000000000001
+        },
+        "ARI": {
+          "20": 0.11364443543552638,
+          "30": 0.086130473477801,
+          "50": 0.11345521774157541
+        },
+        "NMI": {
+          "20": 0.058023808739153804,
+          "30": 0.02946596252316369,
+          "50": 0.061209527682180465
+        }
+      },
+      "mean_delta": {
+        "ACC": 0.1090476190476191,
+        "ARI": 0.10441004221830093,
+        "NMI": 0.04956643298149932
+      },
+      "positive_ACC_seed_count": 3
+    },
+    "TRUE_UNIFORM": {
+      "delta_by_seed": {
+        "ACC": {
+          "20": 0.004285714285714337,
+          "30": -0.0050000000000000044,
+          "50": 0.0035714285714286698
+        },
+        "ARI": {
+          "20": 0.005755248047536576,
+          "30": -0.007763863840468899,
+          "50": 0.004337150631110398
+        },
+        "NMI": {
+          "20": 0.002503897634358654,
+          "30": -0.00706293922947987,
+          "50": 0.003422302347184103
+        }
+      },
+      "mean_delta": {
+        "ACC": 0.0009523809523810008,
+        "ARI": 0.0007761782793926919,
+        "NMI": -0.00037891308264570434
+      },
+      "positive_ACC_seed_count": 2
+    }
+  },
+  "decision": "C3_B0_RELATION_ACTION_PILOT_PASS",
+  "gate_checks": {
+    "TRUE_U_vs_BASE_positive_ACC_at_least_2_of_3": true,
+    "TRUE_U_vs_SHUFFLE_U_positive_ACC_at_least_2_of_3": true,
+    "TRUE_U_vs_TRUE_UNIFORM_positive_ACC_at_least_2_of_3": true,
+    "mean_DeltaACC_TRUE_U_vs_BASE_gt_0": true,
+    "mean_DeltaACC_TRUE_U_vs_SHUFFLE_U_gt_0": true,
+    "mean_DeltaACC_TRUE_U_vs_TRUE_UNIFORM_gt_0": true,
+    "mean_DeltaARI_TRUE_U_vs_BASE_gt_0": true,
+    "mean_DeltaNMI_TRUE_U_vs_BASE_gt_0": true
+  },
+  "memory_automatically_enabled": false,
+  "memory_eligible": true,
+  "next_stage_if_fail": "C3-B1 CLASS-LEVEL UTILITY-CONDITIONED ACTION PILOT",
+  "primary_arm": "TRUE_U",
+  "stage": "C3-B0"
+}

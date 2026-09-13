@@ -1,0 +1,202 @@
+FINAL CORE FRAMEWORK DECISION
+=============================
+
+Research Theme:
+Information-Utility-Driven Weak-Quality / Weak-Quantity
+Collaborative Purification
+
+信息效用驱动弱质—弱量协同提纯
+
+============================================================
+1. CENTRAL PRINCIPLE
+============================================================
+
+Sparse labels determine semantic direction.
+Frozen U_cycle determines action validity.
+
+少量标签决定语义方向；
+冻结的 U_cycle 决定语义动作是否有效。
+
+U_cycle is NOT interpreted as:
+- generic feature importance
+- pseudo-label confidence
+- continuous posterior weight
+- memory-write confidence
+- pseudo-anchor training priority
+
+============================================================
+2. FINAL CORE MECHANISM
+============================================================
+
+A. Weak-quality diagnosis
+   弱质诊断
+
+Cross-view cyclic consistency produces directional
+information utility:
+
+U_cycle[i,s]
+
+It measures semantic-action validity under noisy
+multi-view observations.
+
+B. Sparse semantic direction
+   稀疏语义方向
+
+The 1% sparse labels provide relation-level semantic
+direction.
+
+Sparse labels do NOT numerically recalibrate U_cycle.
+
+C. Utility-conditioned relation action
+   信息效用条件化关系动作
+
+The final effective semantic intervention is the
+C3-B0 relation-level semantic action.
+
+Sparse labels determine WHAT semantic relation
+should be transferred.
+
+U_cycle determines WHETHER the corresponding
+semantic action is valid.
+
+D. Closed-loop representation refinement
+   闭环表示提纯
+
+Current representation
+    ->
+relation prediction
+    ->
+utility-conditioned semantic action
+    ->
+representation update
+    ->
+updated relation state
+
+This constitutes the final weak-quality /
+weak-quantity collaborative purification loop.
+
+============================================================
+3. SUPPORTED SCIENTIFIC COMPONENTS
+============================================================
+
+C3-B0:
+PASS.
+
+Relation-level semantic action is retained as the
+effective training intervention.
+
+C5-A0:
+POSITIVE MECHANISM VALIDATION.
+
+Frozen U_cycle reliably predicts semantic-action
+validity.
+
+Multi-seed mean:
+AUC_TRUE ≈ 0.849419
+AUC_PERMUTED ≈ 0.584574
+Delta_AUC ≈ +0.264845
+
+Delta_AUC > 0 in 3/3 seeds.
+
+Therefore U_cycle has genuine sample-action-specific
+validity information.
+
+============================================================
+4. CLOSED / REJECTED EXTENSIONS
+============================================================
+
+C4:
+FAIL-CLOSED.
+
+Persistent class-prototype semantic memory is excluded.
+
+C5-B0:
+FAIL-CLOSED.
+
+Pseudo-semantic anchor expansion is excluded.
+
+C5-B0 multi-seed result:
+
+mean Delta_ACC(TRUE-BASE)
+= -0.00214285714285715
+
+positive TRUE-BASE seeds
+= 0/3
+
+mean Delta_ACC(TRUE-PERMUTED)
+= -0.00952380952380949
+
+positive TRUE-PERMUTED seeds
+= 0/3
+
+Scientific boundary:
+
+Action validity is NOT equivalent to
+training expansion priority.
+
+============================================================
+5. OTHER CLOSED ROUTES
+============================================================
+
+Do not revive:
+
+- scalar U recalibration / U_tilde
+- continuous posterior U weighting
+- additive pseudo-label CE
+- direct feature gating
+- direct fusion gating
+- static memory write
+- class-prototype persistent memory
+- pseudo-anchor expansion
+- recursive pseudo-label expansion
+
+============================================================
+6. FINAL INTERPRETATION
+============================================================
+
+The final framework uses information utility exactly
+where empirical evidence supports it:
+
+semantic-action validity control.
+
+It does NOT reinterpret information utility as a
+universal scalar weight.
+
+The resulting mechanism is:
+
+Weak-quality multi-view observation
+    ->
+cross-view cyclic diagnosis
+    ->
+U_cycle action validity
+    +
+sparse-label semantic direction
+    ->
+utility-conditioned relation action
+    ->
+representation refinement
+    ->
+updated relation state.
+
+This is the final weak-quality / weak-quantity
+collaborative purification loop.
+
+============================================================
+7. NEXT STAGE
+============================================================
+
+No new major architectural module will be introduced.
+
+Next stage:
+
+Final Framework Experimental Validation
+（最终主框架系统验证）
+
+including:
+
+- main comparison
+- ablation study
+- SNR robustness
+- label-ratio robustness
+- multi-dataset validation
+- efficiency / complexity analysis

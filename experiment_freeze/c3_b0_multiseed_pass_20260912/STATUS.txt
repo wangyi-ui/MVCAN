@@ -1,0 +1,36 @@
+C3-B0 FORMAL MULTI-SEED PASS
+
+Stage:
+C3-B0 Relation-Level Semantic Action Pilot
+
+Formal seeds:
+20 / 30 / 50
+
+Arms:
+BASE
+TRUE_U
+TRUE_UNIFORM
+SHUFFLE_U
+
+Official summarizer decision:
+C3_B0_RELATION_ACTION_PILOT_PASS
+
+Scientific conclusion:
+Relation-level sparse semantic action produces downstream clustering gain.
+
+Information Utility conclusion:
+Frozen U_cycle provides action-validity weighting beyond uniform relation action
+under the preregistered multi-seed gate.
+
+Semantic specificity:
+TRUE_U is compared against SHUFFLE_U to verify correspondence-specific semantic value.
+
+Memory:
+ELIGIBLE ONLY.
+NOT automatically enabled.
+
+C3-B1:
+NOT entered because C3-B0 passed.
+
+Next stage:
+Design and preregister the post-C3-B0 utility-conditioned semantic memory action stage.

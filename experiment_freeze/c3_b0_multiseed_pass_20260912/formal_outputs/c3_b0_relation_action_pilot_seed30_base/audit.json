@@ -1,0 +1,2864 @@
+{
+  "BASE_has_no_Phase_A": true,
+  "GT_loaded_after_final_prediction_seal": true,
+  "GT_loaded_during_training": false,
+  "GT_use": "final ACC/NMI/ARI evaluation only",
+  "PredRelation_frozen_detached": true,
+  "U_cycle_frozen_detached": true,
+  "VSA_decoupled_optimizer_builder_reused": true,
+  "VSA_optimizer_adapter_arm": null,
+  "VSA_phase_schedule_reused": true,
+  "action_provenance": {
+    "GT_loaded": false,
+    "all_required_logical_hashes_pass": true,
+    "loaded_fields": [
+      "U_cycle",
+      "unlabeled_ids",
+      "labeled_ids",
+      "PredRelation_true",
+      "PredRelation_shuffle",
+      "relation_balance_weights_true",
+      "relation_balance_weights_shuffle"
+    ],
+    "logical_sha256": {
+      "PredRelation_shuffle": "fa9d4a951368e24c8ad008f7681016913d97f72598e91c781babbbf74f085906",
+      "PredRelation_true": "f72e816069a793a45b13c9910f26563cb22f61afc597d8309b561b21c9645d44",
+      "U_cycle": "6d7b29300f27bd0b58265bcfe767c65d71b1de2b53a55c5849c8228f4e753d32",
+      "labeled_ids": "8bb6d96a7593bb7916915a66fd25a5671df01d923c811ebdaaa5cc5be1f381b3",
+      "relation_balance_weights_shuffle": "0b2a872545cb338b072ee912e825268ad9019342331a1b97b130ff9550406536",
+      "relation_balance_weights_true": "5f8c165f630933e81b7718dc5309f1c1ff5fe1b9e8523332f1b824b9b47c7a82",
+      "unlabeled_ids": "3df6b38608ea4a59dc03cbd1f658a79fadd6cd4402bc12d091b477d96095bfde"
+    },
+    "npz_file_sha256": "78985bb9616fdb5bf6c5d952153f43df450a61a9a9ef5b3bd5cc3c47c849c98a",
+    "npz_path": "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed30/c3_a0_action_pre_gt.npz",
+    "sample_ID_indexing_required": true,
+    "scientific_metric_loaded": false,
+    "seal_file_sha256": "b984dcb84affe155d5e43d632633874e2bffd4ed3a87a97c2a5f671c11c4722f",
+    "seal_path": "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed30/c3_a0_action_seal.json",
+    "seed": 30
+  },
+  "additive_combined_loss_used": false,
+  "anchor_side_stop_gradient": true,
+  "arm": "BASE",
+  "checkpoint_provenance": {
+    "actual_loaded_aggregate_sha256": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+    "actual_loaded_model_hash": {
+      "aggregate": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+      "per_view": [
+        "c4592acc327550dd4584f829af15af33a975c7bb5b29294946fde5bb76985daa",
+        "a8eedb55d55311fca0d5642929829df395b7da60896eea0eabdc81232f4abdca",
+        "b65b027dd16a0430a77502f575f1853353069355f281d797fced4022f615cf97",
+        "833aad4dffe2206b3b2ae685957c6d634bd2f2601e0eddd41b950b288871e08b",
+        "d4d71878557768ad2852baf5b3f35bff776aefb51fa1dd72126429e7e2fd920b",
+        "e41a2543057a4930c2b8fefe248a19967f67be6afbb5db8315cd7d629c7ec0fb"
+      ]
+    },
+    "checkpoint_file_sha256": [
+      "c2a47b2f8db812cfc2d515af3caf71b72c5ab51a5320d765c75d4438800f0435",
+      "ce681533ea44189781e0376b294ec48e5fa02467f72c9caf9022220a434b6fc1",
+      "1c23a92785b1df94cd5dbbe044de2cb9e9ed6b03c8b549caa712b90cc4c61214",
+      "93b3d7c6980a3f452c7c50210465a420937c2b6c381522a3506e8e393e154d7c",
+      "57abdbd4b5e8e569fc7482c2eb3e7a2aa82775ab82534df9d89cf0ae8b8cc673",
+      "92de289ac305307b1d410626dd36316967e7230d37d1a0393c8647723b4cc87b"
+    ],
+    "checkpoint_paths": [
+      "outputs/e1_pairwise_utility/lwc_100ep_seed30/models/Caltech-6V1V.pth",
+      "outputs/e1_pairwise_utility/lwc_100ep_seed30/models/Caltech-6V2V.pth",
+      "outputs/e1_pairwise_utility/lwc_100ep_seed30/models/Caltech-6V3V.pth",
+      "outputs/e1_pairwise_utility/lwc_100ep_seed30/models/Caltech-6V4V.pth",
+      "outputs/e1_pairwise_utility/lwc_100ep_seed30/models/Caltech-6V5V.pth",
+      "outputs/e1_pairwise_utility/lwc_100ep_seed30/models/Caltech-6V6V.pth"
+    ],
+    "directory": "outputs/e1_pairwise_utility/lwc_100ep_seed30/models",
+    "expected_aggregate_sha256_from_own_audit": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+    "expected_model_hash_from_own_audit": {
+      "aggregate": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+      "per_view": [
+        "c4592acc327550dd4584f829af15af33a975c7bb5b29294946fde5bb76985daa",
+        "a8eedb55d55311fca0d5642929829df395b7da60896eea0eabdc81232f4abdca",
+        "b65b027dd16a0430a77502f575f1853353069355f281d797fced4022f615cf97",
+        "833aad4dffe2206b3b2ae685957c6d634bd2f2601e0eddd41b950b288871e08b",
+        "d4d71878557768ad2852baf5b3f35bff776aefb51fa1dd72126429e7e2fd920b",
+        "e41a2543057a4930c2b8fefe248a19967f67be6afbb5db8315cd7d629c7ec0fb"
+      ]
+    },
+    "independently_reloaded_for_this_arm": true,
+    "initial_backbone_hash": {
+      "aggregate": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+      "per_view": [
+        "c4592acc327550dd4584f829af15af33a975c7bb5b29294946fde5bb76985daa",
+        "a8eedb55d55311fca0d5642929829df395b7da60896eea0eabdc81232f4abdca",
+        "b65b027dd16a0430a77502f575f1853353069355f281d797fced4022f615cf97",
+        "833aad4dffe2206b3b2ae685957c6d634bd2f2601e0eddd41b950b288871e08b",
+        "d4d71878557768ad2852baf5b3f35bff776aefb51fa1dd72126429e7e2fd920b",
+        "e41a2543057a4930c2b8fefe248a19967f67be6afbb5db8315cd7d629c7ec0fb"
+      ]
+    },
+    "model_matches_own_audit_pass": true,
+    "requested_seed_lineage_match_pass": true,
+    "seed20_historical_hash_pass": true,
+    "source_arm": "LWC",
+    "source_audit_file_sha256": "11a0612e6a797bd1e2c4f8ca1c9ed3f962dde47da4bebd3f6eb9894a7bf9c2e5",
+    "source_audit_path": "outputs/e1_pairwise_utility/lwc_100ep_seed30/e1_audit.json",
+    "source_epochs": 100,
+    "source_seed": 30,
+    "source_stage": "E1",
+    "source_training_seed": 30,
+    "weak_quality_condition_fixed": "snr2p5_k3_seed20"
+  },
+  "determinism": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "bitwise_E0_replay_control_enabled": true,
+    "cuda_matmul_TF32_allowed": false,
+    "cudnn_TF32_allowed": false,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic_algorithms_enabled": true,
+    "deterministic_warn_only": false,
+    "thread_environment": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "torch_num_interop_threads": 1,
+    "torch_num_threads": 1
+  },
+  "feature_provenance": {
+    "corruption_mask_present": false,
+    "d1_logical_mask_sha256_metadata": "e6250535db6e33b9263102cf335fcf9e8552a24cae4b70ec5a94887f4e58bf0b",
+    "file_sha256": "44133379b756fa83744d7745dd477c409d77db3f078ccab6064643c85428d8e4",
+    "forbidden_fields_absent_pass": true,
+    "keys": [
+      "X1",
+      "X2",
+      "X3",
+      "X4",
+      "X5",
+      "X6",
+      "sample_ids"
+    ],
+    "labels_present": false,
+    "path": "outputs/e0_glgc_adapter/caltech6v_snr2p5_k3_seed20.npz",
+    "sample_ids_dtype": "int64",
+    "sample_ids_exact_arange_pass": true,
+    "sample_ids_sha256": "887cb8dff9918e38f0b0c7f467d3b9aec75dcef9bf821b2307fd076ca5c42237",
+    "sample_ids_shape": [
+      1400
+    ],
+    "view_content_sha256": [
+      "11b3bfff5ba37d74e3810c8ef6d20066e4709fc6c54f26587fcd386719d6b569",
+      "adfc1e7ed052225828ae28ed47330603189a81006eebd8dc1f71351a49c46225",
+      "a45f5ea7cd4dacf9d63fb278c1919e4736413f525be6bb6c6e02c60e33e78568",
+      "49dc40253f5a631b3804dd60d914b19761d2274e73a5c16a95a69630625b5f9d",
+      "d7805ec73486faae70c895a29aba8af76b7c954b748c6b82681cd9a712524010",
+      "3bc3de7da91ca0012bee754a0a9981e16a28e66007bea9e2c600ea5f739bf130"
+    ]
+  },
+  "final_model_hash": {
+    "aggregate": "92ba695c3b61afefa91b48c27d49c126b253acc409c4ffd4ce1339c6e669380d",
+    "per_view": [
+      "06bd2db7108b3d57bf604a8cc4b80597f78784fec37f3ce71187ae248ac5616e",
+      "53b9797d15f8807d25c5460504e3fb6faf542cc0e68490037c56d52f9df53b59",
+      "bf41a2fdc3b1cf0a0f10feab92e03be54db803b564be2d76b9be8461bcfadb92",
+      "e6dcc3b2925060a8f08340b4c4be8feded41f88d28a2b2798350ee786733d951",
+      "e7ee8988fcc6603021cb49ebc758995bbe3cbae3edca67aa076ed9a7d7274c4b",
+      "f4913a39449db08163f16e8f1503eda5797a3ac35dff82d48191d1230c802577"
+    ]
+  },
+  "fixed_feature_lineage": {
+    "corruption_mask_loaded": false,
+    "feature_audit_path": "outputs/e0_glgc_adapter/export_audit.json",
+    "feature_realization_file_sha256": "44133379b756fa83744d7745dd477c409d77db3f078ccab6064643c85428d8e4",
+    "feature_realization_path": "outputs/e0_glgc_adapter/caltech6v_snr2p5_k3_seed20.npz",
+    "feature_realization_unchanged_pass": true,
+    "training_seed_changes_weak_quality_realization": false,
+    "weak_quality_condition_fixed": "snr2p5_k3_seed20"
+  },
+  "initial_model_hash": {
+    "aggregate": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+    "per_view": [
+      "c4592acc327550dd4584f829af15af33a975c7bb5b29294946fde5bb76985daa",
+      "a8eedb55d55311fca0d5642929829df395b7da60896eea0eabdc81232f4abdca",
+      "b65b027dd16a0430a77502f575f1853353069355f281d797fced4022f615cf97",
+      "833aad4dffe2206b3b2ae685957c6d634bd2f2601e0eddd41b950b288871e08b",
+      "d4d71878557768ad2852baf5b3f35bff776aefb51fa1dd72126429e7e2fd920b",
+      "e41a2543057a4930c2b8fefe248a19967f67be6afbb5db8315cd7d629c7ec0fb"
+    ]
+  },
+  "native_MVCAN_helper": "e1_train.native_mvcan_losses",
+  "native_P_global_M_P_local_detached": true,
+  "native_objective": "REC + 0.01 * CLU",
+  "new_information_utility_constructed": false,
+  "optimizer_separation": {
+    "BASE_native_only_optimizer_path": true,
+    "frozen_builder_arm": null,
+    "native_optimizer_config": {
+      "optimizer_count": 6,
+      "per_optimizer": [
+        {
+          "class": "Adam",
+          "defaults": {
+            "amsgrad": false,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "capturable": false,
+            "differentiable": false,
+            "eps": 1e-08,
+            "foreach": null,
+            "fused": null,
+            "lr": 0.0001,
+            "maximize": false,
+            "weight_decay": 0
+          },
+          "param_groups": [
+            {
+              "amsgrad": false,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "capturable": false,
+              "differentiable": false,
+              "eps": 1e-08,
+              "foreach": null,
+              "fused": null,
+              "lr": 0.0001,
+              "maximize": false,
+              "weight_decay": 0
+            }
+          ],
+          "parameter_count": 17,
+          "state_entry_count": 0
+        },
+        {
+          "class": "Adam",
+          "defaults": {
+            "amsgrad": false,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "capturable": false,
+            "differentiable": false,
+            "eps": 1e-08,
+            "foreach": null,
+            "fused": null,
+            "lr": 0.0001,
+            "maximize": false,
+            "weight_decay": 0
+          },
+          "param_groups": [
+            {
+              "amsgrad": false,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "capturable": false,
+              "differentiable": false,
+              "eps": 1e-08,
+              "foreach": null,
+              "fused": null,
+              "lr": 0.0001,
+              "maximize": false,
+              "weight_decay": 0
+            }
+          ],
+          "parameter_count": 17,
+          "state_entry_count": 0
+        },
+        {
+          "class": "Adam",
+          "defaults": {
+            "amsgrad": false,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "capturable": false,
+            "differentiable": false,
+            "eps": 1e-08,
+            "foreach": null,
+            "fused": null,
+            "lr": 0.0001,
+            "maximize": false,
+            "weight_decay": 0
+          },
+          "param_groups": [
+            {
+              "amsgrad": false,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "capturable": false,
+              "differentiable": false,
+              "eps": 1e-08,
+              "foreach": null,
+              "fused": null,
+              "lr": 0.0001,
+              "maximize": false,
+              "weight_decay": 0
+            }
+          ],
+          "parameter_count": 17,
+          "state_entry_count": 0
+        },
+        {
+          "class": "Adam",
+          "defaults": {
+            "amsgrad": false,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "capturable": false,
+            "differentiable": false,
+            "eps": 1e-08,
+            "foreach": null,
+            "fused": null,
+            "lr": 0.0001,
+            "maximize": false,
+            "weight_decay": 0
+          },
+          "param_groups": [
+            {
+              "amsgrad": false,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "capturable": false,
+              "differentiable": false,
+              "eps": 1e-08,
+              "foreach": null,
+              "fused": null,
+              "lr": 0.0001,
+              "maximize": false,
+              "weight_decay": 0
+            }
+          ],
+          "parameter_count": 17,
+          "state_entry_count": 0
+        },
+        {
+          "class": "Adam",
+          "defaults": {
+            "amsgrad": false,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "capturable": false,
+            "differentiable": false,
+            "eps": 1e-08,
+            "foreach": null,
+            "fused": null,
+            "lr": 0.0001,
+            "maximize": false,
+            "weight_decay": 0
+          },
+          "param_groups": [
+            {
+              "amsgrad": false,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "capturable": false,
+              "differentiable": false,
+              "eps": 1e-08,
+              "foreach": null,
+              "fused": null,
+              "lr": 0.0001,
+              "maximize": false,
+              "weight_decay": 0
+            }
+          ],
+          "parameter_count": 17,
+          "state_entry_count": 0
+        },
+        {
+          "class": "Adam",
+          "defaults": {
+            "amsgrad": false,
+            "betas": [
+              0.9,
+              0.999
+            ],
+            "capturable": false,
+            "differentiable": false,
+            "eps": 1e-08,
+            "foreach": null,
+            "fused": null,
+            "lr": 0.0001,
+            "maximize": false,
+            "weight_decay": 0
+          },
+          "param_groups": [
+            {
+              "amsgrad": false,
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "capturable": false,
+              "differentiable": false,
+              "eps": 1e-08,
+              "foreach": null,
+              "fused": null,
+              "lr": 0.0001,
+              "maximize": false,
+              "weight_decay": 0
+            }
+          ],
+          "parameter_count": 17,
+          "state_entry_count": 0
+        }
+      ]
+    },
+    "native_optimizer_count": 6,
+    "native_optimizer_helper": "e1_train.build_fresh_optimizers",
+    "native_optimizer_used_only_in_native_phase": true,
+    "semantic_optimizer_config": null,
+    "semantic_optimizer_count": 0,
+    "semantic_optimizer_created": false,
+    "semantic_optimizer_used_only_in_semantic_phase": null,
+    "total_optimizer_count": 6
+  },
+  "parent_hashes": {
+    "C2": {
+      "C2_B0_frozen_hashes_pass": true,
+      "C2_C0_frozen_hashes_pass": true,
+      "C2_C1_frozen_hashes_pass": true,
+      "C2_C2_A0_frozen_hashes_pass": true,
+      "all_frozen_parent_hashes_pass": true,
+      "manifests": {
+        "C2_B0": {
+          "all_entries_exact_match": true,
+          "entries": {
+            "experiments/cyclic_utility/c2_b0_sparse_utility_residual_protocol.py": "efcb469973e317959648e024d9ab7728311e40569bd538c18ece36d6fdc83515",
+            "experiments/cyclic_utility/evaluate_c2_b0_sparse_utility_residual.py": "ab08a1b60701daa17d4ba4574e63a17fa2f9713f5af3e10f8d387c72a60a009c",
+            "experiments/cyclic_utility/summarize_c2_b0_sparse_utility_residual.py": "52f3ca2317cf6511dacf7cb27aa8b85dd01b29e76b09b90d78aec7311e4c7201",
+            "tests/test_c2_b0_sparse_utility_residual.py": "94f87335b5d506ebcbfdb36245ea0d5963052c91995cff160995bd7b921c5ab7"
+          },
+          "file_sha256": "0aaad0d52a149a0e1eaf0218398c0f181a6143ee7b26bf4d8105167ff789caa1",
+          "path": "experiment_freeze/c2_b0_multiseed_fail_closed_20260908/source_sha256.txt"
+        },
+        "C2_C0": {
+          "all_entries_exact_match": true,
+          "entries": {
+            "experiments/cyclic_utility/c2_c0_directional_consensus_utility_protocol.py": "db968e633a82101164f192e1461ec821d1bd786bbad5649d437860dfb75d6e64",
+            "experiments/cyclic_utility/evaluate_c2_c0_directional_consensus_utility.py": "5dcb22bb61e417076171d9337a26f1e1226e3d0102e8e88cdcee80786632de20",
+            "experiments/cyclic_utility/summarize_c2_c0_directional_consensus_utility.py": "7522b8f4a272ebf268c15fccc876831ce95ca90503dc50f84892578879687b68",
+            "tests/test_c2_c0_directional_consensus_utility.py": "436d9332f6aafa4fea495b95e15eeb776a092d84c6f3b517a2dfe2f8cd4a8005"
+          },
+          "file_sha256": "7bba951b3500f42b66500cb9178722612c59df49918eb884827c926864e3b88f",
+          "path": "experiment_freeze/c2_c0_multiseed_fail_closed_20260908/source_sha256.txt"
+        },
+        "C2_C1": {
+          "all_entries_exact_match": true,
+          "entries": {
+            "experiments/cyclic_utility/c2_c1_selective_directional_utility_protocol.py": "574b62b9c5efc508118ba767f8015bec15334423259e513f2ff9b4e76912a93f",
+            "experiments/cyclic_utility/evaluate_c2_c1_selective_directional_utility.py": "b8eb85a1e216b22bba559f7179966d83cf87dae5e20d7060218d27737329cd97",
+            "experiments/cyclic_utility/summarize_c2_c1_selective_directional_utility.py": "d6413d4262e50ba1e24d97016396c2700c5dbaf57dfd94f6c25ed6a0f2a8308f",
+            "tests/test_c2_c1_selective_directional_utility.py": "240c2441d14a950bdf7da4be8d2fcfa984f06c52bf3404395061396e0cc07324"
+          },
+          "file_sha256": "52455a1e27219edeb34c00c98b08de7654b033016e6384a450cad824231562e7",
+          "path": "experiment_freeze/c2_c1_multiseed_fail_closed_20260908/source_sha256.txt"
+        },
+        "C2_C2_A0": {
+          "all_entries_exact_match": true,
+          "entries": {
+            "experiments/cyclic_utility/c2_c2_a0_action_support_diagnostic_protocol.py": "15b2b3c2dc08db85c77ef28e9fa2f2eb7ebf15e10b9e41528cc8168b2397d2fa",
+            "experiments/cyclic_utility/evaluate_c2_c2_a0_action_support_diagnostic.py": "445ade9c3e218bd6b60c9d9f03d1d6070203076f46558755e18cd6805ad55bde",
+            "experiments/cyclic_utility/summarize_c2_c2_a0_action_support_diagnostic.py": "056e38cbeccecd634bd0a171d02524ab0cb044cad13de5c6e0a22f700f92dad5",
+            "tests/test_c2_c2_a0_action_support_diagnostic.py": "ddcf4296f7e768b96bca0b2f8e28581e963109dca0e2c1188b307e5bc27b99e8"
+          },
+          "file_sha256": "cc0cfc35518706bee4f66cc852aa7a951edd28aec8033ffcc43a12c4b1ea397d",
+          "path": "experiment_freeze/c2_c2_a0_multiseed_fail_closed_20260912/source_sha256.txt"
+        }
+      }
+    },
+    "C2_B0_frozen_hashes_pass": true,
+    "C2_C0_frozen_hashes_pass": true,
+    "C2_C1_frozen_hashes_pass": true,
+    "C2_C2_A0_frozen_hashes_pass": true,
+    "C3_A0_formal_outputs": {
+      "all_entries_exact_match": true,
+      "entries": {
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_multiseed/c3_a0_multiseed_audit.json": "17d04cc63dfd0d895334f9857ee0c1142650262f1dc1c5f1e5bef9cb7e2858f5",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_multiseed/c3_a0_multiseed_decision.json": "2f9b44fa88997381633ed102686f2e4b41cd78ed18e741db2195a477e4aa5c22",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_multiseed/c3_a0_multiseed_summary.json": "a73231639c3adf8437d037238d3f361d6fcb8d4251891364b419d57aef1e1e95",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed20/c3_a0_action_pre_gt.npz": "b4f9ff0241b28ec9f6a8ec6c55c0f9da9c4631ffde2b032c0d3550340fdece71",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed20/c3_a0_action_seal.json": "0e23e9cea448435d04351fc6661ab8020a69b12a660f6e6604ff855ea96bb9d0",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed20/c3_a0_audit.json": "b6a128438e867b27bae2800ec85415f209ad6bd691a6567bb5a9adde5b478dcc",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed20/c3_a0_class_metrics.json": "d27117ac4b48a0b1e2f6a0e9f311e7481ef4a98bbe954ddaefcb2190e55a441d",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed20/c3_a0_memory_write_metrics.json": "cc93869c9ad343796bea53cf0db4c4d1f76ef645b73d6dbd1ea5c2d8aa8d1564",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed20/c3_a0_relation_metrics.json": "6a305752b677b20c682a07c0b5f2538b00e3bf4da1eeda1d16dbca9f7ae6a561",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed20/c3_a0_seed_summary.json": "6745cc26de21f13bd232e63ae3bce05d86592c48c863df4058510f74c4a321a7",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed30/c3_a0_action_pre_gt.npz": "78985bb9616fdb5bf6c5d952153f43df450a61a9a9ef5b3bd5cc3c47c849c98a",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed30/c3_a0_action_seal.json": "b984dcb84affe155d5e43d632633874e2bffd4ed3a87a97c2a5f671c11c4722f",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed30/c3_a0_audit.json": "b84dc584401656a74327495fe227a02e68acc6a498e54f623844f48ec4aae2af",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed30/c3_a0_class_metrics.json": "72567435e328c753a84df5f0af4c73f4370815e87735fb439c8bebb8a53b48bc",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed30/c3_a0_memory_write_metrics.json": "b2218ae794307e28975c255e2975286f909630ed74c1789c23deafd0812bee31",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed30/c3_a0_relation_metrics.json": "9ef593c600b62e368c2713b1176743c8b9b27f4ed8b3757b2be745dd5aa875e1",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed30/c3_a0_seed_summary.json": "2744f6e18acf3db0e285ec0b8928f9bf690025f73ac8e130adb40d0ca499b65c",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed50/c3_a0_action_pre_gt.npz": "f6a3c3ec53fa2f327748f3a3e6b564fd839184be6c682375785d7436585d271b",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed50/c3_a0_action_seal.json": "2fab5003aee4d4dc134160e85dc4325a6aa4e5816e3bf65f1a4f7da4a39cf71d",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed50/c3_a0_audit.json": "43764d376d221de056dcfe8366b1cd1289948e5024a0cbd700e3eee3fbb80b9d",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed50/c3_a0_class_metrics.json": "3fce90b499cb4a20669dec5c84ca303f2a27627a332c0f83e97554479353496f",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed50/c3_a0_memory_write_metrics.json": "23799868b7ebfdc2ac473fe44765e11df7315d692bde2a9b001e453e74c47333",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed50/c3_a0_relation_metrics.json": "a25afed54c3e9d3bfbc5dd39865e405437e0351922dd1f8687b5ace00dc1209e",
+        "outputs/cyclic_utility/c3_a0_utility_conditioned_action_granularity_seed50/c3_a0_seed_summary.json": "cf69b7996fe510201bf07d7b3407eba9ee9358f96b60d5bb287222c41504d423"
+      },
+      "entry_count": 24,
+      "manifest": "experiment_freeze/c3_a0_multiseed_pass_20260912/formal_outputs_sha256.txt",
+      "manifest_file_sha256": "6e076f79999366553d07307c066e5fcf4a01f14b34e4caf022f5ffd4450a7761"
+    },
+    "C3_A0_key_outputs": {
+      "all_entries_exact_match": true,
+      "entries": {
+        "./c3_a0_multiseed_audit.json": "17d04cc63dfd0d895334f9857ee0c1142650262f1dc1c5f1e5bef9cb7e2858f5",
+        "./c3_a0_multiseed_decision.json": "2f9b44fa88997381633ed102686f2e4b41cd78ed18e741db2195a477e4aa5c22",
+        "./c3_a0_multiseed_summary.json": "a73231639c3adf8437d037238d3f361d6fcb8d4251891364b419d57aef1e1e95",
+        "./seed20_audit.json": "b6a128438e867b27bae2800ec85415f209ad6bd691a6567bb5a9adde5b478dcc",
+        "./seed20_summary.json": "6745cc26de21f13bd232e63ae3bce05d86592c48c863df4058510f74c4a321a7",
+        "./seed30_audit.json": "b84dc584401656a74327495fe227a02e68acc6a498e54f623844f48ec4aae2af",
+        "./seed30_summary.json": "2744f6e18acf3db0e285ec0b8928f9bf690025f73ac8e130adb40d0ca499b65c",
+        "./seed50_audit.json": "43764d376d221de056dcfe8366b1cd1289948e5024a0cbd700e3eee3fbb80b9d",
+        "./seed50_summary.json": "cf69b7996fe510201bf07d7b3407eba9ee9358f96b60d5bb287222c41504d423"
+      },
+      "entry_count": 9,
+      "manifest": "experiment_freeze/c3_a0_multiseed_pass_20260912/key_outputs_sha256.txt",
+      "manifest_file_sha256": "24e900d0546e0f0b1c87ad5119ab27a9440d282f3f27110571bf5244bec48fd8"
+    },
+    "C3_A0_multiseed_frozen_hashes_pass": true,
+    "C3_A0_source": {
+      "all_entries_exact_match": true,
+      "entries": {
+        "experiments/cyclic_utility/c3_a0_utility_conditioned_action_granularity_protocol.py": "8182370acd4cda507bfa425a3f40e05779945e49359d0b6c3c80b88472cb1115",
+        "experiments/cyclic_utility/evaluate_c3_a0_utility_conditioned_action_granularity.py": "331324539a493d3e1eb1a81ab53a6a109c011b1dd7a1956ed03e97d8339bd82f",
+        "experiments/cyclic_utility/summarize_c3_a0_utility_conditioned_action_granularity.py": "e994a13f5c6b39cdd3004975d9ddc6dbcf12407545a93abf1635c2d5ba4cc95e",
+        "tests/test_c3_a0_utility_conditioned_action_granularity.py": "43397c2c07958eba05903ef4537882d56ab93ab0655a44d2c08a82022467918a"
+      },
+      "entry_count": 4,
+      "manifest": "experiment_freeze/c3_a0_multiseed_pass_20260912/source_sha256.txt",
+      "manifest_file_sha256": "bb64c0deee1a7a9877ffa680d5610584e39309fa1ac11e1c20502b66af68aa70"
+    },
+    "VSA_multiseed_provenance_frozen_hashes_pass": true,
+    "VSA_source": {
+      "all_entries_exact_match": true,
+      "entries": {
+        "experiments/cyclic_utility/summarize_vsa_a0_decoupled_action.py": "b346825ce6785f837d81ea805067db0825dcffa7c83a06dd3fd9d9f7a564f156",
+        "experiments/cyclic_utility/train_vsa_a0_decoupled_action.py": "b3a354beaa4824717ed90f8a533cf1ddf5ef3a658b636380d2c5b3f0782afdd3",
+        "experiments/cyclic_utility/vsa_decoupled_action_protocol.py": "f5ad5d2d81416802999b657ee04a8c01896debcb7c522523395b49729b95ca48",
+        "experiments/e1_pairwise_utility/train_e1_pairwise_utility.py": "ad6dcb187ccb39d36f5f5839130b0345053b23d92df1c00d9db98d41f8b1ca73",
+        "tests/test_vsa_a0_decoupled_action.py": "7aa68c2a68cf060a3374d6969a80b1e86df536d406256d417eabdaf3bc8883cb",
+        "tests/test_vsa_multiseed_provenance.py": "92f3ad6621b34db87f37ebce8d08aea7bcd692a2c7416d6a5fbf5d3ecad5c496"
+      },
+      "entry_count": 6,
+      "manifest": "experiment_freeze/vsa_multiseed_provenance_pass_20260829/source_sha256.txt",
+      "manifest_file_sha256": "8b493f6ff87f54eb4182fdfd08a88b31788cc658dc9d097a3e5dbece457929ef"
+    },
+    "all_parent_hashes_pass": true
+  },
+  "persistent_memory_created": false,
+  "prediction_audit": {
+    "file_sha256": "5e4ff5b9c90b14c3b484863c58dc05f6712e6a91f9bd978a5de4453f049b7f53",
+    "hashed_before_GT_pass": true,
+    "path": "outputs/cyclic_utility/c3_b0_relation_action_pilot_seed30_base/final_predictions.npz",
+    "prediction_logical_sha256": "da0f2a82aa323dd1f3b410aac18aa4e48173f6f4fdb40588f5f6047a0e17ce7e",
+    "reloaded_before_GT_pass": true,
+    "sample_ids_logical_sha256": "67de0d9b6b01553e746fd2b96c2dfc22566ffdb48d03a679583e030f42283e6c",
+    "saved_before_GT_pass": true,
+    "shape": [
+      1400
+    ]
+  },
+  "relation_action_regenerated": false,
+  "relation_balance_weights_frozen_detached": true,
+  "runtime": {
+    "TensorDataset_contains_canonical_sample_ids": true,
+    "additive_combined_loss_used": false,
+    "epoch_records": [
+      {
+        "epoch": 1,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32243460416793823,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 113.04648834089764,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5889288187026978,
+              "reconstruction_loss_sum_views": 0.585704505443573
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3395330607891083,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 5114.417106956475,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 115.36053466796875,
+              "reconstruction_loss_sum_views": 115.35713195800781
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3256549537181854,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1305.506280342958,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 10.139193534851074,
+              "reconstruction_loss_sum_views": 10.135937690734863
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.333606481552124,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 2462.2476405345856,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 29.86139488220215,
+              "reconstruction_loss_sum_views": 29.858060836791992
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3346720039844513,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 3610.50138154888,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 64.45360565185547,
+              "reconstruction_loss_sum_views": 64.45025634765625
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3189578354358673,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 2346.827122671782,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 38.86424255371094,
+              "reconstruction_loss_sum_views": 38.861053466796875
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "ab30250159d5bd87e2287d63ccccaea7091684e441a917fdcddf943f27aa7520",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 2,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3263266086578369,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1871.8993257637514,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 21.924938201904297,
+              "reconstruction_loss_sum_views": 21.921674728393555
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3214305341243744,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 608.842211290546,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 6.016541481018066,
+              "reconstruction_loss_sum_views": 6.013327121734619
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32982176542282104,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1123.8740224361507,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 10.58890438079834,
+              "reconstruction_loss_sum_views": 10.585606575012207
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32583120465278625,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1672.182693173794,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 20.0045108795166,
+              "reconstruction_loss_sum_views": 20.001249313354492
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3438172936439514,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1886.7146418710788,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 25.11372184753418,
+              "reconstruction_loss_sum_views": 25.11028289794922
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.31767401099205017,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1710.4978333037484,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 21.287899017333984,
+              "reconstruction_loss_sum_views": 21.28472328186035
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "7551d281ddd47a36717a8218e31dc362e604876cf1bb8d19040616f29ca18bbe",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 3,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3376392424106598,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1162.7015681280259,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 12.652307510375977,
+              "reconstruction_loss_sum_views": 12.648931503295898
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3147372305393219,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 558.9122017877087,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 6.154464244842529,
+              "reconstruction_loss_sum_views": 6.151317119598389
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.329639732837677,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 449.98721480165966,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 4.913110256195068,
+              "reconstruction_loss_sum_views": 4.90981388092041
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3272358179092407,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 870.9180235231399,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 7.86494779586792,
+              "reconstruction_loss_sum_views": 7.861675262451172
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3331243693828583,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1279.483086351802,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 12.910822868347168,
+              "reconstruction_loss_sum_views": 12.907491683959961
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3284190893173218,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1202.6833320178023,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 13.291175842285156,
+              "reconstruction_loss_sum_views": 13.287891387939453
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "b86bd317a0b884546210b12833675f955f931c20b1aa12bafbee419865e14b9c",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 4,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32589417695999146,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 1004.0427331647332,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 10.561793327331543,
+              "reconstruction_loss_sum_views": 10.558534622192383
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33085963129997253,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 708.973641424952,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 6.782971382141113,
+              "reconstruction_loss_sum_views": 6.779662609100342
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3295421004295349,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 323.29024956170065,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 4.04850959777832,
+              "reconstruction_loss_sum_views": 4.0452141761779785
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3263368010520935,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 403.3382755337318,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 3.935797929763794,
+              "reconstruction_loss_sum_views": 3.932534694671631
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32502564787864685,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 623.6317021902587,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 5.5336995124816895,
+              "reconstruction_loss_sum_views": 5.530449390411377
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3469013571739197,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 810.5183140986773,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 7.27916145324707,
+              "reconstruction_loss_sum_views": 7.275692462921143
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "da85e3b0e9506b3fe3fc32df83fa5314b5e19620d29cd0fd82aef1c259824a8b",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 5,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.329632043838501,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 913.5751830551534,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 7.900766372680664,
+              "reconstruction_loss_sum_views": 7.897469997406006
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33861657977104187,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 656.2179933005666,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 5.628692150115967,
+              "reconstruction_loss_sum_views": 5.625306606292725
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3275413513183594,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 389.97669085870564,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 3.5640861988067627,
+              "reconstruction_loss_sum_views": 3.5608105659484863
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3294474482536316,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 236.4217690928878,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 2.890300989151001,
+              "reconstruction_loss_sum_views": 2.8870067596435547
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32831430435180664,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 305.8699332130328,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 2.9638423919677734,
+              "reconstruction_loss_sum_views": 2.960559129714966
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3246859610080719,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 491.19452552158987,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 3.743506908416748,
+              "reconstruction_loss_sum_views": 3.740259885787964
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "f2d142e565ece17210ed431290db6d8174158d2df5630814fefbeaf21da06b5f",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 6,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33582764863967896,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 582.229165144628,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 4.417262077331543,
+              "reconstruction_loss_sum_views": 4.41390323638916
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33422064781188965,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 621.9708266750634,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 4.55358362197876,
+              "reconstruction_loss_sum_views": 4.550241947174072
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3318115472793579,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 414.48042317498397,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 3.1392719745635986,
+              "reconstruction_loss_sum_views": 3.135953903198242
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3272428810596466,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 194.7757156714,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 2.094322919845581,
+              "reconstruction_loss_sum_views": 2.091050386428833
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33039507269859314,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 212.59370003841371,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 2.106387138366699,
+              "reconstruction_loss_sum_views": 2.103083372116089
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.32458457350730896,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 440.3928845217341,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 2.9272868633270264,
+              "reconstruction_loss_sum_views": 2.9240407943725586
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "09041d4ea30a14cf7a168628831d3345785ebebf5860abcab27c5cb7669f3666",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 7,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33312734961509705,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 439.4907177019436,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 2.942965507507324,
+              "reconstruction_loss_sum_views": 2.939634084701538
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3222981095314026,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 439.4993680425369,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 2.6670188903808594,
+              "reconstruction_loss_sum_views": 2.6637959480285645
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34219038486480713,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 258.86456509491745,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.9274306297302246,
+              "reconstruction_loss_sum_views": 1.924008846282959
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32926005125045776,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 182.40066233064374,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.6914048194885254,
+              "reconstruction_loss_sum_views": 1.6881122589111328
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33305519819259644,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 166.82173340467796,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.639231562614441,
+              "reconstruction_loss_sum_views": 1.6359010934829712
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3351954221725464,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 271.2475083715718,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.8713419437408447,
+              "reconstruction_loss_sum_views": 1.8679900169372559
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "2e533a1c13c2e2af628d6e6631c0d0cc2cf3ef16b51fa185245e2fd506033bfe",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 8,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3231940269470215,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 313.4197647635482,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.8977503776550293,
+              "reconstruction_loss_sum_views": 1.8945186138153076
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3285602927207947,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 306.8915327815889,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.859375,
+              "reconstruction_loss_sum_views": 1.8560893535614014
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34251633286476135,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 229.18858946318372,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.4928797483444214,
+              "reconstruction_loss_sum_views": 1.4894546270370483
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3353992700576782,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 127.78883972479218,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.3013622760772705,
+              "reconstruction_loss_sum_views": 1.2980082035064697
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3334815204143524,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 141.62219137514103,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.2905536890029907,
+              "reconstruction_loss_sum_views": 1.2872190475463867
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3394547998905182,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 181.34289900840983,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.317857027053833,
+              "reconstruction_loss_sum_views": 1.314462423324585
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "aa5f818c9adf0a6b5431a3b41ba47d53051107892312b0c5f97de9ebdc59d4a5",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 9,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34008628129959106,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 264.7085880009982,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.4578461647033691,
+              "reconstruction_loss_sum_views": 1.454445242881775
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3201935291290283,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 222.48454732601104,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.286547064781189,
+              "reconstruction_loss_sum_views": 1.283345103263855
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3420256972312927,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 171.45407706851134,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.1633838415145874,
+              "reconstruction_loss_sum_views": 1.1599637269973755
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.332565575838089,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 109.0798448394709,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.0613363981246948,
+              "reconstruction_loss_sum_views": 1.0580108165740967
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33225345611572266,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 128.74334519356162,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.0688464641571045,
+              "reconstruction_loss_sum_views": 1.0655239820480347
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3399956226348877,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 179.19970027033486,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.0881487131118774,
+              "reconstruction_loss_sum_views": 1.0847487449645996
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "b15d3f4891b14f47aa9e9c9f9f8e08d6b23de27ab8efda68a1000f7f88fb04bd",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 10,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33619973063468933,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 188.4493797294972,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 1.0987859964370728,
+              "reconstruction_loss_sum_views": 1.0954238176345825
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3361106514930725,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 162.02106608502058,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.9733946919441223,
+              "reconstruction_loss_sum_views": 0.9700335264205933
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3136761486530304,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 123.29117427885826,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.958943784236908,
+              "reconstruction_loss_sum_views": 0.9558070302009583
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3364354372024536,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 91.31766192951365,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.8649781346321106,
+              "reconstruction_loss_sum_views": 0.8616138100624084
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33984091877937317,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 122.07749715972523,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.90203857421875,
+              "reconstruction_loss_sum_views": 0.8986402153968811
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.35907429456710815,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 178.47920705992274,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.9902469515800476,
+              "reconstruction_loss_sum_views": 0.9866562485694885
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "c6396bb73bd888c683f9fa29e3b9f2cc590a116cd5b7a712cd6bb64925c09498",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 11,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33575737476348877,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 154.52379218225187,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.886300265789032,
+              "reconstruction_loss_sum_views": 0.8829426765441895
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33885839581489563,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 93.08680652452792,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.7834808230400085,
+              "reconstruction_loss_sum_views": 0.780092179775238
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32273995876312256,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 78.4576747287593,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.7944855093955994,
+              "reconstruction_loss_sum_views": 0.7912580370903015
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3374151587486267,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 98.85973020787499,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.7558358907699585,
+              "reconstruction_loss_sum_views": 0.7524617314338684
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3357279896736145,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 142.35526765911408,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.8431357145309448,
+              "reconstruction_loss_sum_views": 0.8397784233093262
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.34904754161834717,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 132.74342587497202,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.7629318237304688,
+              "reconstruction_loss_sum_views": 0.7594412565231323
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "25cf4a028002352d3d4e5eb21a6db55dcf3ca2ecd68770fe54ce8ff4e8f6e870",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 12,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34473296999931335,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 92.28495798825593,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.7263209819793701,
+              "reconstruction_loss_sum_views": 0.7228736877441406
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3238120973110199,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 69.84463508053157,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.7183462381362915,
+              "reconstruction_loss_sum_views": 0.7151081562042236
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32652783393859863,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 82.95785000983392,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6825599670410156,
+              "reconstruction_loss_sum_views": 0.6792947053909302
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34480732679367065,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 107.26122966892876,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.7242477536201477,
+              "reconstruction_loss_sum_views": 0.7207996845245361
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34395796060562134,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 100.16808548771984,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6774147748947144,
+              "reconstruction_loss_sum_views": 0.6739752292633057
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3295775055885315,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 118.98677141911885,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.751778244972229,
+              "reconstruction_loss_sum_views": 0.7484824657440186
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "63a8dc60d787821d6aa0e5543afc188b8f87cb074bdcee8c57bcafede050e03a",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 13,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3474854826927185,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 73.78770859624478,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.637706995010376,
+              "reconstruction_loss_sum_views": 0.6342321038246155
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3389906883239746,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 79.76199681320382,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6416329741477966,
+              "reconstruction_loss_sum_views": 0.6382430791854858
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3206925094127655,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 99.07707281380847,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6535763144493103,
+              "reconstruction_loss_sum_views": 0.65036940574646
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33307191729545593,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 99.31505042409046,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.7032226920127869,
+              "reconstruction_loss_sum_views": 0.6998920440673828
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3389595150947571,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 75.09799310253875,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6165809035301208,
+              "reconstruction_loss_sum_views": 0.6131913661956787
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.34670141339302063,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 58.904423807317016,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6844380497932434,
+              "reconstruction_loss_sum_views": 0.6809710264205933
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "33fb255efe97d83d1c4b3a5cf52d7122862dfdfd0a45d267efe2ee86da421735",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 14,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34805285930633545,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 72.4971992121924,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5956839919090271,
+              "reconstruction_loss_sum_views": 0.5922035574913025
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33270275592803955,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 77.05928121748123,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6308863759040833,
+              "reconstruction_loss_sum_views": 0.6275593638420105
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33038169145584106,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 78.76873753070977,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5896844267845154,
+              "reconstruction_loss_sum_views": 0.5863806009292603
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34287747740745544,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 75.78991357471124,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6321746110916138,
+              "reconstruction_loss_sum_views": 0.6287458539009094
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33832696080207825,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 59.35465168709315,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6199795007705688,
+              "reconstruction_loss_sum_views": 0.6165961623191833
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.32551059126853943,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 76.63514391498205,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5910106301307678,
+              "reconstruction_loss_sum_views": 0.5877555012702942
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "ee37b15f905ff7d7766a8aa94e9c19a496ebbde43243025ea9cd5ec130cf971c",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 15,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34264081716537476,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 75.85819953621943,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5818781852722168,
+              "reconstruction_loss_sum_views": 0.5784518122673035
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34233006834983826,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 89.47351862214568,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5659681558609009,
+              "reconstruction_loss_sum_views": 0.5625447630882263
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33709684014320374,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 50.51903960884907,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5999414324760437,
+              "reconstruction_loss_sum_views": 0.5965704917907715
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3380706012248993,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 65.124743853496,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5976969003677368,
+              "reconstruction_loss_sum_views": 0.5943161249160767
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3252515196800232,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 74.97094362801259,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5643352270126343,
+              "reconstruction_loss_sum_views": 0.5610827207565308
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3475151062011719,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 68.91893099237768,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6260038018226624,
+              "reconstruction_loss_sum_views": 0.6225286722183228
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "2dad98690759a19dde6c8f9d3a716bcd43c3acf96b24d9ce00f640f03ef78e8e",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 16,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34358853101730347,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 74.23482238610447,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.6030318140983582,
+              "reconstruction_loss_sum_views": 0.5995959043502808
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3396638035774231,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 53.96647751446793,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5341540575027466,
+              "reconstruction_loss_sum_views": 0.5307574272155762
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33509182929992676,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 48.943471951525495,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5775231719017029,
+              "reconstruction_loss_sum_views": 0.5741722583770752
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3420772850513458,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 71.62747159879585,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5762484073638916,
+              "reconstruction_loss_sum_views": 0.5728276371955872
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3219314515590668,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 65.96107189684254,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5442728996276855,
+              "reconstruction_loss_sum_views": 0.5410535931587219
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3622013330459595,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 69.85103644096169,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5077826380729675,
+              "reconstruction_loss_sum_views": 0.5041606426239014
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "5f703015b7035e5901e57e3d2e9cf0bfbd3fd2f5ccc00ca40e06504a105a333e",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 17,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3411152958869934,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 57.163223418930244,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5710389018058777,
+              "reconstruction_loss_sum_views": 0.5676277875900269
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3400907516479492,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 56.92156184577568,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5528193712234497,
+              "reconstruction_loss_sum_views": 0.5494184494018555
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3375106751918793,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 67.17584487486798,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5342836380004883,
+              "reconstruction_loss_sum_views": 0.5309085249900818
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.32490840554237366,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 75.76465281965689,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5778694152832031,
+              "reconstruction_loss_sum_views": 0.5746203660964966
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34336307644844055,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 50.334894138767346,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5301188230514526,
+              "reconstruction_loss_sum_views": 0.5266852378845215
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.3594149649143219,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 58.31934132501574,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.48306775093078613,
+              "reconstruction_loss_sum_views": 0.4794735908508301
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "573c8ef5c4b144d6f261a04bd479635b88d0f014e34763bab362f5b74c79254c",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 18,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34720340371131897,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 62.7751637074481,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5629355907440186,
+              "reconstruction_loss_sum_views": 0.559463620185852
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34191206097602844,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 55.17288711719749,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5578629374504089,
+              "reconstruction_loss_sum_views": 0.5544438362121582
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34159916639328003,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 62.71209791895375,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5166934132575989,
+              "reconstruction_loss_sum_views": 0.5132774114608765
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33170127868652344,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 46.462956925115186,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5241835117340088,
+              "reconstruction_loss_sum_views": 0.5208664536476135
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.337324321269989,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 64.32993285126908,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.4979937970638275,
+              "reconstruction_loss_sum_views": 0.49462056159973145
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.33891934156417847,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 58.8395804738712,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5750625729560852,
+              "reconstruction_loss_sum_views": 0.5716733336448669
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "4cd468df84cdd0409d246a7f5304e052c38d7622915467e6f0340f4167c28b3f",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 19,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33648717403411865,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 81.28680010648948,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5201481580734253,
+              "reconstruction_loss_sum_views": 0.5167833566665649
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34642237424850464,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 58.8075207312817,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5258710980415344,
+              "reconstruction_loss_sum_views": 0.522406816482544
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3360319137573242,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 62.60865761912964,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5308836698532104,
+              "reconstruction_loss_sum_views": 0.527523398399353
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3345167934894562,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 61.02081559692235,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5182772278785706,
+              "reconstruction_loss_sum_views": 0.5149320960044861
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3497714102268219,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 52.1194438636461,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5721821188926697,
+              "reconstruction_loss_sum_views": 0.5686843991279602
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.340090274810791,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 59.25251650841259,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5010470747947693,
+              "reconstruction_loss_sum_views": 0.49764618277549744
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "9674bd08c74170e55e84f7edb0cf242d72b2020d4ff71c0dd267df8f989973a3",
+          "unique_sample_count": 1400
+        }
+      },
+      {
+        "epoch": 20,
+        "phase_A": {
+          "executed": false,
+          "phase": "relation_semantic",
+          "reason": "BASE has no Phase A"
+        },
+        "phase_B": {
+          "M_v_detached": true,
+          "Match_detached": true,
+          "P_global_detached": true,
+          "P_local_derived_from_detached_native_inputs": true,
+          "all_expected_sample_ids_exactly_once_pass": true,
+          "batch_records": [
+            {
+              "batch": 1,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.34176748991012573,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 41.41836049394356,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.49223875999450684,
+              "reconstruction_loss_sum_views": 0.4888210892677307
+            },
+            {
+              "batch": 2,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3380628526210785,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 68.29200146430567,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.490811824798584,
+              "reconstruction_loss_sum_views": 0.48743122816085815
+            },
+            {
+              "batch": 3,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3388034701347351,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 44.3817621944009,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5570449233055115,
+              "reconstruction_loss_sum_views": 0.5536569356918335
+            },
+            {
+              "batch": 4,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.33725589513778687,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 54.89456699759711,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.536401629447937,
+              "reconstruction_loss_sum_views": 0.5330290794372559
+            },
+            {
+              "batch": 5,
+              "batch_size": 256,
+              "clustering_loss_sum_views": 0.3443557918071747,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 54.15331165729703,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.5221623182296753,
+              "reconstruction_loss_sum_views": 0.5187188386917114
+            },
+            {
+              "batch": 6,
+              "batch_size": 120,
+              "clustering_loss_sum_views": 0.35356253385543823,
+              "gradient": {
+                "gradient_finite_pass": true,
+                "gradient_l2": 59.97932517917383,
+                "gradient_nonzero": true,
+                "gradient_tensor_count": 102
+              },
+              "native_loss": 0.502608597278595,
+              "reconstruction_loss_sum_views": 0.49907299876213074
+            }
+          ],
+          "executed": true,
+          "expected_sample_count": 1400,
+          "objective": "REC + 0.01 * CLU",
+          "phase": "native_consolidation",
+          "relation_loss_computed": false,
+          "sample_count": 1400,
+          "sample_order_logical_sha256": "994cc6fd57f51398baca66094f6785af2af8c2e4876aa705ad43e52fe8ca05ca",
+          "unique_sample_count": 1400
+        }
+      }
+    ],
+    "final_M_detached": true,
+    "native_refresh_interval": 100,
+    "native_target_refresh_count": 1,
+    "phase_A_before_phase_B_every_epoch": true,
+    "phase_sequence": [
+      {
+        "epoch": 1,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 1,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 2,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 2,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 3,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 3,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 4,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 4,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 5,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 5,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 6,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 6,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 7,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 7,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 8,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 8,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 9,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 9,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 10,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 10,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 11,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 11,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 12,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 12,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 13,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 13,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 14,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 14,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 15,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 15,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 16,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 16,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 17,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 17,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 18,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 18,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 19,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 19,
+        "executed": true,
+        "phase": "native_consolidation"
+      },
+      {
+        "epoch": 20,
+        "executed": false,
+        "phase": "relation_semantic"
+      },
+      {
+        "epoch": 20,
+        "executed": true,
+        "phase": "native_consolidation"
+      }
+    ],
+    "separate_backward_passes": true
+  },
+  "sample_ID_action_indexing": true,
+  "seed": 30,
+  "sparse_mapping_refit": false,
+  "stage": "C3-B0",
+  "threshold_used": false,
+  "top_k_used": false,
+  "unlabeled_query_only": true
+}

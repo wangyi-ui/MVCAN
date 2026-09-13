@@ -1,0 +1,12 @@
+{
+  "GT_used_for_training": false,
+  "arm": "BASE",
+  "evaluation_epoch": 20,
+  "metrics": {
+    "ACC": 0.7807142857142857,
+    "ARI": 0.6861924554848459,
+    "NMI": 0.7334270896951791
+  },
+  "seed": 30,
+  "stage": "C3-B0"
+}

@@ -1,0 +1,64 @@
+C5-A0 V2 MULTI-SEED FREEZE
+
+Stage:
+Utility-Validated Pseudo-Semantic Feasibility
+（效用验证伪语义可行性）
+
+Seeds:
+20 / 30 / 50
+
+Core scientific result:
+
+1. Action Utility Predictiveness:
+PASS / STRONG POSITIVE EVIDENCE
+
+AUC_TRUE > AUC_PERMUTED in 3/3 seeds.
+
+Mean:
+AUC_TRUE ≈ 0.849419
+AUC_PERMUTED ≈ 0.584574
+Delta_AUC ≈ +0.264845
+
+Interpretation:
+Frozen U_cycle contains stable sample-action-specific validity information.
+
+2. Utility-specific pseudo-semantic selection:
+POSITIVE EVIDENCE
+
+Precision@20 TRUE_U > PERMUTED_U in 3/3 seeds.
+
+Mean:
+P20_TRUE ≈ 0.980524
+P20_PERMUTED ≈ 0.971435
+Delta ≈ +0.009089
+
+3. Continuous utility-weighted aggregation:
+NOT SUPPORTED
+
+Precision@20 TRUE_U - UNIFORM = 0 in 3/3 seeds.
+
+Therefore:
+U_cycle should NOT be interpreted primarily as a continuous semantic posterior weight.
+
+It should be interpreted as an action-validity controller:
+U_cycle determines whether / which semantic actions are admissible,
+while sparse-label-derived semantics determine semantic content.
+
+Mean eligibility rate ≈ 0.927369.
+Zero-action-mass samples abstain.
+
+C5-A0 is now CLOSED and FROZEN.
+
+DO NOT:
+- tune U thresholds
+- tune coverage using C5-A0 GT
+- change utility exponent
+- change temperature
+- revive continuous posterior reweighting
+- add pseudo-label CE
+- use C4 memory artifacts
+
+NEXT:
+Scientifically define and preregister C5-B0:
+Utility-Validated Semantic Expansion
+（效用验证语义扩散）

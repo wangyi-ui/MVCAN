@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "experiments/cyclic_utility/train_c3_b0_relation_action_pilot.py", line 710, in <module>
+    sys.exit(main())
+  File "experiments/cyclic_utility/train_c3_b0_relation_action_pilot.py", line 697, in main
+    run_arm(
+  File "experiments/cyclic_utility/train_c3_b0_relation_action_pilot.py", line 585, in run_arm
+    vsa_train.load_lineage_aware_e1_lwc_model(
+  File "/root/autodl-tmp/CVPR24-MVCAN/experiments/cyclic_utility/train_vsa_a0_decoupled_action.py", line 222, in load_lineage_aware_e1_lwc_model
+    _require(
+  File "/root/autodl-tmp/CVPR24-MVCAN/experiments/cyclic_utility/train_vsa_a0_decoupled_action.py", line 89, in _require
+    raise RuntimeError(message)
+RuntimeError: requested VSA seed and E1 audit training seed mismatch
