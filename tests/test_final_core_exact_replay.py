@@ -56,13 +56,44 @@ def test_wrong_labeled_ids_hard_fail():
 def test_wrong_utility_shape_hard_fail():
     utility = np.ones((f0.N, f0.S - 1), dtype=np.float64)
     with pytest.raises(RuntimeError, match="UTILITY_SHAPE"):
-        f0.validate_utility(utility, f0.logical_sha256(utility))
+        f0.validate_utility(utility, f0.c3a0_parent_logical_sha256(utility))
 
 
 def test_wrong_utility_logical_hash_hard_fail():
     utility = np.ones((f0.N, f0.S), dtype=np.float64)
     with pytest.raises(RuntimeError, match="UTILITY_LOGICAL_HASH"):
         f0.validate_utility(utility, "0" * 64)
+
+
+def test_parent_ndarray_hash_namespace_validates_utility():
+    utility = np.arange(f0.N * f0.S, dtype=np.float64).reshape(f0.N, f0.S)
+    expected = f0.c3a0_parent_logical_sha256(utility)
+    record = f0.validate_utility(utility, expected)
+    assert record["parent_logical_sha256"] == expected
+    assert record["parent_logical_sha256_equal"] is True
+    assert record["utility_logical_sha256_equal"] is True
+
+
+def test_distinct_internal_hash_namespace_does_not_false_fail():
+    utility = np.arange(f0.N * f0.S, dtype=np.float64).reshape(f0.N, f0.S)
+    parent_hash = f0.c3a0_parent_logical_sha256(utility)
+    internal_hash = f0.logical_sha256(utility)
+    assert internal_hash != parent_hash
+    record = f0.validate_utility(utility, parent_hash)
+    assert record["parent_logical_sha256"] == parent_hash
+    assert record["f0_logical_sha256"] == internal_hash
+    assert record["parent_logical_sha256_algorithm"] == (
+        "weak_quality.ndarray_sha256"
+    )
+
+
+def test_changed_utility_content_fails_parent_hash_gate():
+    utility = np.ones((f0.N, f0.S), dtype=np.float64)
+    expected = f0.c3a0_parent_logical_sha256(utility)
+    changed = utility.copy()
+    changed[0, 0] = 2.0
+    with pytest.raises(RuntimeError, match="UTILITY_LOGICAL_HASH"):
+        f0.validate_utility(changed, expected)
 
 
 def test_mapping_transpose_error_hard_fails():

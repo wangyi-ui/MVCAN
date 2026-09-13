@@ -15,6 +15,7 @@ import torch
 
 from experiments.cyclic_utility import c3_b0_relation_action_protocol as c3b0
 from experiments.cyclic_utility import c3_b0_true_u_carrier_protocol as carrier
+from weak_quality import ndarray_sha256
 
 
 STAGE = "F0-A0"
@@ -127,7 +128,13 @@ def stable_json_sha256(value):
 
 
 def logical_sha256(value):
+    """Hash F0/carrier-owned arrays in the tensor_sha256 namespace."""
     return carrier.logical_sha256(value)
+
+
+def c3a0_parent_logical_sha256(value):
+    """Hash a frozen C3-A0 parent array with its original algorithm."""
+    return ndarray_sha256(np.asarray(value))
 
 
 def verify_pinned_file(path, expected_sha256, failure):
@@ -206,7 +213,7 @@ def validate_labeled_ids(actual, expected):
     return validate_exact_array("labeled_ids", actual, expected, (L,))
 
 
-def validate_utility(U_cycle, expected_logical_sha256):
+def validate_utility(U_cycle, expected_parent_logical_sha256):
     # Frozen full-data directional utility: U_cycle[N,S] = [1400,20].
     utility = np.asarray(U_cycle)
     _require(
@@ -216,14 +223,21 @@ def validate_utility(U_cycle, expected_logical_sha256):
         and np.all(utility >= 0.0),
         "F0_A0_UTILITY_SHAPE_FAIL_CLOSED",
     )
-    actual_hash = logical_sha256(utility)
+    parent_hash = c3a0_parent_logical_sha256(utility)
     _require(
-        actual_hash == expected_logical_sha256,
+        parent_hash == expected_parent_logical_sha256,
         "F0_A0_UTILITY_LOGICAL_HASH_FAIL_CLOSED",
     )
+    f0_hash = logical_sha256(utility)
     return {
         "shape": [N, S],
-        "logical_sha256": actual_hash,
+        "parent_logical_sha256_algorithm": "weak_quality.ndarray_sha256",
+        "parent_logical_sha256": parent_hash,
+        "parent_logical_sha256_equal": True,
+        "f0_logical_sha256_algorithm": (
+            "carrier.logical_sha256/irv.b4_information_utility.tensor_sha256"
+        ),
+        "f0_logical_sha256": f0_hash,
         "utility_shape_equal": True,
         "utility_logical_sha256_equal": True,
         "directional_form_preserved": True,

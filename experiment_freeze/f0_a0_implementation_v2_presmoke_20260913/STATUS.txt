@@ -1,0 +1,57 @@
+F0-A0 IMPLEMENTATION V2 PRESMOKE FREEZE
+
+Stage:
+F0-A0 Final-Core Exact Replay
+
+Scientific role:
+Implementation consolidation only.
+No new scientific mechanism.
+
+V1 smoke attempt:
+ENGINEERING BLOCKED BEFORE TRAINING.
+
+Observed blocker:
+F0_A0_UTILITY_LOGICAL_HASH_FAIL_CLOSED
+
+Root cause:
+Hash namespace mismatch.
+
+Frozen C3-A0 parent logical hashes use:
+weak_quality.ndarray_sha256
+
+F0 v1 incorrectly compared them using:
+carrier.logical_sha256 / tensor_sha256
+
+Scientific data mismatch:
+NONE
+
+U_cycle modification:
+NONE
+
+Sparse semantic supervision modification:
+NONE
+
+C3-B0 training semantics modification:
+NONE
+
+Historical C0/C2/C3/C4/C5 modification:
+NONE
+
+V2 fix:
+Parent U_cycle provenance is verified using the parent's original
+weak_quality.ndarray_sha256 algorithm.
+
+F0/carrier internal logical hash remains separately recorded.
+
+Validation:
+- F0 unit tests: 44 passed
+- C3-B0 regression tests: 121 passed
+- py_compile PASS
+- no F0 training completed
+- no F0 output materialized
+- no F0 evaluator run
+- no new F0 GT inspected
+
+Next:
+Commit and push implementation v2.
+Then rerun seed20 engineering exact-replay smoke only.
