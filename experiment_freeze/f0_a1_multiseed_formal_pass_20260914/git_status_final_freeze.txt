@@ -1,0 +1,11 @@
+git status --short before final freeze:
+CLEAN
+
+Current final-freeze materialization HEAD:
+e4e29c5057e9ce94d420680f927f4d3996df1fdd
+
+Formal execution code HEAD:
+c2b129c1fac99a3280c2d61ee263f90c0a4799e5
+
+Scientific source modifications:
+NONE

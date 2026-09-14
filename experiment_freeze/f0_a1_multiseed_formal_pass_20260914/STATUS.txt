@@ -1,0 +1,61 @@
+F0-A1 MULTISEED FORMAL SCIENTIFIC DYNAMICS VALIDATION
+
+Preregistration:
+FROZEN
+
+Implementation V2:
+FROZEN
+
+Seed20 three-arm engineering validation:
+PASS / COMPLETE
+
+Formal seeds:
+20 / 30 / 50
+
+Formal arms:
+BASE / TRUE_UNIFORM / TRUE_U
+
+Formal run count:
+9
+
+Gate0 Exact Replay Preservation:
+PASS
+
+Gate1 Trajectory Integrity:
+PASS
+
+Gate2 Relation Recurrence:
+PASS
+
+Gate3 Semantic Purification Effectiveness:
+PASS
+
+Gate4 Utility-Specific Dynamics:
+PASS
+
+Gate5 Isolation:
+PASS
+
+Overall:
+PASS
+
+Scientific conclusion:
+
+Frozen U_cycle materially shapes the iterative semantic relation-refinement
+trajectory under identical sparse semantic relation targets.
+
+Sparse labels determine semantic direction.
+Frozen U_cycle determines action validity.
+
+Supported terminology:
+
+Utility-Conditioned Relation Refinement Loop
+
+Chinese:
+
+效用条件化关系提纯闭环
+
+F0-A1:
+CLOSED / FROZEN
+
+No additional F0-A1 tuning authorized.

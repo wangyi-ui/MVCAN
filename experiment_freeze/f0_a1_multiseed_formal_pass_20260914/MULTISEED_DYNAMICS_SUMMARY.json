@@ -1,0 +1,85 @@
+{
+  "Gate0": {
+    "name": "Exact Replay Preservation",
+    "pass": true,
+    "passing_run_count": 9,
+    "required_run_count": 9
+  },
+  "Gate1": {
+    "name": "Trajectory Integrity",
+    "pass": true,
+    "passing_run_count": 9,
+    "required_run_count": 9
+  },
+  "Gate2": {
+    "name": "Relation Recurrence",
+    "pass": true,
+    "passing_seed_count": 3,
+    "required_seed_count": 3
+  },
+  "Gate3": {
+    "mean_seed_G_U_sum": 0.34528692563374835,
+    "name": "Semantic Purification Effectiveness",
+    "pass": true,
+    "positive_seed_count": 3,
+    "required_positive_seed_count": 2
+  },
+  "Gate4": {
+    "name": "Utility-Specific Dynamics",
+    "pass": true,
+    "passing_seed_count": 3,
+    "required_seed_count": 3
+  },
+  "Gate5": {
+    "name": "Isolation",
+    "pass": true,
+    "passing_run_count": 9,
+    "required_run_count": 9
+  },
+  "arms": [
+    "BASE",
+    "TRUE_UNIFORM",
+    "TRUE_U"
+  ],
+  "formal_run_count": 9,
+  "gate3": {
+    "all_epochs_positive_required": false,
+    "gate3_pass": true,
+    "mean_seed_G_U_sum": 0.34528692563374835,
+    "positive_seed_count": 3
+  },
+  "overall_pass": true,
+  "per_seed": {
+    "20": {
+      "D_U_UNI_0": 0.0,
+      "D_U_UNI_A1": 0.001821562647819519,
+      "D_U_UNI_B20": 0.032616693526506424,
+      "G_U_sum": 0.34559786319732666,
+      "sum_D_A": 0.3499159002676606,
+      "sum_D_B": 0.31855730805546045
+    },
+    "30": {
+      "D_U_UNI_0": 0.0,
+      "D_U_UNI_A1": 0.0016408378724008799,
+      "D_U_UNI_B20": 0.0333632230758667,
+      "G_U_sum": 0.3605634570121765,
+      "sum_D_A": 0.36918812012299895,
+      "sum_D_B": 0.3357357648201287
+    },
+    "50": {
+      "D_U_UNI_0": 0.0,
+      "D_U_UNI_A1": 0.0014200969599187374,
+      "D_U_UNI_B20": 0.03341402858495712,
+      "G_U_sum": 0.32969945669174194,
+      "sum_D_A": 0.34752305038273335,
+      "sum_D_B": 0.31519198836758733
+    }
+  },
+  "scientific_name": "Utility-Conditioned Relation Refinement Dynamics Audit",
+  "seeds": [
+    20,
+    30,
+    50
+  ],
+  "stage": "F0-A1"
+}

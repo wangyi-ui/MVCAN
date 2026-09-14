@@ -1,0 +1,20 @@
+F0-A1 FORMAL EXECUTION PROVENANCE
+
+Formal execution code HEAD:
+c2b129c1fac99a3280c2d61ee263f90c0a4799e5
+
+Current final-freeze materialization HEAD:
+e4e29c5057e9ce94d420680f927f4d3996df1fdd
+
+The seed20 engineering freeze was materialized and verified locally
+before formal execution.
+
+Its Git commit had not yet been created before formal execution.
+
+No scientific source code changed between seed20 engineering validation
+and formal execution.
+
+The only commit between the formal execution HEAD and the current
+final-freeze materialization HEAD adds the seed20 engineering freeze metadata.
+
+Git history was not fabricated or backdated.
