@@ -1,0 +1,42 @@
+F0-A1 V2 MVCAN WRAPPER-COMPATIBLE SNAPSHOT AUDIT BUGFIX
+
+V1 first engineering smoke:
+Failed before training at the Q0 snapshot audit.
+
+Root cause:
+The outer MvCAN wrapper is not torch.nn.Module.
+
+V2 repair:
+The snapshot non-interference audit traverses the six
+model.autoencoders nn.Module instances instead of calling
+named_parameters / named_buffers / named_modules on outer MvCAN.
+
+Scientific protocol changed:
+NO
+
+q_local definition changed:
+NO
+
+trajectory schedule changed:
+NO
+
+Phase A changed:
+NO
+
+Phase B changed:
+NO
+
+refresh schedule changed:
+NO
+
+utility changed:
+NO
+
+loss changed:
+NO
+
+GT path changed:
+NO
+
+runner changed:
+NO

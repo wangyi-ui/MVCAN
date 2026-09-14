@@ -263,6 +263,46 @@ def _model_hash(model):
     )
     return hash_backbone(model.autoencoders)
 
+def _backbone_modules(model):
+    """Return the six frozen per-view nn.Module backbones, fail closed."""
+    _require(
+        hasattr(model, "autoencoders"),
+        "F0_A1_SNAPSHOT_MODEL_BOUNDARY_FAIL_CLOSED",
+    )
+    autoencoders = model.autoencoders
+    _require(
+        hasattr(autoencoders, "__len__") and len(autoencoders) == V,
+        "F0_A1_SNAPSHOT_BACKBONE_VIEW_COUNT_FAIL_CLOSED",
+    )
+    modules = tuple(autoencoders)
+    _require(
+        all(isinstance(module, torch.nn.Module) for module in modules),
+        "F0_A1_SNAPSHOT_BACKBONE_MODULE_API_FAIL_CLOSED",
+    )
+    return modules
+
+
+def _iter_backbone_named_parameters(model):
+    """Yield stable ``viewN.*`` parameter names without using wrapper APIs."""
+    for view_id, module in enumerate(_backbone_modules(model)):
+        for name, parameter in module.named_parameters():
+            yield "view" + str(view_id) + "." + name, parameter
+
+
+def _iter_backbone_named_buffers(model):
+    """Yield stable ``viewN.*`` buffer names without using wrapper APIs."""
+    for view_id, module in enumerate(_backbone_modules(model)):
+        for name, buffer in module.named_buffers():
+            yield "view" + str(view_id) + "." + name, buffer
+
+
+def _iter_backbone_named_modules(model):
+    """Yield stable root/submodule names for all six view backbones."""
+    for view_id, module in enumerate(_backbone_modules(model)):
+        prefix = "view" + str(view_id)
+        for name, child in module.named_modules():
+            yield prefix if name == "" else prefix + "." + name, child
+
 
 def full_data_q_local_snapshot(
     model, full_views, sample_ids, device, optimizers=(), return_audit=False,
@@ -286,14 +326,14 @@ def full_data_q_local_snapshot(
     optimizer_list = list(optimizers)
     parameters_before = {
         name: parameter.detach().cpu().clone()
-        for name, parameter in model.named_parameters()
+        for name, parameter in _iter_backbone_named_parameters(model)
     }
     buffers_before = {
         name: buffer.detach().cpu().clone()
-        for name, buffer in model.named_buffers()
+        for name, buffer in _iter_backbone_named_buffers(model)
     }
     modes_before = tuple(
-        (name, module.training) for name, module in model.named_modules()
+        (name, module.training) for name, module in _iter_backbone_named_modules(model)
     )
     optimizers_before = [_clone_tree(item.state_dict()) for item in optimizer_list]
     model_hash_before = _model_hash(model)
@@ -322,14 +362,14 @@ def full_data_q_local_snapshot(
 
     parameters_after = {
         name: parameter.detach().cpu().clone()
-        for name, parameter in model.named_parameters()
+        for name, parameter in _iter_backbone_named_parameters(model)
     }
     buffers_after = {
         name: buffer.detach().cpu().clone()
-        for name, buffer in model.named_buffers()
+        for name, buffer in _iter_backbone_named_buffers(model)
     }
     modes_after = tuple(
-        (name, module.training) for name, module in model.named_modules()
+        (name, module.training) for name, module in _iter_backbone_named_modules(model)
     )
     optimizers_after = [_clone_tree(item.state_dict()) for item in optimizer_list]
     model_hash_after = _model_hash(model)

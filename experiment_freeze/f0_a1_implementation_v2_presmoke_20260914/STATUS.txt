@@ -1,0 +1,50 @@
+F0-A1 V2 IMPLEMENTATION PRESMOKE FREEZE
+
+Preregistration:
+FROZEN
+
+V1 engineering smoke:
+PRE-TRAINING ENGINEERING FAIL
+
+V2 bugfix:
+COMPLETED
+
+Scientific protocol:
+UNCHANGED
+
+Primary state:
+q_local
+
+TRUE_U snapshots:
+41
+
+TRUE_UNIFORM snapshots:
+41
+
+BASE snapshots:
+21
+
+Expected refresh count:
+2
+
+Full GT runner path:
+NO
+
+F0-A1 V2 unit tests:
+49 passed
+
+Regression:
+104 passed
+
+Total:
+153 passed
+
+V2 engineering smoke:
+NOT RUN
+
+Formal:
+NOT RUN
+
+Next authorized action:
+seed20 TRUE_U engineering smoke only,
+after V2 freeze is committed and pushed.

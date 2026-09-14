@@ -23,6 +23,7 @@ class TinyAutoencoder(torch.nn.Module):
     def __init__(self):
         super().__init__()
         self.encoder = torch.nn.Linear(3, protocol.K, bias=False)
+        self.register_buffer("snapshot_audit_buffer", torch.tensor([1.0]))
 
     def clustering(self, latent):
         return torch.softmax(latent, dim=1)
@@ -34,6 +35,12 @@ class TinyModel(torch.nn.Module):
         self.autoencoders = torch.nn.ModuleList([
             TinyAutoencoder() for _ in range(protocol.V)
         ])
+
+
+class MvCANLikeWrapper:
+    """Match the real MvCAN API: plain wrapper around six nn.Modules."""
+    def __init__(self):
+        self.autoencoders = [TinyAutoencoder() for _ in range(protocol.V)]
 
 
 @pytest.fixture(scope="module")
@@ -240,6 +247,56 @@ def test_q_local_snapshot_does_not_alter_rng_state(snapshot_case):
     _, _, _, _, audit = snapshot_case
     assert audit["rng_state_unchanged"] is True
     assert audit["RNG_restored_after_snapshot"] is True
+
+
+def test_snapshot_supports_realistic_non_module_mvcan_wrapper():
+    torch.manual_seed(321)
+    model = MvCANLikeWrapper()
+    assert not isinstance(model, torch.nn.Module)
+    for api in ("named_parameters", "named_buffers", "named_modules"):
+        assert not hasattr(model, api)
+    for view_id, autoencoder in enumerate(model.autoencoders):
+        autoencoder.train(view_id % 2 == 0)
+    parameters = [
+        parameter
+        for autoencoder in model.autoencoders
+        for parameter in autoencoder.parameters()
+    ]
+    optimizer = torch.optim.Adam(parameters, lr=1e-3)
+    views = [torch.zeros((protocol.N, 3)) for _ in range(protocol.V)]
+    q_local, audit = protocol.full_data_q_local_snapshot(
+        model, views, SAMPLE_IDS, torch.device("cpu"),
+        optimizers=[optimizer], return_audit=True,
+    )
+    assert q_local.shape == (protocol.N, protocol.V, protocol.K)
+    assert q_local.requires_grad is False and q_local.grad_fn is None
+    assert audit["model_parameters_unchanged"] is True
+    assert audit["model_buffers_unchanged"] is True
+    assert audit["model_training_flags_unchanged"] is True
+    assert audit["rng_state_unchanged"] is True
+    assert audit["optimizer_state_unchanged"] is True
+    assert audit["model_aggregate_hash_equal"] is True
+    assert audit["model_hash_before"] == audit["model_hash_after"]
+    assert [module.training for module in model.autoencoders] == [
+        True, False, True, False, True, False
+    ]
+
+
+@pytest.mark.parametrize(
+    "model",
+    (
+        object(),
+        type("BadBackboneWrapper", (), {
+            "autoencoders": [object()] * protocol.V
+        })(),
+    ),
+)
+def test_snapshot_backbone_traversal_fails_closed(model):
+    views = [torch.zeros((protocol.N, 3)) for _ in range(protocol.V)]
+    with pytest.raises(RuntimeError, match="SNAPSHOT_(MODEL|BACKBONE)"):
+        protocol.full_data_q_local_snapshot(
+            model, views, SAMPLE_IDS, torch.device("cpu")
+        )
 
 
 def test_snapshot_helper_never_calls_native_refresh(monkeypatch, snapshot_case):
