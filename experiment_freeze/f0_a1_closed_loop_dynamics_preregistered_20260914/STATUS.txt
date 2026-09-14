@@ -1,0 +1,48 @@
+F0-A1 PREREGISTERED
+
+Stage:
+F0-A1 Utility-Conditioned Relation Refinement Dynamics Audit
+
+Scientific role:
+Read-only dynamics mechanism audit of the frozen final core.
+
+Scientific parent:
+C0 -> C3-A0 -> C3-B0 -> F0-A0
+
+Primary state:
+q_local
+
+Primary causal comparison:
+TRUE_U vs TRUE_UNIFORM
+
+Core hypothesis:
+Sparse labels determine semantic relation direction.
+Frozen U_cycle determines action validity.
+Utility-conditioned relation action changes the iterative
+representation-relation refinement trajectory.
+
+No new mechanism:
+YES
+
+Full GT allowed before trajectory seal:
+NO
+
+Implementation:
+NOT STARTED
+
+Smoke:
+NOT RUN
+
+Formal:
+NOT RUN
+
+Preregistered gates:
+Gate0 Exact Replay Preservation
+Gate1 Trajectory Integrity
+Gate2 Relation Recurrence
+Gate3 Semantic Purification Effectiveness
+Gate4 Utility-Specific Dynamics
+Gate5 Isolation
+
+Decision:
+PREREGISTERED ONLY

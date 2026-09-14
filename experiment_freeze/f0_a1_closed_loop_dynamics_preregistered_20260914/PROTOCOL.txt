@@ -1,0 +1,980 @@
+F0-A1
+UTILITY-CONDITIONED RELATION REFINEMENT DYNAMICS AUDIT
+
+Chinese:
+效用条件化关系提纯动力学审计
+
+Scientific role:
+Final-core mechanism audit only.
+
+No new scientific mechanism.
+
+============================================================
+1. PREREGISTRATION SCOPE
+============================================================
+
+This document preregisters and freezes the F0-A1 scientific protocol.
+The current stage creates no implementation, test, training run, smoke run,
+formal run, evaluator run, checkpoint, or runtime artifact.
+
+Historical C0, C3-A0, C3-B0, and F0-A0 sources and freezes are read-only.
+No historical scientific mechanism is modified.
+
+Scientific training lineage:
+
+C0
+-> C3-A0
+-> C3-B0
+-> F0-A0
+-> F0-A1
+
+C5-A0 is independent mechanism evidence that U_cycle predicts action
+validity; it is not an F0-A1 training parent.
+
+C4 and C5-B0 are not parents.
+
+============================================================
+2. SCIENTIFIC QUESTION
+============================================================
+
+Under identical sparse semantic relation targets,
+does the frozen action-specific information utility
+U_cycle causally shape the iterative relation-refinement trajectory,
+rather than acting only as a static training weight?
+
+中文：
+
+在相同稀疏语义关系目标下，
+冻结的动作特定信息效用 U_cycle
+是否真实改变表示—关系状态的迭代提纯轨迹，
+而不仅仅作为静态训练权重存在？
+
+============================================================
+3. CORE THEORY
+============================================================
+
+Sparse labels determine WHAT to refine.
+Frozen U_cycle determines WHETHER an action is trustworthy.
+
+中文：
+
+稀疏标签决定“应该向什么语义关系方向提纯”；
+冻结的信息效用 U_cycle 决定“该语义动作是否值得信任”。
+
+Sparse labels must not be used to numerically recalibrate U_cycle.
+
+U_cycle is NOT:
+- generic feature importance
+- generic view weight
+- pseudo-label confidence
+- continuous posterior weighting
+- memory-write confidence
+- pseudo-anchor expansion priority
+
+============================================================
+4. FROZEN DATA PROTOCOL
+============================================================
+
+Dataset:
+Caltech-6V
+
+N = 1400
+V = 6
+K = 7
+
+Weak-quality:
+SNR = 2.5 dB
+
+Corruption:
+exactly 3 / 6 views corrupted per sample
+
+Weak-quality realization:
+fixed seed = 20
+
+Training seeds:
+20
+30
+50
+
+Sparse supervision:
+14 labels total
+2 labels per class
+
+Labeled IDs are frozen as:
+
+[67, 82, 90, 111, 200, 365, 440, 513, 536,
+ 983, 1027, 1250, 1316, 1385]
+
+Unlabeled count:
+1386
+
+Labels must not be resampled.
+Corruption must not be regenerated.
+
+============================================================
+5. PRIMARY TRAJECTORY STATE
+============================================================
+
+The F0-A1 primary trajectory state is fixed as:
+
+q_local
+
+q_aligned is not the primary state.
+
+Definition:
+
+Q_t = {q_{i,t}^v}
+
+shape:
+
+[N,V,K]
+=
+[1400,6,7]
+
+Reason:
+
+The actual C3-B0 relation computation is performed within the same
+view-local cluster coordinate system and does not depend on M_v.
+
+Therefore q_local:
+- is consistent with the actual relation action
+- avoids artificially introducing M_v alignment
+- avoids M_v lifecycle ambiguity before epoch-1 Phase A
+
+q_aligned may only be used in a future secondary audit and is not the
+primary trajectory state in this protocol.
+
+============================================================
+6. RELATION STATE
+============================================================
+
+The frozen C3-B0 relation definition must be used:
+
+r_il^v(Q)
+=
+(q_i^v)^T stopgrad(q_l^v)
+
+where:
+
+query posterior:
+retains gradient in training
+
+anchor posterior:
+computed under no_grad / detached
+
+The F0-A1 trajectory diagnostic itself must be no-grad.
+
+Relation tensor conceptually:
+
+R(Q)
+in R^[Nu,L,V]
+
+shape:
+
+[1386,14,6]
+
+No new relation definition may be introduced.
+
+============================================================
+7. SPARSE SEMANTIC TARGET
+============================================================
+
+The sparse semantic target is the frozen:
+
+PredRelation_true
+
+shape:
+
+[1386,14,20]
+
+dtype:
+bool
+
+denoted:
+
+T_ils
+
+The following is also frozen:
+
+relation_balance_weights_true
+
+shape:
+
+[1386,14,20]
+
+denoted:
+
+B_ils
+
+The frozen C3-A0/C3-B0 lineage must be used.
+Full GT must not be used to construct T.
+
+============================================================
+8. INFORMATION UTILITY
+============================================================
+
+Frozen:
+
+U_cycle
+
+full shape:
+
+[1400,20]
+
+training shape:
+
+[1386,20]
+
+denoted:
+
+U_is^cycle
+
+It must be detached / read-only.
+
+It must not be:
+- recalibrated
+- normalized into a new scientific variable
+- learned
+- thresholded
+- exponentiated
+- temperature-scaled
+- converted into U_tilde / U_prime
+
+============================================================
+9. THREE ARMS
+============================================================
+
+Only the following arms are allowed:
+
+A. BASE
+
+B. TRUE_UNIFORM
+
+C. TRUE_U
+
+No SHUFFLE_U may be added.
+No PERMUTED_U may be added.
+No ORACLE may be added.
+
+------------------------------------------------------------
+BASE
+------------------------------------------------------------
+
+Run only the frozen native C3-B0 / MVCAN training path.
+
+Semantic Phase A is skipped.
+
+BASE is native-dynamics context only.
+
+BASE is not the primary comparator for utility causality.
+
+------------------------------------------------------------
+TRUE_UNIFORM
+------------------------------------------------------------
+
+TRUE_UNIFORM must share exactly with TRUE_U:
+
+- initialization
+- data
+- corruption
+- sample order
+- sparse labels
+- PredRelation_true
+- relation_balance_weights_true
+- semantic optimizer topology
+- native optimizer topology
+- learning rate
+- epochs
+- batch size
+- native refresh schedule
+- Phase-A / Phase-B order
+- final refresh
+- seed handling
+
+Its only scientific setting is:
+
+action_weight[i,l,s]
+=
+1 * B_ils
+
+------------------------------------------------------------
+TRUE_U
+------------------------------------------------------------
+
+action_weight[i,l,s]
+=
+U_is^cycle * B_ils
+
+The only core scientific difference between TRUE_U and TRUE_UNIFORM is:
+
+frozen U_cycle weighting
+vs
+uniform weighting
+
+============================================================
+10. RELATION SEMANTIC OBJECTIVE
+============================================================
+
+No new scientific loss is introduced.
+
+The existing frozen C3-B0 relation objective is abstractly denoted:
+
+E_U(Q)
+
+and:
+
+E_UNI(Q)
+
+Its actual relation score is:
+
+r_il^v(Q)
+
+Its pointwise loss is the existing C3-B0 BCE.
+
+TRUE_U:
+
+E_U(Q)
+=
+(1/V) *
+sum_v
+[
+ sum_{i,l,s}
+ U_is^cycle * B_ils *
+ BCE(r_il^v(Q), T_ils)
+ /
+ sum_{i,l,s}
+ U_is^cycle * B_ils
+]
+
+TRUE_UNIFORM:
+
+E_UNI(Q)
+=
+(1/V) *
+sum_v
+[
+ sum_{i,l,s}
+ B_ils *
+ BCE(r_il^v(Q), T_ils)
+ /
+ sum_{i,l,s}
+ B_ils
+]
+
+This is a diagnostic restatement of the frozen C3-B0 operator,
+not a new loss.
+
+============================================================
+11. TRAINING DYNAMICS
+============================================================
+
+For relation arms, the state at the start of epoch e is:
+
+Q_{e-1,B}
+
+Phase A:
+semantic relation action
+
+Q_{e-1,B}
+-> Q_{e,A}
+
+Phase B:
+native consolidation
+
+Q_{e,A}
+-> Q_{e,B}
+
+Therefore the complete dynamics are:
+
+Q_{e-1,B}
+-> R_{e-1,B}
+-> A(T,U)
+-> Q_{e,A}
+-> Q_{e,B}
+-> R_{e,B}
+
+Across epochs:
+
+Q_t
+-> R_t
+-> A(T,U)
+-> Q_{t+1}
+-> R_{t+1}
+
+U_cycle is frozen.
+T is frozen.
+
+The changing quantities are:
+
+model parameters
+Q state
+R state
+
+============================================================
+12. SNAPSHOT SCHEDULE
+============================================================
+
+TRUE_U / TRUE_UNIFORM save:
+
+Q_0
+
+and, for every epoch e=1..20:
+
+Q_{e,A}
+Q_{e,B}
+
+Total snapshot count:
+
+1 + 20*2 = 41
+
+shape:
+
+[41,1400,6,7]
+
+BASE saves:
+
+Q_0
+Q_{1,B}
+...
+Q_{20,B}
+
+Total snapshot count:
+
+21
+
+shape:
+
+[21,1400,6,7]
+
+No nonexistent Phase-A snapshot may be fabricated for BASE.
+
+============================================================
+13. SNAPSHOT ACQUISITION
+============================================================
+
+According to the read-only provenance inventory, Q_0, Q_{e,A}, and
+Q_{e,B} may be acquired using:
+
+read-only q-only full-data forward
+
+It must use:
+
+torch.no_grad()
+
+It must not:
+
+- call backward
+- perform an optimizer step
+- modify cached targets
+- modify view weights
+- call extra refresh_native_target
+- trigger KMeans solely for a snapshot
+- change the training schedule
+
+The model's original training state must be preserved preferentially.
+
+Although the frozen architecture currently has no Dropout, BatchNorm,
+stochastic layers, or mutable running buffers, implementation-stage audit
+must still demonstrate that snapshot forward does not alter:
+
+- parameters
+- optimizer state
+- model buffers
+- RNG state
+- cached training targets
+
+============================================================
+14. PRIMARY DIAGNOSTIC 1: RELATION DRIFT
+============================================================
+
+Phase-A relation drift:
+
+D_A(e)
+=
+mean_{i,l,v}
+|
+r_il^v(Q_{e,A})
+-
+r_il^v(Q_{e-1,B})
+|
+
+Phase-B relation drift:
+
+D_B(e)
+=
+mean_{i,l,v}
+|
+r_il^v(Q_{e,B})
+-
+r_il^v(Q_{e,A})
+|
+
+D_A exists only for TRUE_U / TRUE_UNIFORM.
+
+BASE has native boundary drift only, as secondary context. A semantic D_A
+must not be fabricated for BASE.
+
+============================================================
+15. PRIMARY DIAGNOSTIC 2: SEMANTIC PURIFICATION RESPONSE
+============================================================
+
+TRUE_U:
+
+E_U_pre(e)
+=
+E_U(Q_{e-1,B})
+
+E_U_post(e)
+=
+E_U(Q_{e,A})
+
+Define:
+
+G_U(e)
+=
+E_U_pre(e)
+-
+E_U_post(e)
+
+Cumulative:
+
+G_U_sum
+=
+sum_{e=1..20} G_U(e)
+
+G_U(e) > 0 means that the Phase-A semantic action reduced the
+utility-conditioned semantic relation residual targeted by that action.
+
+For TRUE_UNIFORM:
+
+G_UNI(e)
+=
+E_UNI(Q_{e-1,B})
+-
+E_UNI(Q_{e,A})
+
+G_UNI is mechanism context.
+
+G_U > G_UNI must not be a hard gate, because the two objectives have
+different weighting and their absolute numeric scales need not be directly
+comparable.
+
+============================================================
+16. PRIMARY DIAGNOSTIC 3: UTILITY-SPECIFIC TRAJECTORY DIVERGENCE
+============================================================
+
+For TRUE_U and TRUE_UNIFORM, the initial state must be exactly equal:
+
+Q_0^U
+==
+Q_0^UNI
+
+Their logical hashes must be exactly equal.
+
+Define:
+
+D_U_UNI_A(e)
+=
+mean_{i,l,v}
+|
+r_il^v(Q_{e,A}^U)
+-
+r_il^v(Q_{e,A}^UNI)
+|
+
+Define:
+
+D_U_UNI_B(e)
+=
+mean_{i,l,v}
+|
+r_il^v(Q_{e,B}^U)
+-
+r_il^v(Q_{e,B}^UNI)
+|
+
+Initially:
+
+D_U_UNI(0)
+=
+0 exact
+
+This diagnostic is the primary causal evidence for utility-specific
+dynamics.
+
+============================================================
+17. SECONDARY DIAGNOSTIC: POSTERIOR DRIFT
+============================================================
+
+The following may be computed:
+
+D_Q_A(e)
+=
+mean_{i,v}
+0.5 *
+|| q_{i,e,A}^v - q_{i,e-1,B}^v ||_1
+
+and:
+
+D_Q_B(e)
+
+These are secondary diagnostics / visualization only.
+They do not enter the primary PASS gate.
+
+============================================================
+18. FULL GT ISOLATION
+============================================================
+
+During trajectory training, snapshot acquisition, diagnostic computation,
+and sealing:
+
+FULL GT MUST NEVER BE LOADED.
+
+Allowed:
+
+- sparse labeled IDs
+- sparse semantic relation bundle
+- frozen U_cycle
+
+Forbidden:
+
+- unlabeled GT
+- ACC
+- NMI
+- ARI
+- GT-based checkpoint selection
+- GT-based epoch selection
+- GT-based threshold selection
+
+Required execution order:
+
+training
+-> trajectory artifact
+-> trajectory audit
+-> pre-GT seal
+-> only after valid seal
+-> optional post-seal GT evaluation
+
+The primary F0-A1 PASS / FAIL decision must not depend on post-GT
+ACC/NMI/ARI.
+
+============================================================
+19. GATE 0: EXACT REPLAY PRESERVATION
+============================================================
+
+Instrumented runs must match frozen historical references.
+
+For every arm x seed:
+
+final_predictions
+exact equal
+
+and:
+
+final aggregate model hash
+exact equal
+
+If the historical arm has a frozen metric reference, after post-seal
+evaluation:
+
+ACC
+NMI
+ARI
+
+must also be exactly equal.
+
+Any prediction or model-hash mismatch is:
+
+ENGINEERING FAIL-CLOSED
+
+Trajectory science must not be interpreted after such a mismatch.
+
+============================================================
+20. GATE 1: TRAJECTORY INTEGRITY
+============================================================
+
+TRUE_U:
+41 snapshots exact
+
+TRUE_UNIFORM:
+41 snapshots exact
+
+BASE:
+21 snapshots exact
+
+Every snapshot must have:
+
+- expected shape
+- finite floating values
+- canonical sample IDs
+- no GT contamination
+- deterministic snapshot order
+- correct epoch index
+- correct phase label
+
+In addition:
+
+Q_0^TRUE_U
+==
+Q_0^TRUE_UNIFORM
+
+with exact logical-hash equality.
+
+============================================================
+21. GATE 2: RELATION RECURRENCE
+============================================================
+
+For TRUE_U, each seed must satisfy:
+
+sum_e D_A(e) > 0
+
+and:
+
+sum_e D_B(e) > 0
+
+Required:
+
+3 / 3 seeds PASS
+
+This gate proves only that the relation state is recurrently updated.
+It does not alone prove purification.
+
+============================================================
+22. GATE 3: SEMANTIC PURIFICATION EFFECTIVENESS
+============================================================
+
+Define:
+
+G_U_sum(seed)
+=
+sum_e G_U(e)
+
+Primary criteria:
+
+mean_seed G_U_sum > 0
+
+and:
+
+positive seed count >= 2 / 3
+
+It is not required that all 20 / 20 epochs be positive.
+Local non-monotonicity is allowed.
+
+This gate demonstrates that the semantic action overall reduces the
+utility-conditioned relation residual targeted by the action itself.
+
+============================================================
+23. GATE 4: UTILITY-SPECIFIC DYNAMICS
+============================================================
+
+Required:
+
+D_U_UNI(0) = 0 exact
+
+and:
+
+D_U_UNI_A(1) > 0
+
+Required:
+
+3 / 3 seeds
+
+and:
+
+D_U_UNI_B(20) > 0
+
+Required:
+
+3 / 3 seeds
+
+Under identical sparse semantic targets, the only scientific difference
+between TRUE_U and TRUE_UNIFORM is U weighting. Therefore trajectory
+divergence supports:
+
+U_cycle materially shapes
+the semantic refinement trajectory.
+
+============================================================
+24. GATE 5: ISOLATION
+============================================================
+
+All of the following must hold:
+
+GT_loaded_during_trajectory = False
+
+GT_used_for_checkpoint_selection = False
+
+scientific_metric_loaded_during_runner = False
+
+trajectory_used_for_training = False
+
+trajectory_gradient_enabled = False
+
+new_loss_used = False
+
+new_loss_coefficient_used = False
+
+new_utility_used = False
+
+scalar_U_recalibration_used = False
+
+continuous_U_weighting_used = False
+
+Here, continuous_U_weighting_used forbids a new continuous posterior
+aggregation route. The frozen C3-B0 action weighting is not the closed
+route denoted by this field.
+
+pseudo_label_used = False
+
+pseudo_CE_used = False
+
+memory_used = False
+
+prototype_memory_used = False
+
+feature_gate_used = False
+
+fusion_gate_used = False
+
+recursive_expansion_used = False
+
+c4_memory_used = False
+
+c5_a0_training_used = False
+
+c5_b0_used = False
+
+============================================================
+25. OVERALL DECISION
+============================================================
+
+F0-A1 PASS iff:
+
+Gate0
+AND Gate1
+AND Gate2
+AND Gate3
+AND Gate4
+AND Gate5
+
+all PASS.
+
+If Gate0 FAIL:
+ENGINEERING FAIL-CLOSED.
+No scientific conclusion may be drawn.
+
+If Gate2 FAIL:
+iterative relation refinement is not supported.
+
+If Gate3 FAIL:
+dynamics may exist, but purification is not supported.
+
+If Gate4 FAIL:
+sparse semantic refinement may exist, but there is insufficient evidence
+that U_cycle specifically controls the trajectory.
+
+============================================================
+26. TERMINOLOGY RULE
+============================================================
+
+Only if Overall PASS may the paper formally use:
+
+Utility-Conditioned Relation Refinement Loop
+
+中文：
+
+效用条件化关系提纯闭环
+
+If any critical scientific gate among Gate2, Gate3, or Gate4 does not
+pass, terminology must be downgraded to:
+
+Utility-Conditioned Iterative Relation Refinement
+
+中文：
+
+效用条件化迭代关系提纯
+
+Closed-loop purification must not be claimed otherwise.
+
+============================================================
+27. ARTIFACT CONTRACT
+============================================================
+
+Future implementation must follow this contract. No runtime artifact is
+created during this preregistration stage.
+
+For every seed x arm:
+
+f0_a1_trajectory_pre_gt.npz
+
+f0_a1_trajectory_audit.json
+
+f0_a1_trajectory_seal.json
+
+For every seed:
+
+f0_a1_seedXX_dynamics_summary.json
+
+For multi-seed analysis:
+
+f0_a1_multiseed_summary.json
+
+The preregistered NPZ keys include at least:
+
+sample_ids
+labeled_ids
+snapshot_epoch
+snapshot_phase
+q_local_snapshots
+final_predictions
+final_model_hash
+frozen_U_logical_hash
+relation_target_logical_hash
+relation_balance_weights_logical_hash
+
+For BASE, U-driven semantic fields must not be fabricated. A frozen
+scientific-parent hash may be saved, but semantic trajectory fields must
+be clearly marked not-applicable.
+
+============================================================
+28. FUTURE IMPLEMENTATION ORDER
+============================================================
+
+1. Preregistration
+2. Preregistration freeze
+3. Implementation
+4. Unit tests
+5. Implementation presmoke freeze
+6. seed20 TRUE_U engineering smoke
+7. Gate-0 exact replay audit
+8. seed20 three-arm smoke
+9. multi-seed formal: 3 seeds x 3 arms
+10. pre-GT dynamics summary
+11. post-seal secondary metric evaluation
+12. final multi-seed freeze
+
+Current stage:
+only steps 1-2.
+
+============================================================
+29. FORBIDDEN SCIENTIFIC CHANGES
+============================================================
+
+- no new architecture module
+- no C4 memory revival
+- no C5-B0 expansion revival
+- no pseudo-label expansion
+- no pseudo CE
+- no static memory write
+- no new scalar utility
+- no feature gate
+- no fusion gate
+- no utility exponent sweep
+- no utility threshold sweep
+- no temperature sweep
+- no new loss coefficient
+- no additional GT supervision
+- no change to sparse label split
+- no change to corruption realization
+- no change to C3-B0 optimizer semantics
+- no change to Phase-A / Phase-B order
