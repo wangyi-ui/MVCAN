@@ -1,0 +1,25 @@
+F0-A1 IMPLEMENTATION PRESMOKE TEST STATUS
+
+Environment:
+mvcan
+
+py_compile:
+PASS
+
+F0-A1 unit tests:
+46 passed
+
+F0-A0/C3-B0 regression:
+104 passed
+
+total:
+150 passed
+
+engineering smoke:
+NOT RUN
+
+formal:
+NOT RUN
+
+full GT loaded:
+NO

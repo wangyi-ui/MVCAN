@@ -1,0 +1,57 @@
+F0-A1 IMPLEMENTATION PRESMOKE FREEZE
+
+Preregistration:
+FROZEN
+
+Implementation:
+COMPLETED
+
+Implementation source changed after tests:
+NO
+
+Historical source modified:
+NO
+
+Primary state:
+q_local
+
+Arms:
+BASE
+TRUE_UNIFORM
+TRUE_U
+
+Seeds:
+20
+30
+50
+
+Epochs:
+20
+
+TRUE_U snapshots:
+41
+
+TRUE_UNIFORM snapshots:
+41
+
+BASE snapshots:
+21
+
+Expected refresh_native_target count:
+2
+
+Full GT in runner:
+NO
+
+New scientific mechanism:
+NO
+
+Engineering smoke:
+NOT RUN
+
+Formal:
+NOT RUN
+
+Next authorized action:
+seed20 TRUE_U engineering smoke only,
+after this freeze is independently verified and committed.
