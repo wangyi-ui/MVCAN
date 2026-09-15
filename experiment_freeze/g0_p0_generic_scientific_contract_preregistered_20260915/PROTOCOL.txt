@@ -1,0 +1,997 @@
+G0-P0 — GENERIC SCIENTIFIC CONTRACT
+PREREGISTERED BEFORE GENERIC IMPLEMENTATION
+
+Repository:
+/root/autodl-tmp/CVPR24-MVCAN
+
+Environment:
+mvcan
+
+Research branch:
+g0-generic-contract-20260915
+
+Parent R0 tag:
+r0-release-extraction-preregistered-20260915
+
+Parent R0 commit:
+4ac872ef587503553015e528809406bad635c4cc
+
+Frozen scientific ancestor tag:
+f0-a1-multiseed-formal-pass-20260914
+
+Frozen scientific ancestor commit:
+b7215bc9b6e726eb90235ee8869f022c8be45fa6
+
+Protocol date:
+2026-09-15
+
+======================================================================
+0. PURPOSE AND AUTHORIZATION BOUNDARY
+======================================================================
+
+G0-P0 freezes the dataset-generic scientific contract required to generalize
+the already-frozen final method from Caltech-6V to structurally different
+multi-view datasets without changing the scientific mechanism.
+
+This task is protocol materialization only. It is not method redesign,
+hyperparameter tuning, dataset benchmarking, MSRC training, BDGP training,
+release extraction, a final-paper experiment, or performance optimization.
+
+G0-P0 authorizes only read-only verification plus creation of this one new
+freeze directory. It does not authorize modification of scientific source,
+tests, datasets, outputs, checkpoints, or historical freezes.
+
+G0-P0 does not authorize training, smoke, formal execution, model forward,
+optimizer construction/step, backward, KMeans, full-GT loading, sparse-split
+materialization, corruption application, U_cycle generation, relation-target
+generation, metric evaluation, generic implementation, G0-A0, or R1-R7.
+
+After G0-P0 verification:
+
+STOP.
+
+G0-A0 requires independent review and authorization.
+
+======================================================================
+1. CORE SCIENTIFIC INVARIANT AND G0 QUESTION
+======================================================================
+
+Dataset changes define the problem instance.
+
+Sparse real labels determine semantic direction.
+
+Frozen directional U_cycle determines action validity.
+
+The utility-conditioned relation-refinement mechanism remains invariant.
+
+G0 asks:
+
+Can the same frozen scientific mechanism operate correctly under different:
+
+- N
+- V
+- K
+- D_v
+- L
+- N_u
+- S(V)
+
+without changing:
+
+- directional U_cycle definition
+- sparse semantic relation definition
+- relation action definition
+- gradient semantics
+- Phase-A / Phase-B training semantics
+- information-utility interpretation?
+
+G0 is a STRUCTURAL GENERALITY validation.
+
+G0 is NOT a performance gate.
+
+ACC, NMI, ARI, and BACC must not determine G0 PASS/FAIL.
+
+======================================================================
+2. FROZEN FINAL MECHANISM
+======================================================================
+
+The supported closed-loop mechanism is:
+
+Q_t
+-> relation state R_t
+-> utility-conditioned semantic action A(T_relation, U_cycle)
+-> representation update
+-> updated relation state Q_(t+1), R_(t+1)
+
+The scientific interpretation is:
+
+- sparse real labels determine semantic direction;
+- frozen action-specific Information Utility U_is determines action validity.
+
+Training remains an alternating two-phase process:
+
+Phase A:
+Utility-Conditioned Relation Semantic Action
+
+Phase B:
+Native MVCAN Consolidation
+
+The method is not a module stack and not a single weighted joint loss. It must
+not be rewritten as:
+
+L_total = L_MVCAN + lambda * L_relation
+
+No new loss coefficient is authorized.
+
+======================================================================
+3. REQUIRED STRUCTURAL REFERENCE DATASETS
+======================================================================
+
+The minimum G0 structural set is exactly:
+
+1. Caltech-6V
+   Purpose: frozen exact backward-compatibility gold reference.
+
+2. MSRC-v1
+   Purpose: odd-view structural validation with V=5.
+
+3. BDGP
+   Purpose: minimal multi-view structural validation with V=2 and S=2.
+
+The bound local dataset files are:
+
+- data/Caltech.mat
+- data/MSRC_v1.mat
+- data/BDGP2V_N.mat
+
+G0-P0 binds their whole-file bytes by SHA256 but does not parse the files and
+does not load labels.
+
+STRUCTURAL COVERAGE, NOT DATASET COUNT, determines extraction readiness.
+
+Do not add Scene-15, NUSWIDE, or another dataset to G0-P0. The approximately
+five-dataset paper plan does not require all five datasets to complete formal
+experiments before extraction. An additional pre-extraction pilot is required
+only if a later dataset introduces a genuinely new structural regime, such as
+an unseen view count, much larger K or N, sparse features, a different storage
+format, different modality organization, or substantially different loader
+semantics.
+
+======================================================================
+4. DATASET-GENERIC TENSOR CONTRACT
+======================================================================
+
+Dataset/configuration quantities:
+
+N:
+number of samples
+
+V:
+number of views
+
+K:
+number of clusters/classes
+
+D_v:
+feature dimension of view v
+
+L:
+number of real labeled anchors
+
+N_u:
+N - L
+
+S(V):
+number of directional actions
+
+Generic tensors:
+
+q_local:
+[N, V, K]
+
+q_aligned where used:
+[N, V, K]
+
+U_cycle:
+[N, S(V)]
+
+labeled_ids:
+[L]
+
+unlabeled_ids:
+[N_u]
+
+PredRelation:
+[N_u, L, S(V)]
+
+relation_balance_weights:
+[N_u, L, S(V)]
+
+final_predictions:
+[N]
+
+The future generic implementation must derive and audit N, V, K, D_v, L,
+N_u, S(V), view dimensions, dataset paths, and label protocol from runtime
+interfaces/configuration. Scientific-core logic must not treat 1400, 6, 7,
+14, 1386, or 20 as universal constants. Caltech compatibility code may
+explicitly validate those frozen Caltech values.
+
+======================================================================
+5. DIRECTIONAL ACTION-SPACE DEFINITION
+======================================================================
+
+Let:
+
+Vset = {0, ..., V-1}
+
+Every directional action s is an ordered pair:
+
+a_s = (G_s, H_s)
+
+with:
+
+G_s intersection H_s = empty
+G_s union H_s = Vset
+H_s = ordered complement of G_s
+
+For EVEN V:
+
+|G_s| = V / 2
+S(V) = C(V, V/2)
+
+For ODD V:
+
+first include generator subsets of size floor(V/2), then include generator
+subsets of size ceil(V/2), so:
+
+S(V) = 2 * C(V, floor(V/2))
+
+Required examples:
+
+V=6 -> S=20
+V=5 -> S=20
+V=2 -> S=2
+
+No dataset-specific action count may be manually tuned.
+
+======================================================================
+6. ACTION ORDERING CONTRACT
+======================================================================
+
+Action identity and action order are scientific quantities and must not be
+silently reordered.
+
+For EVEN V, enumerate:
+
+itertools.combinations(range(V), V // 2)
+
+in Python lexicographic combination order. For each G, H is the ordered
+complement of G.
+
+For ODD V, the FIRST block is:
+
+itertools.combinations(range(V), floor(V/2))
+
+in lexicographic order. The SECOND block is:
+
+itertools.combinations(range(V), ceil(V/2))
+
+in lexicographic order. For each G, H is its ordered complement.
+
+The resulting ordered action list must be deterministic and stored/audited as
+part of every generic-contract reference.
+
+======================================================================
+7. CALTECH ACTION BACKWARD-COMPATIBILITY HARD GATE
+======================================================================
+
+For V=6, the future generic constructor must reproduce this frozen order
+exactly:
+
+0:  012|345
+1:  013|245
+2:  014|235
+3:  015|234
+4:  023|145
+5:  024|135
+6:  025|134
+7:  034|125
+8:  035|124
+9:  045|123
+10: 123|045
+11: 124|035
+12: 125|034
+13: 134|025
+14: 135|024
+15: 145|023
+16: 234|015
+17: 235|014
+18: 245|013
+19: 345|012
+
+Required Caltech action parity:
+
+- action identities EXACT
+- action order EXACT
+- generator-subset logical SHA256 EXACT
+- verifier-subset logical SHA256 EXACT
+
+Frozen generator logical SHA256:
+1da78797e059f952bf6ae3749fc94ca2dd5bebf83d76b1e8eeb6a03583fe36da
+
+Frozen verifier logical SHA256:
+aa726d58832d5eb17ff952049d6be1b3c6eb7295b6fcba6b656c3c1ead80baca
+
+If this compatibility gate fails, G0 must stop.
+
+======================================================================
+8. PRIMARY WEAK-QUALITY CONTRACT
+======================================================================
+
+Primary target SNR:
+2.5 dB
+
+Weak-quality realization seed:
+20
+
+Training seed is separate from weak-quality seed. Later formal training seeds
+remain 20, 30, and 50 while sharing the same fixed weak-quality realization.
+
+The cross-dataset weak-quality strength is approximately/exactly 50 percent of
+sample-view pairs corrupted, not a universal fixed k.
+
+No labels may influence corruption selection or noise generation.
+
+======================================================================
+9. EVEN-V CORRUPTION CONTRACT
+======================================================================
+
+For EVEN V, every sample has exactly:
+
+k = V / 2
+
+corrupted views.
+
+Therefore:
+
+- Caltech V=6 -> exactly 3 views per sample
+- BDGP V=2 -> exactly 1 view per sample
+
+The future even-V generic corruption-mask constructor must be bitwise/backward
+compatible with the existing frozen algorithm. For Caltech, identical weak-
+quality seed, np.random.RandomState semantics, RNG call order, sample
+permutation, view permutation, mask, and mask SHA256 are mandatory.
+
+======================================================================
+10. ODD-V 50-PERCENT CORRUPTION CONTRACT
+======================================================================
+
+For ODD V define:
+
+B = floor(N * V / 2)
+k_low = floor(V/2)
+k_high = ceil(V/2)
+n_high = B - N * k_low
+
+The first n_high samples in deterministic shuffled-sample rank receive k_high
+corrupted views. The remaining N-n_high receive k_low corrupted views.
+
+The total corruption count must equal B. If N*V is even, the global corruption
+ratio is exactly 0.5. If N*V is odd, the deterministic budget is
+floor(N*V/2).
+
+For MSRC-v1:
+
+N=210
+V=5
+B=525
+k_low=2
+k_high=3
+n_high=105
+
+Exactly 105 samples receive 3 corrupted views and 105 receive 2. Exactly
+525/1050 sample-view pairs are corrupted. A floor-only 40-percent rule and a
+ceil-only 60-percent rule are forbidden.
+
+======================================================================
+11. GENERIC BALANCED MASK CONSTRUCTION
+======================================================================
+
+Future G0-A0 must preserve the balanced cyclic-mask principle and use:
+
+rng = np.random.RandomState(seed)
+
+with exact RNG call order:
+
+sample_permutation = rng.permutation(N)
+view_permutation = rng.permutation(V)
+
+For shuffled sample rank r, assign the required row cardinality k_r. For odd V,
+the first n_high ranks of sample_permutation receive k_high and all remaining
+ranks receive k_low.
+
+Define:
+
+base_r = (sum of k_j for all shuffled ranks j < r) mod V
+
+Select k_r consecutive cyclic positions from the one fixed view_permutation.
+
+The construction must guarantee:
+
+- exact per-row corruption cardinality
+- exact total corruption budget
+- per-view corrupted-pair counts differing by at most 1
+- deterministic output
+
+For even V all k_r=k, so base_r=(r*k) mod V. This must reduce exactly to the
+legacy algorithm and preserve the frozen Caltech mask bitwise.
+
+======================================================================
+12. FROZEN NOISE PHYSICS
+======================================================================
+
+G0 generalizes mask cardinality only. It must not change Gaussian noise
+physics. Preserve the current weak_quality.py definitions for:
+
+- Gaussian corruption family
+- signal-power definition
+- noise-power definition
+- target-SNR scaling
+- per-view aggregate SNR audit
+- global aggregate SNR audit
+- NOISE_SEED_OFFSET
+- SNR_TOLERANCE_DB
+- unchanged clean sample-view pairs
+- shape preservation
+- dtype preservation
+- finite-value requirements
+- label-free corruption generation
+
+======================================================================
+13. PRIMARY WEAK-QUANTITY CONTRACT
+======================================================================
+
+The main cross-dataset weak-quantity setting is:
+
+2 REAL labeled samples per class.
+
+It must be described as extremely sparse class-balanced supervision, not as a
+universal 1-percent setting.
+
+For a dataset with K classes:
+
+L = 2 * K
+
+unless an exact frozen backward-compatibility split overrides generic
+materialization.
+
+======================================================================
+14. CALTECH SPARSE-LABEL BACKWARD COMPATIBILITY
+======================================================================
+
+Caltech-6V must preserve these labeled IDs exactly:
+
+[67, 82, 90, 111, 200, 365, 440, 513, 536, 983, 1027, 1250, 1316, 1385]
+
+Count:
+L=14
+
+Clusters/classes:
+K=7
+
+Budget:
+2 labeled samples per class
+
+Do not resample the Caltech labels through a new generic rule. The frozen split
+is the exact gold reference.
+
+======================================================================
+15. NEW-DATASET SPARSE-LABEL MATERIALIZATION
+======================================================================
+
+For new generic datasets including MSRC-v1 and BDGP:
+
+primary label budget:
+2 labels per class
+
+label-split seed:
+20
+
+Split materialization must be deterministic and independent of training RNG,
+weak-quality RNG, batch order, NumPy global RNG, and optimizer RNG.
+
+Use deterministic SHA256 ranking. For every candidate sample i of class c,
+construct this exact UTF-8 payload, joining the canonical fields with the
+literal `|` character and no extra whitespace:
+
+G0_SPARSE_LABEL_V1|dataset=<canonical_dataset_name>|label_seed=20|class=<integer_class_id>|sample_id=<integer_0based_sample_id>
+
+Compute SHA256(payload). Within each class sort ascending by:
+
+(hash_hex, sample_id)
+
+Select the first 2 samples.
+
+The sealed split must store:
+
+- labeled_ids
+- labeled_targets
+- unlabeled_ids
+- split SHA256
+- canonical dataset name
+- label seed
+- labels_per_class
+
+======================================================================
+16. GT ISOLATION CONTRACT
+======================================================================
+
+Full labels may be accessed during the dedicated sparse-split materialization
+stage only to select the frozen sparse IDs and their real targets.
+
+After split materialization and sealing, training may access only labeled_ids,
+labeled_targets, and sample features; it must not access GT labels of unlabeled
+samples.
+
+Full GT used for sparse split materialization:
+YES, dedicated split stage only
+
+Full GT used for training:
+NO
+
+Full GT used for utility construction:
+NO
+
+Full GT used for relation construction:
+NO, except selected sparse labeled targets
+
+Full GT used for post-training evaluation:
+YES, only after the training/pre-GT seal
+
+G0-P0 itself does not load GT.
+
+======================================================================
+17. FUTURE ROBUSTNESS STUDIES — RECORDED, NOT EXECUTED
+======================================================================
+
+Future weak-quantity robustness levels:
+
+- 1 label per class
+- 2 labels per class (primary)
+- 5 labels per class
+
+Where scientifically feasible, use nested deterministic splits:
+
+L_1 subset L_2 subset L_5
+
+Future weak-quality robustness levels:
+
+- Clean
+- 5 dB
+- 2.5 dB (primary noisy condition)
+- 0 dB
+
+For a dataset, noisy SNR conditions should reuse the same corruption mask and
+differ only in noise magnitude whenever scientifically applicable.
+
+These sensitivity studies do not gate G0. Each requires a separate formal
+preregistration after the clean release. None is executed now.
+
+Higher SNR means weaker noise. Expected aggregate trends are generally:
+
+Performance(Clean) >= Performance(5 dB) >= Performance(2.5 dB)
+                   >= Performance(0 dB)
+
+Performance(1 label/class) <= Performance(2 labels/class)
+                           <= Performance(5 labels/class)
+
+Strict monotonicity per seed is not a hard scientific gate. Small stochastic
+deviations are allowed. The robustness objective is graceful degradation and a
+competitive/stronger relative advantage under harder conditions. G0 must not
+be tuned based on future robustness curves.
+
+======================================================================
+18. DATASET-NATIVE PREPROCESSING
+======================================================================
+
+G0 does not introduce a universal preprocessing transform.
+
+- Caltech retains its existing loader/preprocessing semantics.
+- MSRC-v1 retains its inspected precomputed-feature semantics.
+- BDGP retains native MVCAN loader semantics.
+
+Do not introduce a new StandardScaler, MinMax normalization, L2 normalization,
+PCA, feature whitening, or another distribution-changing transform during G0.
+
+Genericization is interface unification, not feature-distribution redesign.
+
+======================================================================
+19. BACKBONE CONFIGURATION BOUNDARY
+======================================================================
+
+Dataset-specific native MVCAN backbone configurations may remain dataset
+specific where inherited from existing MVCAN configuration, including:
+
+- Autoencoder architecture
+- native lambda1
+- native initialization epochs
+- native preprocessing
+- native MVCAN schedule
+
+This is not authorization to tune them based on G0 results.
+
+The dataset-specific BACKBONE configuration must be explicitly separated from
+the dataset-invariant PROPOSED-METHOD mechanism.
+
+======================================================================
+20. U_CYCLE SCIENTIFIC INVARIANT
+======================================================================
+
+The directional U_cycle definition is frozen. Only its tensor dimensions may
+generalize from Caltech [1400,20] to [N,S(V)].
+
+U remains action-specific Information Utility with the interpretation:
+
+action validity.
+
+Do not introduce:
+
+- U_tilde
+- U prime
+- U exponent
+- U temperature
+- U threshold
+- U times margin
+- dataset-specific recalibration
+- continuous posterior weighting
+- feature gating
+- fusion gating
+- memory-write confidence
+- pseudo-label confidence
+
+For odd V, unequal actions such as 2|3 and 3|2 use the same frozen directional-
+utility definition. Do not add cardinality factors such as 2/3 or 3/2, or any
+learned/fitted normalization merely because group sizes differ. Preserve the
+aggregation already defined by the frozen mechanism.
+
+======================================================================
+21. RELATION SEMANTIC ACTION AND GRADIENT INVARIANTS
+======================================================================
+
+For unlabeled/query sample i, real labeled anchor l, and view v:
+
+r_il^v = (q_i^v)^T stop_gradient(q_l^v)
+
+Utility is sample-action specific:
+
+U_is
+
+It may be broadcast over labeled-anchor dimension l. Do not invent a pair-
+specific U_ils without separate future scientific justification.
+
+Generic relation target shape:
+
+[N_u, L, S(V)]
+
+Gradient semantics are dataset invariant:
+
+- query posterior q_i^v: gradient enabled
+- anchor posterior q_l^v: detached / stop-gradient
+- U_cycle: detached
+- PredRelation: detached
+- relation_balance_weights: detached
+- sparse labeled targets: detached
+
+No dataset may receive different gradient semantics.
+
+======================================================================
+22. SCIENTIFICALLY CLOSED ROUTES REMAIN CLOSED
+======================================================================
+
+Changing datasets does not reopen failed routes. Keep closed:
+
+- scalar U recalibration
+- U_tilde
+- rate mechanism
+- direct feature gating
+- direct fusion gating
+- hard shared semantic admission
+- direct sparse semantic injection
+- additive sparse semantic CE
+- pseudo-label CE
+- additive pseudo CE
+- static semantic memory
+- class-prototype memory
+- C4 memory route
+- continuous U-weighted posterior aggregation
+- C5-B0 pseudo-anchor semantic expansion
+- recursive semantic expansion
+- new memory bank
+- new pseudo-supervision branch
+- new utility threshold, temperature, exponent, or loss coefficient
+
+These routes remain historical evidence only.
+
+======================================================================
+23. G0 IMPLEMENTATION STRATEGY
+======================================================================
+
+G0-P0 preregisters strategy but creates no implementation.
+
+Future G0-A0 should prefer additive generic-contract sidecar modules rather
+than edits to frozen historical scientific sources.
+
+Preferred future location:
+
+experiments/generic_contract/
+
+Potential modules:
+
+- dataset_contract.py
+- action_space.py
+- generic_weak_quality.py
+- sparse_label_contract.py
+- generic_final_core_adapter.py
+
+Potential tests:
+
+- tests/test_g0_dataset_contract.py
+- tests/test_g0_action_space.py
+- tests/test_g0_weak_quality.py
+- tests/test_g0_sparse_label_contract.py
+- tests/test_g0_caltech_backward_compatibility.py
+
+None of these files is created in G0-P0. Physical clean-release extraction
+remains deferred to R1-R7.
+
+======================================================================
+24. G0 STAGE ORDER
+======================================================================
+
+G0-P0:
+Generic Scientific Contract Preregistration
+
+G0-A0:
+Generic primitive implementation and unit tests
+
+G0-A1:
+Caltech exact backward-compatibility validation
+
+G0-B0:
+MSRC-v1 structural pilot, seed20 only
+
+G0-B1:
+BDGP structural pilot, seed20 only
+
+G0-C0:
+Generic Scientific Contract Freeze
+
+ONLY AFTER G0-C0 PASS may R1-R7 release extraction begin.
+
+======================================================================
+25. G0-A1 CALTECH HARD REQUIREMENTS
+======================================================================
+
+Future G0-A1 must require:
+
+N=1400
+V=6
+K=7
+L=14
+N_u=1386
+S=20
+
+- frozen labeled IDs exact
+- action identities exact
+- action order exact
+- generator logical SHA exact
+- verifier logical SHA exact
+- weak-quality corruption mask exact
+- weak-quality mask SHA exact
+- U_cycle logical SHA exact
+- PredRelation_true bitwise exact
+- relation_balance_weights_true exact
+- training-schedule parity
+- seed20 final predictions exact
+- final model hash exact where supported by frozen reference
+- GT isolation PASS
+
+If Caltech exact backward compatibility fails:
+
+STOP.
+
+Do not continue to MSRC-v1.
+
+======================================================================
+26. G0-B0 MSRC-V1 STRUCTURAL REQUIREMENTS
+======================================================================
+
+The future MSRC-v1 pilot uses training seed20 only.
+
+Expected structure:
+
+N=210
+V=5
+K=7
+labels_per_class=2
+L=14
+N_u=196
+S(5)=20
+
+Primary weak quality:
+
+SNR=2.5 dB
+weak-quality seed=20
+
+Corruption:
+
+- 525/1050 sample-view pairs
+- 105 rows with 2 corrupted views
+- 105 rows with 3 corrupted views
+- per-view corruption counts differ by at most 1
+- deterministic mask
+
+U_cycle shape:
+[210,20]
+
+PredRelation shape:
+[196,14,20]
+
+Require finite tensors, valid sample IDs, valid sparse split, valid ordered
+action space, valid detach semantics, Phase-A completion, Phase-B completion,
+pre-GT isolation, and final prediction shape [210].
+
+ACC/NMI/ARI may be recorded only after a GT seal and are not G0 PASS/FAIL
+criteria.
+
+======================================================================
+27. G0-B1 BDGP STRUCTURAL REQUIREMENTS
+======================================================================
+
+The future BDGP pilot uses training seed20 only.
+
+Known view contract:
+V=2
+
+Therefore:
+S(2)=2
+
+Primary corruption:
+
+- exactly 1 of 2 views per sample
+- SNR=2.5 dB
+- weak-quality seed=20
+
+Primary sparse supervision:
+2 real labels per class
+
+N, K, D_v, and the resulting L/N_u must be derived and audited from the bound
+dataset/interface at G0-A0/G0-B1, not silently hard-coded in G0-P0.
+
+Require valid dataset contract, ordered action space, corruption mask, U_cycle
+dimensions, relation dimensions, finite tensors, detach semantics, Phase-A
+completion, Phase-B completion, pre-GT isolation, and valid final-prediction
+shape.
+
+ACC/NMI/ARI are not G0 PASS/FAIL criteria.
+
+======================================================================
+28. G0 GATES AND NON-GATING METRICS
+======================================================================
+
+Future G0 gates:
+
+Gate0:
+Frozen parent integrity
+
+Gate1:
+Dataset-contract correctness
+
+Gate2:
+Action-space identity / ordering correctness
+
+Gate3:
+Weak-quality corruption-contract correctness
+
+Gate4:
+Sparse-label contract correctness
+
+Gate5:
+Caltech exact backward compatibility
+
+Gate6:
+MSRC-v1 structural generality
+
+Gate7:
+BDGP structural generality
+
+G0-C0 PASS requires Gate0 through Gate7 all PASS.
+
+ACC, NMI, ARI, and BACC are not G0 gating metrics. Low pilot clustering
+performance must not cause any change to action-space construction, corruption
+policy, label budget, utility definition, relation definition, gradient
+semantics, or training schedule. Performance optimization is outside G0.
+
+======================================================================
+29. EXACTNESS AND FAIL-CLOSED CONTRACT
+======================================================================
+
+Require exact equality where deterministic, including:
+
+- sample IDs
+- labeled IDs
+- unlabeled IDs
+- view order
+- action identities
+- action order
+- integer mappings
+- boolean masks
+- PredRelation_true
+- batch order
+- refresh schedule
+- final predictions
+- frozen protocol hashes
+
+For Caltech, U_cycle must preserve the frozen logical hash.
+
+Floating loss/gradient comparison may use a tolerance only if preregistered
+before observing a mismatch. G0-P0 does not invent a tolerance post hoc.
+
+Every future G0 stage is fail-closed. If parity fails:
+
+STOP.
+
+Do not tune, relax a tolerance, continue execution, change the scientific
+definition, or call approximate metrics exact.
+
+Classify every failure as exactly one of:
+
+- ENGINEERING_EXTRACTION_BUG
+- NUMERICAL_IMPLEMENTATION_DIFFERENCE
+- SCIENTIFIC_BEHAVIOR_CHANGE
+
+Scientific behavior change is not authorized inside G0 genericization or
+release extraction.
+
+======================================================================
+30. RESEARCH ARCHIVE, STORAGE, AND RELEASE BOUNDARY
+======================================================================
+
+CVPR24-MVCAN remains the canonical research archive. Frozen tags and historical
+freeze directories must not be rewritten. Historical scientific source must
+not be deleted.
+
+Do not duplicate large data, models, checkpoints, outputs, or logs into a
+future release worktree. A future release should primarily contain source,
+configs, tests, scripts, and small provenance/reference metadata. Large
+artifacts remain externally stored or referenced.
+
+Physical release extraction is not authorized until G0-C0 passes. The required
+release stages remain R1 through R7 under the frozen R0 protocol.
+
+Nothing is renamed during G0-P0. CVPR24-MVCAN remains the archive identity. A
+future method-specific name such as UCRR-MVC may be considered only after R7
+equivalence PASS. Scientific method name, Python package name, local directory
+name, and GitHub repository name are independent decisions.
+
+======================================================================
+31. G0-P0 COMPLETION CONDITION
+======================================================================
+
+G0-P0 is complete only when:
+
+- R0 tag and commit are exact;
+- F0-A1 scientific ancestor remains exact and intact;
+- this protocol and status are materialized once;
+- parent freeze, reference source, and dataset whole-file manifests pass;
+- git branch/head/status provenance is bound;
+- the freeze metadata manifest binds every G0-P0 file except itself and passes;
+- tracked scientific source remains unchanged;
+- no GT is semantically loaded;
+- no generic primitive is implemented or executed.
+
+Next stage after independent review:
+G0-A0 generic primitive implementation and unit tests
+
+G0-A0 is not authorized by this freeze alone.
+

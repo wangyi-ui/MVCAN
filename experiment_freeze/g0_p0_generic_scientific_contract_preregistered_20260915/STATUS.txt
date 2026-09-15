@@ -1,0 +1,99 @@
+G0-P0 GENERIC SCIENTIFIC CONTRACT
+
+Protocol:
+PREREGISTERED / FROZEN
+
+Parent R0 tag:
+r0-release-extraction-preregistered-20260915
+
+Parent R0 commit:
+4ac872ef587503553015e528809406bad635c4cc
+
+Current G0 branch:
+g0-generic-contract-20260915
+
+Current G0 HEAD:
+4ac872ef587503553015e528809406bad635c4cc
+
+Frozen scientific ancestor:
+f0-a1-multiseed-formal-pass-20260914
+
+Scientific core:
+UNCHANGED
+
+Primary weak-quality SNR:
+2.5 dB
+
+Primary weak-quality target:
+50% sample-view corruption
+
+Weak-quality realization seed:
+20
+
+Training-seed relation:
+SEPARATE FROM WEAK-QUALITY SEED
+
+Primary sparse supervision:
+2 real labels per class
+
+Caltech frozen sparse split:
+PRESERVED EXACTLY
+
+Generic action-space contract:
+PREREGISTERED
+
+Odd-view corruption contract:
+PREREGISTERED
+
+Generic sparse-label split contract:
+PREREGISTERED
+
+Structural reference datasets:
+Caltech-6V
+MSRC-v1
+BDGP
+
+G0 performance metrics:
+NON-GATING
+
+Source modification:
+NONE
+
+Historical freeze modification:
+NONE
+
+Training:
+NOT RUN
+
+Smoke:
+NOT RUN
+
+Formal experiments:
+NOT RUN
+
+GT:
+NOT LOADED
+
+Generic primitive implementation:
+NOT STARTED
+
+Caltech backward compatibility:
+NOT RUN
+
+MSRC-v1 structural pilot:
+NOT RUN
+
+BDGP structural pilot:
+NOT RUN
+
+G0-C0 Generic Contract Freeze:
+NOT REACHED
+
+Physical release extraction:
+NOT AUTHORIZED
+
+Next stage:
+G0-A0 generic primitive implementation and unit tests
+
+Do not commit or push in this task.
+

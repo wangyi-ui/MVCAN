@@ -1,0 +1,17 @@
+git status --short after G0 branch creation and before G0-P0 materialization:
+CLEAN
+
+Branch:
+g0-generic-contract-20260915
+
+HEAD:
+4ac872ef587503553015e528809406bad635c4cc
+
+G0-P0 target directory before materialization:
+ABSENT
+
+Repository status after materializing only the ignored G0-P0 freeze:
+TRACKED WORKTREE CLEAN
+
+Scientific source modifications:
+NONE
