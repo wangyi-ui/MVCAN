@@ -1,0 +1,1 @@
+a42ad427bb9991fba2cf0d5d9ed6759af6c4ada9c8277f51f62f7854803efe16  tests/test_g0_a1_caltech_exact_adapter.py

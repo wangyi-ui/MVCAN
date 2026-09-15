@@ -1,0 +1,22 @@
+COMMAND_1=PYTHONPATH=. pytest -q tests/test_g0_a1_caltech_exact_adapter.py
+PASSED_1=17
+ELAPSED_SECONDS_1=2.54
+COMMAND_2=PYTHONPATH=. pytest -q tests/test_g0_dataset_contract.py tests/test_g0_action_space.py tests/test_g0_weak_quality.py tests/test_g0_sparse_label_contract.py tests/test_g0_caltech_backward_compatibility.py tests/test_g0_a1_caltech_exact_adapter.py
+PASSED_2=72
+ELAPSED_SECONDS_2=2.63
+COMMAND_3=PYTHONPATH=. pytest -q tests/test_final_core_exact_replay.py tests/test_c0_complementary_semantic_verification.py
+PASSED_3=154
+ELAPSED_SECONDS_3=3.07
+TOTAL_PASSED=243
+FAILURES=0
+SKIPS=0
+XFAILS=0
+HISTORICAL_REGRESSION_FILES=tests/test_final_core_exact_replay.py tests/test_c0_complementary_semantic_verification.py
+CALTECH_MAT_PARSED=NO
+FULL_GT_LOADED=NO
+TRAINING_RUN=NO
+EXACT_REPLAY_RUN=NO
+OPTIMIZER_RUN=NO
+BACKWARD_RUN=NO
+KMEANS_RUN=NO
+METRICS_RUN=NO

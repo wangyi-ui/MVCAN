@@ -1,0 +1,1 @@
+56cb1ba4d443afb081554ea2c75afd65f294e730cdede33e8a51a45862f495a9  experiments/generic_contract/caltech_exact_adapter.py

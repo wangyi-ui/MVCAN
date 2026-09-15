@@ -1,0 +1,103 @@
+G0-A1-A0 CALTECH EXACT ADAPTER IMPLEMENTATION
+
+Parent G0-A0:
+PASS / FROZEN
+
+Parent commit:
+71896919db9d108f96e6a5c15f648c030df8c957
+
+Parent tag:
+g0-a0-generic-primitives-presmoke-pass-20260915
+
+Adapter implementation:
+COMPLETE
+
+Dataset contract:
+EXACT PASS
+
+Action-space contract:
+EXACT PASS
+
+Weak-quality mask contract:
+EXACT PASS
+
+Sparse-label contract:
+EXACT PASS
+
+U_cycle reference:
+EXACT PASS
+
+Relation reference:
+EXACT PASS
+
+Frozen prediction reference:
+BOUND / EXACT
+
+F0 pre-GT seal:
+VALID
+
+Gate0:
+PASS
+
+Gate1:
+PASS
+
+Gate2:
+PASS
+
+Gate3:
+PASS
+
+Gate4:
+PASS
+
+Gate5:
+PASS
+
+Gate6:
+NOT RUN
+
+G0-A1 overall:
+NOT COMPLETE
+
+Scientific core:
+UNCHANGED
+
+Historical source modification:
+NONE
+
+Generic primitive modification:
+NONE
+
+Caltech.mat content parsing:
+NOT RUN
+
+Full GT:
+NOT LOADED
+
+Training:
+NOT RUN
+
+Optimizer:
+NOT RUN
+
+Backward:
+NOT RUN
+
+KMeans:
+NOT RUN
+
+ACC/NMI/ARI/BACC:
+NOT RUN
+
+G0-A1-A1 exact replay:
+NEXT AFTER REVIEW
+
+MSRC-v1:
+NOT RUN
+
+BDGP:
+NOT RUN
+
+Physical release extraction:
+NOT AUTHORIZED
