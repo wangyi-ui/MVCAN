@@ -1,0 +1,17 @@
+git status --short before R0 materialization:
+CLEAN
+
+Branch:
+f0-final-core-consolidation-20260913
+
+HEAD:
+b7215bc9b6e726eb90235ee8869f022c8be45fa6
+
+R0 target directory before materialization:
+ABSENT
+
+Repository status after materializing only the ignored R0 freeze:
+TRACKED WORKTREE CLEAN
+
+Scientific source modifications:
+NONE

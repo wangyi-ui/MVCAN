@@ -1,0 +1,64 @@
+R0 RELEASE EXTRACTION PROTOCOL
+
+Status:
+PREREGISTERED / FROZEN
+
+Scientific parent:
+F0-A1 PASS / CLOSED / FROZEN
+
+Frozen parent tag:
+f0-a1-multiseed-formal-pass-20260914
+
+Frozen parent commit:
+b7215bc9b6e726eb90235ee8869f022c8be45fa6
+
+Frozen supported mechanism:
+Utility-Conditioned Relation Refinement Loop
+
+Release extraction:
+NOT STARTED
+
+Generic Scientific Contract prerequisite:
+NOT COMPLETED
+
+Required minimum pre-extraction structural coverage:
+Caltech-6V
+MSRC-v1
+BDGP
+
+Structural rule:
+STRUCTURAL COVERAGE, NOT DATASET COUNT, determines extraction readiness.
+
+Physical release extraction authorized:
+NO
+
+Scientific modification authorized:
+NO
+
+Source modification:
+NONE
+
+Training:
+NOT RUN
+
+Smoke:
+NOT RUN
+
+Formal experiments:
+NOT RUN
+
+GT:
+NOT LOADED
+
+Repository cleanup:
+NOT PERFORMED
+
+Rename:
+NOT PERFORMED
+
+Next stage:
+Generic Scientific Contract preregistration and validation
+
+Do not start R1-R7 before the Generic Scientific Contract is validated and
+frozen. Do not commit or push this freeze in the current task.
+

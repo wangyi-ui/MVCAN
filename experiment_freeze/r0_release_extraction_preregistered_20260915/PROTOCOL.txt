@@ -1,0 +1,709 @@
+R0 — FROZEN-CORE RELEASE EXTRACTION PROTOCOL
+PREREGISTERED BEFORE PHYSICAL EXTRACTION
+
+Repository:
+/root/autodl-tmp/CVPR24-MVCAN
+
+Canonical research archive:
+CVPR24-MVCAN
+
+Frozen scientific parent tag:
+f0-a1-multiseed-formal-pass-20260914
+
+Frozen scientific parent commit:
+b7215bc9b6e726eb90235ee8869f022c8be45fa6
+
+Protocol date:
+2026-09-15
+
+============================================================
+0. PURPOSE AND AUTHORIZATION BOUNDARY
+============================================================
+
+This R0 freeze preregisters the exact rules under which a future clean paper-
+release implementation may be extracted from the frozen research repository.
+
+R0 creates protocol metadata only.
+
+PHYSICAL RELEASE EXTRACTION IS NOT AUTHORIZED YET.
+
+R0 does not authorize:
+
+- scientific-source modification
+- test modification
+- dataset modification
+- model, configuration, or corruption-code modification
+- release source modules
+- UCRR-MVC source code
+- deletion, movement, or renaming of historical files
+- repository or Python-module renaming
+- training, smoke, formal experiments, or full-GT evaluation
+- full-GT loading
+- hyperparameter tuning
+- checkpoint creation
+- existing-freeze modification
+- git add, commit, or push
+
+The next authorized stage after independent R0 review is a separate Generic
+Scientific Contract preregistration and validation, not release extraction.
+
+============================================================
+1. FROZEN SCIENTIFIC PARENT
+============================================================
+
+The parent tag f0-a1-multiseed-formal-pass-20260914 resolves exactly to commit:
+
+b7215bc9b6e726eb90235ee8869f022c8be45fa6
+
+The parent evidence establishes:
+
+Gate0 Exact Replay Preservation: PASS
+Gate1 Trajectory Integrity: PASS
+Gate2 Relation Recurrence: PASS
+Gate3 Semantic Purification Effectiveness: PASS
+Gate4 Utility-Specific Dynamics: PASS
+Gate5 Isolation: PASS
+Overall: PASS
+
+F0-A1:
+CLOSED / FROZEN
+
+Supported mechanism:
+Utility-Conditioned Relation Refinement Loop
+
+All canonical parent manifests and the two preregistered read-only audit reports
+must verify before R0 materialization. R0 does not alter any parent.
+
+============================================================
+2. FROZEN SCIENTIFIC DEFINITION
+============================================================
+
+Sparse labels determine semantic direction.
+
+Frozen directional U_cycle determines action validity.
+
+The final iterative mechanism is:
+
+Q_t
+-> R_t
+-> A(T_relation, U_cycle)
+-> Q_{t+1}
+-> R_{t+1}
+
+The final method is NOT a module stack.
+
+The final method is NOT a single weighted joint loss.
+
+The final optimization is an alternating two-phase process:
+
+Phase A:
+Utility-conditioned relation semantic action
+
+Phase B:
+Native MVCAN consolidation / representation update
+
+During release extraction the final method must NOT be rewritten as:
+
+L_total = L_native + lambda * L_relation
+
+No extraction stage may change this scientific contract.
+
+============================================================
+3. SCIENTIFICALLY CLOSED ROUTES
+============================================================
+
+The following mechanisms are scientifically closed and forbidden from the
+clean release core:
+
+- scalar U recalibration
+- U_tilde or corrected scalar utility
+- direct feature gating
+- direct fusion gating
+- pseudo-label CE
+- additive pseudo CE
+- static semantic memory
+- prototype or class-prototype memory
+- C4 semantic memory route
+- C5-A0 continuous U-weighted posterior aggregation
+- C5-B0 pseudo-anchor semantic expansion
+- recursive pseudo-semantic or semantic expansion
+- previous rate-based mechanism
+- direct sparse semantic injection
+- a new loss coefficient introduced during extraction
+- a new utility threshold
+- a new temperature
+- a new exponent
+
+Historical implementations remain in the immutable research archive only.
+Their presence in the archive does not make them part of the final method.
+
+============================================================
+4. GENERIC SCIENTIFIC CONTRACT PREREQUISITE
+============================================================
+
+Physical extraction R1 must not begin until a separate Generic Scientific
+Contract validation and freeze is complete.
+
+Minimum structural reference datasets:
+
+1. Caltech-6V, V=6, frozen exact reference.
+2. MSRC-v1, V=5, odd-view action-space reference.
+3. BDGP, V=2, minimal-view reference including S=2.
+
+Known local dataset files are:
+
+- data/Caltech.mat
+- data/MSRC_v1.mat
+- data/BDGP2V_N.mat
+
+These datasets are not modified by R0. Their pre-extraction purpose is
+structural generalization, not paper-performance tuning.
+
+The Generic Scientific Contract must prove that the implementation derives,
+rather than silently Caltech-hard-codes:
+
+- N
+- V
+- K
+- L
+- Nu
+- S
+- view feature dimensions
+- dataset paths
+- label protocol
+
+These are runtime interface or configuration quantities. Generalization of the
+interfaces must not change the definitions of U_cycle or relation action.
+
+============================================================
+5. STRUCTURAL COVERAGE AND FIVE-DATASET RULE
+============================================================
+
+STRUCTURAL COVERAGE, NOT DATASET COUNT, determines extraction readiness.
+
+It is NOT necessary to finish formal experiments on all approximately five
+planned paper datasets before release extraction.
+
+If a fourth or fifth planned dataset introduces a genuinely new structural
+regime, one additional genericity pilot may be required before extraction.
+Examples include:
+
+- an unseen number of views
+- a much larger K
+- a much larger N
+- sparse feature representation
+- a different storage format
+- different modality organization
+- substantially different loader semantics
+- substantially different label-budget behavior
+
+Otherwise, the remaining datasets should be run only after clean-release parity
+has passed.
+
+Required sequence:
+
+1. Caltech-6V frozen reference
+2. MSRC-v1 genericity validation
+3. BDGP genericity validation
+4. optional additional structural pilot only if necessary
+5. Generic Scientific Contract Freeze
+6. R1-R7 release extraction
+7. full five-dataset formal experiments using the clean release
+
+============================================================
+6. ACTION-SPACE GENERALIZATION CONTRACT
+============================================================
+
+For balanced generator/verifier partitions, define the intended action count:
+
+If V is even:
+
+S(V) = C(V, V/2)
+
+If V is odd:
+
+S(V) = 2 * C(V, floor(V/2))
+
+Required known cases:
+
+- V=6 -> S=20
+- V=5 -> S=20
+- V=2 -> S=2
+
+The next Generic Contract stage must define and validate the corresponding
+ordered generator/verifier action constructor for arbitrary supported V.
+
+For Caltech-6V, the generic constructor must reproduce both the frozen set of
+20 action identities and their exact ORDER. Set equality alone is insufficient.
+The meaning of every action index s must remain scientifically identical. Any
+implementation representation change requires an explicit compatibility map
+that itself proves exact frozen ordering and logical action identity.
+
+============================================================
+7. WEAK-QUALITY GENERALIZATION BOUNDARY
+============================================================
+
+R0 does not select or implement a new cross-dataset corruption protocol.
+
+The existing Caltech frozen condition remains unchanged:
+
+- SNR = 2.5 dB
+- exactly 3 of 6 views corrupted per sample
+- weak-quality realization fixed by the frozen seed and protocol
+
+No odd-view corruption rule may be silently inferred or introduced during R0
+or extraction. A dataset-generic weak-quality corruption policy must be
+separately preregistered in the next Generic Scientific Contract stage.
+
+============================================================
+8. WEAK-QUANTITY / LABEL-PROTOCOL BOUNDARY
+============================================================
+
+R0 does not redefine the frozen Caltech 14-anchor protocol.
+
+Label-budget generalization is a next-stage Generic Contract issue. A future
+cross-dataset primary protocol may be preregistered using a class-balanced
+labels-per-class policy, but no label-budget change is authorized in R0.
+
+For every dataset, labels retain only their frozen scientific role: determining
+semantic direction. Labels must not numerically recalibrate U_cycle.
+
+============================================================
+9. BEHAVIOR-PRESERVATION / SCIENTIFIC IMMUTABILITY
+============================================================
+
+Release extraction == behavior preservation.
+
+R1-R7 must not combine extraction with engineering optimization. The following
+simultaneous changes are forbidden:
+
+- FP32/FP64 or other float-precision policy changes
+- AMP or mixed precision
+- optimizer replacement, including Adam -> AdamW
+- learning-rate changes
+- batch-size changes
+- KMeans implementation changes, including KMeans -> MiniBatchKMeans
+- new normalization
+- DataLoader sampling or shuffling changes
+- sample-order changes
+- loss-reduction changes
+- training-schedule changes
+- random-seed policy changes
+- model-architecture changes
+- caching semantics that alter values
+- detach or stop-gradient changes
+- action-weighting changes
+- label-budget changes
+- corruption-policy changes
+
+Engineering optimizations require an independent protocol only after release
+parity is frozen.
+
+============================================================
+10. RESEARCH ARCHIVE IMMUTABILITY AND BRANCH RULE
+============================================================
+
+CVPR24-MVCAN remains the canonical research archive.
+
+The frozen tag f0-a1-multiseed-formal-pass-20260914 must never be rewritten.
+No historical frozen tag or freeze may be rewritten. No historical scientific
+source may be deleted or rewritten during release extraction.
+
+A future clean release may use a dedicated release branch or a separate git
+worktree. No release branch is created in R0.
+
+Only after the Generic Scientific Contract Freeze is completed may a future
+branch such as release/frozen-core-extraction be created. Its base must be the
+exact Generic Contract Freeze commit; the base must not be guessed.
+
+No cp -r duplication of data, models, outputs, or other large artifacts is
+authorized.
+
+============================================================
+11. BOTTOM-UP EXTRACTION ORDER
+============================================================
+
+Extraction must be bottom-up and component-by-component. A monolithic whole-
+repository refactor is forbidden.
+
+Required order:
+
+R1: Backbone / Data Foundation
+R2: Directional Cyclic Utility
+R3: Sparse Relation Semantics
+R4: Utility-Conditioned Relation Action
+R5: Alternating Two-Phase Trainer
+R6: Clean Training / Evaluation Entry Points
+R7: Full Frozen-Behavior Equivalence Validation
+
+Every stage must obey:
+
+EXTRACT
+-> TEST
+-> COMPARE
+-> FREEZE
+-> ONLY THEN CONTINUE
+
+No stage may begin until its parent stage has passed and been frozen.
+
+============================================================
+12. R1 — BACKBONE / DATA FOUNDATION CONTRACT
+============================================================
+
+Future R1 scope:
+
+- Autoencoder
+- multi-view backbone/model
+- clustering posterior
+- dataset interface
+- corruption interface and frozen weak-quality protocol
+- sample-ID preservation
+- clustering evaluation primitives
+
+Architecture changes are forbidden.
+
+Required parity includes:
+
+- same initialized parameters
+- same checkpoint loading
+- same sample ordering
+- same q_local output
+- same reconstruction outputs where applicable
+- same cluster-posterior computation
+
+Caltech exact regression is mandatory before cross-dataset use. Cross-dataset
+tensor-contract tests are mandatory.
+
+============================================================
+13. R2 — DIRECTIONAL CYCLIC UTILITY CONTRACT
+============================================================
+
+Future R2 extracts only the final supported utility logic:
+
+- ordered action-space constructor
+- generator subsets
+- verifier subsets
+- directional U_cycle
+
+The implementation must support arbitrary validated V under the frozen action-
+space definition.
+
+For frozen Caltech require:
+
+- action identities exact
+- action ordering exact
+- sample IDs exact
+- U_cycle shape exact
+- U_cycle logical hash exact
+
+No closed scalar utility recalibration may enter the release core.
+
+============================================================
+14. R3 — SPARSE RELATION SEMANTICS CONTRACT
+============================================================
+
+Future R3 extracts:
+
+- labeled-anchor handling
+- unlabeled-ID complement
+- PredRelation_true construction
+- relation_balance_weights_true construction
+
+Scientific rule:
+
+Sparse labels determine semantic direction.
+Labels DO NOT numerically recalibrate U_cycle.
+
+For frozen Caltech require:
+
+- labeled IDs exact
+- unlabeled IDs exact
+- PredRelation_true bitwise exact
+- relation_balance_weights_true exact, including logical hash
+- tensor shapes exact
+- class/relation semantics exact
+
+============================================================
+15. R4 — UTILITY-CONDITIONED RELATION ACTION CONTRACT
+============================================================
+
+The supported relation score is:
+
+r_il^v = (q_i^v)^T stop_gradient(q_l^v)
+
+Required gradient semantics:
+
+- query q_i^v: gradient enabled
+- anchor q_l^v: detached / stop-gradient
+- PredRelation_true: detached
+- U_cycle: detached
+- relation_balance_weights_true: detached
+
+R4 must preserve the exact frozen relation scores, semantic loss, per-view
+reduction, action-weight denominator, loss normalization, gradient tensors, and
+anchor no-gradient behavior.
+
+============================================================
+16. R5 — ALTERNATING TRAINER CONTRACT
+============================================================
+
+The final training order remains:
+
+Phase A:
+relation semantic action
+
+then:
+scheduled native refresh when specified
+
+then:
+
+Phase B:
+native MVCAN consolidation
+
+The trainer must preserve exactly:
+
+- optimizer type
+- optimizer count
+- learning rates
+- epoch count
+- batch size and batch boundaries
+- sample orders
+- seed policy
+- refresh schedule
+- Phase A -> refresh-if-scheduled -> Phase B order
+- final refresh
+- final prediction
+
+It must not collapse the phases into one joint objective.
+
+============================================================
+17. R6 — CLEAN ENTRY-POINT CONTRACT
+============================================================
+
+Only after R1-R5 parity passes may thin clean entry points be created.
+
+Their responsibilities are limited to orchestration:
+
+- parse configuration
+- load dataset
+- build model
+- build action space
+- load or compute frozen U_cycle
+- build sparse relation semantics
+- run alternating trainer
+- evaluate
+- write results
+
+Scientific logic must live in library modules and must not be duplicated in CLI
+scripts. No release package or entry point is created during R0.
+
+============================================================
+18. R7 — EQUIVALENCE VALIDATION LEVELS
+============================================================
+
+R7 must bind and pass Levels 0-8:
+
+LEVEL 0 — Tensor Contract Parity
+Verify shape, dtype, sample IDs, view order, K, action dimensions, and other
+dataset-derived boundaries.
+
+LEVEL 1 — Utility Exact Parity
+For frozen Caltech, require new U_cycle to equal the frozen logical
+representation and exact logical hash.
+
+LEVEL 2 — Semantic Target Exact Parity
+Require PredRelation_true bitwise exact and relation_balance_weights_true exact
+with matching logical hash.
+
+LEVEL 3 — Semantic Loss / Gradient Parity
+Using the same model state and batch, compare loss, per-view reductions,
+denominator, query gradients, missing anchor gradient, and detached U/target/
+balance. Floating comparison may use only a tolerance frozen before mismatch.
+
+LEVEL 4 — Single Optimizer-Step Parity
+With identical initial model, optimizer state, batch, and seed, separately prove
+one semantic-action update and one native-consolidation update produce
+equivalent parameters.
+
+LEVEL 5 — Single-Epoch Schedule Parity
+Use identical epoch order, Phase A, refresh behavior, and Phase B; require model-
+state parity.
+
+LEVEL 6 — 20-Epoch Seed20 Exact Replay
+Require final sample IDs exact, final predictions exact, and final model
+aggregate hash exact.
+
+LEVEL 7 — Multi-Seed Exact Replay
+For seeds 20, 30, and 50 require final predictions exact and final model hashes
+exact. Only after sealed prediction may GT be loaded; ACC, NMI, and ARI must then
+be exact.
+
+LEVEL 8 — Closed-Loop Dynamics Parity
+If the dynamics audit is retained, compare D_A, D_B, G_U, and D_U_UNI against
+frozen F0-A1 evidence. Ordinary release training does not need to store 41
+trajectory snapshots.
+
+============================================================
+19. EXACTNESS AND TOLERANCE CONTRACT
+============================================================
+
+The following must remain exact where deterministic:
+
+- sample IDs
+- labeled IDs
+- unlabeled IDs
+- view order
+- weak-quality corruption realization
+- action identities
+- action order
+- integer mappings
+- boolean masks
+- PredRelation_true
+- batch order
+- refresh schedule
+- final predictions
+- frozen protocol hashes
+
+For Caltech, U_cycle must preserve its frozen logical hash.
+
+Floating loss or gradient intermediates may use a numerical tolerance only if
+bitwise identity is not expected. Every tolerance value must be explicitly
+written and frozen before R1 and before observing a mismatch. A tolerance may
+not be selected or relaxed after seeing a mismatch. R0 invents no tolerance.
+
+============================================================
+20. FAIL-CLOSED EXTRACTION RULE
+============================================================
+
+Every future extraction stage is fail-closed.
+
+If parity fails:
+
+STOP.
+
+Do not tune, relax tolerance, continue extraction, change the scientific
+definition, or call approximate metrics exact.
+
+Every failure must be classified as exactly one of:
+
+- ENGINEERING_EXTRACTION_BUG
+- NUMERICAL_IMPLEMENTATION_DIFFERENCE
+- SCIENTIFIC_BEHAVIOR_CHANGE
+
+A scientific behavior change is not authorized inside release extraction.
+
+============================================================
+21. CROSS-DATASET REFERENCE CONTRACT
+============================================================
+
+Caltech-6V remains the frozen exact gold reference.
+
+Before physical extraction, MSRC-v1 and BDGP must generate their own research-
+implementation Generic Contract reference artifacts.
+
+Cross-dataset comparison must not use ACC alone. Where applicable compare:
+
+- sample IDs
+- action-space definition and order
+- U_cycle
+- relation targets
+- relation balance weights
+- training schedule
+- final predictions
+
+Where deterministic, require exact equality.
+
+============================================================
+22. STORAGE / ARTIFACT POLICY
+============================================================
+
+Do not duplicate large data, models, checkpoints, outputs, or logs into a future
+release branch or worktree.
+
+The clean release repository should primarily contain:
+
+- source
+- configs
+- tests
+- scripts
+- small provenance/reference metadata
+
+Large experiment artifacts remain externally stored or referenced. The
+research archive remains responsible for complete historical evidence.
+
+============================================================
+23. REQUIRED FUTURE STAGE FREEZES
+============================================================
+
+Every future extraction stage must create a new, non-overwriting freeze:
+
+- r1_backbone_data_parity_*
+- r2_cyclic_utility_parity_*
+- r3_sparse_relation_parity_*
+- r4_relation_action_parity_*
+- r5_alternating_trainer_parity_*
+- r6_clean_entrypoint_parity_*
+- r7_multiseed_release_equivalence_*
+
+Each freeze must bind:
+
+- source hashes
+- test hashes
+- reference-artifact hashes
+- parity result
+- git commit
+- parent freeze
+- status
+
+No stage may overwrite an earlier freeze.
+
+============================================================
+24. CLEAN-RELEASE SUCCESS CONDITION
+============================================================
+
+The clean release may become canonical only when all of the following pass:
+
+- Caltech exact frozen replay
+- U_cycle parity
+- relation-target parity
+- gradient-semantics parity
+- alternating-schedule parity
+- seed20 final model and prediction parity
+- seed30 final model and prediction parity
+- seed50 final model and prediction parity
+- GT isolation
+- cross-dataset genericity
+
+Only after R7 PASS may a method-specific release repository or package be
+treated as scientifically equivalent to the frozen research implementation.
+
+============================================================
+25. METHOD / REPOSITORY RENAME RULE
+============================================================
+
+Nothing is renamed during R0.
+
+CVPR24-MVCAN remains the research archive identity. A future clean release may
+receive a method-specific name such as UCRR-MVC only after R7 equivalence PASS.
+
+Scientific method name, Python package name, local directory name, and GitHub
+repository name are separate naming decisions.
+
+============================================================
+26. R0 COMPLETION AND NEXT STAGE
+============================================================
+
+R0 is complete only when this protocol, its status, parent/report manifests,
+git provenance, and metadata manifest are created once and all manifests pass.
+
+After verified R0 materialization:
+
+STOP.
+
+Do not start Generic Contract implementation, MSRC-v1 or BDGP execution,
+action-space implementation, dataset parameterization, source modification, or
+physical release extraction.
+
+Next stage:
+Generic Scientific Contract preregistration and validation
+
