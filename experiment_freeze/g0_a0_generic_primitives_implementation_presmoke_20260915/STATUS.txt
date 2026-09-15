@@ -1,0 +1,73 @@
+G0-A0 GENERIC PRIMITIVE IMPLEMENTATION
+
+Parent G0-P0:
+PREREGISTERED / FROZEN
+
+Parent tag:
+g0-p0-generic-scientific-contract-preregistered-20260915
+
+Parent commit:
+07de78470ab3e8d8205d3c1ba464e5223dbcdf8b
+
+Generic dataset contract:
+IMPLEMENTED
+
+Generic action space:
+IMPLEMENTED
+
+Generic half-corruption mask:
+IMPLEMENTED
+
+Odd-V 50-percent corruption:
+IMPLEMENTED
+
+Generic Gaussian weak quality:
+IMPLEMENTED
+
+Deterministic sparse label contract:
+IMPLEMENTED
+
+Caltech frozen sparse split:
+PRESERVED
+
+Caltech action array identity/order:
+PASS
+
+Caltech historical logical-SHA serializer:
+RECOVERED AS irv.b4_information_utility.tensor_sha256
+
+Caltech action logical SHA:
+PASS
+
+Historical scientific source modification:
+NONE
+
+Real dataset parsing:
+NOT RUN
+
+Full GT:
+NOT LOADED
+
+Training:
+NOT RUN
+
+Optimizer/backward:
+NOT RUN
+
+Caltech full replay:
+NOT RUN
+
+MSRC-v1 pilot:
+NOT RUN
+
+BDGP pilot:
+NOT RUN
+
+Performance metrics:
+NOT RUN
+
+G0-A1:
+NOT STARTED
+
+Physical release extraction:
+NOT AUTHORIZED

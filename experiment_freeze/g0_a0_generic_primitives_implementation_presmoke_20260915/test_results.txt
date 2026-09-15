@@ -1,0 +1,18 @@
+NEW_G0_COMMAND=PYTHONPATH=. pytest -q tests/test_g0_dataset_contract.py tests/test_g0_action_space.py tests/test_g0_weak_quality.py tests/test_g0_sparse_label_contract.py tests/test_g0_caltech_backward_compatibility.py
+NEW_G0_RESULT=55 passed in 1.98s
+NEW_G0_FAILED=0
+NEW_G0_SKIPPED=0
+NEW_G0_XFAILED=0
+
+LEGACY_COMMAND=PYTHONPATH=. pytest -q tests/test_weak_quality_corruption.py tests/test_c0_complementary_semantic_verification.py
+LEGACY_RESULT=123 passed in 2.62s
+LEGACY_FAILED=0
+LEGACY_SKIPPED=0
+LEGACY_XFAILED=0
+LEGACY_REGRESSIONS_EXECUTED=tests/test_weak_quality_corruption.py,tests/test_c0_complementary_semantic_verification.py
+
+REAL_DATA_LOADED=NO
+FULL_GT_LOADED=NO
+TRAINING_RUN=NO
+OPTIMIZER_RUN=NO
+BACKWARD_RUN=NO
