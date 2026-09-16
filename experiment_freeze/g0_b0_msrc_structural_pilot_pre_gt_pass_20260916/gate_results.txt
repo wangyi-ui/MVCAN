@@ -1,0 +1,24 @@
+Gate0 Frozen parent integrity PASS
+Gate1 Dataset-contract correctness PASS
+Gate2 Action-space identity/order correctness PASS
+Gate3 Weak-quality corruption-contract correctness PASS
+Gate4 Sparse-label contract correctness PASS
+Gate5 Caltech exact backward compatibility PASS
+Gate6-A MSRC dataset contract exact PASS
+Gate6-B Odd-view action space PASS
+Gate6-C Weak quality PASS
+Gate6-D Sparse labels PASS
+Gate6-E Native backbone structural completion PASS
+Gate6-F Coordinate/alignment contract PASS
+Gate6-G Directional utility PASS
+Gate6-H Relation semantics PASS
+Gate6-I Gradient semantics PASS
+Gate6-J Phase A complete PASS
+Gate6-K Phase B complete PASS
+Gate6-L Alternating order PASS
+Gate6-M Final predictions PASS
+Gate6-N Pre-GT isolation PASS
+Gate6-O Forbidden routes all false PASS
+Gate6 MSRC structural generality PASS
+Gate7 BDGP NOT RUN
+G0 overall NOT COMPLETE

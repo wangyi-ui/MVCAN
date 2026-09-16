@@ -1,0 +1,13 @@
+COMMAND=PYTHONPATH=. python -m experiments.generic_contract.materialize_g0_b0_msrc_inputs --dataset MSRC-v1 --label-seed 20 --labels-per-class 2 --corruption-seed 20 --snr-db 2.5 --output-dir outputs/generic_contract/g0_b0_msrc_inputs_seed20_20260916
+execution_count=1
+exit_code=0
+start_timestamp_utc=2026-09-16T15:37:45Z
+end_timestamp_utc=2026-09-16T15:37:57Z
+runtime_seconds=12
+retry_count=0
+dataset_file_sha256=38d89aa41ae984f0b026f4baa8b5dcb7c569c471e2fb42b73a0f6743398e9103
+view_dims=[24,576,512,256,254]
+split_sha256=4f16e8b1b8213591a7ea1d36115335ccee43bf568d32bbcb007f929bc9b15231
+labeled_ids=[17,20,30,42,60,81,96,107,139,142,153,175,182,201]
+labeled_targets=[0,0,1,1,2,2,3,3,4,4,5,5,6,6]
+FULL_GT_PERSISTED=NO

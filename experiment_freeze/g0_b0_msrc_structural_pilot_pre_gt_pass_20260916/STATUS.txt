@@ -1,0 +1,103 @@
+G0-B0 MSRC-v1 STRUCTURAL PILOT
+
+Parent G0-A1:
+PASS / CLOSED
+
+Parent commit:
+10f6dc46c8da6eab587d5a8224dafcfe88cb3415
+
+Dataset:
+MSRC-v1
+
+Dataset SHA:
+38d89aa41ae984f0b026f4baa8b5dcb7c569c471e2fb42b73a0f6743398e9103
+
+Training seed:
+20
+
+Weak-quality seed:
+20
+
+SNR:
+2.5 dB
+
+N:
+210
+
+V:
+5
+
+K:
+7
+
+L:
+14
+
+N_u:
+196
+
+S:
+20
+
+Odd-view corruption:
+PASS
+
+525 / 1050 pairs:
+PASS
+
+105 rows x2:
+PASS
+
+105 rows x3:
+PASS
+
+Sparse split:
+2 real labels/class / PASS
+
+U_cycle:
+[210,20] / PASS
+
+PredRelation:
+[196,14,20] / PASS
+
+relation_balance_weights:
+[196,14,20] / PASS
+
+Phase A:
+20 / 20 COMPLETE
+
+Phase B:
+20 / 20 COMPLETE
+
+Phase order:
+A -> B / PASS
+
+Gradient semantics:
+PASS
+
+Pre-GT isolation:
+PASS
+
+Final predictions:
+[210] / PASS
+
+ACC/NMI/ARI/BACC:
+NOT RUN / NON-GATING
+
+Hyperparameter tuning:
+NOT RUN
+
+Gate6 MSRC structural generality:
+PASS
+
+Global Gate0-Gate6:
+PASS
+
+Gate7 BDGP:
+NOT RUN
+
+G0 overall:
+NOT COMPLETE
+
+Next stage:
+G0-B1 BDGP structural pilot after review

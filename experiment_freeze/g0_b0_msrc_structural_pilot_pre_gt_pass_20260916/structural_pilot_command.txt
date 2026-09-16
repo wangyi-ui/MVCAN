@@ -1,0 +1,12 @@
+COMMAND=PYTHONPATH=. python -m experiments.generic_contract.run_g0_b0_msrc_structural_pilot --input-dir outputs/generic_contract/g0_b0_msrc_inputs_seed20_20260916 --training-seed 20 --device cuda:0 --output-dir outputs/generic_contract/g0_b0_msrc_structural_pilot_seed20_20260916
+execution_count=1
+exit_code=0
+start_timestamp_utc=2026-09-16T15:38:35Z
+end_timestamp_utc=2026-09-16T15:39:52Z
+runtime_seconds=77
+retry_count=0
+python_version=3.8.20
+torch_version=2.0.1+cu118
+cuda_runtime_version=11.8
+device=cuda:0
+cuda_device_name=NVIDIA GeForce RTX 4090 D
