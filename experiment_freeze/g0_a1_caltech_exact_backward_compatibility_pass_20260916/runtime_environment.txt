@@ -1,0 +1,9 @@
+python_version=3.8.20
+torch_version=2.0.1+cu118
+cuda_runtime_version=11.8
+torch_cuda_available=True
+torch_cuda_device_count=1
+device=cuda:0
+cuda_device_name=NVIDIA GeForce RTX 4090 D
+historical_explicit_cuda_device_identity=NOT_RECORDED
+RUNTIME_DEVICE_MISMATCH=NO

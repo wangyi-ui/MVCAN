@@ -1,0 +1,3 @@
+COMMAND=git status --short --untracked-files=all
+OUTPUT=(empty)
+WORKTREE=CLEAN

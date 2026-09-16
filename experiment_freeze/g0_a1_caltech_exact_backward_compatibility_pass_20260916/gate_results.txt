@@ -1,0 +1,21 @@
+Gate0 PASS
+Gate1 PASS
+Gate2 PASS
+Gate3 PASS
+Gate4 PASS
+Gate5 PASS
+Gate6A pre-GT seal PASS
+Gate6B GT isolation PASS
+Gate6C sample IDs PASS
+Gate6D labeled IDs PASS
+Gate6E final predictions PASS
+Gate6F prediction logical hash PASS
+Gate6G final model aggregate PASS
+Gate6H six per-view model hashes PASS
+Gate6I q_local PASS
+Gate6J q_aligned PASS
+Gate6K M_v PASS
+Gate6L frozen input lineage PASS
+Gate6M forbidden paths PASS
+Gate6 PASS
+G0-A1 PASS

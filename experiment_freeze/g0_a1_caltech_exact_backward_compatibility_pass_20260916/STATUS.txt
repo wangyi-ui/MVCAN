@@ -1,0 +1,88 @@
+G0-A1 CALTECH EXACT BACKWARD COMPATIBILITY
+
+Dataset:
+Caltech-6V
+
+Training seed:
+20
+
+Weak-quality condition:
+SNR 2.5 dB / exactly 3 of 6 views / weak-quality seed20
+
+Sparse supervision:
+2 real labels per class / 14 total
+
+Parent G0-A1-A0:
+PASS / FROZEN
+
+Parent commit:
+9ff051d1721e8b78b3f91cb77a5adc3b2c9b5b2b
+
+Gate0 Parent Integrity:
+PASS
+
+Gate1 Dataset Contract:
+PASS
+
+Gate2 Action Space:
+PASS
+
+Gate3 Weak Quality:
+PASS
+
+Gate4 Sparse Labels:
+PASS
+
+Gate5 U / Relation Semantics:
+PASS
+
+Gate6 Exact Runtime Replay:
+PASS
+
+Final predictions:
+EXACT
+
+Final prediction logical SHA:
+b3a40a90c5069a2fe6926b48efe406dc51c670b204ccc1bd53c4d322e830d504
+
+Final model hash:
+EXACT
+
+Final model aggregate:
+7a69d078e9573452cd9a1e98a9d72bbe618bf547dc0ba2bbdae3423bd053e747
+
+q_local:
+EXACT
+
+q_aligned:
+EXACT
+
+M_v:
+EXACT
+
+G0-A1 overall:
+PASS / CLOSED
+
+Scientific core:
+UNCHANGED
+
+Full GT:
+NOT LOADED
+
+ACC/NMI/ARI/BACC:
+NOT RUN
+
+Hyperparameter tuning:
+NOT RUN
+
+MSRC-v1:
+NOT RUN
+
+BDGP:
+NOT RUN
+
+Next authorized stage:
+G0-B0 MSRC-v1 Structural Pilot
+
+Physical release extraction:
+NOT AUTHORIZED

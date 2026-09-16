@@ -1,0 +1,7 @@
+PYTHONPATH=. python -m experiments.final_core.train_final_core --seed 20 --device cuda:0 --output-dir outputs/generic_contract/g0_a1_a1_caltech_exact_replay_seed20_20260916
+execution_count=1
+exit_code=0
+start_timestamp_utc=2026-09-16T15:00:41Z
+end_timestamp_utc=2026-09-16T15:01:30Z
+runtime_seconds=49
+retry_count=0
