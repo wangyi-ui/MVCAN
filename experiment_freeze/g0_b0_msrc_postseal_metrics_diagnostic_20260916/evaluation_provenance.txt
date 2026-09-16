@@ -1,0 +1,28 @@
+Parent commit: 2bfacc6988eaae5a78db2dc9b49da03c22a30482
+Parent tag: g0-b0-msrc-structural-pilot-pre-gt-pass-20260916
+Dataset file SHA256: 38d89aa41ae984f0b026f4baa8b5dcb7c569c471e2fb42b73a0f6743398e9103
+Pre-GT artifact SHA256: b04f107f6279839d534e55500fbb0f9aba94d7686944ab20f255337a511af234
+Pre-GT audit SHA256: 7674a6d46f5092e20a9be8f166cb6d28c29f10422176f79aad259b20ce291b1e
+Pre-GT seal SHA256: c2fd8b35ffe0a065dbc8df69b7488fd75d88d39c2d3a100e665cc014729fa50e
+Prediction ndarray logical SHA256: d5679cff6f7e6faa6a269dd4deeb020e64e331511ed9cb6632be18459d48251d
+Prediction tensor logical SHA256: 2fda08173f5ae2254bc397666c9717976a3cb27cfa770195ae800eae1e6a3e83
+Normalized GT ndarray logical SHA256: 8554dfac633d1ad01344bc32d1361551f44e7f500a1d7945606ee115cf17fb84
+Prediction shape: [210]
+Normalized GT shape: [210]
+Normalized GT classes: 0..6
+Pre-GT seal valid: true
+GT access order: pre-GT file hashes -> seal validation -> isolation -> sample IDs -> prediction hashes -> dataset hash -> GT load
+GT loaded only after pre-GT seal verification: true
+Evaluation execution count: 1
+Prediction regeneration: false
+Model executed: false
+Training run: false
+Optimizer run: false
+Backward run: false
+KMeans run: false
+U recomputed: false
+Relation recomputed: false
+Sparse split recomputed: false
+Corruption recomputed: false
+Hyperparameter tuning authorized: false
+Scientific definition change authorized: false

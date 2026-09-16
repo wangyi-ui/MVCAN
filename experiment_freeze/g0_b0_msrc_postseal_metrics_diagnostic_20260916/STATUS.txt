@@ -1,0 +1,64 @@
+G0-B0-E0 MSRC-v1 POST-SEAL METRIC EVALUATION
+
+Parent G0-B0:
+PASS / PRE-GT FROZEN
+
+Parent commit:
+2bfacc6988eaae5a78db2dc9b49da03c22a30482
+
+Dataset:
+MSRC-v1
+
+Training seed:
+20
+
+Prediction source:
+FROZEN PRE-GT ARTIFACT
+
+Prediction regeneration:
+NO
+
+Model execution:
+NO
+
+Training:
+NO
+
+Full GT loaded:
+YES — POST-SEAL METRICS ONLY
+
+ACC:
+0.7380952380952381
+
+NMI:
+0.6055785047695859
+
+ARI:
+0.5201585674904867
+
+Metrics:
+DIAGNOSTIC / NON-GATING
+
+Gate6 before evaluation:
+PASS
+
+Gate6 after evaluation:
+PASS
+
+G0-B0 structural decision:
+UNCHANGED
+
+Hyperparameter tuning:
+NOT AUTHORIZED / NOT RUN
+
+Scientific definition change:
+NONE
+
+BDGP:
+NOT RUN
+
+G0 overall:
+NOT COMPLETE
+
+Next structural stage:
+G0-B1 BDGP after review
