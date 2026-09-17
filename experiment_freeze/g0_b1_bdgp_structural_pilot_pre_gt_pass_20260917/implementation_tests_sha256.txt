@@ -1,0 +1,1 @@
+e578f3eb846c9d09bff36f568021fc36892273311eebc59b6ace8c1e86c9d289  tests/test_g0_b1_bdgp_structural_pilot.py

@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -24,7 +25,6 @@ from .generic_relation_action import (
 )
 
 
-FEATURE_FIELDS = ("X1", "X2", "X3", "X4", "X5", "sample_ids")
 SPLIT_FIELDS = ("labeled_ids", "labeled_targets", "unlabeled_ids")
 PRE_GT_FIELDS = (
     "sample_ids",
@@ -57,6 +57,146 @@ FORBIDDEN_PATHS = (
     "new_U_temperature_used",
     "new_relation_coefficient_used",
 )
+
+
+@dataclass(frozen=True)
+class RuntimeSpec:
+    """Dataset/runtime boundaries; scientific formulas are intentionally absent."""
+
+    dataset_name: str
+    dataset_file_name: str
+    feature_fields: tuple
+    N: int
+    V: int
+    K: int
+    view_dims: tuple
+    labels_per_class: int
+    L: int
+    N_u: int
+    S: int
+    config_name: str
+    native_config_seed: int
+    training_seed: int
+    autoencoder_arch: tuple
+    autoencoder_channal: tuple
+    autoencoder_activations: str
+    autoencoder_batchnorm: bool
+    autoencoder_FCN: bool
+    native_batch_size: int
+    native_init_epoch: int
+    native_T_1: int
+    native_T_2: int
+    native_epoch: int
+    native_lr: float
+    native_lambda1: float
+    feature_artifact_name: str
+    split_artifact_name: str
+    split_seal_name: str
+    output_artifact_name: str
+    output_audit_name: str
+    output_seal_name: str
+    stage_name: str
+    gate_field: str
+
+    @property
+    def expected_config(self):
+        return {
+            "Autoencoder": {
+                "arch": list(self.autoencoder_arch),
+                "channal": list(self.autoencoder_channal),
+                "activations": self.autoencoder_activations,
+                "batchnorm": self.autoencoder_batchnorm,
+                "FCN": self.autoencoder_FCN,
+            },
+            "training": {
+                "seed": self.native_config_seed,
+                "batch_size": self.native_batch_size,
+                "init_epoch": self.native_init_epoch,
+                "T_1": self.native_T_1,
+                "T_2": self.native_T_2,
+                "epoch": self.native_epoch,
+                "lr": self.native_lr,
+                "lambda1": self.native_lambda1,
+            },
+        }
+
+
+MSRC_RUNTIME_SPEC = RuntimeSpec(
+    dataset_name="MSRC-v1",
+    dataset_file_name="data/MSRC_v1.mat",
+    feature_fields=("X1", "X2", "X3", "X4", "X5", "sample_ids"),
+    N=210,
+    V=5,
+    K=7,
+    view_dims=(24, 576, 512, 256, 254),
+    labels_per_class=2,
+    L=14,
+    N_u=196,
+    S=20,
+    config_name="MSRC-v1",
+    native_config_seed=20,
+    training_seed=20,
+    autoencoder_arch=(10,),
+    autoencoder_channal=(1,),
+    autoencoder_activations="relu",
+    autoencoder_batchnorm=False,
+    autoencoder_FCN=True,
+    native_batch_size=256,
+    native_init_epoch=200,
+    native_T_1=2,
+    native_T_2=100,
+    native_epoch=1000,
+    native_lr=0.0001,
+    native_lambda1=0.01,
+    feature_artifact_name="msrc_trainable_features.npz",
+    split_artifact_name="msrc_sparse_split.npz",
+    split_seal_name="msrc_sparse_split_seal.json",
+    output_artifact_name="msrc_structural_pre_gt_artifact.npz",
+    output_audit_name="msrc_structural_pre_gt_audit.json",
+    output_seal_name="msrc_structural_pre_gt_seal.json",
+    stage_name="G0-B0",
+    gate_field="Gate6_A_through_O_pass",
+)
+
+BDGP_RUNTIME_SPEC = RuntimeSpec(
+    dataset_name="BDGP",
+    dataset_file_name="data/BDGP2V_N.mat",
+    feature_fields=("X1", "X2", "sample_ids"),
+    N=2500,
+    V=2,
+    K=5,
+    view_dims=(1750, 79),
+    labels_per_class=2,
+    L=10,
+    N_u=2490,
+    S=2,
+    config_name="BDGP",
+    native_config_seed=1,
+    training_seed=20,
+    autoencoder_arch=(10,),
+    autoencoder_channal=(1,),
+    autoencoder_activations="relu",
+    autoencoder_batchnorm=False,
+    autoencoder_FCN=True,
+    native_batch_size=256,
+    native_init_epoch=200,
+    native_T_1=2,
+    native_T_2=100,
+    native_epoch=1000,
+    native_lr=0.0001,
+    native_lambda1=10,
+    feature_artifact_name="bdgp_trainable_features.npz",
+    split_artifact_name="bdgp_sparse_split.npz",
+    split_seal_name="bdgp_sparse_split_seal.json",
+    output_artifact_name="bdgp_structural_pre_gt_artifact.npz",
+    output_audit_name="bdgp_structural_pre_gt_audit.json",
+    output_seal_name="bdgp_structural_pre_gt_seal.json",
+    stage_name="G0-B1",
+    gate_field="Gate7_A_through_O_pass",
+)
+
+# Historical public alias retained for the frozen MSRC tests and callers.
+FEATURE_FIELDS = MSRC_RUNTIME_SPEC.feature_fields
 
 
 def _require(condition, message):
@@ -107,13 +247,14 @@ def _set_seed(seed):
     torch.use_deterministic_algorithms(True)
 
 
-def validate_materialized_inputs(input_dir):
+def validate_materialized_inputs(input_dir, runtime_spec=MSRC_RUNTIME_SPEC):
     """Load only sealed feature/sparse artifacts; no dataset or GT loader exists."""
+    spec = runtime_spec
     root = Path(input_dir)
     paths = {
-        "features": root / "msrc_trainable_features.npz",
-        "split": root / "msrc_sparse_split.npz",
-        "split_seal": root / "msrc_sparse_split_seal.json",
+        "features": root / spec.feature_artifact_name,
+        "split": root / spec.split_artifact_name,
+        "split_seal": root / spec.split_seal_name,
         "mask": root / "audit/corruption_mask.npy",
         "weak_audit": root / "audit/corruption_audit.json",
         "audit": root / "materialization_audit.json",
@@ -123,8 +264,8 @@ def validate_materialized_inputs(input_dir):
     seal = _read_json(paths["seal"])
     _require(
         seal.get("materialization_seal_valid") is True
-        and seal.get("dataset") == "MSRC-v1"
-        and seal.get("feature_fields") == list(FEATURE_FIELDS)
+        and seal.get("dataset") == spec.dataset_name
+        and seal.get("feature_fields") == list(spec.feature_fields)
         and seal.get("split_fields") == list(SPLIT_FIELDS)
         and seal.get("full_GT_persisted") is False
         and seal.get("full_GT_available_to_training_runner") is False
@@ -137,10 +278,13 @@ def validate_materialized_inputs(input_dir):
         "materialization seal mismatch",
     )
     with np.load(paths["features"], allow_pickle=False) as archive:
-        _require(tuple(archive.files) == FEATURE_FIELDS, "feature whitelist mismatch")
+        _require(
+            tuple(archive.files) == spec.feature_fields,
+            "feature whitelist mismatch",
+        )
         views = [
-            np.array(archive["X" + str(index + 1)], copy=True, order="C")
-            for index in range(5)
+            np.array(archive[name], copy=True, order="C")
+            for name in spec.feature_fields[:-1]
         ]
         sample_ids = np.array(archive["sample_ids"], copy=True, order="C")
     with np.load(paths["split"], allow_pickle=False) as archive:
@@ -157,21 +301,27 @@ def validate_materialized_inputs(input_dir):
         "sparse split seal mismatch",
     )
     contract = infer_dataset_contract(
-        views, dataset_name="MSRC-v1", K=7, labels_per_class=2
+        views,
+        dataset_name=spec.dataset_name,
+        K=spec.K,
+        labels_per_class=spec.labels_per_class,
     )
     _require(
         (contract.N, contract.V, contract.K, contract.L, contract.N_u, contract.S)
-        == (210, 5, 7, 14, 196, 20)
+        == (spec.N, spec.V, spec.K, spec.L, spec.N_u, spec.S)
+        and contract.view_dims == spec.view_dims
         and np.array_equal(sample_ids, np.arange(contract.N, dtype=np.int64))
-        and split["labeled_ids"].shape == split["labeled_targets"].shape == (14,)
-        and split["unlabeled_ids"].shape == (196,)
+        and split["labeled_ids"].shape
+        == split["labeled_targets"].shape
+        == (contract.L,)
+        and split["unlabeled_ids"].shape == (contract.N_u,)
         and np.array_equal(
             np.sort(np.concatenate((split["labeled_ids"], split["unlabeled_ids"]))),
             sample_ids,
         )
         and np.array_equal(
             np.bincount(split["labeled_targets"], minlength=contract.K),
-            np.full(contract.K, 2, dtype=np.int64),
+            np.full(contract.K, contract.labels_per_class, dtype=np.int64),
         ),
         "materialized runtime contract mismatch",
     )
@@ -183,6 +333,7 @@ def validate_materialized_inputs(input_dir):
         "materialization_audit": _read_json(paths["audit"]),
         "materialization_seal": seal,
         "paths": paths,
+        "runtime_spec": spec,
     }
 
 
@@ -297,14 +448,15 @@ def coordinate_snapshot(model, full_views, matches):
     return q_local, q_aligned
 
 
-def prepare_native_backbone(views, contract, device, training_seed):
-    config = get_default_config("MSRC-v1")
-    expected_training = {
-        "seed": 20, "batch_size": 256, "init_epoch": 200,
-        "T_1": 2, "T_2": 100, "epoch": 1000,
-        "lr": 0.0001, "lambda1": 0.01,
-    }
-    _require(config["training"] == expected_training, "MSRC native config mismatch")
+def prepare_native_backbone(
+    views, contract, device, training_seed, runtime_spec=MSRC_RUNTIME_SPEC
+):
+    spec = runtime_spec
+    config = get_default_config(spec.config_name)
+    _require(
+        config == spec.expected_config,
+        spec.dataset_name + " native config mismatch",
+    )
     _set_seed(training_seed)
     model = MvCAN(
         config,
@@ -375,6 +527,9 @@ def prepare_native_backbone(views, contract, device, training_seed):
     native_gradient_pass = True
     native_loss_finite = True
     native_iterations = config["training"]["epoch"] + 1
+    expected_refresh_count = (
+        config["training"]["epoch"] // config["training"]["T_2"] + 1
+    )
     for epoch in range(native_iterations):
         if epoch % config["training"]["T_2"] == 0:
             p_all, matches, _, view_weights = native_refresh(
@@ -419,7 +574,7 @@ def prepare_native_backbone(views, contract, device, training_seed):
         and native_gradient_pass
         and native_loss_finite
         and model_finite
-        and refresh_count == 11,
+        and refresh_count == expected_refresh_count,
         "native backbone structural completion failed",
     )
     return {
@@ -430,12 +585,23 @@ def prepare_native_backbone(views, contract, device, training_seed):
         "M_v": matches.detach(),
         "audit": {
             "configuration": config,
-            "initialization_epochs_completed": 200,
-            "cluster_center_initialization": "KMeans(n_clusters=7,n_init=100,random_state=20)",
+            "dataset": spec.dataset_name,
+            "native_config_seed": spec.native_config_seed,
+            "training_seed": int(training_seed),
+            "native_lambda1": config["training"]["lambda1"],
+            "initialization_epochs_completed": config["training"]["init_epoch"],
+            "cluster_center_initialization": (
+                "KMeans(n_clusters="
+                + str(contract.K)
+                + ",n_init=100,random_state="
+                + str(int(training_seed))
+                + ")"
+            ),
             "cluster_centers_finite": True,
-            "native_config_epoch": 1000,
+            "native_config_epoch": config["training"]["epoch"],
             "native_loop_iterations_completed": native_iterations,
             "native_refresh_count": refresh_count,
+            "native_refresh_count_expected": expected_refresh_count,
             "label_free_training": True,
             "model_finite": bool(model_finite),
             "native_loss_finite": bool(native_loss_finite),
@@ -483,14 +649,19 @@ def run_final_core(
 ):
     model = native["model"]
     full_views = native["full_views"]
+    native_training = native["audit"]["configuration"]["training"]
+    native_learning_rate = native_training["lr"]
+    native_lambda1 = native_training["lambda1"]
+    native_refresh_interval = native_training["T_2"]
+    batch_size = native_training["batch_size"]
     N = int(full_views[0].shape[0])
     V = len(full_views)
     labeled = np.asarray(split["labeled_ids"], dtype=np.int64)
     unlabeled = np.asarray(split["unlabeled_ids"], dtype=np.int64)
     row_lookup = np.full(N, -1, dtype=np.int64)
     row_lookup[unlabeled] = np.arange(unlabeled.size, dtype=np.int64)
-    semantic_optimizers = _build_optimizers(model, 0.0001)
-    native_optimizers = _build_optimizers(model, 0.0001)
+    semantic_optimizers = _build_optimizers(model, native_learning_rate)
+    native_optimizers = _build_optimizers(model, native_learning_rate)
     semantic_orders, native_orders = _epoch_orders(N, 20, training_seed)
     view_weights = [1.0] * V
     p_all = None
@@ -499,7 +670,6 @@ def run_final_core(
     phase_a_records = []
     phase_b_records = []
     phase_sequence = []
-    batch_size = 256
     anchor_tensor = torch.as_tensor(labeled, dtype=torch.long, device=device)
 
     for epoch in range(20):
@@ -559,7 +729,7 @@ def run_final_core(
         })
         phase_sequence.append(["A", epoch + 1])
 
-        if epoch % 100 == 0:
+        if epoch % native_refresh_interval == 0:
             p_all, matches, _, view_weights = native_refresh(
                 model, full_views, view_weights, device, training_seed
             )
@@ -578,7 +748,7 @@ def run_final_core(
                 p_local = p_all[ids].detach() @ matches[view_id].detach()
                 rec = F.mse_loss(reconstruction, full_views[view_id][ids])
                 clu = F.mse_loss(q_local, p_local)
-                loss_terms.append(rec + 0.01 * clu)
+                loss_terms.append(rec + native_lambda1 * clu)
             native_loss = torch.stack(loss_terms).sum()
             _require(bool(torch.isfinite(native_loss).item()), "Phase-B loss non-finite")
             native_loss.backward()
@@ -621,6 +791,7 @@ def run_final_core(
         and np.issubdtype(predictions.dtype, np.integer),
         "final-core phase/final prediction boundary failed",
     )
+    optimizer_instances = semantic_optimizers + native_optimizers
     return {
         "q_local": q_local.detach(),
         "q_aligned": q_aligned.detach(),
@@ -629,12 +800,15 @@ def run_final_core(
         "audit": {
             "semantic_optimizer_count": len(semantic_optimizers),
             "native_optimizer_count": len(native_optimizers),
-            "separate_optimizer_instances": all(
-                semantic is not native_optimizer
-                for semantic, native_optimizer in zip(
-                    semantic_optimizers, native_optimizers
-                )
+            "separate_optimizer_instances": (
+                len({id(value) for value in optimizer_instances})
+                == len(optimizer_instances)
             ),
+            "optimizer_topology": [len(semantic_optimizers), len(native_optimizers)],
+            "learning_rate": native_learning_rate,
+            "native_lambda1": native_lambda1,
+            "phase_A_native_lambda1_used": False,
+            "phase_B_native_lambda1_used": True,
             "phase_A_completion_count": len(phase_a_records),
             "phase_B_completion_count": len(phase_b_records),
             "phase_A_records": phase_a_records,
@@ -690,16 +864,22 @@ def validate_structural_pre_gt_seal(artifact_path, audit_path, seal_path):
     return arrays, seal
 
 
-def run_structural_pilot(input_dir, output_dir, training_seed, device):
-    _require(int(training_seed) == 20, "G0-B0 training seed must be 20")
-    _require(str(device) == "cuda:0", "G0-B0 requires cuda:0")
+def run_structural_pilot(
+    input_dir, output_dir, training_seed, device, runtime_spec=MSRC_RUNTIME_SPEC
+):
+    spec = runtime_spec
+    _require(
+        int(training_seed) == spec.training_seed,
+        spec.stage_name + " training seed mismatch",
+    )
+    _require(str(device) == "cuda:0", spec.stage_name + " requires cuda:0")
     _require(torch.cuda.is_available(), "CUDA is required")
     target = Path(output_dir)
     _require(not target.exists(), "structural pilot output already exists")
-    materialized = validate_materialized_inputs(input_dir)
+    materialized = validate_materialized_inputs(input_dir, spec)
     contract = materialized["contract"]
     native = prepare_native_backbone(
-        materialized["views"], contract, device, training_seed
+        materialized["views"], contract, device, training_seed, spec
     )
 
     pre_final = coordinate_snapshot(
@@ -715,7 +895,7 @@ def run_structural_pilot(input_dir, output_dir, training_seed, device):
         split["labeled_targets"],
         split["unlabeled_ids"],
         class_count=contract.K,
-        labels_per_class=2,
+        labels_per_class=contract.labels_per_class,
     )
     PredRelation = _to_numpy(relation["PredRelation_true"], np.bool_)
     balance = _to_numpy(
@@ -750,10 +930,14 @@ def run_structural_pilot(input_dir, output_dir, training_seed, device):
     }
     _require(tuple(arrays) == PRE_GT_FIELDS, "pre-GT field order mismatch")
     forbidden = {name: False for name in FORBIDDEN_PATHS}
+    gate_subgates = {letter: True for letter in "ABCDEFGHIJKLMNO"}
     materialization_audit = materialized["materialization_audit"]
     audit = {
-        "stage": "G0-B0",
-        "dataset": "MSRC-v1",
+        "stage": spec.stage_name,
+        "dataset": spec.dataset_name,
+        "native_config_seed": spec.native_config_seed,
+        "training_seed": int(training_seed),
+        "native_lambda1": spec.native_lambda1,
         "dataset_file_sha256": materialization_audit["dataset_file_sha256"],
         "dataset_contract": materialization_audit["dataset_contract"],
         "view_dims": list(contract.view_dims),
@@ -806,20 +990,22 @@ def run_structural_pilot(input_dir, output_dir, training_seed, device):
         "BACC_RUN": False,
         "full_GT_present_in_pre_gt_artifact": False,
         "forbidden_paths": forbidden,
-        "Gate6_A_through_O_pass": True,
+        spec.gate_field.replace("_A_through_O_pass", "_subgates"): gate_subgates,
+        spec.gate_field: True,
     }
     target.mkdir(parents=True)
-    artifact_path = target / "msrc_structural_pre_gt_artifact.npz"
-    audit_path = target / "msrc_structural_pre_gt_audit.json"
-    seal_path = target / "msrc_structural_pre_gt_seal.json"
+    artifact_path = target / spec.output_artifact_name
+    audit_path = target / spec.output_audit_name
+    seal_path = target / spec.output_seal_name
     np.savez(artifact_path, **arrays)
     audit["artifact_path"] = str(artifact_path)
     audit["artifact_file_sha256"] = file_sha256(artifact_path)
     _write_json(audit_path, audit)
     seal = {
-        "stage": "G0-B0",
-        "dataset": "MSRC-v1",
-        "training_seed": 20,
+        "stage": spec.stage_name,
+        "dataset": spec.dataset_name,
+        "native_config_seed": spec.native_config_seed,
+        "training_seed": int(training_seed),
         "pre_gt_seal_valid": True,
         "artifact_path": str(artifact_path),
         "artifact_file_sha256": file_sha256(artifact_path),
@@ -837,7 +1023,8 @@ def run_structural_pilot(input_dir, output_dir, training_seed, device):
         "BACC_RUN": False,
         "full_GT_present_in_pre_gt_artifact": False,
         "forbidden_paths": forbidden,
-        "Gate6_A_through_O_pass": True,
+        spec.gate_field.replace("_A_through_O_pass", "_subgates"): gate_subgates,
+        spec.gate_field: True,
     }
     _write_json(seal_path, seal)
     validate_structural_pre_gt_seal(artifact_path, audit_path, seal_path)
@@ -846,5 +1033,5 @@ def run_structural_pilot(input_dir, output_dir, training_seed, device):
         "audit_path": str(audit_path),
         "seal_path": str(seal_path),
         "pre_gt_seal_valid": True,
-        "Gate6_A_through_O_pass": True,
+        spec.gate_field: True,
     }

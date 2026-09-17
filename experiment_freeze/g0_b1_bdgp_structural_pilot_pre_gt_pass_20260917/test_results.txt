@@ -1,0 +1,15 @@
+Required generic/MSRC/BDGP regression:
+90 passed, 1 warning in 4.73s
+Warning: unrelated PyTorch TypedStorage deprecation
+PASS
+
+Required Caltech/final-core historical regression:
+175 passed in 3.36s
+PASS
+
+BDGP tests included in required regression:
+13 passed
+PASS
+
+Training invoked by tests:
+NO

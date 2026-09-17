@@ -1,0 +1,4 @@
+ M experiments/generic_contract/generic_final_core_adapter.py
+?? experiments/generic_contract/materialize_g0_b1_bdgp_inputs.py
+?? experiments/generic_contract/run_g0_b1_bdgp_structural_pilot.py
+?? tests/test_g0_b1_bdgp_structural_pilot.py

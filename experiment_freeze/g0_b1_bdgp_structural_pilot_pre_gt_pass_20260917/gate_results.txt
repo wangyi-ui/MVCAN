@@ -1,0 +1,17 @@
+Gate7-A Dataset contract: PASS — 2500 / 2 / 5 / 10 / 2490 / 2; D=(1750,79)
+Gate7-B Action space: PASS — G/H ordered as [0]/[1], [1]/[0]
+Gate7-C Weak-quality mask: PASS — 2500/5000 pairs; every row sum=1; deterministic
+Gate7-D Sparse split: PASS — 2/class; 10 total; N_u=2490
+Gate7-E Native backbone: PASS — init 200; native loop 1001; refresh 11; finite
+Gate7-F Coordinate contract: PASS — q_local/q_aligned [2500,2,5]; M_v [2,5,5]
+Gate7-G U_cycle: PASS — [2500,2]; finite; range [0,0.9123451709747314]
+Gate7-H Relation semantics: PASS — PredRelation/balance [2490,10,2]
+Gate7-I Gradient semantics: PASS — query enabled; anchor/U/relation/balance detached
+Gate7-J Phase A: PASS — 20/20; exact unlabeled coverage; finite/non-zero gradients
+Gate7-K Phase B: PASS — 20/20; exact all-sample coverage; finite/non-zero gradients
+Gate7-L Phase order: PASS — A then B for every epoch
+Gate7-M Final predictions: PASS — [2500]; finite integer IDs
+Gate7-N Pre-GT isolation: PASS — full GT not loaded by runner; metrics not run
+Gate7-O Forbidden routes: PASS — all false
+Gate7 A-O overall: PASS
+Global Gate0-Gate7: PASS

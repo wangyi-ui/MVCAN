@@ -1,0 +1,10 @@
+Command:
+PYTHONPATH=. python -m experiments.generic_contract.materialize_g0_b1_bdgp_inputs --dataset BDGP --label-seed 20 --labels-per-class 2 --corruption-seed 20 --snr-db 2.5 --output-dir outputs/generic_contract/g0_b1_bdgp_inputs_seed20_20260917
+
+Execution count: 1
+Retry count: 0
+Start UTC: 2026-09-17T15:50:48Z
+End UTC: 2026-09-17T15:50:50Z
+Exit status: 0
+Materialization seal: PASS
+Full GT persisted: false

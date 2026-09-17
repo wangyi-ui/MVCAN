@@ -1,0 +1,14 @@
+Command:
+PYTHONPATH=. python -m experiments.generic_contract.run_g0_b1_bdgp_structural_pilot --input-dir outputs/generic_contract/g0_b1_bdgp_inputs_seed20_20260917 --training-seed 20 --device cuda:0 --output-dir outputs/generic_contract/g0_b1_bdgp_structural_pilot_seed20_20260917
+
+Execution count: 1
+Retry count: 0
+Start UTC: 2026-09-17T15:51:24Z
+End UTC: 2026-09-17T15:54:51Z
+Elapsed seconds: 207
+Exit status: 0
+Training seed: 20
+Native config seed: 1
+Native lambda1: 10
+GT loaded by runner: false
+Metrics run: false

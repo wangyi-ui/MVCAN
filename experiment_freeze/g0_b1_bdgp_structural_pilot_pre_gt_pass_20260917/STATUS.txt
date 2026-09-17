@@ -1,0 +1,91 @@
+G0-B1 BDGP STRUCTURAL PILOT
+
+Parent:
+G0-B0-E0 COMPLETE / DIAGNOSTIC FROZEN
+
+Parent commit:
+9dcfd73937240661e806dee4fdb851ec42e06ea6
+
+Dataset:
+BDGP
+
+Dataset SHA:
+998b6d22fc5142857f957496023d2c51254dfe09ac0402a520e53d69576b0a0f
+
+Training seed:
+20
+
+Native config seed:
+1
+
+Weak-quality seed:
+20
+
+SNR:
+2.5 dB
+
+N:
+2500
+
+V:
+2
+
+K:
+5
+
+L:
+10
+
+N_u:
+2490
+
+S:
+2
+
+Weak-quality:
+exactly 1/2 views per sample
+
+Sparse split:
+2 real labels/class
+
+Native lambda1:
+10
+
+U_cycle:
+[2500,2]
+
+PredRelation:
+[2490,10,2]
+
+relation_balance_weights:
+[2490,10,2]
+
+Phase A:
+20/20 COMPLETE
+
+Phase B:
+20/20 COMPLETE
+
+Phase order:
+A -> B PASS
+
+Pre-GT isolation:
+PASS
+
+Final predictions:
+[2500]
+
+ACC/NMI/ARI/BACC:
+NOT RUN / NON-GATING
+
+Hyperparameter tuning:
+NOT RUN
+
+Gate7 BDGP structural generality:
+PASS
+
+Global Gate0-Gate7:
+PASS
+
+G0 overall:
+READY FOR G0-C0 REVIEW
