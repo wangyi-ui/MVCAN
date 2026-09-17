@@ -1,0 +1,15 @@
+Generic regression suite:
+PYTHONPATH=. pytest -q tests/test_g0_dataset_contract.py tests/test_g0_action_space.py tests/test_g0_weak_quality.py tests/test_g0_sparse_label_contract.py tests/test_g0_caltech_backward_compatibility.py tests/test_g0_generic_cycle_utility.py tests/test_g0_generic_relation_action.py tests/test_g0_b0_msrc_structural_pilot.py tests/test_g0_b0_msrc_postseal_evaluation.py tests/test_g0_b1_bdgp_structural_pilot.py
+Result: 94 passed, 1 warning in 4.47s
+Warning: PyTorch TypedStorage deprecation only
+PASS
+
+Frozen final-core regression suite:
+PYTHONPATH=. pytest -q tests/test_g0_a1_caltech_exact_adapter.py tests/test_final_core_exact_replay.py tests/test_c0_complementary_semantic_verification.py
+Result: 171 passed in 3.10s
+PASS
+
+Total: 265 passed
+Full dataset training triggered: NO
+Model execution triggered: NO
+Metric evaluation triggered: NO

@@ -1,0 +1,26 @@
+CLOSED:
+scalar U recalibration
+U_tilde
+rate mechanism
+direct feature gating
+direct fusion gating
+hard shared semantic admission
+direct sparse semantic injection
+additive sparse semantic CE
+pseudo-label CE
+additive pseudo CE
+static semantic memory
+class-prototype memory
+C4 memory
+continuous U-weighted posterior aggregation
+C5-B0 pseudo-anchor expansion
+recursive semantic expansion
+new memory bank
+new pseudo-supervision branch
+new U threshold
+new U temperature
+new U exponent
+new relation coefficient
+
+All frozen forbidden-route flags: false
+Routes reopened during G0-C0: NONE

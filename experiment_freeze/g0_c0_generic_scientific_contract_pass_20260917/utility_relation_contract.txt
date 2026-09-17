@@ -1,0 +1,35 @@
+CORE SCIENTIFIC INVARIANT:
+
+Sparse real labels determine semantic direction.
+Frozen directional U_cycle determines action validity.
+
+Equivalent summary:
+labels determine WHAT;
+U_cycle determines WHETHER.
+
+U_cycle is not feature importance, pseudo-label confidence, memory-write
+confidence, posterior confidence, or a continuous aggregation weight.
+
+FROZEN CLOSED LOOP:
+Q_t
+-> relation state R_t
+-> utility-conditioned semantic action
+-> representation update
+-> updated Q_(t+1), R_(t+1)
+
+TRAINING SEMANTICS:
+Phase A: Utility-Conditioned Relation Semantic Action
+then
+Phase B: Native MVCAN Consolidation
+
+The mechanism is not an additive L_MVCAN + lambda * L_relation objective.
+No relation coefficient exists.
+
+Caltech U_cycle=[1400,20], PredRelation=[1386,14,20]
+MSRC U_cycle=[210,20], PredRelation=[196,14,20]
+BDGP U_cycle=[2500,2], PredRelation=[2490,10,2]
+
+U_cycle frozen before final core: PASS
+PredRelation frozen before final core: PASS
+relation_balance_weights frozen before final core: PASS
+Phase A before Phase B every epoch: PASS

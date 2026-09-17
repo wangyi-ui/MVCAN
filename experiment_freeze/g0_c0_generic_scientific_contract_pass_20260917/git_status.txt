@@ -1,0 +1,10 @@
+Required start-state command:
+git status --short --untracked-files=all
+
+Result before G0-C0 freeze creation:
+CLEAN
+
+Tracked scientific source modifications during G0-C0:
+NONE
+
+The G0-C0 metadata freeze directory is ignored by repository rules.

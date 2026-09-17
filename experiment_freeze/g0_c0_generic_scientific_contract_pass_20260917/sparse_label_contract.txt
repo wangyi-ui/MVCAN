@@ -1,0 +1,32 @@
+Primary weak quantity: 2 real labels per class
+
+Caltech-6V:
+L=14
+labeled_ids=[67,82,90,111,200,365,440,513,536,983,1027,1250,1316,1385]
+labeled_targets=[4,6,2,3,0,4,1,5,6,3,0,2,5,1]
+selection=frozen backward-compatible IDs
+
+MSRC-v1:
+L=14
+labeled_ids=[17,20,30,42,60,81,96,107,139,142,153,175,182,201]
+labeled_targets=[0,0,1,1,2,2,3,3,4,4,5,5,6,6]
+split SHA256=4f16e8b1b8213591a7ea1d36115335ccee43bf568d32bbcb007f929bc9b15231
+selection=SHA256-ranked deterministic split
+
+BDGP:
+L=10
+labeled_ids=[340,459,556,589,593,617,634,2012,2037,2226]
+labeled_targets=[2,4,2,3,0,0,3,4,1,1]
+split SHA256=dca812ac480c97b3e85ff9e1c4331a39ff794a6b3cfa40e0b3b84f954df68154
+selection=SHA256-ranked deterministic split
+
+Training receives only:
+labeled_ids
+labeled_targets
+unlabeled_ids
+features
+
+Dedicated materialization boundary: PASS
+Full GT enters training: NO
+Full GT present in pre-GT artifacts: NO
+Gate4: PASS

@@ -1,0 +1,14 @@
+PROPOSED METHOD mechanism:
+dataset invariant
+
+BACKBONE configuration:
+may remain dataset native
+
+MSRC-v1 native lambda1=0.01
+BDGP native lambda1=10
+
+These are native MVCAN backbone settings, not proposed-method
+hyperparameters. They do not alter the utility-conditioned relation mechanism.
+
+New proposed-method hyperparameter introduced: NO
+Hyperparameter tuning during G0-C0: NOT RUN

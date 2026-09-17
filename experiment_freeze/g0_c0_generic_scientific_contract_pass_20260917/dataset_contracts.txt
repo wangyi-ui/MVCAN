@@ -1,0 +1,47 @@
+Runtime-dimensional generic contract:
+q_local = [N,V,K]
+q_aligned = [N,V,K]
+U_cycle = [N,S(V)]
+PredRelation = [N_u,L,S(V)]
+relation_balance_weights = [N_u,L,S(V)]
+final_predictions = [N]
+
+Caltech-6V:
+N=1400
+V=6
+K=7
+L=14
+N_u=1386
+S=20
+q_local/q_aligned=[1400,6,7]
+U_cycle=[1400,20]
+PredRelation/relation_balance_weights=[1386,14,20]
+final_predictions=[1400]
+
+MSRC-v1:
+N=210
+V=5
+K=7
+L=14
+N_u=196
+S=20
+q_local/q_aligned=[210,5,7]
+U_cycle=[210,20]
+PredRelation/relation_balance_weights=[196,14,20]
+final_predictions=[210]
+
+BDGP:
+N=2500
+V=2
+K=5
+L=10
+N_u=2490
+S=2
+q_local/q_aligned=[2500,2,5]
+U_cycle=[2500,2]
+PredRelation/relation_balance_weights=[2490,10,2]
+final_predictions=[2500]
+
+Universal Caltech/MSRC constants in scientific core semantics: NONE
+Dataset-specific constants in validation/runtime adapter metadata: ALLOWED
+Gate1: PASS

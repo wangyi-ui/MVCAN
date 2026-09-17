@@ -1,0 +1,13 @@
+Gradient semantics shared across all datasets:
+
+query posterior: gradient enabled
+anchor posterior: stop-gradient
+U_cycle: detached
+PredRelation: detached
+relation_balance_weights: detached
+sparse targets: detached
+
+Caltech frozen audit: PASS
+MSRC frozen audit: PASS
+BDGP frozen audit: PASS
+Cross-dataset identity: PASS

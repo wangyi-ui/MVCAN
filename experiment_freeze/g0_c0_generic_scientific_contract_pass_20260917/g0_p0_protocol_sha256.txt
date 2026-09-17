@@ -1,0 +1,1 @@
+d050d41629a343a36f2f9fc43d8dc3c9a48dd89d7280f5dd9ac6610fd99667ee  experiment_freeze/g0_p0_generic_scientific_contract_preregistered_20260915/PROTOCOL.txt

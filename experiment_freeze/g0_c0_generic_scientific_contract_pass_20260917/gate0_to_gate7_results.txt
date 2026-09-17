@@ -1,0 +1,48 @@
+Gate0 Frozen parent integrity: PASS
+- Required P0, A0, A1, B0, B1, and B0-E0 freeze directories present.
+- 34 available SHA256 manifests pass against their intended frozen bytes.
+- 32 manifests pass directly against current immutable files and outputs.
+- The two B0-era manifests containing generic_final_core_adapter.py pass against
+  the recorded ancestor snapshot 2bfacc6988eaae5a78db2dc9b49da03c22a30482.
+- Historical adapter SHA256: f9fae7640d5c8416e47dab1b5b20b924e1afdcd756173459deb32c767c42f3d9.
+- Current B1-authorized adapter SHA256: 85a97cb72505ef7296c14442a322a6cb54c013697e51b181e0b7cf7962ffa3b6.
+- B1 implementation manifest binds the current adapter exactly.
+- All recorded historical commits are ancestors of the G0-C0 parent HEAD.
+
+Gate1 Dataset contract: PASS
+- Caltech-6V: N/V/K/L/N_u/S = 1400/6/7/14/1386/20.
+- MSRC-v1: N/V/K/L/N_u/S = 210/5/7/14/196/20.
+- BDGP: N/V/K/L/N_u/S = 2500/2/5/10/2490/2.
+- Generic scientific shapes are runtime-derived; dataset constants occur only
+  in dataset-specific validation/runtime metadata adapters.
+
+Gate2 Action space: PASS
+- S(6)=20, S(5)=20, S(2)=2.
+- Deterministic identity and order hashes match all frozen references.
+
+Gate3 Weak quality: PASS
+- SNR=2.5 dB and weak-quality seed=20 for all references.
+- Frozen artifacts only; corruption was not regenerated during G0-C0.
+- Caltech 3/6, MSRC 525/1050 with 105 rows x2 and 105 rows x3,
+  BDGP 1/2 with 2500/5000.
+
+Gate4 Sparse labels: PASS
+- Two real labels per class: Caltech L=14, MSRC L=14, BDGP L=10.
+- Training boundary contains labeled_ids, labeled_targets, unlabeled_ids,
+  and features only. Full GT is absent from pre-GT artifacts and runners.
+
+Gate5 Caltech exact backward compatibility: PASS
+- Frozen G0-A1 evidence proves exact action order, weak-quality mask, U_cycle,
+  PredRelation, balance weights, predictions, model hash, and GT isolation.
+
+Gate6 MSRC structural generality: PASS
+- Frozen U_cycle [210,20], PredRelation/balance [196,14,20].
+- Phase A 20/20; Phase B 20/20; A->B PASS; pre-GT isolation PASS.
+- Post-seal ACC/NMI/ARI diagnostic remains non-gating.
+
+Gate7 BDGP structural generality: PASS
+- Frozen U_cycle [2500,2], PredRelation/balance [2490,10,2].
+- Native lambda1=10; Phase A 20/20; Phase B 20/20; A->B PASS.
+- Pre-GT isolation PASS; no metrics were run.
+
+GLOBAL GATE0-GATE7: PASS

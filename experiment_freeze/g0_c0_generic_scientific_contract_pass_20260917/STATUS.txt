@@ -1,0 +1,73 @@
+G0-C0 GENERIC SCIENTIFIC CONTRACT
+
+Parent:
+G0-B1 BDGP STRUCTURAL PILOT PASS
+
+Parent commit:
+72c957f057c267dc04eccb8c44d52eb5045fb22c
+
+Gate0:
+PASS
+
+Gate1:
+PASS
+
+Gate2:
+PASS
+
+Gate3:
+PASS
+
+Gate4:
+PASS
+
+Gate5 Caltech:
+PASS
+
+Gate6 MSRC:
+PASS
+
+Gate7 BDGP:
+PASS
+
+GLOBAL GATE0-GATE7:
+PASS
+
+STRUCTURAL COVERAGE:
+
+Caltech-6V:
+V=6 / S=20 / exact compatibility PASS
+
+MSRC-v1:
+V=5 / S=20 / odd-view generality PASS
+
+BDGP:
+V=2 / S=2 / minimal-view generality PASS
+
+CORE INVARIANT:
+
+Sparse labels determine semantic direction.
+Frozen U_cycle determines action validity.
+
+TRAINING SEMANTICS:
+
+Phase A ->
+Phase B
+
+GT isolation:
+PASS
+
+ACC/NMI/ARI/BACC:
+NON-GATING
+
+Hyperparameter tuning:
+NOT RUN
+
+Scientific mechanism change during G0:
+NONE
+
+G0:
+PASS / CLOSED
+
+Next authorized phase:
+R1-R7 release extraction under frozen R0 protocol
