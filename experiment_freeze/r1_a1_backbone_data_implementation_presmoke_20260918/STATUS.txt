@@ -1,0 +1,83 @@
+R1-A1 BACKBONE / DATA FOUNDATION
+MINIMAL CLEAN EXTRACTION PRESMOKE
+
+Parent:
+G0-C0 GENERIC SCIENTIFIC CONTRACT PASS / CLOSED
+
+Parent commit:
+ef924bf78ce25ee163604932cc8555c8e8ac7f92
+
+Branch:
+release/frozen-core-extraction
+
+Clean namespace:
+release_core
+
+R1 synthetic tests:
+26 / 26 PASS
+
+Generic historical regression:
+94 / 94 PASS
+
+Final-core historical regression:
+171 / 171 PASS
+
+Original historical gate weakened:
+NO
+
+First temporary reference bridge:
+16 / 16 EXACT
+
+Second temporary reference closure:
+57 / 57 EXACT
+
+Production release_core archive dependency:
+NO
+
+Temporary reference infrastructure:
+YES — parity/regression only
+
+Real frozen reference access:
+YES — regression/parity only
+
+Full GT used for training:
+NO
+
+Full GT used for scientific decision:
+NO
+
+Formal metrics experiment:
+NO
+
+Training:
+NOT RUN
+
+Hyperparameter tuning:
+NOT RUN
+
+Legacy scientific source modified:
+NO
+
+Release clean source modified during repair:
+NO
+
+R2 utility logic:
+NOT EXTRACTED
+
+R3 semantic relation logic:
+NOT EXTRACTED
+
+R4 relation action:
+NOT EXTRACTED
+
+R5 alternating trainer:
+NOT EXTRACTED
+
+Scientific behavior change:
+NONE
+
+R1-A1:
+PASS / IMPLEMENTATION PRESMOKE FROZEN
+
+Next:
+R1-A2 FROZEN-REFERENCE BACKBONE/DATA PARITY REVIEW

@@ -1,0 +1,14 @@
+R1 synthetic command:
+PYTHONPATH=. pytest -q tests/release_core
+Result: 26 passed
+
+Generic historical regression:
+Result: 94 passed, 1 warning
+
+Original final-core historical regression:
+tests/test_g0_a1_caltech_exact_adapter.py
+tests/test_final_core_exact_replay.py
+tests/test_c0_complementary_semantic_verification.py
+Result: 171 collected, 171 passed, 0 failed
+
+No test assertion was changed or removed.

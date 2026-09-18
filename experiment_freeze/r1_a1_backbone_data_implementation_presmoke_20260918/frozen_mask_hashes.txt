@@ -1,0 +1,7 @@
+whole_file_sha256=d549ab7a8b4f7740b30e28d23638c86c1aaf9b1ce77fb6698f6e708fd2a59a50
+logical_ndarray_sha256=e6250535db6e33b9263102cf335fcf9e8552a24cae4b70ec5a94887f4e58bf0b
+shape=1400,6
+dtype=bool
+corrupted_pair_count=4200
+per_row_count=3
+per_view_counts=700,700,700,700,700,700

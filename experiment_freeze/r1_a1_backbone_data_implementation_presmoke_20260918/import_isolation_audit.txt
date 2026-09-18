@@ -1,0 +1,14 @@
+PYTHONPATH=. pytest -q tests/release_core/test_r1_import_isolation.py
+2 passed
+
+Static release_core scan:
+hard-coded /root/autodl-tmp/CVPR24-MVCAN: ABSENT
+imports from experiments.*: ABSENT
+imports from irv.*: ABSENT
+imports from model: ABSENT
+imports from datasets: ABSENT
+imports from configure: ABSENT
+imports from weak_quality: ABSENT
+imports from ClusteringTest: ABSENT
+
+Production release_core archive dependency: NO

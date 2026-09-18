@@ -1,0 +1,7 @@
+Archive: /root/autodl-tmp/CVPR24-MVCAN
+Branch: g0-generic-contract-20260915
+HEAD: ef924bf78ce25ee163604932cc8555c8e8ac7f92
+Initial status: clean
+Post-test git diff --check: clean
+Post-test status: clean
+Archive modified: NO

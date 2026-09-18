@@ -1,0 +1,19 @@
+Direct R1 numerical failures observed before R1-A1-R3:
+1. test_dataset_contract_and_view_dimensions_are_exact
+2. test_tensor_shape_contract_is_exact
+3. test_generic_mask_matches_frozen_mask_and_counts
+
+Historical integrity / future-stage failures observed before R1-A1-R3:
+1. test_parent_integrity_passes
+2. test_u_cycle_two_hash_namespaces_are_exact
+3. test_pred_relation_two_hash_namespaces_are_exact
+4. test_balance_weights_two_hash_namespaces_are_exact
+5. test_prediction_file_logical_hash_and_model_metadata_are_exact
+6. test_f0_pre_gt_seal_validates_read_only
+7. test_gate0_through_gate5_pass_and_gate6_is_not_run
+8. test_complete_audit_never_calls_exact_replay
+9. test_complete_audit_never_calls_gt_loaders
+10. test_real_parent_integrity_manifests_pass
+
+All 171 original tests were nevertheless retained and required to pass.
+Regression gate weakened post hoc: NO

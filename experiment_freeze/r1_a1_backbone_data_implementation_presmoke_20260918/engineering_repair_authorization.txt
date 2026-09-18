@@ -1,0 +1,16 @@
+Stage: R1-A1-R3 SECOND MINIMAL FROZEN REFERENCE BRIDGE
+Date label: 20260918
+
+Authorized repair:
+- retain the existing 16 exact temporary symlinks
+- add the audited 57-path immutable frozen-reference closure
+- preserve the original 171-test final-core historical regression gate
+- create this metadata-only presmoke freeze after all gates pass
+
+Not authorized and not performed:
+- release_core or test source modification
+- legacy scientific source modification
+- archive modification
+- historical source rollback
+- tolerance or hyperparameter changes
+- training, optimizer execution, formal metrics, commit, push, or tag
