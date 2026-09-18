@@ -1,0 +1,11 @@
+real_frozen_dataset_access=YES
+full_label_array_read=YES — loader/data-contract parity only
+labels_passed_to_backbone=NO
+labels_passed_to_weak_quality=NO
+labels_passed_to_KMeans=NO
+labels_used_for_loss=NO
+labels_used_for_model_selection=NO
+labels_used_for_scientific_metrics=NO
+labels_used_for_scientific_decision=NO
+GT_used_for_training=NO
+GT_used_for_scientific_decision=NO

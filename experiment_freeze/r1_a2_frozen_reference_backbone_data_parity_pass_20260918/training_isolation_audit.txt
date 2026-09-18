@@ -1,0 +1,16 @@
+training_run=false
+optimizer_step=false
+backward=false
+train_loop=false
+init_epoch_loop=false
+native_1000_epoch_loop=false
+Phase_A=false
+Phase_B=false
+semantic_action=false
+pseudo_label_training=false
+memory_write=false
+R2_utility_logic_executed=false
+R3_semantic_logic_executed=false
+R4_relation_action_executed=false
+R5_alternating_trainer_executed=false
+models_used_for_forward_parity_only=true

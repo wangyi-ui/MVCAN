@@ -1,0 +1,35 @@
+Purpose=deterministic numerical primitive parity, not clustering-performance evaluation
+CPU_thread_limit=1 for bitwise repeatability across independent old/new KMeans calls
+
+Caltech-6V
+KMeans_n_init=100 random_state=20 sample_count=1400 view_count=6 clusters=7
+per-view_assignment_exact=true
+global_assignment_exact=true
+view_weights_exact=true
+Match_exact=true
+new_P_exact=true
+cluster_centers_exact=true
+gt_used_by_native_refresh=false
+
+MSRC-v1
+KMeans_n_init=100 random_state=20 sample_count=210 view_count=5 clusters=7
+per-view_assignment_exact=true
+global_assignment_exact=true
+view_weights_exact=true
+Match_exact=true
+new_P_exact=true
+cluster_centers_exact=true
+gt_used_by_native_refresh=false
+
+BDGP
+KMeans_n_init=100 random_state=20 sample_count=2500 view_count=2 clusters=5
+per-view_assignment_exact=true
+global_assignment_exact=true
+view_weights_exact=true
+Match_exact=true
+new_P_exact=true
+cluster_centers_exact=true
+gt_used_by_native_refresh=false
+
+Internal NMI is view-vs-global assignment agreement only; no ground-truth labels were passed.
+Tolerance=none

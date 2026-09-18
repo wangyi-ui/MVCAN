@@ -1,0 +1,4 @@
+CALTECH-6V sample_ids=np.arange(1400,dtype=np.int64) exact_identity_order=true no_shuffle=true legacy_row_i_equal_clean_row_i=true
+MSRC-v1 sample_ids=np.arange(210,dtype=np.int64) exact_identity_order=true no_shuffle=true legacy_row_i_equal_clean_row_i=true
+BDGP sample_ids=np.arange(2500,dtype=np.int64) exact_identity_order=true no_shuffle=true legacy_row_i_equal_clean_row_i=true
+corruption_row_identity_preserved=true

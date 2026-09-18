@@ -1,0 +1,8 @@
+performance_metrics_run=false
+ACC_NMI_ARI_experiment=NO
+ClusteringTest.acc_called=false
+ClusteringTest.nmi_against_GT_called=false
+ClusteringTest.ari_against_GT_called=false
+sklearn_metric_called_with_GT=false
+internal_view_vs_global_NMI_only=true
+model_quality_judged=false

@@ -1,0 +1,36 @@
+CALTECH
+SNR=2.5
+seed=20
+V=6
+corrupt-per-row=3
+legacy_function_path=weak_quality.apply_heterogeneous_gaussian_corruption
+mask logical hash=e6250535db6e33b9263102cf335fcf9e8552a24cae4b70ec5a94887f4e58bf0b
+frozen_mask_file_sha256=d549ab7a8b4f7740b30e28d23638c86c1aaf9b1ce77fb6698f6e708fd2a59a50
+old_vs_clean_mask_equal=true
+frozen_vs_clean_mask_equal=true
+old_vs_clean_corrupted_features_equal=true
+clean_pairs_preserved=true
+
+MSRC
+SNR=2.5
+seed=20
+V=5
+row_cardinality=105x2 + 105x3
+per-view-count=105/105/105/105/105
+legacy_function_path=experiments.generic_contract.generic_weak_quality.apply_half_gaussian_corruption
+mask logical hash=d64f5fbf95518e5a77e44a1fe18a15dee9924b8c2a341e930f86f20ce5ac9e9d
+old_vs_clean_mask_equal=true
+old_vs_clean_corrupted_features_equal=true
+clean_pairs_preserved=true
+
+BDGP
+SNR=2.5
+seed=20
+V=2
+corrupt-per-row=1
+per-view-count=1250/1250
+legacy_function_path=weak_quality.apply_heterogeneous_gaussian_corruption
+mask logical hash=a3c882c29f2f5064d552e60bdc1a2d585764317e7ba78aa055cd1c3c22e5de07
+old_vs_clean_mask_equal=true
+old_vs_clean_corrupted_features_equal=true
+clean_pairs_preserved=true

@@ -1,0 +1,5 @@
+Inputs: real weak-quality tensors; p_local from exact frozen target distribution; labels_used=false.
+Caltech-6V lambda1=0.01 views=6 REC_exact=true CLU_exact=true total_loss_exact=true
+MSRC-v1 lambda1=0.01 views=5 REC_exact=true CLU_exact=true total_loss_exact=true
+BDGP lambda1=10 views=2 REC_exact=true CLU_exact=true total_loss_exact=true
+backward=false optimizer=false tolerance=none

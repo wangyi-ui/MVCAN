@@ -1,0 +1,7 @@
+Branch: release/frozen-core-extraction
+Tracked modifications: NONE
+Authorized untracked test: tests/release_core/test_r1_frozen_reference_parity.py
+Authorized untracked freeze: experiment_freeze/r1_a2_frozen_reference_backbone_data_parity_pass_20260918/
+release_core changes: NONE
+legacy-source changes: NONE
+dataset/output/checkpoint changes: NONE

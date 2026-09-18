@@ -1,0 +1,3 @@
+Caltech-6V independent_autoencoders=6 view_order_exact=true state_ownership_exact=true cluster_center_ownership_exact=true forward_order_exact=true parameter_sharing=false outputs_exact=true
+MSRC-v1 independent_autoencoders=5 view_order_exact=true state_ownership_exact=true cluster_center_ownership_exact=true forward_order_exact=true parameter_sharing=false outputs_exact=true
+BDGP independent_autoencoders=2 view_order_exact=true state_ownership_exact=true cluster_center_ownership_exact=true forward_order_exact=true parameter_sharing=false outputs_exact=true

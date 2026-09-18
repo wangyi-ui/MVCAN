@@ -1,0 +1,4 @@
+Caltech-6V views=6 each_shape=(1400,7) dtype=torch.float32 exact=true finite=true
+MSRC-v1 views=5 each_shape=(210,7) dtype=torch.float32 exact=true finite=true
+BDGP views=2 each_shape=(2500,5) dtype=torch.float32 exact=true finite=true
+labels_used=false tolerance=none

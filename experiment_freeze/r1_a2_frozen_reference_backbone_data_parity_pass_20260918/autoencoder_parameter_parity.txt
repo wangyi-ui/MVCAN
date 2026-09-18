@@ -1,0 +1,5 @@
+CPU=true torch_float32=true explicit_seed=true
+Caltech-6V seed=5 views=6 architecture=[D_v,500,500,2000,10] K=7 parameter_count_exact=true tensor_shapes_exact=true tensor_dtypes_exact=true tensor_values_exact=true
+MSRC-v1 seed=20 views=5 architecture=[D_v,500,500,2000,10] K=7 parameter_count_exact=true tensor_shapes_exact=true tensor_dtypes_exact=true tensor_values_exact=true
+BDGP seed=1 views=2 architecture=[D_v,500,500,2000,10] K=5 parameter_count_exact=true tensor_shapes_exact=true tensor_dtypes_exact=true tensor_values_exact=true
+mechanical_key_mapping_used=false

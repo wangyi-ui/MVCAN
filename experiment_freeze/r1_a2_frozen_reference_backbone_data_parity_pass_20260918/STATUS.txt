@@ -1,0 +1,99 @@
+R1-A2 FROZEN-REFERENCE BACKBONE / DATA PARITY REVIEW
+
+Parent:
+R1-A1 CONSISTENCY-CORRECTED PASS / FROZEN
+
+Parent commit:
+0f12bbec2e2cdb88005a01a2bac0d0d57d830165
+
+Parent tag:
+r1-a1-backbone-data-consistency-pass-20260918
+
+Real datasets:
+Caltech-6V
+MSRC-v1
+BDGP
+
+Loader real-reference parity:
+PASS
+
+Sample-ID parity:
+PASS
+
+Weak-quality real-reference parity:
+PASS
+
+Autoencoder parameter parity:
+PASS
+
+Real reconstruction parity:
+PASS
+
+Real latent-z parity:
+PASS
+
+Real q_local parity:
+PASS
+
+Multi-view container parity:
+PASS
+
+Native objective parity:
+PASS
+
+Target-distribution parity:
+PASS
+
+Native refresh parity:
+PASS
+
+Production release_core modified:
+NO
+
+Training:
+NOT RUN
+
+Optimizer:
+NOT RUN
+
+Backward:
+NOT RUN
+
+Performance ACC/NMI/ARI:
+NOT RUN
+
+Full labels read:
+YES — loader contract parity only
+
+Labels used by backbone:
+NO
+
+Labels used for loss:
+NO
+
+Labels used for metrics:
+NO
+
+Labels used for scientific decision:
+NO
+
+R2 utility logic:
+NOT EXECUTED
+
+R3 semantic logic:
+NOT EXECUTED
+
+R4 relation action:
+NOT EXECUTED
+
+R5 alternating trainer:
+NOT EXECUTED
+
+Scientific behavior change:
+NONE
+
+R1-A2:
+PASS / FROZEN-REFERENCE PARITY VERIFIED
+
+Next:
+R1 FINAL BACKBONE / DATA FOUNDATION FREEZE

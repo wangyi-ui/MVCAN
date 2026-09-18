@@ -1,0 +1,13 @@
+R1-A2 standalone final: 37 passed, 0 failed, 9.35s
+Complete release_core: 63 passed, 0 failed, 9.75s
+Generic historical regression: 94 passed, 0 failed, 1 warning, 4.44s
+Final-core historical regression: 171 passed, 0 failed, 3.08s
+Original historical gate weakened: NO
+
+Initial R1-A2 diagnostic run: 35 passed, 2 failed.
+Failure classification: PARITY_HARNESS_BUG.
+Cause: parallel KMeans/BLAS reduction produced float32 last-bit variation between independent sequential calls while assignments, weights, and Match were exact.
+Correction: constrain both legacy and clean KMeans calls to one CPU thread.
+Tolerance introduced: NO.
+Production code modified: NO.
+Final standalone result after correction: 37/37 PASS.

@@ -1,0 +1,5 @@
+0f12bbec2e2cdb88005a01a2bac0d0d57d830165
+HEAD_equal=true
+local_tag_equal=true
+remote_branch_equal=true
+remote_tag_equal=true
