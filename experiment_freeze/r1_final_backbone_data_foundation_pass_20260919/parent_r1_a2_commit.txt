@@ -1,0 +1,6 @@
+7877635fc2ba54b04fdfaf60e77b6b0eda64afba
+
+HEAD_equal=true
+local_tag_equal=true
+remote_branch_equal=true
+remote_tag_equal=true

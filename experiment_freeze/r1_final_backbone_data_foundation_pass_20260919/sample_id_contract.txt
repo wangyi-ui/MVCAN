@@ -1,0 +1,9 @@
+Canonical_sample_ids=np.arange(N,dtype=np.int64)
+
+Caltech-6V shape=[1400] exact_identity_order=true
+MSRC-v1 shape=[210] exact_identity_order=true
+BDGP shape=[2500] exact_identity_order=true
+
+Exact_row_identity_preserved=true
+Silent_row_reorder=false
+Per_view_independent_shuffle=false

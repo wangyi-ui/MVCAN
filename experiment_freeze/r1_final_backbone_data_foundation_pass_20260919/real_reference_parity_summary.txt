@@ -1,0 +1,56 @@
+Caltech loader:
+EXACT
+
+MSRC loader:
+EXACT
+
+BDGP loader:
+EXACT
+
+Sample ID:
+EXACT
+
+Caltech weak quality:
+EXACT
+
+MSRC weak quality:
+EXACT
+
+BDGP weak quality:
+EXACT
+
+Autoencoder parameters:
+EXACT
+
+Real reconstruction:
+EXACT
+
+Real latent z:
+EXACT
+
+Real q_local:
+EXACT
+
+Multiview container:
+EXACT
+
+Native objective:
+EXACT
+
+Target distribution:
+EXACT
+
+Native refresh:
+EXACT
+
+No tolerance introduced:
+YES
+
+Native-refresh single-thread parity harness:
+YES
+
+Reason:
+deterministic bitwise parity of legacy and clean KMeans execution
+
+Production implementation modified for this:
+NO

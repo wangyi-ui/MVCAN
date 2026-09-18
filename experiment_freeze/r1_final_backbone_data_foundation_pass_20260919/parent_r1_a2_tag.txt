@@ -1,0 +1,4 @@
+r1-a2-frozen-reference-backbone-data-parity-pass-20260918
+
+local_tag_verified=true
+remote_tag_verified=true

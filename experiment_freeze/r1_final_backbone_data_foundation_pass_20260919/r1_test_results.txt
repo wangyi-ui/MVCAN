@@ -1,0 +1,7 @@
+Command=PYTHONPATH=. pytest -q tests/release_core
+Collected=63
+Passed=63
+Failed=0
+Result=PASS
+Elapsed=9.87s
+Source_repair_after_test=false

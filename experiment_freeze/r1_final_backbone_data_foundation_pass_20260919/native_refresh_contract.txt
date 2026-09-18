@@ -1,0 +1,12 @@
+KMeans_n_init=100
+Latent_view_normalization=frozen MinMax behavior
+View_weight=exp(round(internal_NMI,5))
+NMI_meaning=internal view-vs-global clustering agreement, not ground-truth NMI
+Global_latent=concatenated normalized and weighted per-view latent
+Alignment=Hungarian Match
+Target=target_distribution(new_P)
+Sample_order=canonical
+Ground_truth_allowed=false
+Single_CPU_thread_parity_harness=true
+Single_thread_reason=deterministic bitwise parity of independently executed legacy and clean KMeans calls
+Tolerance_introduced=false

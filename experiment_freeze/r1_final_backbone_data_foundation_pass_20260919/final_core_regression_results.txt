@@ -1,0 +1,11 @@
+Command scope:
+tests/test_g0_a1_caltech_exact_adapter.py
+tests/test_final_core_exact_replay.py
+tests/test_c0_complementary_semantic_verification.py
+
+Collected=171
+Passed=171
+Failed=0
+Result=PASS
+Elapsed=3.08s
+Original_historical_gate_weakened=false

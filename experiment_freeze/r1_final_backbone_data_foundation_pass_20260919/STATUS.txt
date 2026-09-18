@@ -1,0 +1,88 @@
+R1 BACKBONE / DATA FOUNDATION
+FINAL SCIENTIFIC FREEZE
+
+Parent:
+R1-A2 FROZEN-REFERENCE PARITY PASS
+
+Production namespace:
+release_core
+
+Datasets verified:
+Caltech-6V
+MSRC-v1
+BDGP
+
+R1 clean tests:
+PASS
+
+Generic historical regression:
+94 / 94 PASS
+
+Final-core historical regression:
+171 / 171 PASS
+
+Real loader parity:
+EXACT
+
+Real weak-quality parity:
+EXACT
+
+Sample-ID parity:
+EXACT
+
+Autoencoder parity:
+EXACT
+
+Real latent parity:
+EXACT
+
+Real q_local parity:
+EXACT
+
+Native objective parity:
+EXACT
+
+Native refresh parity:
+EXACT
+
+Production archive dependency:
+NO
+
+Temporary parity reference infrastructure:
+YES
+
+Training:
+NOT RUN
+
+Optimizer:
+NOT RUN
+
+Backward:
+NOT RUN
+
+Performance metrics:
+NOT RUN
+
+Labels scientifically used:
+NO
+
+R2 utility logic in R1 production:
+ABSENT
+
+R3 semantic logic in R1 production:
+ABSENT
+
+R4 relation action in R1 production:
+ABSENT
+
+R5 alternating trainer in R1 production:
+ABSENT
+
+Scientific behavior change:
+NONE
+
+R1:
+PASS / CLOSED
+
+Next:
+R2 DIRECTIONAL CYCLIC UTILITY EXTRACTION

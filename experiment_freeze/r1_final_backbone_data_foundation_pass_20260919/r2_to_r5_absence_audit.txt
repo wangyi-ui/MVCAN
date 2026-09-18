@@ -1,0 +1,13 @@
+Static_scope=release_core/**/*.py
+R2_U_cycle_or_directional_utility_logic=ABSENT
+R2_action_space_utility_logic=ABSENT
+R3_sparse_semantic_direction_logic=ABSENT
+R3_PredRelation_logic=ABSENT
+R3_relation_balance_weights_logic=ABSENT
+R4_utility_conditioned_relation_action_logic=ABSENT
+R4_pseudo_label_supervision_logic=ABSENT
+R4_semantic_memory_logic=ABSENT
+R5_Phase_A_semantic_optimization_logic=ABSENT
+R5_Phase_B_alternating_schedule_logic=ABSENT
+Historical_modules_outside_release_core_allowed=true
+Gate=PASS

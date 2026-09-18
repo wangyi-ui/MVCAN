@@ -1,0 +1,10 @@
+Reconstruction_loss=MSE(reconstruction,input)
+Clustering_loss=MSE(q_local,p_local)
+Per_view_objective=REC + lambda1 * CLU
+
+Caltech-6V lambda1=0.01
+MSRC-v1 lambda1=0.01
+BDGP lambda1=10
+
+Backward_run=false
+Optimizer_step=false

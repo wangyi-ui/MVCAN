@@ -1,0 +1,8 @@
+Historical_reference_labels_read=YES — loader-contract validation only
+labels_used_for_backbone=false
+labels_used_for_loss=false
+labels_used_for_KMeans=false
+labels_used_for_training=false
+labels_used_for_metrics=false
+labels_used_for_scientific_decision=false
+GT_NMI_used_by_native_refresh=false

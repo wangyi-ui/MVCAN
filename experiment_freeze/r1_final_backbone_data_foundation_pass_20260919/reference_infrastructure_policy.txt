@@ -1,0 +1,9 @@
+First_reference_bridge=16/16 EXACT
+Second_reference_closure=57/57 EXACT
+Reference_purpose=parity only
+Reference_lifetime=temporary
+Production_dependency=false
+Final_paper_release_payload=false
+Delete_during_R1_FINAL=false
+Retained_for_later_R7_validation=true
+Production_release_core_archive_dependency=NO

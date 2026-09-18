@@ -1,0 +1,11 @@
+Backbone=independent per-view Autoencoder
+Architecture=[D_v] -> 500 -> 500 -> 2000 -> 10
+Latent_dimension=10
+Student_t_alpha=1
+Cluster_center_shape=[K,10]
+Cross_view_Autoencoder_parameter_sharing=false
+Canonical_view_order_preserved=true
+
+R1 production behavior is frozen by this final scientific freeze.
+R2 and later stages may import and use R1.
+R2 and later stages may not redefine dataset preprocessing, weak-quality physics, sample IDs, Autoencoder architecture, native posterior, native objective, or native refresh without a separately preregistered fail-closed R1 reopening.

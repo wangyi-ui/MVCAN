@@ -1,0 +1,8 @@
+Parent worktree before R1-FINAL freeze: CLEAN
+Current tracked modifications: NONE
+Current untracked files: NONE
+Final freeze directory: ignored by .gitignore pending independent review
+release_core changes: NONE
+tests/release_core changes: NONE
+legacy changes: NONE
+dataset/output/model changes: NONE

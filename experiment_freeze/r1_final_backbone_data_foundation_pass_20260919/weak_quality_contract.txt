@@ -1,0 +1,23 @@
+SNR_primary_db=2.5
+weak_quality_realization_seed=20
+NOISE_SEED_OFFSET=1000003
+
+CALTECH
+view_count=6
+corrupted_views_per_sample=3
+logical_mask_sha256=e6250535db6e33b9263102cf335fcf9e8552a24cae4b70ec5a94887f4e58bf0b
+
+MSRC
+view_count=5
+policy=odd-V global floor 50 percent
+row_cardinality=105 rows x2 plus 105 rows x3
+per_view_counts=[105,105,105,105,105]
+logical_mask_sha256=d64f5fbf95518e5a77e44a1fe18a15dee9924b8c2a341e930f86f20ce5ac9e9d
+
+BDGP
+view_count=2
+corrupted_views_per_sample=1
+per_view_counts=[1250,1250]
+logical_mask_sha256=a3c882c29f2f5064d552e60bdc1a2d585764317e7ba78aa055cd1c3c22e5de07
+
+Scientific conclusions recomputed=false

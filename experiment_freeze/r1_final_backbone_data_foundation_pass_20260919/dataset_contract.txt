@@ -1,0 +1,25 @@
+CALTECH-6V
+N=1400
+V=6
+K=7
+dimensions=(48,40,254,1984,512,928)
+dataset_sha256=72fa848269b663f819a8e9bd441628ece1955c654d98e2b10a85be1cd2613d5a
+preprocessing=X1 float32; X2 float32; X3 float32 plus column-wise MinMaxScaler.fit_transform; X4-X6 float32
+
+MSRC-v1
+N=210
+V=5
+K=7
+dimensions=(24,576,512,256,254)
+dataset_sha256=38d89aa41ae984f0b026f4baa8b5dcb7c569c471e2fb42b73a0f6743398e9103
+preprocessing=MATLAB cell ravel order; conditional transpose; float32 C-contiguous; no normalization
+
+BDGP
+N=2500
+V=2
+K=5
+dimensions=(1750,79)
+dataset_sha256=998b6d22fc5142857f957496023d2c51254dfe09ac0402a520e53d69576b0a0f
+view_order=X1,X2
+X3=IGNORED BY AUTHORITATIVE TWO-VIEW LOADER
+preprocessing=float32 C-contiguous; no transpose; no normalization

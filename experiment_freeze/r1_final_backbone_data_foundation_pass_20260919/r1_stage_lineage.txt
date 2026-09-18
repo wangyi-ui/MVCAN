@@ -1,0 +1,14 @@
+G0-C0 generic scientific contract
+ef924bf78ce25ee163604932cc8555c8e8ac7f92
+
+R1-A1 initial extraction commit
+1c4cde471515dad79515503f68d5e57ab090d3c5
+
+R1-A1 consistency-corrected commit
+0f12bbec2e2cdb88005a01a2bac0d0d57d830165
+
+R1-A2 commit
+7877635fc2ba54b04fdfaf60e77b6b0eda64afba
+
+R1-A2 tag
+r1-a2-frozen-reference-backbone-data-parity-pass-20260918
