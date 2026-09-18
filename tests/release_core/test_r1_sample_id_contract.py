@@ -20,4 +20,3 @@ def test_invalid_ids_rejected():
         validate_sample_ids(np.array([1, 0, 2, 3], dtype=np.int64), 4)
     with pytest.raises(ValueError):
         validate_sample_ids(np.arange(3, dtype=np.int64), 4)
-

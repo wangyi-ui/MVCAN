@@ -274,4 +274,3 @@ def apply_heterogeneous_gaussian_corruption(X_list, k, snr_db, corruption_seed):
     snr_db = float(snr_db)
     mask, _ = generate_balanced_corruption_mask(n_samples, n_views, k, corruption_seed)
     return _corrupt(clean_views, mask, snr_db, corruption_seed, False)
-

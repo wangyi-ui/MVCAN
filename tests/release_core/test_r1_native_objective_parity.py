@@ -27,4 +27,3 @@ def test_objective_source_has_no_extra_scientific_terms():
     source = Path(native_objective.__code__.co_filename).read_text(encoding="utf-8").lower()
     for forbidden in ("relation", "semantic", "utility"):
         assert forbidden not in source
-

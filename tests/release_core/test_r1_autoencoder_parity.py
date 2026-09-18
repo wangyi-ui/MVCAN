@@ -52,4 +52,3 @@ def test_multiview_container_preserves_per_view_initialization():
         )
         for key, value in legacy.state_dict().items():
             assert torch.equal(value, clean.autoencoders[index].state_dict()[key])
-

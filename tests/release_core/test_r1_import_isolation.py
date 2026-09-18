@@ -43,4 +43,3 @@ def test_later_stage_symbols_are_absent_from_executable_ast():
             if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))
         )
         assert executable_names.isdisjoint(FORBIDDEN_SYMBOLS)
-

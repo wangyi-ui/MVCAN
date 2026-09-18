@@ -10,4 +10,3 @@ def test_evaluation_primitives_exact_on_synthetic_labels():
     assert acc(y_true, y_pred) == ClusteringTest.acc(y_true, y_pred)
     assert nmi(y_true, y_pred) == ClusteringTest.nmi(y_true, y_pred)
     assert ari(y_true, y_pred) == ClusteringTest.ari(y_true, y_pred)
-

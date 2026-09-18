@@ -32,4 +32,3 @@ def get_native_config(data_name):
             "lambda1": lambda1,
         },
     }
-

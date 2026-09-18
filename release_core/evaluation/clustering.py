@@ -17,4 +17,3 @@ def acc(y_true, y_pred):
         contingency[y_pred[index], y_true[index]] += 1
     rows, columns = linear_sum_assignment(contingency.max() - contingency)
     return contingency[rows, columns].sum() * 1.0 / y_pred.size
-

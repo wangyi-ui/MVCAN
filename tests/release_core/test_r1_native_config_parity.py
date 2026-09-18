@@ -12,4 +12,3 @@ def test_native_configs_are_fresh_records():
     first = get_native_config("BDGP")
     first["Autoencoder"]["arch"].append(99)
     assert get_native_config("BDGP") == get_default_config("BDGP")
-

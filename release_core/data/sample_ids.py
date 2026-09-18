@@ -24,4 +24,3 @@ def validate_sample_ids(sample_ids, n_samples, require_identity=True):
     if require_identity and not np.array_equal(values, canonical_sample_ids(n_samples)):
         raise ValueError("sample_ids must preserve canonical identity order")
     return values
-

@@ -49,4 +49,3 @@ class MultiViewBackbone:
             model.load_state_dict(state, strict=strict)
             for model, state in zip(self.autoencoders, state_dicts)
         ]
-

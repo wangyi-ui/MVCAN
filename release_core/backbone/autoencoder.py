@@ -92,4 +92,3 @@ class Autoencoder(nn.Module):
         q = q.pow((self.alpha + 1.0) / 2.0)
         q = (q.t() / torch.sum(q, 1)).t()
         return x_hat, latent, q
-

@@ -1,0 +1,7 @@
+R1 synthetic suite: 26 passed, 0 failed
+Generic historical regression: 94 passed, 0 failed, 1 non-failing deprecation warning
+Original final-core historical regression: 171 collected, 171 passed, 0 failed
+Original 171-test gate preserved: YES
+First temporary reference bridge: 16/16 exact
+Second temporary reference closure: 57/57 exact
+Scientific behavior change: NONE

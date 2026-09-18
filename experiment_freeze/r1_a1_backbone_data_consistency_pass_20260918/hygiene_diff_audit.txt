@@ -1,0 +1,15 @@
+Parent: 1c4cde471515dad79515503f68d5e57ab090d3c5
+Affected Python files: 25
+Change per file: remove one extra terminal blank line
+Diff summary: 25 files changed, 25 deletions, 0 insertions
+Exactly one conventional terminal newline after repair: 25/25
+AST equivalent to parent: 25/25
+python -m compileall -q release_core tests/release_core: PASS
+git diff --check: PASS
+Imports changed: NO
+Symbols changed: NO
+Tensor operations changed: NO
+RNG behavior changed: NO
+State-dict structure changed: NO
+Dataset/weak-quality/evaluation logic changed: NO
+Scientific semantic effect: NONE

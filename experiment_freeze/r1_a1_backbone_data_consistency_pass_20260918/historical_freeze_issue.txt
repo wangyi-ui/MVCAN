@@ -1,0 +1,15 @@
+R1-A1-H0 classification: FREEZE_INCONSISTENCY
+
+The historical release_test_sha256.txt contained:
+c5dc00a3d98d4bbda12ad7d23421d783232b7ae6431280000f74176140df4e16  tests/release_core/test_r1_import_isolation.py.orig
+
+That file was ignored by *.orig, absent from commit
+1c4cde471515dad79515503f68d5e57ab090d3c5, and not required by pytest.
+
+H1 handling:
+- recorded the expected local backup SHA256
+- deleted the ignored local backup
+- excluded it from all successor source/test manifests
+- preserved the historical commit, tag, and freeze unchanged
+
+Cleanup classification: LOCAL_IGNORED_BACKUP_CLEANUP

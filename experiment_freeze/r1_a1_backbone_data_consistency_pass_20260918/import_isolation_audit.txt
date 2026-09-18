@@ -1,0 +1,5 @@
+Production namespace: release_core
+Archive path literal in release_core Python source: ABSENT
+Legacy scientific imports in release_core Python source: ABSENT
+Import-isolation tests included in R1 26/26 suite: PASS
+Production release_core archive dependency: NO

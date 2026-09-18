@@ -70,4 +70,3 @@ def test_gaussian_corruption_exact_and_rng_isolated(n_views):
     ):
         assert old_audit[key] == new_audit[key]
     assert new_audit["noise_seed"] == 1000023
-

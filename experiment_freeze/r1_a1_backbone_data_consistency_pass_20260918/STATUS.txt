@@ -1,0 +1,74 @@
+R1-A1 BACKBONE / DATA FOUNDATION
+SUCCESSOR CONSISTENCY FREEZE
+
+Historical R1-A1 commit:
+1c4cde471515dad79515503f68d5e57ab090d3c5
+
+Historical tag:
+r1-a1-backbone-data-presmoke-pass-20260918
+
+Historical issue:
+freeze test manifest referenced one ignored .orig file
+
+Scientific/numerical issue:
+NONE
+
+Whitespace issue:
+terminal blank-line only
+
+Whitespace semantic effect:
+NONE
+
+Source manifest:
+15 tracked files only
+
+Test manifest:
+10 tracked files only
+
+Ignored .orig in manifest:
+NO
+
+git diff --check:
+PASS
+
+R1 synthetic:
+26 / 26 PASS
+
+Generic historical:
+94 / 94 PASS
+
+Final-core historical:
+171 / 171 PASS
+
+Original historical gate weakened:
+NO
+
+First reference bridge:
+16 / 16 EXACT
+
+Second reference closure:
+57 / 57 EXACT
+
+Production archive dependency:
+NO
+
+Training:
+NOT RUN
+
+Scientific metrics:
+NOT RUN
+
+Hyperparameter tuning:
+NOT RUN
+
+Scientific behavior change:
+NONE
+
+Freeze reproducible from successor Git state:
+YES
+
+R1-A1:
+PASS / CONSISTENCY-CORRECTED
+
+Next:
+R1-A2 FROZEN-REFERENCE BACKBONE/DATA PARITY REVIEW

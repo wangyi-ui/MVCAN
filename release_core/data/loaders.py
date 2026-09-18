@@ -74,4 +74,3 @@ def load_dataset(data_name, path):
     if data_name not in loaders:
         raise ValueError("unsupported dataset: " + str(data_name))
     return loaders[data_name](path)
-

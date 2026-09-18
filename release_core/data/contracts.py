@@ -41,4 +41,3 @@ def infer_dataset_contract(views, dataset_name, n_clusters, expected_views=None)
     return DatasetContract(
         dataset_name, n_samples, len(views), tuple(dimensions), int(n_clusters)
     )
-

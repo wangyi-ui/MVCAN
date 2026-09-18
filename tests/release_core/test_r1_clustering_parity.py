@@ -73,4 +73,3 @@ def test_synthetic_native_refresh_exact():
     new = native_refresh_from_latents(latents, posteriors, [1.0, 1.0], 3, 29)
     for old_value, new_value in zip(old, new):
         np.testing.assert_array_equal(old_value, new_value)
-

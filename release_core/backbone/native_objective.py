@@ -8,4 +8,3 @@ def native_objective(reconstruction, inputs, q_local, p_local, lambda1):
     clustering_loss = F.mse_loss(q_local, p_local)
     total = reconstruction_loss + lambda1 * clustering_loss
     return total, reconstruction_loss, clustering_loss
-

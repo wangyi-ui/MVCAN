@@ -72,4 +72,3 @@ def test_bdgp_ignores_x3_and_preserves_layout(tmp_path, monkeypatch):
     _assert_outputs_equal(old, new)
     assert len(new[0]) == 2
     assert all(view.flags.c_contiguous for view in new[0])
-
