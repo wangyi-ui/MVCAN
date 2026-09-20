@@ -1,0 +1,37 @@
+Historical stage:
+R2-A2 SAME-STATE MULTI-DATASET PARITY
+
+Outcome:
+STOPPED
+
+Classification:
+REFERENCE_PROVENANCE_ISSUE
+
+Production mismatch observed:
+NO
+
+Scientific behavior mismatch observed:
+NO
+
+Candidate same-state q_aligned materialized:
+NO
+
+U comparison run:
+NO
+
+Training run:
+NO
+
+Optimizer run:
+NO
+
+Backward run:
+NO
+
+GT/labels loaded:
+NO
+
+Reason:
+The historical MSRC/BDGP pre-final states that generated the sealed U_cycle
+were not persisted, and exact reconstruction would require replaying
+optimization.

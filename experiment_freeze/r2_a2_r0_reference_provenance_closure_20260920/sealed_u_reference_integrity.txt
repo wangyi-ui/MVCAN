@@ -1,0 +1,24 @@
+MSRC structural artifact SHA256:
+b04f107f6279839d534e55500fbb0f9aba94d7686944ab20f255337a511af234
+MSRC artifact/audit/seal manifest: 3/3 OK
+MSRC freeze metadata: ALL OK
+MSRC U shape/dtype: [210,20] / float32
+MSRC U ndarray logical SHA256:
+3552d88de9f894276d0d1ccae8f4c55147e98aac9a8ae146eaa1cf54dcc9dd10
+MSRC U tensor logical SHA256:
+34ede38bcf476228b88340834813cd77b17556b7e304c9e923c1072f9f1887ab
+
+BDGP structural artifact SHA256:
+6e929633526c037e5480ccfac8af496caac02e237489b012988641679f973029
+BDGP artifact/audit/seal manifest: 3/3 OK
+BDGP freeze metadata: ALL OK
+BDGP U shape/dtype: [2500,2] / float32
+BDGP U ndarray logical SHA256:
+b563bc9ecebfc138ce8b0adca24729e5f9f614c1c0ffc3762f8505d7a7f8f2f5
+BDGP U tensor logical SHA256:
+bc7316beb19c8bdb79bb0af80a5b5185fa37cf9c984e6d1e9e86defad29f54aa
+
+Independent logical-hash recomputation: PASS
+sealed U validity: PRESERVED
+same-state replayability: NOT ESTABLISHED
+These statements are distinct; E4 artifact identity is not upgraded to E3.

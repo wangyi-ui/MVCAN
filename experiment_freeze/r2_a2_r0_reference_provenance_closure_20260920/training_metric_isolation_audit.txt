@@ -1,0 +1,14 @@
+training: NOT RUN
+retraining: NOT RUN
+optimizer.step: NOT RUN
+backward: NOT RUN
+model update: NOT RUN
+checkpoint search/replay: NOT RUN
+ACC: NOT RUN
+NMI vs GT: NOT RUN
+ARI: NOT RUN
+AUC: NOT RUN
+semantic metrics: NOT RUN
+performance metrics: NOT RUN
+
+Historical optimization source was inspected as text only.

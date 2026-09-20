@@ -1,0 +1,80 @@
+R2-A2-R0 REFERENCE PROVENANCE CLOSURE
+
+Parent:
+R2-A1 CLEAN EXTRACTION PASS / GIT-FROZEN
+
+Parent commit:
+6eb11749bd1f1536aceb456a804406b9a05361ca
+
+Historical R2-A2 outcome:
+STOPPED / REFERENCE_PROVENANCE_ISSUE
+
+R2 production modified:
+NO
+
+R1 modified:
+NO
+
+MSRC same-state reference:
+NOT AVAILABLE
+
+BDGP same-state reference:
+NOT AVAILABLE
+
+MSRC sealed U validity:
+PRESERVED
+
+BDGP sealed U validity:
+PRESERVED
+
+MSRC real historical replay:
+NOT ESTABLISHED
+
+BDGP real historical replay:
+NOT ESTABLISHED
+
+Caltech real same-state replay:
+EXACT
+
+Generic V=2 parity:
+EXACT
+
+Generic V=5 parity:
+EXACT
+
+Generic V=6 parity:
+EXACT
+
+Implementation mismatch observed:
+NO
+
+Scientific behavior mismatch observed:
+NO
+
+Reference coverage limitation:
+YES
+
+Retraining:
+NOT RUN
+
+Optimizer:
+NOT RUN
+
+Backward:
+NOT RUN
+
+GT / labels:
+NOT USED
+
+Performance metrics:
+NOT RUN
+
+R2-A2-R0:
+PASS / REFERENCE PROVENANCE CLOSED
+
+Final R2 evidence mode:
+BOUNDED
+
+Next:
+R2 FINAL DIRECTIONAL CYCLIC UTILITY FREEZE
+WITH BOUNDED EVIDENCE CLAIM

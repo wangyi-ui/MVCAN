@@ -1,0 +1,18 @@
+MSRC final-state references:
+q_local ndarray SHA256=59af5246af0785a26365746aaed4295b22d338eea4bc902eca86c79213432125
+M_v ndarray SHA256=a475d4c43dc01ce513b9f6d8bff332b40b4f2746ee78f21b7a4dc31ab02a7c1b
+q_aligned ndarray SHA256=521a7177605ae01f90ab8bbb14244c9b1d5851b064d88bbdebb7e76b97dc705b
+
+BDGP final-state references:
+q_local ndarray SHA256=8db5104c9a1e51209570353db63f3a6b4f032c5f559ac07ce883f0445af626f5
+M_v ndarray SHA256=88061f9f13a0b807103072786d34c0df0521c314bd20bf5096050874dce9cb80
+q_aligned ndarray SHA256=2bc45d638954047dfa6fe33245822088b81f5906415b3e990dd6c63d79f33daf
+
+Historical proof:
+U_cycle was constructed from pre_final[1] before run_final_core. The persisted
+q_local/q_aligned/M_v entries were populated from final[...] only after twenty
+Phase-A/Phase-B epochs, a final native refresh, and a final coordinate snapshot.
+
+Classification: FINAL STATE REFERENCES
+Classification as sealed-U same-state inputs: FORBIDDEN
+Used in a parity test: NO

@@ -1,0 +1,61 @@
+Audit mode: exhaustive, read-only, non-executing provenance inventory
+Roots:
+/root/autodl-tmp/CVPR24-MVCAN
+/root/autodl-tmp/UCRR-MVC-release visible reference bridges
+
+Methods:
+- file-name inventory
+- freeze/source/output manifest verification
+- NPZ ZIP-member header inspection without loading unrelated arrays
+- relevant NPY/file inventory
+- JSON/TXT metadata text inspection
+- tagged Git-tree inspection
+- checkpoint/state/pre-final candidate-name inspection
+
+MSRC frozen input inventory:
+outputs/generic_contract/g0_b0_msrc_inputs_seed20_20260916/
+- msrc_trainable_features.npz
+- msrc_sparse_split.npz
+- msrc_sparse_split_seal.json
+- audit/corruption_mask.npy
+- audit/corruption_audit.json
+- materialization_audit.json
+- materialization_seal.json
+
+MSRC structural output inventory:
+- msrc_structural_pre_gt_artifact.npz
+- msrc_structural_pre_gt_audit.json
+- msrc_structural_pre_gt_seal.json
+Artifact whole-file SHA256: b04f107f6279839d534e55500fbb0f9aba94d7686944ab20f255337a511af234
+Release bridges: artifact, audit, and seal symlinked to canonical archive
+
+BDGP frozen input inventory:
+outputs/generic_contract/g0_b1_bdgp_inputs_seed20_20260917/
+- bdgp_trainable_features.npz
+- bdgp_sparse_split.npz
+- bdgp_sparse_split_seal.json
+- audit/corruption_mask.npy
+- audit/corruption_audit.json
+- materialization_audit.json
+- materialization_seal.json
+
+BDGP structural output inventory:
+- bdgp_structural_pre_gt_artifact.npz
+- bdgp_structural_pre_gt_audit.json
+- bdgp_structural_pre_gt_seal.json
+Artifact whole-file SHA256: 6e929633526c037e5480ccfac8af496caac02e237489b012988641679f973029
+Release bridges: none
+
+Structural artifact fields for both datasets:
+sample_ids, labeled_ids, unlabeled_ids, final_predictions, q_local,
+q_aligned, M_v, U_cycle, PredRelation_true,
+relation_balance_weights_true, generator_membership, verifier_membership
+
+Cross-workspace NPZ header result:
+Only the two canonical structural artifacts contain target-geometry q arrays.
+The release MSRC result is the same canonical file through a symlink.
+No other [210,5,7] or [2500,2,5] q tensor exists.
+
+Relevant output/freeze/tag-tree checkpoint candidates: NONE
+Relevant pre-final q/M/model-state candidates: NONE
+Unrelated checkpoints were not loaded or tested.

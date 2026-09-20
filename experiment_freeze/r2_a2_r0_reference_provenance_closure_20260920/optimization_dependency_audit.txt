@@ -1,0 +1,24 @@
+MSRC and BDGP pre-final reconstruction requirements verified from tagged source:
+
+- deterministic model initialization with training seed 20
+- 200 autoencoder initialization epochs
+- reconstruction loss.backward()
+- Adam optimizer.step()
+- KMeans cluster-center initialization, n_init=100, random_state=20
+- 1001 native iterations, epochs 0 through 1000 inclusive
+- native reconstruction and clustering loss.backward()
+- Adam optimizer.step()
+- native refresh every 100 iterations
+- exact eleventh native refresh and its M_v
+- coordinate_snapshot using the model after native iteration 1000 and that M_v
+
+MSRC native lambda1: 0.01
+BDGP native lambda1: 10
+
+Exact reconstruction without historical optimization: NO
+Classification for pre-final model/q_local/M_v/q_aligned:
+NOT_RECOVERABLE_WITHOUT_OPTIMIZATION
+
+Optimization replay performed in R2-A2-R0: NO
+State search performed: NO
+Alternative seed/refresh/checkpoint tried: NO

@@ -1,0 +1,10 @@
+GT loaded: NO
+sparse labels loaded: NO
+pseudo labels loaded: NO
+semantic targets loaded: NO
+PredRelation loaded: NO
+corruption mask used as oracle: NO
+Unrelated artifact arrays loaded: NO
+
+The audit inspected safe q_local/q_aligned/M_v/U_cycle arrays only and used
+NPZ headers for global inventory. No GT or label array was accessed.

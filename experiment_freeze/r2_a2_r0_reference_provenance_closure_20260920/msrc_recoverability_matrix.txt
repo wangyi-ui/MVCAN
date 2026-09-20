@@ -1,0 +1,24 @@
+Dataset: MSRC-v1
+
+object | available | frozen hash | same-state with sealed U | recoverable without optimization | authorized for exact replay
+pre-final model state | NO | NO | YES by call position | NO | NO
+pre-final q_local | NO | NO | YES by call position | NO | NO
+pre-final M_v | NO | NO | YES by call position | NO | NO
+pre-final q_aligned | NO | NO | YES by call position | NO | NO
+sealed U_cycle | YES | YES | output of same-state computation | PERSISTED | identity evidence only
+final q_local | YES | YES | NO | PERSISTED | NO
+final M_v | YES | YES | NO | PERSISTED | NO
+final q_aligned | YES | YES | NO | PERSISTED | NO
+
+Classifications:
+pre-final model state: NOT_RECOVERABLE_WITHOUT_OPTIMIZATION
+pre-final q_local: NOT_RECOVERABLE_WITHOUT_OPTIMIZATION
+pre-final M_v: NOT_RECOVERABLE_WITHOUT_OPTIMIZATION
+pre-final q_aligned: NOT_RECOVERABLE_WITHOUT_OPTIMIZATION
+sealed U_cycle: PERSISTED_AND_AVAILABLE
+final q_local/M_v/q_aligned: PERSISTED_AND_AVAILABLE but excluded from replay
+
+Reason:
+The missing q and alignment state depend on the exact optimized model and
+eleventh native refresh. Neither model state nor the dependent tensors were
+persisted.

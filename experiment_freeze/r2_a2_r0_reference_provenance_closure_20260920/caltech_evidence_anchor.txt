@@ -1,0 +1,20 @@
+Evidence source:
+experiment_freeze/r2_a1_clean_directional_cycle_utility_pass_20260920/
+
+Freeze metadata integrity: PASS
+Caltech same-state input: AVAILABLE
+Input provenance: frozen E1 LWC seed20 checkpoints and feature artifact
+q_aligned shape/dtype: [1400,6,7] / float32
+q_aligned tensor logical SHA256:
+c0b48b300a9f041857dbd5a3bcf46aab6b3874397cc4af64f8e4e29b750a2a23
+
+Caltech real frozen replay: EXACT
+U shape/dtype: [1400,20] / float32
+U tensor logical SHA256:
+b23dde6bd4f524e5e47748a73df3224f77e93d166d94f5a6c60db8865afefbfe
+U ndarray logical SHA256:
+52dc7b5354daf9df189cd7d98c4e6cc8110f12182d1f82c24545eb8d11f66fe6
+
+GT used: NO
+Tolerance introduced: NO
+Parity rerun in R2-A2-R0: NO; immutable R2-A1 evidence reconfirmed by manifest

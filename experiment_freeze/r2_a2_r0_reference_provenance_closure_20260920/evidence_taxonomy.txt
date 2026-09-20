@@ -1,0 +1,21 @@
+E1 — FORMULA / CONTRACT EVIDENCE
+Status: ESTABLISHED
+Exact frozen directional cyclic utility formula, tensor contract, action order,
+hash convention, detach semantics, and absence of learned/label corrections.
+
+E2 — GENERIC NUMERICAL EQUIVALENCE
+Status: ESTABLISHED
+Synthetic exact parity for V=2, V=5, and V=6 across p_gen, p_ver,
+conf_gen, support_ver, closure, and U_cycle.
+
+E3 — REAL SAME-STATE REPLAY
+Caltech: EXACT / AVAILABLE
+MSRC: UNAVAILABLE DUE TO MISSING HISTORICAL SAME-STATE INPUT
+BDGP: UNAVAILABLE DUE TO MISSING HISTORICAL SAME-STATE INPUT
+
+E4 — HISTORICAL SEALED ARTIFACT IDENTITY
+MSRC sealed U: AVAILABLE / HASH-VERIFIED / PRESERVED
+BDGP sealed U: AVAILABLE / HASH-VERIFIED / PRESERVED
+
+E4 is not upgraded into E3.
+No implementation or scientific behavior mismatch was observed.

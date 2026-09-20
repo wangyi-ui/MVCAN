@@ -1,0 +1,29 @@
+Evidence source:
+experiment_freeze/r2_a1_clean_directional_cycle_utility_pass_20260920/
+
+Dedicated R2-A1 result: 57 passed, 0 failed
+V=2 generic action/utility parity: EXACT
+V=5 generic action/utility parity: EXACT
+V=6 generic action/utility parity: EXACT
+
+Scientific intermediates exact:
+p_gen: YES
+p_ver: YES
+conf_gen: YES
+y_gen: YES
+y_ver reconstruction: YES
+support_ver: YES
+closure: YES
+U_cycle: YES
+
+float32 CPU: EXACT
+float64 CPU: EXACT
+NumPy float32/float64: PASS
+detach/no-gradient contract: EXACT
+
+Geometry coverage:
+BDGP V=2: COVERED BY GENERIC EXACT PARITY
+MSRC V=5: COVERED BY GENERIC EXACT PARITY
+Caltech V=6: COVERED BY GENERIC EXACT PARITY
+
+Geometry coverage is not claimed as real MSRC/BDGP same-state replay.

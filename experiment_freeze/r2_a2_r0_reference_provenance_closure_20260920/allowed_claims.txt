@@ -1,0 +1,19 @@
+ALLOWED:
+
+"R2 clean extraction exactly matches the authoritative frozen
+directional-cyclic-utility implementation on generic V=2/V=5/V=6 contracts."
+
+"Caltech real same-state frozen replay is exact."
+
+"MSRC/BDGP historical same-state replay is unavailable because the required
+pre-final aligned posterior states were not persisted."
+
+"The clean directional cyclic utility implementation exactly reproduces the
+frozen authoritative utility computation under generic V=2/V=5/V=6 numerical
+contracts and under the recoverable real Caltech same-state replay.
+MSRC-v1 and BDGP historical same-state replay cannot be independently
+reconstructed because the pre-final aligned-posterior states were not
+persisted."
+
+Claim type: implementation identity and bounded reproducibility coverage
+Performance/scientific-superiority claim: NOT ALLOWED

@@ -1,0 +1,31 @@
+Dataset: BDGP
+Frozen tag: g0-b1-bdgp-structural-pilot-pre-gt-pass-20260917
+Tag commit: 72c957f057c267dc04eccb8c44d52eb5045fb22c
+Source: experiments/generic_contract/generic_final_core_adapter.py
+Source SHA256: 85a97cb72505ef7296c14442a322a6cb54c013697e51b181e0b7cf7962ffa3b6
+Runner: experiments/generic_contract/run_g0_b1_bdgp_structural_pilot.py
+Runner SHA256: 7a4769d59781578c6b54db68c621313d3594b6496c3791983fb3fcd9cd6eb7f1
+
+Authoritative order:
+1. BDGP_RUNTIME_SPEC lines 161-196 selects N=2500,V=2,K=5,
+   init_epoch=200, native_epoch=1000, T_2=100, training_seed=20.
+2. prepare_native_backbone, line 451.
+3. 200 initialization epochs with backward/Adam step, lines 482-504.
+4. 1001 native iterations with backward/Adam step, lines 533-565.
+5. Eleven native_refresh calls; the last occurs at native epoch 1000.
+6. prepare_native_backbone coordinate snapshot, line 566; returns optimized
+   model, q_local/q_aligned, and the eleventh-refresh M_v at lines 580-585.
+7. run_structural_pilot, line 867, calls coordinate_snapshot again on that
+   exact model and native M_v at lines 885-887.
+8. build_cycle_utility consumes pre_final[1] at line 888; U_cycle is frozen
+   at line 889.
+9. run_final_core begins at lines 904-912 and performs twenty Phase-A and
+   twenty Phase-B optimization epochs.
+10. run_final_core performs a final native_refresh at line 779 and final
+    coordinate_snapshot at line 783.
+11. Saved fields q_local/q_aligned/M_v are explicitly final[...] at lines
+    918-920, while saved U_cycle remains the pre-final value at line 921.
+
+Conclusion:
+The saved q_local/q_aligned/M_v are final-state references and are not the
+same coordinate state that generated sealed U_cycle.

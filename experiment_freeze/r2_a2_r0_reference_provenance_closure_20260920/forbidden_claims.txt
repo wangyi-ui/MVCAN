@@ -1,0 +1,22 @@
+FORBIDDEN unless original same-state artifacts later become available:
+
+MSRC SAME-STATE EXACT
+BDGP SAME-STATE EXACT
+THREE-DATASET SAME-STATE EXACT
+R2-A2 PASS
+MULTI-DATASET REAL EXACT PARITY
+MSRC real frozen replay exact
+BDGP real frozen replay exact
+three-dataset real frozen replay exact
+multi-dataset same-state parity established
+
+Also forbidden:
+ACC improvement
+NMI improvement
+ARI improvement
+robustness improvement
+generalization improvement
+dataset-wide scientific superiority
+
+Historical R2-A2 outcome must remain:
+STOPPED / REFERENCE_PROVENANCE_ISSUE

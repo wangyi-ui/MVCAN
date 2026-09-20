@@ -1,0 +1,37 @@
+Historical runner controls for both MSRC and BDGP:
+- device argument required exactly cuda:0
+- CUBLAS_WORKSPACE_CONFIG=:4096:8
+- OMP_NUM_THREADS=1
+- MKL_NUM_THREADS=1
+- OPENBLAS_NUM_THREADS=1
+- NUMEXPR_NUM_THREADS=1
+- NumPy, Torch CPU, Torch CUDA, and CUDA-all seeded with training seed 20
+- cuDNN deterministic=true, benchmark=false
+- TF32 disabled
+- torch deterministic algorithms enabled
+- DataLoader CPU generator seeded 20
+- sklearn KMeans(n_init=100, random_state=20)
+- MinMaxScaler and NMI-based view-weight refresh
+
+MSRC command record:
+Python 3.8.20
+Torch 2.0.1+cu118
+CUDA runtime 11.8
+device cuda:0
+GPU NVIDIA GeForce RTX 4090 D
+
+BDGP command record:
+device cuda:0
+training seed 20
+native config seed 1
+native lambda1 10
+Exact Python/Torch/CUDA/GPU version fields were not independently persisted
+in the BDGP command record.
+
+scikit-learn version: NOT RECORDED in either structural command record
+BLAS/OpenMP implementation version: NOT RECORDED
+Full random-generator state snapshots: NOT PERSISTED
+
+Conclusion:
+Running the historical optimization today would be a new numerical replay,
+not recovery of an immutable historical state. It is forbidden in this stage.

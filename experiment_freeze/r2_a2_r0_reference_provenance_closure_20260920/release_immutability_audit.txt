@@ -1,0 +1,10 @@
+Release worktree: /root/autodl-tmp/UCRR-MVC-release
+Branch: release/frozen-core-extraction
+HEAD: 6eb11749bd1f1536aceb456a804406b9a05361ca
+R1 production manifest: 15/15 OK
+R2 production manifest: 3/3 OK
+R2 existing test manifest: 4/4 OK
+Tracked source/test modifications: NONE
+git diff --check: PASS
+git diff --name-only: EMPTY
+Only new artifact: ignored metadata freeze directory

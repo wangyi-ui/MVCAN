@@ -1,0 +1,29 @@
+Dataset: MSRC-v1
+Frozen tag: g0-b0-msrc-structural-pilot-pre-gt-pass-20260916
+Tag commit: 2bfacc6988eaae5a78db2dc9b49da03c22a30482
+Source: experiments/generic_contract/generic_final_core_adapter.py
+Source SHA256: f9fae7640d5c8416e47dab1b5b20b924e1afdcd756173459deb32c767c42f3d9
+Runner: experiments/generic_contract/run_g0_b0_msrc_structural_pilot.py
+Runner SHA256: fa12b9ce8614677c7e01e3519554ef02e0fdb2f5a178516d365b6344cd2f766d
+
+Authoritative order:
+1. prepare_native_backbone, line 300.
+2. 200 initialization epochs with backward/Adam step, lines 330-352.
+3. 1001 native iterations with backward/Adam step, lines 378-410.
+4. Eleven native_refresh calls; the last occurs at native epoch 1000.
+5. prepare_native_backbone coordinate snapshot, line 411; returns optimized
+   model, q_local/q_aligned, and the eleventh-refresh M_v at lines 425-430.
+6. run_structural_pilot, line 693, calls coordinate_snapshot again on that
+   exact model and native M_v at lines 705-707.
+7. build_cycle_utility consumes pre_final[1] at line 708; U_cycle is frozen
+   at line 709.
+8. run_final_core begins at lines 724-732 and performs twenty Phase-A and
+   twenty Phase-B optimization epochs.
+9. run_final_core performs a final native_refresh at line 609 and a final
+   coordinate_snapshot at line 613.
+10. Saved fields q_local/q_aligned/M_v are explicitly final[...] at lines
+    738-740, while saved U_cycle remains the pre-final value at line 741.
+
+Conclusion:
+The saved q_local/q_aligned/M_v are final-state references and are not the
+same coordinate state that generated sealed U_cycle.

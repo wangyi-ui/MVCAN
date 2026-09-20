@@ -1,0 +1,15 @@
+R2 scientific definition remains frozen.
+
+U_tilde: ABSENT / CLOSED
+label recalibration: ABSENT / CLOSED
+feature gating: ABSENT / CLOSED
+fusion gating: ABSENT / CLOSED
+pseudo-label weighting: ABSENT / CLOSED
+continuous posterior aggregation: ABSENT / CLOSED
+memory confidence: ABSENT / CLOSED
+new utility formula: ABSENT / CLOSED
+state search: NOT RUN
+checkpoint trial by U hash: NOT RUN
+seed/refresh search: NOT RUN
+tolerance relaxation: NOT RUN
+sealed U modification: NOT RUN

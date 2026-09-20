@@ -1,0 +1,27 @@
+MSRC
+sealed U_cycle: PRESENT
+saved final q_local: PRESENT
+saved final q_aligned: PRESENT
+saved final M_v: PRESENT
+same-state pre-final q_local: ABSENT
+same-state pre-final q_aligned: ABSENT
+same-state pre-final M_v: ABSENT
+same-state pre-final model checkpoint/state_dict: ABSENT
+same-state object hash manifest: ABSENT
+
+BDGP
+sealed U_cycle: PRESENT
+saved final q_local: PRESENT
+saved final q_aligned: PRESENT
+saved final M_v: PRESENT
+same-state pre-final q_local: ABSENT
+same-state pre-final q_aligned: ABSENT
+same-state pre-final M_v: ABSENT
+same-state pre-final model checkpoint/state_dict: ABSENT
+same-state object hash manifest: ABSENT
+
+Absence basis:
+Verified structural output manifests and seals; inspected all artifact member
+headers; searched relevant filenames, manifests, provenance text, release
+bridges, and tagged Git trees; performed a cross-workspace target-shape NPZ
+header inventory. No optimization or state search was executed.
