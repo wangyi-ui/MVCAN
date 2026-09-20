@@ -1,0 +1,4 @@
+Command:
+PYTHONPATH=. pytest -q tests/test_g0_dataset_contract.py tests/test_g0_action_space.py tests/test_g0_weak_quality.py tests/test_g0_sparse_label_contract.py tests/test_g0_caltech_backward_compatibility.py tests/test_g0_generic_cycle_utility.py tests/test_g0_generic_relation_action.py tests/test_g0_b0_msrc_structural_pilot.py tests/test_g0_b0_msrc_postseal_evaluation.py tests/test_g0_b1_bdgp_structural_pilot.py
+
+Result: 94 passed, 0 failed, 1 deprecation warning

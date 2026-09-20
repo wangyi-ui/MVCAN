@@ -1,0 +1,8 @@
+GT loaded: NO
+sparse labels loaded: NO
+pseudo labels loaded: NO
+labels accepted by production API: NO
+GT accepted by production API: NO
+corruption mask used as utility input: NO
+Caltech parity identity verification used GT: NO
+semantic evaluation: NO

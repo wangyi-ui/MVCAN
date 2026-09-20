@@ -1,0 +1,58 @@
+Directional action contract: generator -> verifier complement
+Ordering: frozen native itertools.combinations order; odd V uses low-size block then high-size block
+Complementary directions collapsed: NO
+
+V=2 S=2
+0  0|1
+1  1|0
+
+V=5 S=20
+0  01|234
+1  02|134
+2  03|124
+3  04|123
+4  12|034
+5  13|024
+6  14|023
+7  23|014
+8  24|013
+9  34|012
+10 012|34
+11 013|24
+12 014|23
+13 023|14
+14 024|13
+15 034|12
+16 123|04
+17 124|03
+18 134|02
+19 234|01
+
+V=6 S=20
+0  012|345
+1  013|245
+2  014|235
+3  015|234
+4  023|145
+5  024|135
+6  025|134
+7  034|125
+8  035|124
+9  045|123
+10 123|045
+11 124|035
+12 125|034
+13 134|025
+14 135|024
+15 145|023
+16 234|015
+17 235|014
+18 245|013
+19 345|012
+
+Every action unique: YES
+Every index valid: YES
+Generator/verifier disjoint: YES
+Generator union verifier covers every view: YES
+Verifier is exact ordered complement: YES
+Dataset-specific action counts hard-coded in production: NO

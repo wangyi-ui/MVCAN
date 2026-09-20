@@ -1,0 +1,15 @@
+MSRC/BDGP sealed U references are valid: YES
+
+MSRC sealed U ndarray SHA256=3552d88de9f894276d0d1ccae8f4c55147e98aac9a8ae146eaa1cf54dcc9dd10
+MSRC sealed U tensor SHA256=34ede38bcf476228b88340834813cd77b17556b7e304c9e923c1072f9f1887ab
+BDGP sealed U ndarray SHA256=b563bc9ecebfc138ce8b0adca24729e5f9f614c1c0ffc3762f8505d7a7f8f2f5
+BDGP sealed U tensor SHA256=bc7316beb19c8bdb79bb0af80a5b5185fa37cf9c984e6d1e9e86defad29f54aa
+
+Stored final q_aligned is the same-state input that produced sealed U: NO
+Recomputation from stored final q_aligned authorized as parity test: NO
+MSRC same-state parity: DEFERRED TO R2-A2
+BDGP same-state parity: DEFERRED TO R2-A2
+R2-A2 required action: materialize same-state pre-final q_aligned without retraining
+Classification: REFERENCE_AVAILABILITY_BOUNDARY
+NUMERICAL_IMPLEMENTATION_DIFFERENCE: NO
+SCIENTIFIC_BEHAVIOR_CHANGE: NO

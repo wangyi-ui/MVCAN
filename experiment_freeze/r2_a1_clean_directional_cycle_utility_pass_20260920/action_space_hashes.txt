@@ -1,0 +1,20 @@
+Hash convention: frozen tensor SHA256 with length-framed dtype, comma-shape, and C-order bytes.
+Uniform-cardinality actions use the historical ordered subset-array carrier.
+Variable-cardinality actions use the ordered membership-array carrier.
+
+V=2 generator canonical SHA256=8a779fd09d0f7a4ff666981de44701140fed6eb7ee405b7927b6813ce777be80
+V=2 verifier canonical SHA256=2424701ad3aa3b1a8c2c8f8aefab6929471ee2bae87b885df1c074c307923105
+V=2 generator membership SHA256=8aa980d199325485ff9795abaa2732caeecbed7971ad48319854a016be6133e4
+V=2 verifier membership SHA256=58e03f5ae561deb1a80d9957a9253a1e21466ec1861a601d7c374291e6026856
+
+V=5 generator canonical SHA256=79abb568021f7c2d96854ba442a0a9195a786223ed7f89931d1ff6e578e0c7d5
+V=5 verifier canonical SHA256=5596a1b98b26c4e6b261b3fa0fded7dfb1d2a965aee8799e0f161f46710c517e
+V=5 generator membership SHA256=79abb568021f7c2d96854ba442a0a9195a786223ed7f89931d1ff6e578e0c7d5
+V=5 verifier membership SHA256=5596a1b98b26c4e6b261b3fa0fded7dfb1d2a965aee8799e0f161f46710c517e
+
+V=6 generator canonical SHA256=1da78797e059f952bf6ae3749fc94ca2dd5bebf83d76b1e8eeb6a03583fe36da
+V=6 verifier canonical SHA256=aa726d58832d5eb17ff952049d6be1b3c6eb7295b6fcba6b656c3c1ead80baca
+V=6 generator membership SHA256=3705c18d35eeed584dc4ea284a3447ee6b285dfcc3f52be4f47dc04ec5c156c6
+V=6 verifier membership SHA256=3169fa5cf5bc2210e70d0970d378d6ee4aae9a1724f16931ca862561c2685b57
+
+Expected values originate from frozen G0 action-space records and authoritative implementation comparisons.

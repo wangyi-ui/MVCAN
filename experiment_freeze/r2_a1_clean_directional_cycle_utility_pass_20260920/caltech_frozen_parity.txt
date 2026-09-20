@@ -1,0 +1,21 @@
+Purpose: frozen identity verification only
+Same-state input source: frozen E1 LWC seed20 checkpoints and frozen feature artifact
+Native representation recomputed without training: YES
+Native alignment state reconstructed: YES
+Canonical sample order verified: YES
+q_aligned shape: [1400,6,7]
+q_aligned dtype: float32
+q_aligned tensor logical SHA256: c0b48b300a9f041857dbd5a3bcf46aab6b3874397cc4af64f8e4e29b750a2a23
+
+U_cycle shape: [1400,20]
+U_cycle dtype: float32
+U_cycle finite: TRUE
+U_cycle tensor logical SHA256: b23dde6bd4f524e5e47748a73df3224f77e93d166d94f5a6c60db8865afefbfe
+U_cycle ndarray logical SHA256: 52dc7b5354daf9df189cd7d98c4e6cc8110f12182d1f82c24545eb8d11f66fe6
+Frozen array equality: EXACT
+Generator hash: 1da78797e059f952bf6ae3749fc94ca2dd5bebf83d76b1e8eeb6a03583fe36da
+Verifier hash: aa726d58832d5eb17ff952049d6be1b3c6eb7295b6fcba6b656c3c1ead80baca
+Exact parity: YES
+GT used: NO
+Tolerance introduced: NO
+Performance metrics run: NO

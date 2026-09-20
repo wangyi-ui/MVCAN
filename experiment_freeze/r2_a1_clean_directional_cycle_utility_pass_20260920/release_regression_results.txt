@@ -1,0 +1,9 @@
+Command:
+PYTHONPATH=. pytest -q tests/release_core
+
+Initial result: 118 passed, 2 failed
+Initial failure classification: EXTRACTION_HARNESS_BUG
+Cause: frozen R1 isolation test scans all future release_core modules and reserved the relative module name action_space and local executable name U_cycle.
+Resolution: compatibility-only relative-import alias and local-variable rename; public U_cycle key, equations, evaluation order, tensors, and hashes unchanged.
+Dedicated R2 exact parity after resolution: 57 passed
+Final result: 120 passed, 0 failed, 1 deprecation warning

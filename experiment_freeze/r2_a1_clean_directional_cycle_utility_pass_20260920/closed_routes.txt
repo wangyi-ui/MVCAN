@@ -1,0 +1,10 @@
+U_tilde: ABSENT
+scalar utility correction: ABSENT
+feature gating: ABSENT
+fusion gating: ABSENT
+pseudo CE: ABSENT
+continuous U-weighted posterior aggregation: ABSENT
+pseudo-anchor expansion: ABSENT
+label-conditioned utility: ABSENT
+learned utility correction: ABSENT
+scientific scope: q_aligned -> directional complementary action -> cyclic validity

@@ -1,0 +1,80 @@
+R2-A1 DIRECTIONAL CYCLIC UTILITY
+CLEAN EXTRACTION
+
+Parent:
+R1 BACKBONE / DATA FOUNDATION PASS / CLOSED
+
+Parent commit:
+65ba7e8a79e4b344b90d2ad771433d8561cff6c5
+
+Production namespace:
+release_core.utility
+
+R1 source modified:
+NO
+
+R2 production files:
+3
+
+R2 test files:
+4
+
+Action-space parity:
+PASS
+
+Synthetic intermediate parity:
+EXACT
+
+Synthetic U_cycle parity:
+EXACT
+
+Caltech frozen U_cycle parity:
+EXACT
+
+MSRC frozen same-state parity:
+DEFERRED TO R2-A2 REFERENCE MATERIALIZATION
+
+BDGP frozen same-state parity:
+DEFERRED TO R2-A2 REFERENCE MATERIALIZATION
+
+U_cycle semantics:
+ACTION VALIDITY
+
+Sparse labels used:
+NO
+
+GT used:
+NO
+
+Corruption mask used as utility input:
+NO
+
+R3 semantic logic:
+ABSENT
+
+R4 relation action:
+ABSENT
+
+R5 alternating trainer:
+ABSENT
+
+Training:
+NOT RUN
+
+Optimizer:
+NOT RUN
+
+Backward:
+NOT RUN
+
+Performance metrics:
+NOT RUN
+
+Scientific behavior change:
+NONE
+
+R2-A1:
+PASS / CLEAN EXTRACTION FROZEN
+
+Next:
+R2-A2 SAME-STATE FROZEN REFERENCE MATERIALIZATION AND MULTI-DATASET PARITY

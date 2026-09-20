@@ -1,0 +1,13 @@
+training loop: NOT RUN
+optimizer.step: NOT RUN
+backward: NOT RUN
+Phase A: NOT RUN
+Phase B: NOT RUN
+semantic action: NOT RUN
+memory update: NOT RUN
+ACC: NOT RUN
+GT-NMI: NOT RUN
+ARI: NOT RUN
+utility AUC: NOT RUN
+corruption-detection AUC: NOT RUN
+performance metrics: NOT RUN

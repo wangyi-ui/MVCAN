@@ -1,0 +1,33 @@
+Input q_aligned: floating torch.Tensor or numpy.ndarray [N,V,K]
+N > 0
+V >= 2
+K >= 2
+finite: REQUIRED
+nonnegative: REQUIRED
+upper bound: <= 1 + 1e-7
+posterior row mass: one with rtol=0 and atol=1e-5
+Torch dtype/device preserved: YES
+NumPy dtype preserved and converted to CPU Torch tensor: YES
+ActionSpace view count must equal V: YES
+
+Outputs:
+p_gen [N,S,K]
+p_ver [N,S,K]
+conf_gen [N,S]
+support_ver [N,S]
+y_gen [N,S]
+closure [N,S]
+U_cycle [N,S]
+generator_membership [S,V]
+verifier_membership [S,V]
+actions immutable: YES
+membership arrays read-only: YES
+
+Labels accepted: NO
+GT accepted: NO
+corruption mask accepted: NO
+dataset name accepted: NO
+P_global accepted: NO
+sample_ids accepted: NO
+pseudo labels accepted: NO
+semantic relations accepted: NO
