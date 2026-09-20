@@ -1,0 +1,13 @@
+Command:
+PYTHONPATH=. pytest -q tests/release_core
+
+Result:
+120 passed
+0 failed
+1 warning
+Elapsed: 11.95s
+
+Warning:
+PyTorch TypedStorage deprecation warning only.
+
+Status: PASS

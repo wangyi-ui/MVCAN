@@ -1,0 +1,17 @@
+R1 FINAL:
+65ba7e8a79e4b344b90d2ad771433d8561cff6c5
+
+R2-A1:
+6eb11749bd1f1536aceb456a804406b9a05361ca
+
+Historical R2-A2:
+STOPPED / REFERENCE_PROVENANCE_ISSUE
+
+R2-A2-R0:
+8e070cd299a0ea58eb4256d472e887af7c5cd44c
+
+R2-A2-R0 tag:
+r2-a2-r0-reference-provenance-closure-pass-20260920
+
+R2-FINAL evidence mode:
+BOUNDED

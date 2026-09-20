@@ -1,0 +1,21 @@
+p_gen[i,s,k] = mean(q_aligned[i,v,k] for v in generator_s)
+p_ver[i,s,k] = mean(q_aligned[i,v,k] for v in verifier_s)
+conf_gen[i,s] = max_k p_gen[i,s,k]
+y_gen[i,s] = argmax_k p_gen[i,s,k]
+y_ver[i,s] = argmax_k p_ver[i,s,k]
+support_ver[i,s] = p_ver[i,s,y_gen[i,s]]
+closure[i,s] = 1[y_gen[i,s] == y_ver[i,s]]
+U_cycle[i,s] = closure[i,s] * sqrt(conf_gen[i,s] * support_ver[i,s])
+
+epsilon: NONE
+clamp: NONE
+temperature: NONE
+post normalization: NONE
+learned correction: NONE
+label correction: NONE
+U_tilde: ABSENT
+
+Reduction policy: index each ordered action, mean over its view dimension,
+then stack actions.
+Argmax tie policy: Torch first-index behavior.
+Scientific definition: FROZEN

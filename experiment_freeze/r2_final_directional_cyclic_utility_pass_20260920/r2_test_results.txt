@@ -1,0 +1,13 @@
+Command:
+PYTHONPATH=. pytest -q tests/release_core/test_r2_action_space.py tests/release_core/test_r2_cyclic_utility.py tests/release_core/test_r2_caltech_frozen_parity.py tests/release_core/test_r2_isolation.py
+
+Result:
+57 passed
+0 failed
+1 warning
+Elapsed: 4.11s
+
+Warning:
+PyTorch TypedStorage deprecation warning only.
+
+Status: PASS

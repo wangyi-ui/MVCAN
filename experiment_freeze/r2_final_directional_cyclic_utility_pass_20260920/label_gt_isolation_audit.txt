@@ -1,0 +1,14 @@
+R2-FINAL scientific execution:
+
+GT loaded: NO
+dataset labels loaded: NO
+sparse labels loaded for R2 computation: NO
+pseudo labels loaded: NO
+semantic targets loaded: NO
+PredRelation loaded: NO
+corruption mask used as oracle: NO
+
+Existing regression tests used only their established test fixtures.
+No dataset GT or labels were used to produce, tune, select, or evaluate R2.
+
+GT / labels: NOT USED

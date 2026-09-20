@@ -1,0 +1,17 @@
+U_cycle means:
+ACTION VALIDITY
+
+Observation basis:
+weak-quality representation observations
+
+U_cycle does NOT mean:
+- class semantic direction
+- pseudo-label confidence
+- feature importance
+- fusion weight
+- memory confidence
+- semantic expansion priority
+
+Final framework principle:
+Sparse labels determine semantic direction/content;
+frozen U_cycle determines action validity.

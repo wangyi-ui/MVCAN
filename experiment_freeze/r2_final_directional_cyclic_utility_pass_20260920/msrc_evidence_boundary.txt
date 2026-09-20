@@ -1,0 +1,20 @@
+Dataset: MSRC-v1
+N=210
+V=5
+K=7
+S=20
+
+sealed U ndarray SHA256:
+3552d88de9f894276d0d1ccae8f4c55147e98aac9a8ae146eaa1cf54dcc9dd10
+sealed U tensor SHA256:
+34ede38bcf476228b88340834813cd77b17556b7e304c9e923c1072f9f1887ab
+
+sealed U integrity: VALID / PRESERVED
+historical same-state q_aligned: NOT AVAILABLE
+historical real same-state replay: NOT ESTABLISHED
+
+Reason:
+The pre-final state was not persisted and is not recoverable without
+replaying historical optimization.
+
+Exact real same-state parity claimed: NO

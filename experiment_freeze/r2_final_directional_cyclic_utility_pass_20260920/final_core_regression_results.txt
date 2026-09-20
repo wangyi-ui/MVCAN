@@ -1,0 +1,12 @@
+Command:
+PYTHONPATH=. pytest -q \
+  tests/test_g0_a1_caltech_exact_adapter.py \
+  tests/test_final_core_exact_replay.py \
+  tests/test_c0_complementary_semantic_verification.py
+
+Result:
+171 passed
+0 failed
+Elapsed: 3.09s
+
+Status: PASS

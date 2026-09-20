@@ -1,0 +1,83 @@
+R2 DIRECTIONAL CYCLIC UTILITY
+FINAL SCIENTIFIC FREEZE
+
+Parent:
+R2-A2-R0 REFERENCE PROVENANCE CLOSURE PASS
+
+R1:
+PASS / CLOSED / UNCHANGED
+
+R2 production:
+3 TRACKED FILES / FROZEN
+
+R2 tests:
+4 TRACKED FILES / FROZEN
+
+Scientific definition:
+FROZEN
+
+Action-space:
+EXACT
+
+Generic V=2:
+EXACT
+
+Generic V=5:
+EXACT
+
+Generic V=6:
+EXACT
+
+Caltech real same-state replay:
+EXACT
+
+MSRC real same-state replay:
+NOT ESTABLISHED — HISTORICAL INPUT UNAVAILABLE
+
+BDGP real same-state replay:
+NOT ESTABLISHED — HISTORICAL INPUT UNAVAILABLE
+
+MSRC sealed U:
+VALID / PRESERVED
+
+BDGP sealed U:
+VALID / PRESERVED
+
+Historical R2-A2:
+STOPPED / REFERENCE_PROVENANCE_ISSUE
+
+Reference coverage limitation:
+YES
+
+Final evidence mode:
+BOUNDED
+
+Implementation mismatch:
+NONE OBSERVED
+
+Scientific behavior mismatch:
+NONE OBSERVED
+
+Training:
+NOT RUN
+
+Optimizer:
+NOT RUN
+
+Backward:
+NOT RUN
+
+GT / labels:
+NOT USED
+
+Performance metrics:
+NOT RUN
+
+R3-R5 logic:
+ABSENT
+
+R2:
+PASS / CLOSED WITH BOUNDED EVIDENCE
+
+Next:
+R3 SPARSE RELATION SEMANTICS EXTRACTION

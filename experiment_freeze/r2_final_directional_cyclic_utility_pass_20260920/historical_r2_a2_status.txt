@@ -1,0 +1,20 @@
+Historical stage:
+R2-A2 SAME-STATE MULTI-DATASET PARITY
+
+Outcome:
+STOPPED
+
+Classification:
+REFERENCE_PROVENANCE_ISSUE
+
+Production mismatch observed:
+NO
+
+Scientific behavior mismatch observed:
+NO
+
+R2-A2-R0 closure classification:
+NONBLOCKING_REFERENCE_COVERAGE_LIMITATION
+
+Historical outcome rewritten as PASS:
+NO

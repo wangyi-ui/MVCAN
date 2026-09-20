@@ -1,0 +1,12 @@
+R1 final freeze:
+experiment_freeze/r1_final_backbone_data_foundation_pass_20260919
+
+R1 FINAL commit:
+65ba7e8a79e4b344b90d2ad771433d8561cff6c5
+
+R1 production manifest: 15/15 OK
+R1 test manifest: 11/11 OK
+R1 freeze metadata: ALL OK
+R1 production source modified: NO
+R1 test source modified: NO
+R1 status: PASS / CLOSED / UNCHANGED

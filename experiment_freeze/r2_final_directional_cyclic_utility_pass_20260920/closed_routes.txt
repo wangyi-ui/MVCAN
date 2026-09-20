@@ -1,0 +1,16 @@
+U_tilde: ABSENT / CLOSED
+scalar/learned utility recalibration: ABSENT / CLOSED
+label-conditioned U: ABSENT / CLOSED
+GT-conditioned U: ABSENT / CLOSED
+feature gating: ABSENT / CLOSED
+fusion gating: ABSENT / CLOSED
+ordinary U-weighted InfoNCE: ABSENT / CLOSED
+Conditional KL Rate: ABSENT / CLOSED
+direct P_util/global target rewrite: ABSENT / CLOSED
+additive pseudo-label CE: ABSENT / CLOSED
+static prototype memory: ABSENT / CLOSED
+continuous U-weighted posterior aggregation: ABSENT / CLOSED
+pseudo-anchor expansion: ABSENT / CLOSED
+
+R2 scientific scope:
+q_aligned -> directional complementary action -> cyclic action validity

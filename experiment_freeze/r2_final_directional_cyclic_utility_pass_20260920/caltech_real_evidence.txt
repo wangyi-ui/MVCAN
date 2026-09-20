@@ -1,0 +1,15 @@
+Dataset: Caltech
+q_aligned shape: [1400,6,7]
+q_aligned tensor SHA256:
+c0b48b300a9f041857dbd5a3bcf46aab6b3874397cc4af64f8e4e29b750a2a23
+
+U shape: [1400,20]
+U tensor SHA256:
+b23dde6bd4f524e5e47748a73df3224f77e93d166d94f5a6c60db8865afefbfe
+U ndarray SHA256:
+52dc7b5354daf9df189cd7d98c4e6cc8110f12182d1f82c24545eb8d11f66fe6
+
+Real same-state replay: EXACT
+Tolerance: NONE
+GT used: NO
+Evidence source: frozen R2-A1 Caltech parity record

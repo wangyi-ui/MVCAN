@@ -1,0 +1,13 @@
+ALLOWED MAXIMUM R2 FINAL CLAIM:
+
+"The clean directional cyclic utility implementation exactly matches the
+authoritative frozen implementation under generic V=2/V=5/V=6 numerical
+contracts and under the recoverable Caltech real same-state replay.
+Historical MSRC-v1 and BDGP same-state replay is unavailable because their
+pre-final aligned-posterior inputs were not persisted."
+
+Claim type:
+implementation identity and bounded reproducibility coverage
+
+Performance or scientific-superiority claim:
+NOT ALLOWED

@@ -1,0 +1,11 @@
+q_aligned input detached immediately: YES
+p_gen requires_grad: FALSE
+p_ver requires_grad: FALSE
+conf_gen requires_grad: FALSE
+support_ver requires_grad: FALSE
+U_cycle requires_grad: FALSE
+Floating output grad_fn: NONE
+R2 trainable parameters: NONE
+R2 gradient path into R1: NONE
+Straight-through estimator: NONE
+Backward called: NO

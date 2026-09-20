@@ -1,0 +1,15 @@
+training: NOT RUN
+retraining: NOT RUN
+optimizer.step: NOT RUN
+backward: NOT RUN
+model update: NOT RUN
+checkpoint search/replay: NOT RUN
+ACC: NOT RUN
+GT-NMI: NOT RUN
+ARI: NOT RUN
+AUC: NOT RUN
+semantic metrics: NOT RUN
+performance metrics: NOT RUN
+performance conclusion: NONE
+
+Only existing non-training test and regression suites were run.

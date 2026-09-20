@@ -1,0 +1,18 @@
+FORBIDDEN:
+
+MSRC real same-state exact parity
+BDGP real same-state exact parity
+three-dataset real exact parity
+multi-dataset real exact parity
+R2-A2 PASS
+
+Also forbidden:
+ACC improvement
+NMI improvement
+ARI improvement
+robustness improvement
+generalization improvement
+dataset-wide scientific superiority
+
+The historical R2-A2 outcome remains:
+STOPPED / REFERENCE_PROVENANCE_ISSUE

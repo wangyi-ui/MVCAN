@@ -1,0 +1,20 @@
+Dataset: BDGP
+N=2500
+V=2
+K=5
+S=2
+
+sealed U ndarray SHA256:
+b563bc9ecebfc138ce8b0adca24729e5f9f614c1c0ffc3762f8505d7a7f8f2f5
+sealed U tensor SHA256:
+bc7316beb19c8bdb79bb0af80a5b5185fa37cf9c984e6d1e9e86defad29f54aa
+
+sealed U integrity: VALID / PRESERVED
+historical same-state q_aligned: NOT AVAILABLE
+historical real same-state replay: NOT ESTABLISHED
+
+Reason:
+The pre-final state was not persisted and is not recoverable without
+replaying historical optimization.
+
+Exact real same-state parity claimed: NO

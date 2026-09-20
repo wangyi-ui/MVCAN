@@ -1,0 +1,7 @@
+git status --short --untracked-files=all: EMPTY
+git diff --check: PASS
+git diff --name-only: EMPTY
+Production changes: NONE
+Test changes: NONE
+Freeze directory is intentionally ignored.
+No accidental root-level file created.

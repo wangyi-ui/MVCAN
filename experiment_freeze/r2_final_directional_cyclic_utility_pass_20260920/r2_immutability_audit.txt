@@ -1,0 +1,20 @@
+R2-A1 freeze:
+experiment_freeze/r2_a1_clean_directional_cycle_utility_pass_20260920
+
+R2-A1 commit:
+6eb11749bd1f1536aceb456a804406b9a05361ca
+
+R2-A1 production manifest: 3/3 OK
+R2-A1 test manifest: 4/4 OK
+R2-A1 freeze metadata: ALL OK
+
+R2-A2-R0 freeze:
+experiment_freeze/r2_a2_r0_reference_provenance_closure_20260920
+
+R2-A2-R0 commit:
+8e070cd299a0ea58eb4256d472e887af7c5cd44c
+
+R2-A2-R0 freeze metadata: 28/28 OK
+R2 production source modified: NO
+R2 test source modified: NO
+R2 status: PASS / CLOSED WITH BOUNDED EVIDENCE
