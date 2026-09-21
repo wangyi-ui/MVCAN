@@ -1,0 +1,5 @@
+Query gradient capability: PRESERVED
+Anchor gradient: STOPPED by explicit q_anchor.detach()
+Relation result detached wholesale: NO
+backward: NOT RUN
+torch.autograd.grad: NOT RUN

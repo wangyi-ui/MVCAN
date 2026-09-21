@@ -1,0 +1,9 @@
+Artifact SHA256: b04f107f6279839d534e55500fbb0f9aba94d7686944ab20f255337a511af234
+PredRelation shape: [196,14,20]
+PredRelation ndarray SHA256: cbd2d2de1dfd51abba9b8e80fcc1ee82f4e902df6532ca2af388e1266ff0d2b8
+PredRelation tensor SHA256: 3752fab36abcc607877b3f0083e678a63f2fa88cfd7a491a6e19235e3ca52bd1
+Balance ndarray SHA256: 2d69642382947465851d69fe9f151df440979ce626481f9ad4c060909f92ff9a
+Balance tensor SHA256: dc730ff68b4b0c719dbeb68a2f2ab8cddff8404fe2ea79302105b7ba3c9f67d6
+Reference status: SEALED_OUTPUT_ONLY
+Historical same-state y_gen: NOT PERSISTED
+Same-state replay: NOT ESTABLISHED

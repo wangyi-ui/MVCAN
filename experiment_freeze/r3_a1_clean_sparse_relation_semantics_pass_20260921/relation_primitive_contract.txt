@@ -1,0 +1,11 @@
+r_il^v = (q_query_local^v[i])^T sg(q_anchor_local^v[l])
+Input query: [B,K]
+Input anchor: [L,K]
+Output: [B,L]
+Coordinate: PER-VIEW LOCAL CLUSTER COORDINATE (q_local)
+Cosine: NO
+Temperature: NO
+Epsilon: NO
+Clamp: NO
+Sigmoid: NO
+Authoritative raw-matmul parity: EXACT

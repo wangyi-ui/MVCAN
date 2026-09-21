@@ -1,0 +1,8 @@
+y_gen: int64-compatible rank-2 [N,S]
+vote_state: float64 [N,K]
+sparse_mapping: int64 [K]
+class_pred: int64 [Nu,S]
+PredRelation: bool [Nu,L,S]
+balance_weights: float64 [Nu,L,S]
+q_query/q_anchor: matching floating torch dtype/device
+raw relation: same floating dtype [B,L]

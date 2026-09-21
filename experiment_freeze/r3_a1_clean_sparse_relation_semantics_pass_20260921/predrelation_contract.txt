@@ -1,0 +1,10 @@
+class_pred = sparse_mapping[y_gen[unlabeled rows]]
+Historical retained class_pred shape: [Nu,S]
+PredRelation[i,l,s] = 1[class_pred[i,s] == labeled_target[l]]
+Shape: [Nu,L,S]
+Dtype: bool
+Axis 0: exact unlabeled_ids order
+Axis 1: exact labeled_ids/labeled_targets order
+Axis 2: frozen R2 directional action order
+Detached/non-trainable: YES
+U dependence: NONE

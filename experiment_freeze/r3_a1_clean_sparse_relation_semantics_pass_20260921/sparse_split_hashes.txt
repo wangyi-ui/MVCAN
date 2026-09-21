@@ -1,0 +1,17 @@
+Caltech-6V: N=1400 K=7 L=14 Nu=1386 seed=20 labels_per_class=2
+Caltech ordered IDs: [67,82,90,111,200,365,440,513,536,983,1027,1250,1316,1385]
+Caltech ordered targets: [4,6,2,3,0,4,1,5,6,3,0,2,5,1]
+Caltech B7 persisted artifact hash: 0463cf7155bc2b90a6133f0a79fd30d8c5a9e78079c6692dd1fa4106cb174487
+Caltech generic canonical digest: 954e571808fac8e7d92b7213dde1058410c3318b12cbc110c446f716482b64e6
+
+MSRC-v1: N=210 K=7 L=14 Nu=196 seed=20 labels_per_class=2
+MSRC ordered IDs: [17,20,30,42,60,81,96,107,139,142,153,175,182,201]
+MSRC ordered targets: [0,0,1,1,2,2,3,3,4,4,5,5,6,6]
+MSRC generic canonical digest: 4f16e8b1b8213591a7ea1d36115335ccee43bf568d32bbcb007f929bc9b15231
+
+BDGP: N=2500 K=5 L=10 Nu=2490 seed=20 labels_per_class=2
+BDGP ordered IDs: [340,459,556,589,593,617,634,2012,2037,2226]
+BDGP ordered targets: [2,4,2,3,0,0,3,4,1,1]
+BDGP generic canonical digest: dca812ac480c97b3e85ff9e1c4331a39ff794a6b3cfa40e0b3b84f954df68154
+
+Expected unlabeled IDs: ascending deterministic complement

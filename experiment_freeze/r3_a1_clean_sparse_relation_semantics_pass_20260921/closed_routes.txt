@@ -1,0 +1,11 @@
+B7-A0 sparse CE: ABSENT
+E2/E3/E3B sparse semantic auxiliary: ABSENT
+C1 additive pseudo-label CE: ABSENT
+C2 scalar utility calibration: ABSENT
+C4 semantic memory: ABSENT
+C5 continuous posterior aggregation / pseudo-anchor expansion: ABSENT
+B4 U-weighted InfoNCE: ABSENT
+B5 Conditional KL Rate: ABSENT
+B6 feature/fusion gating: ABSENT
+WQ1 top-k semantic admission: ABSENT
+G3 P_util target rewriting: ABSENT

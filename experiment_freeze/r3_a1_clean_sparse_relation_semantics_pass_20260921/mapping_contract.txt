@@ -1,0 +1,7 @@
+Input: vote_state at labeled rows and labeled_targets only
+anchors[class_id] = mean labeled vote rows for class_id
+soft_contingency[:,class_id] = sum labeled vote rows for class_id
+Assignment: linear_sum_assignment(-soft_contingency)
+Orientation: mapping[row_indices] = column_indices; mapping[cluster] = semantic class
+Unlabeled GT: NOT USED
+Authoritative generic parity: EXACT

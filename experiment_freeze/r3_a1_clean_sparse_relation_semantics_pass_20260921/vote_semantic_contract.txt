@@ -1,0 +1,6 @@
+vote_state[i,k] = mean_s 1[y_gen[i,s] == k]
+Input y_gen: detached rank-2 integer cluster IDs in canonical sample and R2 action order
+Output: [N,K] float64
+U weighting: NONE
+Confidence weighting: NONE
+Authoritative generic parity: EXACT

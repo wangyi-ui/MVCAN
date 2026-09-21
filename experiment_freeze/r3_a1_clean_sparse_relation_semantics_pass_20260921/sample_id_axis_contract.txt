@@ -1,0 +1,6 @@
+sample_ids: unique canonical ascending R1 IDs
+labeled_ids: persisted order retained with paired targets
+unlabeled_ids: exact canonical ascending complement
+PredRelation query axis: unlabeled_ids order
+PredRelation anchor axis: labeled_ids/labeled_targets order
+No silent query or anchor reorder

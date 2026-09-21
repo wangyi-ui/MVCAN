@@ -1,0 +1,10 @@
+?? release_core/semantics/__init__.py
+?? release_core/semantics/relations.py
+?? release_core/semantics/sparse_labels.py
+?? tests/release_core/test_r3_frozen_semantics_parity.py
+?? tests/release_core/test_r3_isolation.py
+?? tests/release_core/test_r3_relations.py
+?? tests/release_core/test_r3_sparse_labels.py
+
+Tracked modifications: NONE
+Freeze directory: ignored

@@ -1,0 +1,92 @@
+R3-A1 SPARSE RELATION SEMANTICS
+CLEAN EXTRACTION
+
+Parent:
+R2 DIRECTIONAL CYCLIC UTILITY PASS /
+CLOSED WITH BOUNDED EVIDENCE
+
+Parent commit:
+f3620448968b8589aa7b49ad99dac927024d1ba1
+
+R1 modified:
+NO
+
+R2 modified:
+NO
+
+R3 production:
+3 FILES
+
+R3 tests:
+4 FILES
+
+Sparse-label contract:
+EXACT
+
+Sparse labels:
+AUTHORIZED
+
+Full GT:
+ISOLATED
+
+Vote semantic state:
+EXACT
+
+Sparse mapping:
+EXACT
+
+PredRelation:
+EXACT
+
+Relation balance:
+EXACT
+
+Raw query-anchor relation:
+EXACT
+
+Relation coordinate:
+q_local / per-view local
+
+Query gradient:
+PRESERVED
+
+Anchor gradient:
+STOPPED
+
+U_cycle consumed by R3:
+NO
+
+Label recalibration of U:
+NO
+
+Caltech real semantic replay:
+EXACT
+
+MSRC:
+VALID SEALED OUTPUT /
+SAME-STATE REPLAY NOT ESTABLISHED
+
+BDGP:
+VALID SEALED OUTPUT /
+SAME-STATE REPLAY NOT ESTABLISHED
+
+R4:
+ABSENT
+
+R5:
+ABSENT
+
+Training:
+NOT RUN
+
+Performance metrics:
+NOT RUN
+
+Scientific behavior change:
+NONE
+
+R3-A1:
+PASS / CLEAN EXTRACTION FROZEN
+
+Next:
+R3-A2 FROZEN REFERENCE / EVIDENCE CLOSURE

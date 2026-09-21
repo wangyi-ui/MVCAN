@@ -1,0 +1,6 @@
+Runtime split source: PERSISTED / EXPLICIT
+Full GT: NOT REQUIRED
+Representation: immutable frozen dataclass with defensive read-only int64 arrays
+Fields: sample_ids, labeled_ids, labeled_targets, unlabeled_ids, class_count, labels_per_class, label_seed, dataset_name
+Validation: unique IDs, membership, disjoint complete partition, target range, exact class balance, canonical unlabeled complement
+Silent labeled-row sorting: NO

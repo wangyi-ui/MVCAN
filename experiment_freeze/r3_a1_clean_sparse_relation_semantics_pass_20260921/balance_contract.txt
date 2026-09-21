@@ -1,0 +1,9 @@
+Per action same-edge weight: 1/(2*n_same)
+Per action different-edge weight: 1/(2*n_diff)
+Same total: 0.5
+Different total: 0.5
+Action total: 1.0
+Dtype: float64
+Empty group: FAIL CLOSED
+Epsilon: NONE
+U dependence: NONE

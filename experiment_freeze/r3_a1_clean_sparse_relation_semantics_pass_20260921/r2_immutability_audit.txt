@@ -1,0 +1,3 @@
+R2 production manifest: 3/3 OK
+R2 test manifest: 4/4 OK
+R2 modified: NO

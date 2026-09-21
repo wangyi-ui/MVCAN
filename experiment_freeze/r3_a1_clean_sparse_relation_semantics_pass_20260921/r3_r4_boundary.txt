@@ -1,0 +1,5 @@
+R3 OWNS: explicit sparse split; vote semantic state; sparse mapping; class_pred; PredRelation; balance weights; raw q_local query-anchor relation; query-gradient/anchor-stop contract.
+R4 OWNS: U_cycle-conditioned action weight; any historical BCE clamp; semantic BCE/action loss; utility-conditioned optimization behavior.
+R5 OWNS: Phase A; Phase B; alternating schedule; optimizer integration.
+U_cycle consumed by R3: NO
+Label recalibration of U: NO
