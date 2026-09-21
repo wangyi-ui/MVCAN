@@ -1,0 +1,11 @@
+R4-A2 freeze:
+experiment_freeze/r4_a2_frozen_objective_evidence_closure_pass_20260921
+
+Status:
+PASS / FROZEN OBJECTIVE EVIDENCE CLOSED
+
+Parent:
+f8a2247fb2c09354a647442b1d8dcddeb0779e7e
+
+R4-A2 freeze manifest SHA256:
+cd776aff204bc1800dd28a243b9d5e9f6e50af87a80f7282f6fd4397371be67a

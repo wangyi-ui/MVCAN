@@ -1,0 +1,17 @@
+R2 provides:
+U_cycle [B,S]
+frozen action ordering
+
+R3 provides:
+PredRelation [B,L,S]
+balance [B,L,S]
+q_local coordinate contract
+compute_view_relations
+
+R4 produces:
+one scalar differentiable relation-action objective
+
+R4 creates:
+NO new U
+NO new semantic target
+NO feature representation

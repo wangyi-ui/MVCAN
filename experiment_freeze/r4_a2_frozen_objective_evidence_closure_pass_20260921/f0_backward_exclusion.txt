@@ -1,0 +1,5 @@
+F0 backward regression: NOT RUN BY PROTOCOL
+
+The optional F0 regression file contains an explicit .backward() execution.
+R4-A2 prohibits backward and all gradient execution. This exclusion is
+preregistered and is not a missing gate.

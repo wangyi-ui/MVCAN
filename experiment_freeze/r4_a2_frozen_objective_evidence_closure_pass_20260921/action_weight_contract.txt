@@ -1,0 +1,8 @@
+w_ils = sg(U_is^cycle * b_ils)
+U_cycle: [B,S]
+balance: [B,L,S]
+action_weight: [B,L,S]
+Broadcast: U_cycle[:,None,:]
+No epsilon on U, threshold, top-k, softmax, normalization, power,
+temperature, learned transform, or U_tilde.
+action_weight is a derived optimization weight, not information utility.

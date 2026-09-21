@@ -1,0 +1,11 @@
+p_il^v = (q_query_local^v[i])^T sg(q_anchor_local^v[l])
+w_ils = sg(U_is^cycle * b_ils)
+eps = torch.finfo(dtype).eps
+p_bar_il^v = clamp(p_il^v, min=eps, max=1-eps)
+BCE_ils^v = -T_ils log(p_bar_il^v) - (1-T_ils) log(1-p_bar_il^v)
+D = sum_ils w_ils
+L_v = sum_ils(w_ils BCE_ils^v) / D
+L_R4 = (1/V) sum_v L_v
+T_ils = PredRelation_ils
+
+No term is modified and there are zero tunable R4 scientific hyperparameters.

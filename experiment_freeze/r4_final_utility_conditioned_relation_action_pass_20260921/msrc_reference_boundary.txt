@@ -1,0 +1,9 @@
+Artifact:
+outputs/generic_contract/g0_b0_msrc_structural_pilot_seed20_20260916/msrc_structural_pre_gt_artifact.npz
+SHA256: b04f107f6279839d534e55500fbb0f9aba94d7686944ab20f255337a511af234
+Inputs: q_local [210,5,7], U [210,20], PredRelation [196,14,20],
+balance [196,14,20].
+Classification: PARTIAL_INTERMEDIATE_REFERENCE.
+Allowed: exact clean-vs-authoritative R4 formula parity on sealed input.
+Forbidden: persisted historical scalar R4 loss exact replay.
+Reason: no independent persisted historical scalar/intermediate output exists.

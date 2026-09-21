@@ -1,0 +1,3 @@
+Working tree clean except ignored R4-A2 freeze metadata.
+Tracked source changes: NONE.
+Tracked test changes: NONE.

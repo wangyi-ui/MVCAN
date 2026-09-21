@@ -1,0 +1,147 @@
+R4-A2
+FROZEN OBJECTIVE / EVIDENCE CLOSURE
+
+Parent:
+R4-A1 CLEAN EXTRACTION / GIT-FROZEN
+
+Parent commit:
+f8a2247fb2c09354a647442b1d8dcddeb0779e7e
+
+R1:
+UNCHANGED / CLOSED
+
+R2:
+UNCHANGED / CLOSED WITH BOUNDED EVIDENCE
+
+R3:
+UNCHANGED / CLOSED WITH BOUNDED EVIDENCE
+
+R4 production:
+2 FILES / FROZEN
+
+R4 tests:
+4 FILES / FROZEN
+
+Scientific core:
+U_CYCLE-CONDITIONED RELATION LOSS
+
+WHAT:
+PREDRELATION
+
+WHETHER:
+U_CYCLE
+
+Action weight:
+DERIVED LOSS WEIGHT / NOT NEW UTILITY
+
+Relation probability:
+Q_LOCAL RAW DOT PRODUCT
+
+Action-specific relation probability:
+NO
+
+Relation probability action broadcast:
+YES
+
+U_cycle:
+DETACHED
+
+PredRelation:
+DETACHED
+
+Balance:
+DETACHED
+
+Action weight:
+DETACHED
+
+Anchor:
+STOP-GRADIENT
+
+Query:
+GRADIENT-CAPABLE
+
+BCE epsilon:
+DTYPE NUMERICAL ONLY
+
+Denominator:
+GLOBAL B*L*S WEIGHT SUM
+
+View aggregation:
+ARITHMETIC MEAN
+
+Direct feature gating:
+NO
+
+Direct view gating:
+NO
+
+U recalibration:
+NO
+
+New utility:
+NO
+
+Scientific hyperparameters:
+ZERO
+
+Caltech:
+EXACT PURE-OBJECTIVE REPLAY
+
+MSRC:
+PARTIAL_INTERMEDIATE_REFERENCE /
+EXACT CLEAN-VS-AUTHORITATIVE FORMULA PARITY /
+NO PERSISTED HISTORICAL SCALAR-LOSS REFERENCE
+
+BDGP:
+PARTIAL_INTERMEDIATE_REFERENCE /
+EXACT CLEAN-VS-AUTHORITATIVE FORMULA PARITY /
+NO PERSISTED HISTORICAL SCALAR-LOSS REFERENCE
+
+Reference coverage limitation:
+YES
+
+Final R4 evidence:
+BOUNDED
+
+Sparse labels:
+AUTHORIZED
+
+Full GT:
+ISOLATED
+
+R5 optimizer/schedule:
+ABSENT
+
+Native objective:
+ABSENT
+
+Additive combined loss:
+ABSENT
+
+Training:
+NOT RUN
+
+Backward:
+NOT RUN
+
+Optimizer:
+NOT RUN
+
+Performance metrics:
+NOT RUN
+
+Implementation mismatch:
+NONE OBSERVED
+
+Scientific behavior mismatch:
+NONE OBSERVED
+
+R4-A2:
+PASS / FROZEN OBJECTIVE EVIDENCE CLOSED
+
+Readiness:
+READY_FOR_R4_FINAL_WITH_BOUNDED_EVIDENCE
+
+Next:
+R4 FINAL UTILITY-CONDITIONED RELATION ACTION FREEZE

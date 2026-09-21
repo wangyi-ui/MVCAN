@@ -1,0 +1,9 @@
+Action dependence enters only through:
+U_cycle[i,s]
+PredRelation[i,l,s]
+balance[i,l,s]
+
+Relation probability p_il^v is shared across s.
+R4 creates no p_ils^v, action-specific q/latent, or generator/verifier-specific
+relation posterior. Generator/verifier effects are already represented by R2 U
+and R3 y_gen-derived PredRelation; R4 does not revisit their aggregation.

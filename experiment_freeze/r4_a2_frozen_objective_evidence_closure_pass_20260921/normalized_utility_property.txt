@@ -1,0 +1,6 @@
+For any positive scalar c that preserves denominator validity,
+U_cycle -> c * U_cycle scales numerator and denominator identically.
+The normalized R4 objective is invariant up to floating arithmetic.
+R4 therefore uses relative action-validity structure in this objective.
+The implementation does not explicitly normalize U.
+No claim is made about U magnitude outside this normalized objective.

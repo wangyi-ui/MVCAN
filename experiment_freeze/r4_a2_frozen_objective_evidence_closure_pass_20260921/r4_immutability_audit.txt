@@ -1,0 +1,6 @@
+R4-A1 status: PASS / CLEAN EXTRACTION FROZEN
+Production: 2/2 exact
+Tests: 4/4 exact
+Freeze metadata: ALL OK
+Freeze metadata SHA256: 554243ea3d8175f60cc0ed371cfe973c20175ad5c2c91b5d07c60f743ccaa73b
+Source or test modification authorized/performed: NO

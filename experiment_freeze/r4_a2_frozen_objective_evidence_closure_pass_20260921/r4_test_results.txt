@@ -1,0 +1,6 @@
+Command:
+PYTHONPATH=. pytest -q tests/release_core/test_r4_relation_action.py tests/release_core/test_r4_generic_parity.py tests/release_core/test_r4_frozen_objective_parity.py tests/release_core/test_r4_isolation.py
+
+Result:
+33 passed in 2.16s
+0 failed

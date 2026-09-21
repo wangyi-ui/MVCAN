@@ -1,0 +1,9 @@
+ALLOWED:
+
+The clean utility-conditioned relation-action implementation exactly
+reproduces the authoritative frozen R4 objective under generic runtime
+contracts and across all recoverable Caltech frozen q_local trajectory
+snapshots. MSRC-v1 and BDGP additionally establish exact clean-versus-
+authoritative formula parity on sealed structural inputs, while no
+independent persisted historical scalar relation-loss reference exists for
+those two datasets.

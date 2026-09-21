@@ -1,0 +1,15 @@
+TRUE_U:
+true U_cycle + true PredRelation + true balance
+
+TRUE_UNIFORM:
+ones_like(U_cycle) + true PredRelation + true balance
+
+SHUFFLE_U:
+TRUE U_cycle values unchanged + shuffled semantic lineage + corresponding balance
+
+BASE:
+no R4 objective execution
+
+SHUFFLE_U is a historical name; it does not mean U values are shuffled.
+Controls remain HISTORICAL / TEST ONLY.
+Clean production contains PRIMARY TRUE_U MECHANISM ONLY.

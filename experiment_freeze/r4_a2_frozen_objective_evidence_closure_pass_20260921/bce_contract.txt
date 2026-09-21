@@ -1,0 +1,6 @@
+epsilon = torch.finfo(dtype).eps
+p_bar = clamp(p, min=epsilon, max=1-epsilon)
+T_ils = PredRelation_ils
+BCE_ils^v = -T_ils log(p_bar_il^v) - (1-T_ils) log(1-p_bar_il^v)
+[B,L] probability becomes [B,L,1] and broadcasts against [B,L,S].
+No sigmoid, softmax, BCEWithLogits, or scientific epsilon.

@@ -1,0 +1,10 @@
+training: NOT RUN
+optimizer.step: NOT RUN
+backward: NOT RUN
+autograd.grad: NOT RUN
+Phase A execution: NOT RUN
+Phase B execution: NOT RUN
+native target refresh: NOT RUN
+performance metrics: NOT RUN
+
+Static gradient-capability evidence from frozen R4-A1 is sufficient.

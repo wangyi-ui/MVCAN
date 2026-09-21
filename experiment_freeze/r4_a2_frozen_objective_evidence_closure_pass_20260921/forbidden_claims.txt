@@ -1,0 +1,10 @@
+FORBIDDEN:
+MSRC persisted historical R4 scalar-loss exact replay
+BDGP persisted historical R4 scalar-loss exact replay
+three-dataset persisted historical scalar-loss exact replay
+multi-dataset historical R4 output identity
+MSRC/BDGP relation-loss outputs were historically persisted
+action_weight is a new utility
+U directly gates features or views
+R4 contains alternating optimization
+R4 uses an additive joint loss

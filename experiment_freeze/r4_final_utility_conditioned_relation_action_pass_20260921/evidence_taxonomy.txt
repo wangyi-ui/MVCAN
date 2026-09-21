@@ -1,0 +1,14 @@
+E1 — SCIENTIFIC FORMULA / CONTRACT: ESTABLISHED
+
+E2 — GENERIC NUMERICAL EQUIVALENCE:
+relation probability, clamped probability, BCE, action weight, denominator,
+weighted numerator, per-view loss, and final view mean: EXACT
+Runtime regimes: V=2/S=2, V=5/S=20, V=6/S=20
+
+E3 — CALTECH FROZEN PURE-OBJECTIVE REPLAY: EXACT
+
+E4 — MSRC/BDGP SEALED STRUCTURAL INPUT PARITY:
+EXACT CLEAN-VS-AUTHORITATIVE FORMULA PARITY
+Historical persisted scalar relation-loss reference: NOT AVAILABLE
+
+Final R4 evidence mode: BOUNDED

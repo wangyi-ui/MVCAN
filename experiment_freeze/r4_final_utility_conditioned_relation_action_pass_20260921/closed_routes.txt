@@ -1,0 +1,14 @@
+PERMANENTLY EXCLUDED FROM R4:
+B4 direct U-weighted InfoNCE
+B5 Conditional KL Rate
+B6 feature/fusion gating
+WQ1 top-k semantic admission
+B7 sparse CE
+G3 P_util/global target rewrite
+E2/E3/E3B direct semantic auxiliary
+E4 static memory write
+C1 additive pseudo-label CE
+C2 U_tilde scalar recalibration
+C4 semantic memory
+C5 continuous posterior aggregation
+C5 pseudo-anchor expansion

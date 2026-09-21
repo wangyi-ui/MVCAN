@@ -1,0 +1,7 @@
+Command:
+PYTHONPATH=. pytest -q tests/release_core
+
+Result:
+196 passed, 1 warning in 12.92s
+0 failed
+Warning: external PyTorch TypedStorage deprecation; non-scientific and non-blocking.

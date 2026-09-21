@@ -1,0 +1,4 @@
+Preregistered 10-file generic regression.
+Result: 94 passed, 1 warning in 4.44s
+Failures: 0
+Warning: external PyTorch TypedStorage deprecation; non-scientific and non-blocking.

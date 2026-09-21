@@ -1,0 +1,4 @@
+Canonical archive: /root/autodl-tmp/CVPR24-MVCAN
+git status --short --untracked-files=all: EMPTY
+git diff --check: PASS
+Archive modified: NO

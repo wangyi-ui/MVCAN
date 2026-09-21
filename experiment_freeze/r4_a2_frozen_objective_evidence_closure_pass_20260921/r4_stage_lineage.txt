@@ -1,0 +1,12 @@
+R3 FINAL:
+commit: efb61fe3c9b98c37448ee50194c9947f461d34d8
+tag: r3-final-sparse-relation-semantics-pass-20260921
+
+R4-A1:
+commit: f8a2247fb2c09354a647442b1d8dcddeb0779e7e
+tag: r4-a1-clean-utility-conditioned-relation-action-pass-20260921
+
+R4-A1 freeze metadata SHA256:
+554243ea3d8175f60cc0ed371cfe973c20175ad5c2c91b5d07c60f743ccaa73b
+
+No historical stage was rewritten.

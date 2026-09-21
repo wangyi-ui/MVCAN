@@ -1,0 +1,6 @@
+p_il^v = q_query_local^v @ sg(q_anchor_local^v).T
+Shape: [B,L]
+Coordinate: Q_LOCAL, not Q_ALIGNED
+Anchor: STOP-GRADIENT
+Query: GRADIENT-CAPABLE
+Action axis: ABSENT from probability; [B,L,1] is broadcast across S.

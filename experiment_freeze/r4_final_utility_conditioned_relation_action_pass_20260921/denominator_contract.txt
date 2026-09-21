@@ -1,0 +1,6 @@
+D = sum_{i,l,s} w_ils
+One global reduction over B, L, and S.
+The same denominator is reused for every view.
+D must be finite and greater than dtype epsilon.
+Invalid D fails closed without epsilon addition, uniform fallback, batch skip,
+replacement U, or rescue normalization.

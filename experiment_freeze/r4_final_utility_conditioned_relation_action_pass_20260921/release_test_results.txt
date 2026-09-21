@@ -1,0 +1,10 @@
+........................................................................ [ 36%]
+........................................................................ [ 73%]
+....................................................                     [100%]
+=============================== warnings summary ===============================
+tests/release_core/test_r2_caltech_frozen_parity.py::test_caltech_same_state_frozen_utility_is_exact_without_ground_truth
+  /root/miniconda3/envs/mvcan/lib/python3.8/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+    return self.fget.__get__(instance, owner)()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+196 passed, 1 warning in 12.97s

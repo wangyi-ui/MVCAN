@@ -1,0 +1,4 @@
+FULL GT: ISOLATED
+No full GT enters U_cycle, R4-runtime PredRelation, balance, relation
+probability, or R4 loss.
+ACC, NMI, ARI, and AUC: NOT RUN.

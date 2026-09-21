@@ -1,0 +1,12 @@
+Classification: EXACT_REPLAY_AVAILABLE / EXACT PURE-OBJECTIVE REPLAY
+Action artifact SHA256: b4f9ff0241b28ec9f6a8ec6c55c0f9da9c4631ffde2b032c0d3550340fdece71
+F0 trajectory SHA256: 0be0b96af1164fe577ee9b02e7bb76fac017cf7742c0b3559281d0fb6a67b576
+F0 audit SHA256: d1f89803fa95c915cad74782b9ff40c3b64202b47eb7cb2c4dc8614e383ead46
+q_local snapshots: [41,1400,6,7] float32
+q_local logical SHA256: fdf3858d6f46aac31c8fa711623069bc744774b5c404ef0ed231f6ce63938c1a
+
+All 41 snapshots establish exact clean-vs-authoritative parity for relation
+probability, clamp, BCE, action weight, denominator, weighted numerator,
+per-view loss, and final objective on identical sealed inputs.
+No optimization rerun or model-state reconstruction was required.
+Intermediate tensors were reproduced, not claimed as historically persisted.

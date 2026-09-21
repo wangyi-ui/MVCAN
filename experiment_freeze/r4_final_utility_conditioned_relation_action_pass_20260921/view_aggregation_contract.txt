@@ -1,0 +1,5 @@
+L_v = sum_ils(w_ils BCE_ils^v) / D
+The same target, action weight, and denominator are used across all views.
+L_R4 = (1/V) sum_v L_v
+Aggregation is an arithmetic mean.
+No per-view U, utility transform, NMI weighting, or view-specific action weight.

@@ -1,0 +1,9 @@
+Artifact:
+outputs/generic_contract/g0_b1_bdgp_structural_pilot_seed20_20260917/bdgp_structural_pre_gt_artifact.npz
+SHA256: 6e929633526c037e5480ccfac8af496caac02e237489b012988641679f973029
+Inputs: q_local [2500,2,5], U [2500,2], PredRelation [2490,10,2],
+balance [2490,10,2].
+Classification: PARTIAL_INTERMEDIATE_REFERENCE.
+Allowed: exact clean-vs-authoritative R4 formula parity on sealed input.
+Forbidden: persisted historical scalar R4 loss exact replay.
+Reason: no independent persisted historical scalar/intermediate output exists.

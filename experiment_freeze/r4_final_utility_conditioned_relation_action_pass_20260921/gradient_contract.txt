@@ -1,0 +1,9 @@
+query q_local: GRADIENT-CAPABLE
+anchor q_local: DETACHED
+U_cycle: DETACHED
+PredRelation: DETACHED
+balance: DETACHED
+action_weight: DETACHED
+Only query-side relation probability is differentiable.
+Historical future Phase-A path may reach encoder and cluster-layer, not decoder.
+R4 contains no model or optimizer logic.

@@ -1,0 +1,8 @@
+R2: WHETHER / ACTION VALIDITY
+R3: WHAT / SEMANTIC DIRECTION
+R4: UTILITY-CONDITIONED RELATION ACTION
+R5: ALTERNATING OPTIMIZATION
+
+Sparse labels determine semantic direction/content.
+Frozen U_cycle determines action validity.
+R4 performs WHAT conditioned by WHETHER.

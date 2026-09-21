@@ -1,0 +1,11 @@
+R4 owns:
+relation probability; utility-conditioned action weight; BCE; numerical clamp;
+global denominator; weighted numerator; per-view normalized relation loss;
+view arithmetic mean; detach semantics; query-gradient capability.
+
+R5 owns:
+canonical sample-ID minibatch slicing; semantic/native optimizer creation;
+zero_grad; backward; optimizer.step; Phase A/B execution and order;
+native target refresh; epoch schedule; alternating training loop.
+
+R5 functionality is absent from R4.

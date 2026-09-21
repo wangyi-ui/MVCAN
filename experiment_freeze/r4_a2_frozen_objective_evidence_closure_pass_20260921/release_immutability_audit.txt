@@ -1,0 +1,7 @@
+Release branch: release/frozen-core-extraction
+Parent HEAD: f8a2247fb2c09354a647442b1d8dcddeb0779e7e
+Tracked source changes: NONE
+Tracked test changes: NONE
+Working tree: clean except ignored R4-A2 metadata
+git diff --check: PASS
+git diff --name-only: EMPTY

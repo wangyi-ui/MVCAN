@@ -1,0 +1,9 @@
+SPARSE LABELS: AUTHORIZED
+FULL GT: ISOLATED
+
+Full GT is not consumed by:
+U_cycle
+PredRelation at R4 runtime
+relation balance
+relation probability
+R4 loss
