@@ -1,0 +1,5 @@
+For every view v:
+L_v = sum(action_weight * BCE_v) / D
+The same target, action weight, and denominator are used for all views.
+L_R4 = torch.stack(view_losses).mean()
+View aggregation is an equal arithmetic mean, not a sum or weighted mean.

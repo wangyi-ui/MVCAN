@@ -1,0 +1,7 @@
+Query q_local: GRADIENT-CAPABLE.
+Anchor q_local: STOP-GRADIENT through reused R3 primitive.
+U_cycle: DETACHED.
+PredRelation: DETACHED.
+Balance: DETACHED.
+Action weight: DETACHED with no grad_fn.
+No backward or autograd.grad was executed in R4-A1.

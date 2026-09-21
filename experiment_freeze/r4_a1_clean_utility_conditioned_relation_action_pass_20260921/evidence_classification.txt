@@ -1,0 +1,7 @@
+Caltech: EXACT_REPLAY_AVAILABLE
+MSRC: PARTIAL_INTERMEDIATE_REFERENCE
+BDGP: PARTIAL_INTERMEDIATE_REFERENCE
+
+Caltech exactness is pure-objective replay on sealed same-state q inputs.
+MSRC/BDGP exactness is clean-vs-authoritative formula parity on sealed inputs,
+not persisted historical scalar-loss replay.

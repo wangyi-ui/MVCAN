@@ -1,0 +1,6 @@
+action_weight [B,L,S] = detach(U_cycle[:,None,:] * balance_weight)
+U_cycle [B,S]: finite, nonnegative, detached.
+balance_weight [B,L,S]: finite, positive, detached.
+Broadcast occurs only across the anchor dimension L.
+No epsilon, normalization, threshold, top-k, power, temperature, or learned transform.
+Action weight is a derived loss weight, not a new utility.

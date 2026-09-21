@@ -1,0 +1,4 @@
+FULL-GT ISOLATED.
+Production accepts no full_gt, ground_truth, unlabeled_gt, or evaluation_labels.
+Frozen artifacts used for parity are pre-GT structural artifacts.
+No performance metric was run.

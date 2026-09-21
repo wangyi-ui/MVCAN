@@ -1,0 +1,3 @@
+Preregistered 3-file final-core historical regression.
+Result: 171 passed in 3.08s
+Failures: 0

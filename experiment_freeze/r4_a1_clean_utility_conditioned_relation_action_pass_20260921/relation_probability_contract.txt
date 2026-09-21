@@ -1,0 +1,5 @@
+relation_probability [B,L] = q_query_local @ detach(q_anchor_local).T
+Implementation reuses release_core.semantics.relations.compute_view_relations.
+Coordinate: q_local.
+The probability is shared across action axis S and broadcast as [B,L,1].
+No action-specific q, alignment, fusion, generator, or verifier computation occurs.

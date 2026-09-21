@@ -1,0 +1,3 @@
+Preregistered 10-file generic historical regression.
+Result: 94 passed, 1 warning in 4.42s
+Failures: 0

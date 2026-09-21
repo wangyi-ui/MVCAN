@@ -1,0 +1,4 @@
+Relation probability is [B,L] and is unsqueezed to [B,L,1].
+Action-axis broadcasting produces BCE [B,L,S] without probability.repeat().
+No [N,N,S] tensor is constructed.
+R4 works only on sparse-anchor geometry [B,L,S].

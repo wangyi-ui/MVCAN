@@ -1,0 +1,11 @@
+training: NOT RUN
+optimizer.step: NOT RUN
+backward: NOT RUN
+autograd.grad: NOT RUN
+Phase A execution: NOT RUN
+Phase B execution: NOT RUN
+native target refresh: NOT RUN
+performance metrics: NOT RUN
+
+Optional tests/test_f0_a1_relation_refinement_dynamics.py: NOT RUN because it
+contains an explicit backward call prohibited by the R4-A1 execution boundary.

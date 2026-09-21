@@ -1,0 +1,36 @@
+p_il^v
+=
+(q_i^v)^T sg(q_l^v)
+
+w_ils
+=
+sg(
+U_is^cycle * b_ils
+)
+
+eps
+=
+torch.finfo(dtype).eps
+
+BCE_ils^v
+=
+-T_ils log(clamp(p_il^v))
+-
+(1-T_ils) log(1-clamp(p_il^v))
+
+D
+=
+sum_ils w_ils
+
+L_v
+=
+sum_ils(w_ils BCE_ils^v) / D
+
+L_R4
+=
+mean_v L_v
+
+T_ils:
+PredRelation
+
+No tunable R4 scientific hyperparameters.

@@ -1,0 +1,6 @@
+Target: detached PredRelation [B,L,S], converted to probability dtype/device.
+Target values: binary.
+epsilon = torch.finfo(probability.dtype).eps.
+Clamp probability [B,L] to [epsilon, 1-epsilon], then unsqueeze to [B,L,1].
+BCE is the exact broadcast manual expression.
+No sigmoid, softmax, BCEWithLogitsLoss, or tunable epsilon.

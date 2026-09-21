@@ -1,0 +1,3 @@
+SPARSE-LABEL AUTHORIZED.
+PredRelation and balance originate from frozen R3 sparse-label semantics.
+R4 consumes them as detached aligned inputs and does not refit or rewrite them.

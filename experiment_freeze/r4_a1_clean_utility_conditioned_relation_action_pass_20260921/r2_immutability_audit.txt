@@ -1,0 +1,5 @@
+R2 status: PASS / CLOSED WITH BOUNDED EVIDENCE
+Production manifest: 3/3 OK
+Test manifest: 4/4 OK
+Freeze metadata manifest: ALL OK
+R2 modified: NO

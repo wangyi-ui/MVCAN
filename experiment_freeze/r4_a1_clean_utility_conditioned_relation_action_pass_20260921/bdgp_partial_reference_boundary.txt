@@ -1,0 +1,6 @@
+Reference status: PARTIAL_INTERMEDIATE_REFERENCE
+Artifact SHA256: 6e929633526c037e5480ccfac8af496caac02e237489b012988641679f973029
+Frozen input-complete structural state: q_local, U, PredRelation, balance.
+Clean vs authoritative formula on sealed input: EXACT.
+Persisted historical scalar relation loss: NOT AVAILABLE.
+No evidence upgrade is claimed.

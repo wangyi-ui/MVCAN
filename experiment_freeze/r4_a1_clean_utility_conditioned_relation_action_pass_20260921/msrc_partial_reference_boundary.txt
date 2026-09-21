@@ -1,0 +1,6 @@
+Reference status: PARTIAL_INTERMEDIATE_REFERENCE
+Artifact SHA256: b04f107f6279839d534e55500fbb0f9aba94d7686944ab20f255337a511af234
+Frozen input-complete structural state: q_local, U, PredRelation, balance.
+Clean vs authoritative formula on sealed input: EXACT.
+Persisted historical scalar relation loss: NOT AVAILABLE.
+This is not claimed as historical output exact replay.

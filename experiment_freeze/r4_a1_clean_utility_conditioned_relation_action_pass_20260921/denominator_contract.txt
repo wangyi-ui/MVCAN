@@ -1,0 +1,5 @@
+D = action_weight.sum()
+One scalar reduction over B, L, and S.
+The same D is used for every view.
+D must be finite and greater than torch.finfo(dtype).eps.
+Failure is closed: no epsilon addition, uniform fallback, skipped batch, or replacement U.

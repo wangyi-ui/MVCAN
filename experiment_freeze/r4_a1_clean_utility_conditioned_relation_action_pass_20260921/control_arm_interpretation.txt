@@ -1,0 +1,14 @@
+TRUE_U historical meaning:
+true U + true semantic target + true balance
+
+TRUE_UNIFORM:
+ones-like U factor + true semantic target + true balance
+
+SHUFFLE_U:
+TRUE U values unchanged + shuffled semantic lineage + corresponding shuffled balance
+
+BASE:
+no R4 objective execution
+
+Controls: TEST / HISTORICAL ONLY
+Clean production: PRIMARY TRUE_U MECHANISM ONLY

@@ -1,0 +1,4 @@
+Production R4 consumes already aligned batch tensors and performs no sample-ID lookup.
+Parity harnesses map canonical sample IDs to artifact rows outside production.
+Axis 0 is aligned across query q, U_cycle, PredRelation, and balance.
+Axis S retains the frozen R2 action ordering with no enumeration or permutation.

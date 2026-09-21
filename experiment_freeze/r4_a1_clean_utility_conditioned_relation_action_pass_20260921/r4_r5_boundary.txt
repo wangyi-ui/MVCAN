@@ -1,0 +1,11 @@
+R4 OWNS:
+relation probability; utility-conditioned action weight; BCE; numerical clamp;
+global denominator; per-view weighted normalized loss; arithmetic view mean;
+query-gradient capability; frozen-input detach semantics.
+
+R5 OWNS:
+sample-ID minibatch orchestration; semantic/native optimizers; zero_grad;
+backward; optimizer.step; Phase A/B execution and order; target refresh;
+epoch cadence; training loop.
+
+R5 functionality is absent from R4 production.

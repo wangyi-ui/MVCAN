@@ -1,0 +1,133 @@
+R4-A1
+CLEAN UTILITY-CONDITIONED RELATION ACTION EXTRACTION
+
+Parent:
+R3 FINAL SPARSE RELATION SEMANTICS /
+CLOSED WITH BOUNDED EVIDENCE /
+GIT-FROZEN
+
+Parent commit:
+efb61fe3c9b98c37448ee50194c9947f461d34d8
+
+Production namespace:
+release_core.action
+
+R1 modified:
+NO
+
+R2 modified:
+NO
+
+R3 modified:
+NO
+
+R4 production files:
+2
+
+R4 test files:
+4
+
+Scientific core:
+U_CYCLE-CONDITIONED RELATION LOSS
+
+WHAT:
+PREDRELATION
+
+WHETHER:
+U_CYCLE
+
+Action weight:
+DERIVED LOSS WEIGHT / NOT NEW UTILITY
+
+Relation probability:
+Q_LOCAL RAW DOT PRODUCT
+
+Relation probability action axis:
+SHARED / BROADCAST
+
+U_cycle:
+DETACHED
+
+PredRelation:
+DETACHED
+
+Balance:
+DETACHED
+
+Action weight:
+DETACHED
+
+Anchor:
+STOP-GRADIENT
+
+Query:
+GRADIENT-CAPABLE
+
+BCE epsilon:
+DTYPE NUMERICAL EPSILON ONLY
+
+Denominator:
+GLOBAL B*L*S WEIGHT SUM
+
+View aggregation:
+ARITHMETIC MEAN
+
+Direct feature gating:
+NO
+
+Direct view gating:
+NO
+
+U recalibration:
+NO
+
+New utility:
+NO
+
+Scientific hyperparameters:
+ZERO
+
+Caltech pure-objective replay:
+EXACT
+
+MSRC:
+PARTIAL_INTERMEDIATE_REFERENCE
+
+BDGP:
+PARTIAL_INTERMEDIATE_REFERENCE
+
+Sparse labels:
+AUTHORIZED
+
+Full GT:
+ISOLATED
+
+R5 optimizer/schedule:
+ABSENT
+
+Native objective:
+ABSENT
+
+Additive combined loss:
+ABSENT
+
+Training:
+NOT RUN
+
+Backward:
+NOT RUN
+
+Optimizer:
+NOT RUN
+
+Performance metrics:
+NOT RUN
+
+Scientific behavior change:
+NONE
+
+R4-A1:
+PASS / CLEAN EXTRACTION FROZEN
+
+Next:
+R4-A2 FROZEN OBJECTIVE / EVIDENCE CLOSURE
