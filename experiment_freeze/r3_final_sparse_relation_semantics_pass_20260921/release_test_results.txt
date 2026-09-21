@@ -1,0 +1,4 @@
+Environment: mvcan / Python 3.8.20
+Result: 163 passed, 1 warning in 12.03s
+Failures: 0
+Warning: PyTorch TypedStorage deprecation only

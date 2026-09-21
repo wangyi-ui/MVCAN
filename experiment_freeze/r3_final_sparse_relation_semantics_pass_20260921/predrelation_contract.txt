@@ -1,0 +1,8 @@
+Historical class_pred shape: [Nu,S]
+class_pred[i,s] = mapping[y_gen[unlabeled_i,s]]
+PredRelation[i,l,s] = 1[class_pred[i,s] = labeled_target[l]]
+Shape/dtype: [Nu,L,S] / bool
+Axes: unlabeled_ids; labeled_ids/labeled_targets; frozen R2 action order
+Detached/non-trainable: YES
+U_cycle dependence: NONE
+Generic parity: EXACT

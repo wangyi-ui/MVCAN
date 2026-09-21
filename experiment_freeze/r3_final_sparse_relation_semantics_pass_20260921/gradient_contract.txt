@@ -1,0 +1,4 @@
+Query gradient: PRESERVED
+Anchor gradient: STOPPED by explicit detach
+Relation result detached wholesale: NO
+Backward/autograd.grad execution: NOT RUN

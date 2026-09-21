@@ -1,0 +1,5 @@
+R3 OWNS: sparse split; vote state; sparse mapping; class_pred; PredRelation; relation balance; raw q_local relation; query/anchor detach contract.
+R4 OWNS: U_cycle-conditioned relation weighting; utility-conditioned BCE/action objective; historical BCE clamp if required; Phase-A semantic-action gradient behavior.
+R5 OWNS: Phase A/B alternating schedule; optimizer orchestration; closed-loop trainer integration.
+R4 present in R3-FINAL: NO
+R5 present in R3-FINAL: NO

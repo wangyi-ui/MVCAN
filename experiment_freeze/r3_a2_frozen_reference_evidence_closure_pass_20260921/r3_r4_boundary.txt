@@ -1,0 +1,7 @@
+R2 -> R3 allowed: frozen y_gen and frozen action-axis ordering.
+R2 -> R3 forbidden: U_cycle values.
+R3 OWNS: sparse split; vote state; sparse mapping; class_pred; PredRelation; balance; raw q_local query-anchor relation.
+R4 OWNS: U_cycle-conditioned relation action; utility-conditioned weighting; historical BCE clamp; semantic action loss; Phase-A gradient behavior.
+R5 OWNS: Phase A/B alternating schedule; optimizer integration.
+U_cycle consumed by R3: NO
+Label recalibration of U: NO

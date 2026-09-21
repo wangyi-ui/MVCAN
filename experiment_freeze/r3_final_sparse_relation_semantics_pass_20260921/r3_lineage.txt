@@ -1,0 +1,10 @@
+R2 FINAL commit: f3620448968b8589aa7b49ad99dac927024d1ba1
+R2 FINAL tag: r2-final-directional-cyclic-utility-pass-20260920
+R3-A1 commit: ede7412f4f7651ef1f7d04ed2d4b5ed98c0b4439
+R3-A1 tag: r3-a1-clean-sparse-relation-semantics-pass-20260921
+R3-A1 freeze SHA256: aca125cd8967fdd6d960543b99a692d05e234207ef16639bd116504efab7b24e
+R3-A1-R1 commit: 8ccc1b376f97ab13f304c451e293666fa4cf9b5e
+R3-A1-R1 tag: r3-a1-consistency-repair-pass-20260921
+R3-A1-R1 freeze SHA256: 8cfabf1bb3004b87efe3da35fefcd3aebdae106c31e953459b91385a3ed20619
+R3-A2 freeze SHA256: d729fe44e789052765bb4a6be9f7271bfc4dc7bb365bca4801cac2fdb5d56be7
+Historical lineage rewritten: NO

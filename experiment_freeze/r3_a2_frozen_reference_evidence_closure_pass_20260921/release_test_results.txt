@@ -1,0 +1,5 @@
+Environment: mvcan / Python 3.8.20
+Command: PYTHONPATH=. pytest -q tests/release_core
+Result: 163 passed, 1 warning in 11.89s
+Failures: 0
+Warning: PyTorch TypedStorage deprecation only

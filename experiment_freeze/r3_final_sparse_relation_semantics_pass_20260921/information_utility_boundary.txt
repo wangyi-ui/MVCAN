@@ -1,0 +1,9 @@
+Sparse labels determine semantic direction/content.
+Frozen U_cycle determines action validity.
+R2: WHETHER
+R3: WHAT
+R4: WHAT conditioned by WHETHER
+R3 consumes: y_gen and action ordering.
+R3 consumes U_cycle values: NO
+Labels recalibrate U: NO
+U_tilde: ABSENT

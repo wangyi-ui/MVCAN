@@ -1,0 +1,4 @@
+R3-A2 freeze: experiment_freeze/r3_a2_frozen_reference_evidence_closure_pass_20260921
+Freeze metadata SHA256: d729fe44e789052765bb4a6be9f7271bfc4dc7bb365bca4801cac2fdb5d56be7
+Status: PASS / FROZEN REFERENCE EVIDENCE CLOSED
+Readiness: READY_FOR_R3_FINAL_WITH_BOUNDED_EVIDENCE

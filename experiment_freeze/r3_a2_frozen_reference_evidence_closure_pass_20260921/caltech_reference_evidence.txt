@@ -1,0 +1,11 @@
+Dataset: Caltech-6V
+Reference status: EXACT_REPLAY_AVAILABLE
+Same-state semantic input y_gen: AVAILABLE
+Artifact SHA256: b4f9ff0241b28ec9f6a8ec6c55c0f9da9c4631ffde2b032c0d3550340fdece71
+Seal SHA256: 0e23e9cea448435d04351fc6661ab8020a69b12a660f6e6604ff855ea96bb9d0
+y_gen ndarray SHA256: 90d6df0ff2583117a20c914b4a3c8583d0f6ff6aad58583a71821901442237b9
+PredRelation ndarray SHA256: a61460618339930b577c0b53e9fe6f15f4e40650e3522fdab34fa9a43d7bfca5
+Balance ndarray SHA256: 1d7f1dcc65f49b37fdd6d0d8947456cdf828dff83936e10ca507cf1093d300aa
+PredRelation shape: [1386,14,20]
+Same-state semantic replay: EXACT
+Tolerance: NONE

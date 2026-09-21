@@ -1,0 +1,12 @@
+Dataset: BDGP
+N=2500 V=2 K=5 L=10 Nu=2490 S=2
+Artifact SHA256: 6e929633526c037e5480ccfac8af496caac02e237489b012988641679f973029
+PredRelation shape: [2490,10,2]
+PredRelation ndarray SHA256: b4df46922ca857bea6d6c8db57bd00d71ec7a5fb3af3b66d1e7119d705bd45d4
+PredRelation tensor SHA256: ddff6d37ef3474a5c94d23dea188c5457cef731841eb987e0ae1394b14dff404
+Balance ndarray SHA256: 5e3d6ccf9c93822d96104a3974438a41ac9f236277c804a0ef59f885b9d75adb
+Balance tensor SHA256: 29fcd056e5c915d45380303c21bb21cbb155809ecc76856afb962e6a995af9ed
+Reference status: SEALED_OUTPUT_ONLY / VALID / PRESERVED
+Generating same-state pre-final y_gen: NOT PERSISTED
+Real same-state replay: NOT ESTABLISHED
+Classification: REFERENCE COVERAGE LIMITATION

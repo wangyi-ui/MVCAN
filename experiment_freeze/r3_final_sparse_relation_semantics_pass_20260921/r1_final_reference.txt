@@ -1,0 +1,5 @@
+R1 final freeze: experiment_freeze/r1_final_backbone_data_foundation_pass_20260919
+Status: PASS / CLOSED
+Production: 15/15 OK
+Tests: 11/11 OK
+Metadata: ALL OK

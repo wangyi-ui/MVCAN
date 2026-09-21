@@ -1,0 +1,4 @@
+R1: UNCHANGED / CLOSED
+Production: 15/15 OK
+Tests: 11/11 OK
+Metadata: ALL OK

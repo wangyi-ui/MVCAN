@@ -1,0 +1,12 @@
+vote_state[i,k] = mean_s 1[y_gen[i,s] == k]
+Vote state shape/dtype: [N,K] / float64
+Vote U weighting/confidence weighting/temperature/smoothing/correction: NONE
+Vote generic parity: EXACT
+
+Soft contingency orientation: contingency[:, class]
+Hungarian cost: negative contingency
+Assignment orientation: mapping[row] = column
+Mapping fit inputs: labeled rows only
+Unlabeled GT: NOT USED
+U_cycle: NOT USED
+Mapping generic parity: EXACT

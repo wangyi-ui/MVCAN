@@ -1,0 +1,8 @@
+Vote shape/dtype: [N,K] / float64
+Vote U/confidence weighting, smoothing, temperature, correction: NONE
+Vote generic parity: EXACT
+Contingency orientation: contingency[:, class]
+Cost: negative contingency
+Assignment: mapping[row] = column
+Mapping fit: labeled rows only
+Mapping generic parity: EXACT

@@ -1,0 +1,11 @@
+Historical class_pred retention: UNLABELED QUERY ROWS ONLY
+class_pred shape: [Nu,S]
+class_pred[i,s] = mapping[y_gen[unlabeled_i,s]]
+PredRelation[i,l,s] = 1[class_pred[i,s] == labeled_target[l]]
+PredRelation shape/dtype: [Nu,L,S] / bool
+Axis 0: unlabeled_ids order
+Axis 1: labeled_ids/labeled_targets order
+Axis 2: frozen R2 action order
+Detached/non-trainable: YES
+U_cycle dependence: NONE
+Generic parity: EXACT

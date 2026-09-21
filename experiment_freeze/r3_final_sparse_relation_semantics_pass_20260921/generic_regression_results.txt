@@ -1,0 +1,5 @@
+Environment: mvcan / Python 3.8.20
+Protocol exact generic regression command executed.
+Result: 94 passed, 1 warning in 4.44s
+Failures: 0
+Warning: PyTorch TypedStorage deprecation only

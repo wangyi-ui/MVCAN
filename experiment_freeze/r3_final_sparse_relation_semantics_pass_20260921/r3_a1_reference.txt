@@ -1,0 +1,4 @@
+R3-A1 commit: ede7412f4f7651ef1f7d04ed2d4b5ed98c0b4439
+R3-A1 tag: r3-a1-clean-sparse-relation-semantics-pass-20260921
+Freeze metadata SHA256: aca125cd8967fdd6d960543b99a692d05e234207ef16639bd116504efab7b24e
+Historical status: PASS / CLEAN EXTRACTION FROZEN

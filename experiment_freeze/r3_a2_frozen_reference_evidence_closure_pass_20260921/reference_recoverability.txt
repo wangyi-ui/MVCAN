@@ -1,0 +1,11 @@
+Caltech same-state semantic input: AVAILABLE
+Caltech replay: EXACT
+MSRC same-state semantic input: NOT AVAILABLE
+MSRC sealed output: AVAILABLE
+MSRC classification: REFERENCE COVERAGE LIMITATION
+BDGP same-state semantic input: NOT AVAILABLE
+BDGP sealed output: AVAILABLE
+BDGP classification: REFERENCE COVERAGE LIMITATION
+State search: NOT RUN
+Retraining: NOT RUN
+Final q/y/M_v used to manufacture replay: NO

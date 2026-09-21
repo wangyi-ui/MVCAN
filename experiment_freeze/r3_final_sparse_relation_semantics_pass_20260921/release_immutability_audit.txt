@@ -1,0 +1,6 @@
+Release worktree: /root/autodl-tmp/UCRR-MVC-release
+Working tree: CLEAN except ignored freeze metadata
+Tracked source changes: NONE
+Tracked test changes: NONE
+git diff --check: PASS
+git diff --name-only: EMPTY

@@ -1,0 +1,7 @@
+R3 production namespace: release_core.semantics
+R3 production inventory: exactly 3 Python files
+5fe781730cd87fcca0ddd8b4ac600cf182b022832b787d665b344aa1c2ff9192  release_core/semantics/__init__.py
+68731a33c9a107e831336701400e7cbb6de5a404fa991c50ab5f5b25c512dfb9  release_core/semantics/sparse_labels.py
+6f635d40476082ca8b5b6c17eda63726d77d8050d4cc0ce01941c8942c869039  release_core/semantics/relations.py
+Original R3-A1 production manifest: 3/3 OK
+R3 production modified: NO

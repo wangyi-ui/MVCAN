@@ -1,0 +1,10 @@
+r_il^v = (q_query_local^v[i])^T sg(q_anchor_local^v[l])
+Inputs: q_query [B,K], q_anchor [L,K]
+Output: [B,L]
+Coordinate: PER-VIEW LOCAL CLUSTER COORDINATE
+q_local: YES
+q_aligned: NO
+Query gradient: PRESERVED
+Anchor gradient: STOPPED by explicit detach
+Cosine/L2 normalization/temperature/softmax/sigmoid/clamp/epsilon: NONE
+Generic raw relation parity: EXACT

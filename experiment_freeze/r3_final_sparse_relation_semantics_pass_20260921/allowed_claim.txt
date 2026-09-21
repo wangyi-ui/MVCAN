@@ -1,0 +1,2 @@
+ALLOWED:
+The clean sparse relation semantics implementation exactly reproduces the authoritative frozen semantic construction under the generic semantic contract and under the recoverable Caltech same-state replay. Historical MSRC-v1 and BDGP semantic outputs remain valid sealed references, while their exact generating pre-final y_gen states were not persisted; therefore independent same-state replay is not established for those datasets.

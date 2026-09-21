@@ -1,0 +1,11 @@
+B7 sparse CE: CLOSED
+E2/E3/E3B direct semantic auxiliary: CLOSED
+C1 additive pseudo-label CE: CLOSED
+C2 scalar U correction: CLOSED
+C4 semantic memory: CLOSED
+C5 continuous posterior aggregation / pseudo-anchor expansion: CLOSED
+Feature/fusion gating: CLOSED
+P_util target rewrite: CLOSED
+U-weighted InfoNCE: CLOSED
+Conditional KL Rate: CLOSED
+Static prototype memory / static memory writes: CLOSED

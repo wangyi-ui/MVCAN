@@ -1,0 +1,5 @@
+R1 status: PASS / CLOSED
+R1 production manifest: 15/15 OK
+R1 test manifest: 11/11 OK
+R1 freeze metadata manifest: ALL OK
+R1 modified: NO

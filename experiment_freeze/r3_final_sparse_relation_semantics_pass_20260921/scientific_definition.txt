@@ -1,0 +1,9 @@
+R3: SPARSE RELATION SEMANTICS
+R3 answers: WHAT semantic relation should the action express?
+vote_state[i,k] = mean_s 1[y_gen[i,s] = k]
+Sparse mapping: Hungarian assignment from labeled rows only.
+Historical class_pred: [Nu,S], mapping[y_gen[unlabeled_i,s]].
+PredRelation[i,l,s] = 1[class_pred[i,s] = labeled_target[l]], bool [Nu,L,S].
+Relation balance per action: same 1/(2*n_same), different 1/(2*n_diff).
+Raw relation: (q_query_local^v[i])^T sg(q_anchor_local^v[l]).
+Coordinate: q_local / per-view local cluster basis.

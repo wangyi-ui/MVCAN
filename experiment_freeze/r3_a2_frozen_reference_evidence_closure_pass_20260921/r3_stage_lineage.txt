@@ -1,0 +1,6 @@
+R2 FINAL: f3620448968b8589aa7b49ad99dac927024d1ba1
+R3-A1 original: ede7412f4f7651ef1f7d04ed2d4b5ed98c0b4439
+R3-A1-R1 consistency successor: 8ccc1b376f97ab13f304c451e293666fa4cf9b5e
+Original R3-A1 freeze: aca125cd8967fdd6d960543b99a692d05e234207ef16639bd116504efab7b24e
+Consistency repair freeze: 8cfabf1bb3004b87efe3da35fefcd3aebdae106c31e953459b91385a3ed20619
+Historical stages rewritten: NO

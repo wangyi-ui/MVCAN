@@ -1,0 +1,4 @@
+Sparse labels: AUTHORIZED / USED
+Authorized semantic labels: persisted labeled_targets paired with labeled_ids only
+Runtime full GT requirement: NO
+Runtime split regeneration: NO

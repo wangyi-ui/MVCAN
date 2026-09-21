@@ -1,0 +1,13 @@
+B4 direct U-weighted InfoNCE: CLOSED
+B5 Conditional KL Rate: CLOSED
+B6 direct feature/fusion gating: CLOSED
+WQ1 hard top-k semantic admission: CLOSED
+B7 sparse CE on reliable views: CLOSED
+G3 P_util/global target rewriting: CLOSED
+E2/E3/E3B direct sparse semantic auxiliary: CLOSED
+E4 static memory writes: CLOSED
+C1 additive pseudo-label CE: CLOSED
+C2 scalar U calibration / U_tilde: CLOSED
+C4 class-prototype persistent memory: CLOSED
+C5 continuous U-weighted posterior aggregation: CLOSED
+C5 pseudo-anchor semantic expansion: CLOSED

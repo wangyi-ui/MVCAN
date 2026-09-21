@@ -1,0 +1,6 @@
+FORBIDDEN: MSRC real same-state exact replay.
+FORBIDDEN: BDGP real same-state exact replay.
+FORBIDDEN: three-dataset real exact replay.
+FORBIDDEN: multi-dataset real same-state exact semantic parity.
+FORBIDDEN: reconstruction of historical MSRC semantics from final state.
+FORBIDDEN: reconstruction of historical BDGP semantics from final state.

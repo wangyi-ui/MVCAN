@@ -1,0 +1,5 @@
+PredRelation answers: WHAT semantic relation is desired?
+U_cycle answers externally: WHETHER the action is valid?
+R3 establishes semantic direction/content.
+R3 does not establish action validity.
+These roles remain separate.

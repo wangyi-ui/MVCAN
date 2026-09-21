@@ -1,0 +1,3 @@
+Environment: mvcan / Python 3.8.20
+Result: 43 passed in 1.44s
+Failures: 0

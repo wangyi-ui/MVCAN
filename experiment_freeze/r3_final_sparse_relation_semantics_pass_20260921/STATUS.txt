@@ -1,0 +1,100 @@
+R3 FINAL
+SPARSE RELATION SEMANTICS
+
+Parent:
+R3-A1-R1 CONSISTENCY CORRECTED / GIT-FROZEN
+
+Parent commit:
+8ccc1b376f97ab13f304c451e293666fa4cf9b5e
+
+R3-A2:
+PASS / FROZEN REFERENCE EVIDENCE CLOSED
+
+R1:
+UNCHANGED / CLOSED
+
+R2:
+UNCHANGED / CLOSED WITH BOUNDED EVIDENCE
+
+R3 production:
+3 FILES / FROZEN
+
+R3 tests:
+4 FILES / FROZEN
+
+Sparse-label contract:
+EXACT
+
+Vote semantic state:
+EXACT
+
+Sparse mapping:
+EXACT
+
+PredRelation:
+EXACT
+
+Relation balance:
+EXACT
+
+Raw q_local relation:
+EXACT
+
+Query gradient:
+PRESERVED
+
+Anchor gradient:
+STOPPED
+
+Caltech real same-state semantic replay:
+EXACT
+
+MSRC:
+VALID SEALED OUTPUT /
+SAME-STATE REPLAY NOT ESTABLISHED
+
+BDGP:
+VALID SEALED OUTPUT /
+SAME-STATE REPLAY NOT ESTABLISHED
+
+Reference coverage limitation:
+YES
+
+Evidence mode:
+BOUNDED
+
+Sparse labels:
+AUTHORIZED
+
+Full GT:
+ISOLATED
+
+U_cycle consumed by R3:
+NO
+
+Label recalibration of U:
+NO
+
+R4:
+ABSENT
+
+R5:
+ABSENT
+
+Training:
+NOT RUN
+
+Performance metrics:
+NOT RUN
+
+Implementation mismatch:
+NONE OBSERVED
+
+Scientific behavior mismatch:
+NONE OBSERVED
+
+R3:
+PASS / CLOSED WITH BOUNDED EVIDENCE
+
+Readiness:
+READY_FOR_R4_A0

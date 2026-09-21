@@ -1,0 +1,104 @@
+R3-A2 SPARSE RELATION SEMANTICS
+FROZEN REFERENCE / EVIDENCE CLOSURE
+
+Parent:
+R3-A1-R1 CONSISTENCY CORRECTED / GIT-FROZEN
+
+Parent commit:
+8ccc1b376f97ab13f304c451e293666fa4cf9b5e
+
+R1:
+UNCHANGED / CLOSED
+
+R2:
+UNCHANGED / CLOSED
+
+R3 production:
+UNCHANGED / FROZEN
+
+R3 tests:
+UNCHANGED / FROZEN
+
+Sparse-label contract:
+EXACT
+
+Vote semantic state:
+EXACT
+
+Sparse mapping:
+EXACT
+
+PredRelation:
+EXACT
+
+Relation balance:
+EXACT
+
+Raw relation primitive:
+EXACT
+
+Caltech real same-state semantic replay:
+EXACT
+
+MSRC sealed semantic output:
+VALID / PRESERVED
+
+BDGP sealed semantic output:
+VALID / PRESERVED
+
+MSRC real same-state semantic replay:
+NOT ESTABLISHED — HISTORICAL y_gen UNAVAILABLE
+
+BDGP real same-state semantic replay:
+NOT ESTABLISHED — HISTORICAL y_gen UNAVAILABLE
+
+Reference coverage limitation:
+YES
+
+Final R3 evidence mode:
+BOUNDED
+
+Sparse labels:
+AUTHORIZED
+
+Full GT:
+ISOLATED
+
+U_cycle consumed by R3:
+NO
+
+Label recalibration of U:
+NO
+
+R4:
+ABSENT
+
+R5:
+ABSENT
+
+Training:
+NOT RUN
+
+Optimizer:
+NOT RUN
+
+Backward:
+NOT RUN
+
+Performance metrics:
+NOT RUN
+
+Implementation mismatch:
+NONE OBSERVED
+
+Scientific behavior mismatch:
+NONE OBSERVED
+
+R3-A2:
+PASS / FROZEN REFERENCE EVIDENCE CLOSED
+
+Readiness:
+READY_FOR_R3_FINAL_WITH_BOUNDED_EVIDENCE
+
+Next:
+R3 FINAL SPARSE RELATION SEMANTICS FREEZE

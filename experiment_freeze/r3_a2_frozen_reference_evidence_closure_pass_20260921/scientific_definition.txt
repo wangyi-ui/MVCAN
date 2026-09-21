@@ -1,0 +1,5 @@
+R3 scientific role: WHAT
+Sparse labels determine semantic direction/content.
+Frozen U_cycle determines action validity externally to R3.
+R3 owns: sparse label split; vote semantic state; sparse cluster-to-class mapping; class_pred; PredRelation; relation balance weights; raw q_local query-anchor relation; query-gradient/anchor-detach semantics.
+R3 does not own: U-conditioned action weighting; semantic BCE loss; Phase A optimization; Phase B consolidation; alternating trainer.

@@ -1,0 +1,8 @@
+N=2500 V=2 K=5 L=10 Nu=2490 S=2
+PredRelation shape: [2490,10,2]
+Artifact SHA256: 6e929633526c037e5480ccfac8af496caac02e237489b012988641679f973029
+PredRelation ndarray SHA256: b4df46922ca857bea6d6c8db57bd00d71ec7a5fb3af3b66d1e7119d705bd45d4
+Balance ndarray SHA256: 5e3d6ccf9c93822d96104a3974438a41ac9f236277c804a0ef59f885b9d75adb
+Reference: VALID / SEALED_OUTPUT_ONLY
+Generating pre-final y_gen: NOT PERSISTED
+Real same-state replay: NOT ESTABLISHED
