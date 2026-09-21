@@ -1,0 +1,1 @@
+View weights originate from the clean native refresh primitive, persist in NativeTargetState, and are reused by subsequent Phase-B steps until the next due refresh.

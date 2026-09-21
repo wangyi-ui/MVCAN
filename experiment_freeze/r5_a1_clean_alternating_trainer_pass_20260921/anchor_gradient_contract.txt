@@ -1,0 +1,2 @@
+Anchor forwards execute under torch.no_grad() and are explicitly detached.
+No anchor-side gradient is retained.

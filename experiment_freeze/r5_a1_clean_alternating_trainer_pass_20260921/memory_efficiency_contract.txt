@@ -1,0 +1,2 @@
+Phase A materializes only minibatch query tensors plus the sparse labeled-anchor population per view.
+It does not materialize full N-by-N or full unlabeled-by-labeled multi-view runtime buffers beyond the preregistered frozen action inputs.

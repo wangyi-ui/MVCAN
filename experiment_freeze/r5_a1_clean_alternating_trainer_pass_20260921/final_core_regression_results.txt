@@ -1,0 +1,1 @@
+PASS: exact 3-file final-core regression; 171 passed, 0 failed in 3.03s.

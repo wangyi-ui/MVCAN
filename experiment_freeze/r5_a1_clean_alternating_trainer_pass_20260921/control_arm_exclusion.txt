@@ -1,0 +1,2 @@
+The production API has no BASE, TRUE_U, TRUE_UNIFORM, SHUFFLE_U, or other control-arm selector.
+R5 executes only the extracted alternating trainer contract.

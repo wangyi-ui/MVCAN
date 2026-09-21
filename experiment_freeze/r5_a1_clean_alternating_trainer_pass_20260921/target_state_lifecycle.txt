@@ -1,0 +1,3 @@
+Initial native target state is materialized before Phase B can execute.
+A due refresh atomically replaces p_global, matches, view weights, refresh count, and last-refresh epoch.
+Between due epochs, the existing state is reused unchanged.

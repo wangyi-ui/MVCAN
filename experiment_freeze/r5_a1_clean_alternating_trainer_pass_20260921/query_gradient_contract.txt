@@ -1,0 +1,2 @@
+Phase-A query encoder and cluster-layer paths remain differentiable.
+Tests confirm query-side encoder and cluster gradients and updates are preserved.

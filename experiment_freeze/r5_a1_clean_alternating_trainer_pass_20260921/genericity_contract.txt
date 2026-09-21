@@ -1,0 +1,2 @@
+Implementation is generic over view count, sample count, feature dimensions, latent dimension, cluster count, labeled count, action-space width, minibatch size, and noncontiguous sample IDs.
+No V=6 or Caltech dimensional constant appears in runtime control logic.

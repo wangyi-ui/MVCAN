@@ -1,0 +1,3 @@
+All runtime addressing uses validated canonical global sample IDs and explicit ID-to-row mappings.
+Action rows are addressed through canonical unlabeled-ID coordinates; noncontiguous IDs are supported.
+Minibatch-local positions are never used as action or target row identities.

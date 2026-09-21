@@ -1,0 +1,2 @@
+Phase B consumes each canonical sample exactly once per epoch using the native order.
+The native objective is computed per view and reduced by SUM across views.

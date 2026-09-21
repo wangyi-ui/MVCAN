@@ -1,0 +1,2 @@
+Validation rejects malformed IDs and partitions, duplicates, invalid shapes, nonfinite inputs/losses/gradients, invalid orders, absent native state, optimizer topology mismatches, stateful model behavior, and uncleared or forbidden gradients.
+No rescue or fallback behavior is implemented.

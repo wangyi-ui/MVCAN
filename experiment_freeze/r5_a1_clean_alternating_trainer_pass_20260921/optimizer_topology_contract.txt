@@ -1,0 +1,4 @@
+Exactly one semantic Adam and one native Adam are created per view.
+Corresponding optimizers contain the identical full per-view parameter tensor sequence: encoder, decoder, and cluster layer.
+Adam configuration is lr=<caller>, betas=(0.9, 0.999), eps=1e-8, weight_decay=0, amsgrad=False.
+The frozen Caltech compatibility topology has 17 parameter tensors per view; 17 is not runtime logic.

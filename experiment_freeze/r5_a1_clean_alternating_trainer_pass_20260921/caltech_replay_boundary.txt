@@ -1,0 +1,2 @@
+Caltech architecture compatibility is tested, including 17 per-view optimizer parameter tensors.
+Formal 20-epoch Caltech selected-mechanism training and seed20/30/50 replay were NOT RUN in R5-A1.

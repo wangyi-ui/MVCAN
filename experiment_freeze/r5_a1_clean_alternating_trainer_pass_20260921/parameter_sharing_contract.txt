@@ -1,0 +1,2 @@
+The same model parameter objects are updated sequentially by Phase A and Phase B.
+No model copy and no parallel parameter family is introduced.

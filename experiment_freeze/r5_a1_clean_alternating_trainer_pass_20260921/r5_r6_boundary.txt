@@ -1,0 +1,2 @@
+R5 ends after alternating parameter updates and training audit production.
+Final post-training prediction refresh, prediction emission, scientific metrics, full-GT handling, and dataset-scale replay evidence belong to R6 or R5-A2 as preregistered.

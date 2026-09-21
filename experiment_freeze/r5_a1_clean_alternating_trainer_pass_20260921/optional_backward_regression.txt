@@ -1,0 +1,2 @@
+NOT RUN BY PROTOCOL as an additional historical test.
+No historical test was blindly executed. Direct R5 semantics are already covered by the dedicated deterministic synthetic backward, optimizer-step, and small-state parity tests, all of which passed.

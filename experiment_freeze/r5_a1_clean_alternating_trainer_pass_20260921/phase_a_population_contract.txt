@@ -1,0 +1,3 @@
+Phase A filters labeled IDs from each full-N semantic order batch.
+Every unlabeled query appears exactly once per epoch.
+Anchors are exactly the sparse labeled set; a filtered-empty Phase-A batch is skipped, while an epoch with no query step fails closed.

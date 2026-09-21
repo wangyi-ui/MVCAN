@@ -1,0 +1,5 @@
+PASS
+Repository: /root/autodl-tmp/CVPR24-MVCAN
+git status --short --untracked-files=all: empty
+git diff --check: clean
+Historical archive was not modified.

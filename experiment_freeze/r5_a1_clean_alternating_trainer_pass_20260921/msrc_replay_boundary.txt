@@ -1,0 +1,1 @@
+MSRC full training was NOT RUN. Generic structural regressions passed.

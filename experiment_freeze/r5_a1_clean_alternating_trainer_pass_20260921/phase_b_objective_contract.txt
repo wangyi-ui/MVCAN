@@ -1,0 +1,2 @@
+Phase B calls the frozen clean R1 native objective for each view with the current native target state.
+Per-view losses are summed exactly; encoder, decoder, and cluster-layer paths participate.

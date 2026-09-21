@@ -1,0 +1,4 @@
+R5 owns alternating optimization orchestration only.
+Phase A is utility-conditioned relation refinement.
+Phase B is native MVCAN consolidation.
+No evaluation, control-arm selection, or final prediction refresh is owned by R5.

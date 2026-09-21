@@ -1,0 +1,2 @@
+PredRelation and balance are validated, sliced read-only, and hash-checked before and after training.
+No semantic-target mutation or pseudo-label expansion is performed.

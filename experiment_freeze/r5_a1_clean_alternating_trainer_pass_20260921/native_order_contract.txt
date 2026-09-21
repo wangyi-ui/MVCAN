@@ -1,0 +1,2 @@
+Native orders are precomputed independently for every zero-based epoch over all canonical global sample IDs.
+The native generator is distinct from the semantic generator; under the same frozen seed and algorithm, order values are identical while tensors are independent.

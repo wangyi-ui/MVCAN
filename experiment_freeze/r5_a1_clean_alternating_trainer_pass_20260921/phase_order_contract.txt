@@ -1,0 +1,2 @@
+Each zero-based epoch executes Phase A, then a conditional native-target refresh from the post-Phase-A model state, then Phase B.
+No additive joint objective is used.

@@ -1,0 +1,2 @@
+Phase A calls the frozen clean R4 utility-conditioned relation loss directly with current query/anchor assignments and frozen U_cycle, PredRelation, and balance slices.
+No extra multiplier, additive term, pseudo-label expansion, or decoder path is present.

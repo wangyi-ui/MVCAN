@@ -1,0 +1,2 @@
+No historical experiment import exists in release_core/training.
+No control arm, additive joint loss, pseudo-label expansion, new utility, final prediction refresh, metric path, dataset loader, or artifact-writing route exists in the R5 production API.

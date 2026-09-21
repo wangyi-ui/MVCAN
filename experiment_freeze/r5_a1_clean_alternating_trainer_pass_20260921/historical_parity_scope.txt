@@ -1,0 +1,2 @@
+Deterministic tiny-state tests directly compare clean alternating behavior and frozen historical formulas/schedule semantics.
+The controlled parity coverage is synthetic and does not claim full dataset replay.

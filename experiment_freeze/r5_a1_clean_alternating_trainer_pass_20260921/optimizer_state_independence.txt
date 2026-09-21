@@ -1,0 +1,2 @@
+Semantic and native optimizers are physically distinct objects with distinct state mappings.
+Their state evolves independently even though they address identical underlying parameters.

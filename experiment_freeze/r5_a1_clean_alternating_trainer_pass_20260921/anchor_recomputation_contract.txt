@@ -1,0 +1,1 @@
+All labeled-anchor latent assignments are recomputed from the current model state for every semantic minibatch, after any preceding optimizer steps.

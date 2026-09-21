@@ -1,0 +1,137 @@
+R5-A1
+CLEAN ALTERNATING TWO-PHASE TRAINER EXTRACTION
+
+Parent:
+R4 FINAL / GIT-FROZEN
+
+Parent commit:
+23c9306192feb313d34a751d873bac5764c4f967
+
+Scientific role:
+ALTERNATING OPTIMIZATION ORCHESTRATION
+
+Phase A:
+UTILITY-CONDITIONED RELATION REFINEMENT
+
+Phase B:
+NATIVE MVCAN CONSOLIDATION
+
+Phase order:
+A -> CONDITIONAL REFRESH -> B
+
+Epoch indexing:
+ZERO-BASED
+
+Refresh timing:
+POST-A / PRE-B
+
+Historical refresh interval:
+100
+
+Semantic/native optimizers:
+DISTINCT OBJECTS
+
+Underlying parameters:
+IDENTICAL PER VIEW
+
+Optimizer state:
+DECOUPLED
+
+Model parameters:
+SEQUENTIALLY SHARED
+
+Semantic/native order objects:
+DISTINCT
+
+Semantic/native order values:
+IDENTICAL UNDER SAME HISTORICAL SEED CONTRACT
+
+Phase-A query population:
+UNLABELED ONLY
+
+Phase-A anchors:
+SPARSE LABELED ONLY
+
+Anchor recomputation:
+EVERY SEMANTIC MINIBATCH
+
+Anchor gradient:
+STOPPED
+
+Query gradient:
+PRESERVED
+
+Phase-A decoder path:
+ABSENT
+
+Phase-A loss scaling:
+NONE
+
+Phase-B view reduction:
+SUM
+
+Gradient leakage:
+NONE
+
+U_cycle mutation:
+NO
+
+PredRelation mutation:
+NO
+
+Pseudo-label expansion:
+NO
+
+Memory:
+NO
+
+Additive joint loss:
+NO
+
+Control-arm API:
+ABSENT
+
+R6 I/O:
+ABSENT
+
+Full GT:
+ABSENT
+
+Performance metrics:
+ABSENT
+
+Formal full-dataset training:
+NOT RUN
+
+Implementation:
+PASS
+
+Dedicated R5 tests:
+PASS
+
+Historical small-state parity:
+PASS
+
+Existing release regressions:
+PASS
+
+Generic regressions:
+PASS
+
+Final-core regressions:
+PASS
+
+Caltech full training replay:
+NOT RUN IN R5-A1
+
+MSRC full training:
+NOT RUN
+
+BDGP full training:
+NOT RUN
+
+R5-A1:
+PASS / CLEAN EXTRACTION FROZEN
+
+Next:
+R5-A2 FROZEN TRAINING DYNAMICS / REPLAY EVIDENCE CLOSURE

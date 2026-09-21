@@ -1,0 +1,2 @@
+U_cycle is validated, sliced read-only, and hash-checked before and after training.
+No utility recomputation or mutation is performed.

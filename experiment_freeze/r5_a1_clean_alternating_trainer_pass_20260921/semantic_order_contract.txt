@@ -1,0 +1,2 @@
+Semantic orders are precomputed for every zero-based epoch over all canonical global sample IDs.
+The semantic generator is a distinct generator object initialized with the frozen historical seed contract.

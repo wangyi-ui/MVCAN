@@ -1,0 +1,2 @@
+R5 production contains no full-GT input, import, lookup, metric dependency, or checkpoint-selection route.
+Full GT and performance metrics are absent.
