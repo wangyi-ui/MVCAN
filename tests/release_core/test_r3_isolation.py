@@ -100,4 +100,3 @@ def test_public_semantics_api_is_only_sparse_targets_and_raw_relation():
         "build_relation_balance_weights": ("pred_relation",),
         "compute_view_relations": ("q_query", "q_anchor"),
     }
-

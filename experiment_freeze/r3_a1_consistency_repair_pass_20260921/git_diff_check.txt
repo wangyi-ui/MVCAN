@@ -1,0 +1,4 @@
+Historical parent git show --check: exactly four new blank line at EOF warnings, one per authorized R3 test.
+Repair diff numstat: 0 insertions / 1 deletion for each of four authorized files.
+Post-repair git diff --check: PASS / NO OUTPUT
+Each repaired file ends with exactly one normal newline: PASS

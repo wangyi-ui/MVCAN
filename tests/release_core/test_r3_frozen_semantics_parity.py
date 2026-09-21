@@ -149,4 +149,3 @@ def test_bdgp_sealed_output_integrity_without_replay_claim():
         "5e3d6ccf9c93822d96104a3974438a41ac9f236277c804a0ef59f885b9d75adb",
         "29fcd056e5c915d45380303c21bb21cbb155809ecc76856afb962e6a995af9ed",
     )
-

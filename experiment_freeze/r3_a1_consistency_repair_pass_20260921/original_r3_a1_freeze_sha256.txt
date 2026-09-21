@@ -1,0 +1,2 @@
+aca125cd8967fdd6d960543b99a692d05e234207ef16639bd116504efab7b24e  experiment_freeze/r3_a1_clean_sparse_relation_semantics_pass_20260921/freeze_metadata_sha256.txt
+Original R3-A1 freeze metadata manifest verification: ALL OK

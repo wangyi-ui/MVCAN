@@ -147,4 +147,3 @@ def test_nonintegral_ids_and_targets_fail_closed():
         _replace(split, labeled_ids=split.labeled_ids.astype(np.float64))
     with pytest.raises(ValueError):
         _replace(split, labeled_targets=split.labeled_targets.astype(np.float64))
-

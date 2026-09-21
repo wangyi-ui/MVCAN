@@ -1,0 +1,4 @@
+Environment: mvcan / Python 3.8.20
+Command: PYTHONPATH=. pytest -q tests/release_core/test_r3_sparse_labels.py tests/release_core/test_r3_relations.py tests/release_core/test_r3_frozen_semantics_parity.py tests/release_core/test_r3_isolation.py
+Result: 43 passed in 1.48s
+Failures: 0

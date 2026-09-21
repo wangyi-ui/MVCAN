@@ -181,4 +181,3 @@ def test_query_gradient_capability_and_anchor_stop_are_structural():
 def test_invalid_y_gen_fails_closed(value, K):
     with pytest.raises(ValueError):
         build_vote_semantic_state(value, K)
-

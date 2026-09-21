@@ -1,0 +1,38 @@
+R3-A1 CONSISTENCY REPAIR
+
+Parent:
+ede7412f4f7651ef1f7d04ed2d4b5ed98c0b4439
+
+Repair:
+TRAILING BLANK LINES AT EOF ONLY
+
+R3 production modified:
+NO
+
+Scientific formulas modified:
+NO
+
+Scientific behavior change:
+NONE
+
+R3 dedicated tests:
+43 PASSED
+
+Complete release:
+163 PASSED
+
+Generic regression:
+94 PASSED
+
+Final-core regression:
+171 PASSED
+
+git diff --check:
+PASS
+
+R3-A1-R1:
+PASS / CONSISTENCY CORRECTED
+
+Next:
+COMMIT / PUSH / TAG CONSISTENCY REPAIR,
+THEN R3-A2

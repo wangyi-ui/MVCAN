@@ -1,0 +1,15 @@
+Engineering consistency repair only.
+Authorized change per file: delete one unnecessary trailing blank line at EOF.
+Each repaired file ends with exactly one normal newline.
+
+0 insertions / 1 deletion: tests/release_core/test_r3_frozen_semantics_parity.py
+0 insertions / 1 deletion: tests/release_core/test_r3_isolation.py
+0 insertions / 1 deletion: tests/release_core/test_r3_relations.py
+0 insertions / 1 deletion: tests/release_core/test_r3_sparse_labels.py
+
+Python statements changed: NO
+Imports changed: NO
+Assertions changed: NO
+Test names changed: NO
+Constants/hashes/reference paths changed: NO
+Scientific logic changed: NO
