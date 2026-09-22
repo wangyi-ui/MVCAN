@@ -1,0 +1,30 @@
+R6 SCIENTIFIC CONTRACT
+
+R6 is runtime orchestration only.
+
+R6 introduces:
+- no new Information Utility;
+- no new semantic mechanism;
+- no new loss;
+- no new pseudo-label rule;
+- no new memory rule;
+- no new feature/fusion gate.
+
+R6 owns:
+- runtime configuration;
+- deterministic execution setup;
+- frozen input materialization/loading;
+- checkpoint loading;
+- invocation of the frozen R5 alternating trainer;
+- one final native prediction refresh;
+- pre-GT bundle/audit/seal materialization;
+- post-seal GT-only evaluation.
+
+Scientific semantic contract remains:
+
+Sparse labels determine semantic direction/content.
+
+Frozen U_cycle determines action validity.
+
+Information Utility is not re-calibrated by labels and is not interpreted as
+generic feature importance or pseudo-label confidence.

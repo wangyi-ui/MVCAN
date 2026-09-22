@@ -1,0 +1,3 @@
+tests/release_core/test_r6_entrypoint.py: OK
+tests/release_core/test_r6_gt_firewall.py: OK
+tests/release_core/test_r6_frozen_reference_parity.py: OK

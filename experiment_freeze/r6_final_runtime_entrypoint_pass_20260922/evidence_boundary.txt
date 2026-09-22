@@ -1,0 +1,40 @@
+R6 FINAL EVIDENCE BOUNDARY
+
+Established:
+
+1. Clean R6 runtime extraction is source/test frozen.
+
+2. Caltech-6V Primary condition:
+   - SNR = 2.5 dB;
+   - exactly 3/6 corrupted views per sample;
+   - weak-quality realization seed = 20;
+   - 2 sparse labels/class;
+   - 14 labels total;
+   - label seed = 20.
+
+3. Training seeds:
+   20 / 30 / 50
+
+4. For all 3 seeds:
+   - exact historical initial model identity;
+   - exact historical final post-B model identity;
+   - exact final predictions;
+   - exact q_local;
+   - exact q_aligned;
+   - exact M_v;
+   - exact prediction logical SHA;
+   - exact ACC/NMI/ARI;
+   - final refresh model immutability;
+   - GT firewall pass.
+
+5. Caltech full clean runtime replay:
+   3 / 3 exact end-to-end.
+
+Bounded evidence:
+
+- MSRC-v1 same-state full R6 end-to-end replay is NOT established.
+- BDGP same-state full R6 end-to-end replay is NOT established.
+- Existing MSRC/BDGP evidence remains bounded to their previously frozen scope.
+- This closure must not be cited as multi-dataset exact R6 replay.
+
+No new scientific mechanism is introduced by R6 FINAL closure.

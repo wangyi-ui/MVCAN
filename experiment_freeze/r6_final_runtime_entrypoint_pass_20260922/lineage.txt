@@ -1,0 +1,32 @@
+R6 RELEASE LINEAGE
+
+R6-A1 clean runtime entrypoint:
+commit:
+1d1916a122bf5270a65eb3f4000875cc8fa9717f
+
+tag:
+r6-a1-clean-runtime-entrypoint-pass-20260922
+
+
+R6-A2-R0 seed20 exact replay:
+commit:
+ce4cfd90509e584fc933fcf1bfa8b9de058cafad
+
+tag:
+r6-a2-r0-seed20-exact-replay-pass-20260922
+
+
+R6-A2 seed30 exact replay:
+commit:
+dd0fbe45c849e021733b6387e9db64152f14d9e1
+
+tag:
+r6-a2-seed30-exact-replay-pass-20260922
+
+
+R6-A2 seed50 exact replay:
+commit:
+46f842382d461f5d545a5964737db72cd3d24407
+
+tag:
+r6-a2-seed50-exact-replay-pass-20260922

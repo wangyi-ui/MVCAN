@@ -1,0 +1,19 @@
+CALTECH GT FIREWALL SUMMARY
+
+seed20:
+PASS
+
+seed30:
+PASS
+
+seed50:
+PASS
+
+For every replay:
+- full GT was not loaded before pre-GT seal;
+- metrics were not computed before seal;
+- pre-GT bundle contained no full GT;
+- post-seal evaluator was the first GT-consuming stage.
+
+MULTI-SEED GT FIREWALL:
+3 / 3 PASS

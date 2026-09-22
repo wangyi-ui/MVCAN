@@ -1,0 +1,5 @@
+/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/r6_a2_seed20_validation.json: OK
+/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_bundle.npz: OK
+/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_audit.json: OK
+/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_seal.json: OK
+/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/postseal_metrics.json: OK
