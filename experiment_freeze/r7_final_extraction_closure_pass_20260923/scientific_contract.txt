@@ -1,0 +1,25 @@
+R7-FINAL introduces no scientific mechanism.
+
+The final extracted framework preserves:
+
+Sparse labels determine semantic direction/content.
+
+Frozen U_cycle determines action validity.
+
+U_cycle is not:
+- recalibrated by sparse labels;
+- replaced by U_tilde;
+- used as generic feature importance;
+- used as generic pseudo-label confidence;
+- used for direct feature/fusion gating.
+
+R7-FINAL adds:
+- no loss;
+- no memory mechanism;
+- no pseudo-label mechanism;
+- no training phase;
+- no optimizer;
+- no hyperparameter;
+- no dataset-specific scientific modification.
+
+R7 is validation and extraction closure only.

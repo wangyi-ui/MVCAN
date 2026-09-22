@@ -1,0 +1,30 @@
+FINAL SCIENTIFIC OWNERSHIP
+
+R1:
+Backbone/data/native objective/native clustering/evaluation primitives.
+
+R2:
+Directional action space and frozen U_cycle action validity.
+
+R3:
+Sparse-label semantic direction, mapping, PredRelation, relation balancing.
+
+R4:
+Pure utility-conditioned relation objective.
+
+R5:
+Optimizer ownership, backward, A -> refresh -> B training schedule.
+
+R6:
+Runtime orchestration, deterministic setup, frozen-input loading,
+final native refresh, pre-GT sealing, post-seal evaluation.
+
+R7:
+Validation and extraction closure only.
+
+For each scientific operation o:
+
+|Owner(o)| = 1
+
+R3 may consume R2 ActionSpace metadata for action-axis consistency.
+R3 does not consume or redefine U_cycle.

@@ -1,0 +1,19 @@
+R7-FINAL CURRENT-TREE REGRESSION
+
+Command:
+PYTHONPATH=. pytest -q tests/release_core
+
+Result:
+284 passed
+
+Training:
+NOT RUN
+
+20-epoch replay:
+NOT RUN
+
+Evaluator:
+NOT RUN
+
+New scientific execution:
+NONE

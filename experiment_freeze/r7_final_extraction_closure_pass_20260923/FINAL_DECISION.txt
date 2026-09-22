@@ -1,0 +1,24 @@
+R7-FINAL EXTRACTION CLOSURE
+
+FINAL_DECISION = PASS
+
+The extracted R1-R6 release is dependency-closed,
+ownership-closed, source-identity-closed, and behaviorally
+equivalent to the frozen historical final core within the
+preregistered Caltech-6V Primary evidence scope.
+
+Caltech-6V:
+3 / 3 exact full-chain evidence.
+
+MSRC-v1:
+bounded evidence only.
+
+BDGP:
+bounded evidence only.
+
+No new scientific mechanism was introduced in R7.
+
+The core extraction phase is complete.
+
+This decision closes code extraction only.
+It does not close the full paper experimental program.

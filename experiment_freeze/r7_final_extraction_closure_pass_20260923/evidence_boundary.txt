@@ -1,0 +1,23 @@
+FINAL EVIDENCE BOUNDARY
+
+Caltech-6V:
+EXACT_FULL_CHAIN_3_OF_3
+
+Condition:
+SNR = 2.5 dB
+exactly 3 / 6 views corrupted per sample
+weak-quality realization seed = 20
+labels = 14 total = 2 / class
+label seed = 20
+training seeds = 20 / 30 / 50
+
+MSRC-v1:
+BOUNDED_ONLY
+
+BDGP:
+BOUNDED_ONLY
+
+No R7 claim upgrades MSRC-v1 or BDGP to full same-state
+end-to-end exact replay.
+
+Metrics-only parity is insufficient.

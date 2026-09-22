@@ -1,0 +1,11 @@
+R6 FINAL COMMIT:
+68cc714bda18ff1a1b24556eb0dd94dca0830dfd
+
+R7-FINAL PARENT:
+e67f33010df04b69e29e21dcea761af26e20f082
+
+release_core diff between R6 FINAL and R7-FINAL parent:
+EMPTY
+
+RESULT:
+PASS
