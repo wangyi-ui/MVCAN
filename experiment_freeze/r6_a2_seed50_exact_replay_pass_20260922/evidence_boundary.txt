@@ -1,0 +1,47 @@
+R6-A2 seed50 evidence scope
+
+Dataset:
+Caltech-6V
+
+Training seed:
+50
+
+Weak-quality realization:
+seed20
+SNR=2.5 dB
+exactly 3/6 corrupted views per sample
+
+Sparse labels:
+label seed20
+2 labels/class
+14 labels total
+
+Established for seed50:
+- exact historical initial model identity;
+- exact preregistered R6 initial identity;
+- exact historical final post-B model identity;
+- final-refresh immutability in both hash namespaces;
+- exact sample IDs;
+- exact final predictions;
+- exact q_local;
+- exact q_aligned;
+- exact M_v;
+- exact prediction logical SHA;
+- valid current clean pre-GT seal;
+- no full GT before seal;
+- exact ACC/NMI/ARI.
+
+Combined with previously frozen seed20 and seed30 evidence:
+
+Caltech training seeds 20/30/50:
+3/3 exact end-to-end replay.
+
+This does not establish:
+- MSRC same-state end-to-end replay;
+- BDGP same-state end-to-end replay;
+- any new scientific mechanism.
+
+Information Utility semantics remain unchanged:
+
+Sparse labels determine semantic direction/content.
+Frozen U_cycle determines action validity.

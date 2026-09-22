@@ -1,0 +1,82 @@
+R6-A2
+CALTECH SEED50 EXACT END-TO-END FROZEN REPLAY
+
+Parent:
+R6-A2 seed30 / GIT-FROZEN / REMOTE-BACKED-UP
+
+Parent commit:
+dd0fbe45c849e021733b6387e9db64152f14d9e1
+
+Training seed:
+50
+
+Weak-quality realization:
+seed20 / UNCHANGED
+
+Label seed:
+20 / UNCHANGED
+
+Historical initial model:
+EXACT
+
+R6 initial model:
+EXACT
+
+Historical final post-B model:
+EXACT
+
+R6 final model:
+RUN-LOCAL INTEGRITY ONLY
+
+Final refresh:
+MODEL IMMUTABILITY EXACT IN BOTH HASH NAMESPACES
+
+Sample IDs:
+EXACT
+
+Final predictions:
+EXACT
+
+q_local:
+EXACT / MAX_ABS_DIFF=0.0
+
+q_aligned:
+EXACT / MAX_ABS_DIFF=0.0
+
+M_v:
+EXACT / MAX_ABS_DIFF=0.0
+
+Prediction logical SHA:
+EXACT
+
+Current pre-GT seal:
+VALID
+
+Full GT before seal:
+NO
+
+ACC:
+0.8607142857142858 / EXACT
+
+NMI:
+0.7763024116674858 / EXACT
+
+ARI:
+0.7538086225874288 / EXACT
+
+Tracked release source:
+UNCHANGED
+
+MULTI-SEED CALTECH:
+seed20 PASS
+seed30 PASS
+seed50 PASS
+
+3 / 3 EXACT END-TO-END REPLAY
+
+Decision:
+PASS / EXACT END-TO-END FROZEN REPLAY / SEED50
+
+Next:
+GIT-FREEZE THIS EVIDENCE.
+THEN PERFORM R6 FINAL MULTI-SEED CLOSURE.

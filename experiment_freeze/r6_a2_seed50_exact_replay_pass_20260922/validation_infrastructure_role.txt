@@ -1,0 +1,10 @@
+The seed50 bridge protocol and validation harness are validation-only evidence.
+
+They are not release production code.
+They do not introduce a scientific mechanism.
+They do not modify Information Utility.
+They do not alter training behavior.
+
+Instrumentation only observes and verifies the already frozen runtime.
+Original wrapped functions are invoked exactly once and their outputs remain
+unchanged.

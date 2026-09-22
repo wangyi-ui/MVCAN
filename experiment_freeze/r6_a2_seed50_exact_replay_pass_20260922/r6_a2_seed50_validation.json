@@ -1,0 +1,102 @@
+{
+  "current_pre_gt": {
+    "audit": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed50/pre_gt_audit.json",
+    "audit_sha256": "25bee99f150c868c451bf07f09607ce3b92476a77b69edbab64ef3c45ae0cfd0",
+    "audit_valid": true,
+    "bundle": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed50/pre_gt_bundle.npz",
+    "bundle_sha256": "1b216661fe891bc0a18b2546e949b051d3a1e52fcbbbde3c589b9b68b47daaed",
+    "bundle_valid": true,
+    "full_gt_loaded_before_seal": false,
+    "r6_final_model_sha256": "f739553e219ac8517e7f718b8af8d26e4f506aa5a82413604b36ec116988c906",
+    "seal": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed50/pre_gt_seal.json",
+    "seal_sha256": "a39ba052de694c5329195eeda0b0148a2e355a29fefdc6177acf31b54ad5fff6",
+    "seal_valid": true
+  },
+  "hash_namespace_bridge_protocol": {
+    "parent_seed20_bridge_freeze_manifest_sha256": "d50b0cce04e3b864c4b6fc701c1225f9b2410b33283f0ee38a4459f30d2662ca",
+    "parent_seed30_replay_freeze_manifest_sha256": "b28e9378283d452eaa75574a9bb42c1e0a8897e1800833604f2316953bd3a753",
+    "path": "/tmp/r6_a2_replay/hash_namespace_bridge_protocol_seed50.txt",
+    "sha256": "6e07d607d7927874c54265e7d79ab9f2fad8bc379d9bbfbfb5632b6840606387"
+  },
+  "historical_whole_file_sha_policy": {
+    "audit": "reference only",
+    "seal": "reference only"
+  },
+  "instrumentation": {
+    "final_post_b_historical_hash": "0c44f569fc564ee4649e3c1882e2580e0a05dabc9850dce6826158ee17168062",
+    "final_post_b_r6_hash": "f739553e219ac8517e7f718b8af8d26e4f506aa5a82413604b36ec116988c906",
+    "initial_historical_hash": "41c98952c143c149d639451a16a5902fd25281013a6a937559f9835365ed1ca5",
+    "initial_r6_hash": "d975025cdc5028f462a7362e04b12f0b383252da9b9a52a48785c9c54bfc6dc2",
+    "load_original_call_count": 1,
+    "r6_expected_final_model_sha256": null,
+    "r6_expected_final_model_sha256_classification": "unavailable: no pre-existing historical R6-namespace final state; replaced by mandatory historical canonical post-B exact gate",
+    "refresh_historical_after": "0c44f569fc564ee4649e3c1882e2580e0a05dabc9850dce6826158ee17168062",
+    "refresh_historical_before": "0c44f569fc564ee4649e3c1882e2580e0a05dabc9850dce6826158ee17168062",
+    "refresh_original_call_count": 1,
+    "refresh_r6_after": "f739553e219ac8517e7f718b8af8d26e4f506aa5a82413604b36ec116988c906",
+    "refresh_r6_before": "f739553e219ac8517e7f718b8af8d26e4f506aa5a82413604b36ec116988c906",
+    "train_original_call_count": 1
+  },
+  "metrics": {
+    "acc": {
+      "abs_diff": 0.0,
+      "actual": 0.8607142857142858,
+      "exact": true,
+      "expected": 0.8607142857142858
+    },
+    "ari": {
+      "abs_diff": 0.0,
+      "actual": 0.7538086225874288,
+      "exact": true,
+      "expected": 0.7538086225874288
+    },
+    "nmi": {
+      "abs_diff": 0.0,
+      "actual": 0.7763024116674858,
+      "exact": true,
+      "expected": 0.7763024116674858
+    }
+  },
+  "repository_unchanged": true,
+  "result": "PASS",
+  "runtime_config": {
+    "batch_size": 256,
+    "dataset": "Caltech-6V",
+    "device": "cuda:0",
+    "epochs": 20,
+    "label_seed": 20,
+    "labels_per_class": 2,
+    "learning_rate": 0.0001,
+    "native_lambda1": 0.01,
+    "refresh_interval": 100,
+    "training_seed": 50
+  },
+  "schema": "r6-a2-seed50-validation-v1",
+  "scientific_payload": {
+    "M_v": {
+      "exact": true,
+      "max_abs_diff": 0.0
+    },
+    "current_final_r6_hash": "f739553e219ac8517e7f718b8af8d26e4f506aa5a82413604b36ec116988c906",
+    "final_predictions": {
+      "exact": true,
+      "max_abs_diff": null
+    },
+    "prediction_logical_sha256": "d2bfa6ae66d2541f07d8a630f81e69693115ce3fff15ede76140c3cdbd5a6f89",
+    "q_aligned": {
+      "exact": true,
+      "max_abs_diff": 0.0
+    },
+    "q_local": {
+      "exact": true,
+      "max_abs_diff": 0.0
+    },
+    "sample_ids": {
+      "exact": true,
+      "max_abs_diff": null
+    }
+  },
+  "seed20_rerun": false,
+  "seed30_rerun": false,
+  "seed50_run": true
+}

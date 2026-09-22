@@ -1,0 +1,11 @@
+sample_ids: array_equal=True, max_abs_diff=0.0
+final_predictions: array_equal=True, max_abs_diff=0.0
+q_local: array_equal=True, max_abs_diff=0.0
+q_aligned: array_equal=True, max_abs_diff=0.0
+M_v: array_equal=True, max_abs_diff=0.0
+
+acc: actual=0.8607142857142858, expected=0.8607142857142858, exact=True, abs_diff=0.0
+nmi: actual=0.7763024116674858, expected=0.7763024116674858, exact=True, abs_diff=0.0
+ari: actual=0.7538086225874288, expected=0.7538086225874288, exact=True, abs_diff=0.0
+
+SCIENTIFIC EXACTNESS: PASS
