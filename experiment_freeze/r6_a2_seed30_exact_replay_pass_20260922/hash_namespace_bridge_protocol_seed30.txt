@@ -1,0 +1,29 @@
+R6-A2-R0 MODEL HASH NAMESPACE BRIDGE PROTOCOL
+
+Historical canonical hash implementation:
+/root/autodl-tmp/CVPR24-MVCAN/irv/b3_audit.py::hash_backbone(autoencoders)["aggregate"]
+Historical implementation SHA256:
+e098a32e7f1fd39770951f47383f1cc2fc88093f66d2e30cf10b875e75478d0b
+
+R6 audit-local hash implementation:
+/root/autodl-tmp/UCRR-MVC-release/release_core/runtime/entrypoint.py::_model_sha256
+R6 implementation source SHA256:
+ac0fb8ff6358865e410911fc568003c5bd6fa7a3756c345d0a903b89cf2aedfb
+
+Expected historical initial hash:
+606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a
+Expected R6 initial hash:
+a1bc9f464019856a933975333a8e8ebfbb4fac316fa2e5b0700247a25ab12ddb
+Expected historical final post-B hash:
+49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1
+Expected prediction logical SHA256:
+baf7753b58dba1d30f8fffbe812910f44b31d358560e62580d775600a26941bb
+
+Comparison policy:
+1. Historical canonical and R6 internal hashes are distinct namespaces.
+2. Initial model must equal both preregistered values in their own namespaces.
+3. Immediately after R5 returns and before final refresh, historical canonical hash must equal the preregistered R5-A2 final value.
+4. expected_final_model_sha256 is None because no pre-existing historical R6-namespace final state exists.
+5. The observed R6 final hash is run-local integrity evidence only and is not learned as an expected value.
+6. Before/after final refresh, historical hash must remain the preregistered final value and R6 hash must remain unchanged.
+7. Wrappers call originals exactly once, read hashes only, and return original outputs unchanged.

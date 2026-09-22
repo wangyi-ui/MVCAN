@@ -1,0 +1,20 @@
+R6-A2 SEED30 MODEL HASH EVIDENCE
+
+Historical initial model SHA256:
+606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a
+
+R6 initial model SHA256:
+a1bc9f464019856a933975333a8e8ebfbb4fac316fa2e5b0700247a25ab12ddb
+
+Historical final post-B model SHA256:
+49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1
+
+R6 run-local final SHA256:
+a40114e17aa9247807bbfff3b46451d70c31779e2dbe7cd497cd6eb067c937fc
+
+Historical hash_backbone is the authoritative cross-generation model-identity
+namespace.
+
+R6 _model_sha256 is run-local integrity evidence only.
+
+Final refresh preserved both model identities exactly.

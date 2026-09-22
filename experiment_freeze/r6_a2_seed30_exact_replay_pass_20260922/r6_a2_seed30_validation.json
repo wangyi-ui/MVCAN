@@ -1,0 +1,100 @@
+{
+  "current_pre_gt": {
+    "audit": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed30/pre_gt_audit.json",
+    "audit_sha256": "80f915ed4122d5ba7964301fd6287d44fc79b84891a1cd895055cf4d03491b86",
+    "audit_valid": true,
+    "bundle": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed30/pre_gt_bundle.npz",
+    "bundle_sha256": "83a0fb0a1ba16a98ba17d57379fee3eec53ebd2f8eb7620fb212cf13a4696e1b",
+    "bundle_valid": true,
+    "full_gt_loaded_before_seal": false,
+    "r6_final_model_sha256": "a40114e17aa9247807bbfff3b46451d70c31779e2dbe7cd497cd6eb067c937fc",
+    "seal": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed30/pre_gt_seal.json",
+    "seal_sha256": "aa91cdd13e4081541749d76f975397777c96a6ff14d3fb29a337854de1dd6519",
+    "seal_valid": true
+  },
+  "hash_namespace_bridge_protocol": {
+    "parent_seed20_bridge_freeze_manifest_sha256": "d50b0cce04e3b864c4b6fc701c1225f9b2410b33283f0ee38a4459f30d2662ca",
+    "path": "/tmp/r6_a2_replay/hash_namespace_bridge_protocol_seed30.txt",
+    "sha256": "dd61d94a91f286fa7058f0e01cc24de712e4f9254d64d01b75bb77fc062dc1cc"
+  },
+  "historical_whole_file_sha_policy": {
+    "audit": "reference only",
+    "seal": "reference only"
+  },
+  "instrumentation": {
+    "final_post_b_historical_hash": "49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1",
+    "final_post_b_r6_hash": "a40114e17aa9247807bbfff3b46451d70c31779e2dbe7cd497cd6eb067c937fc",
+    "initial_historical_hash": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+    "initial_r6_hash": "a1bc9f464019856a933975333a8e8ebfbb4fac316fa2e5b0700247a25ab12ddb",
+    "load_original_call_count": 1,
+    "r6_expected_final_model_sha256": null,
+    "r6_expected_final_model_sha256_classification": "unavailable: no pre-existing historical R6-namespace final state; replaced by mandatory historical canonical post-B exact gate",
+    "refresh_historical_after": "49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1",
+    "refresh_historical_before": "49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1",
+    "refresh_original_call_count": 1,
+    "refresh_r6_after": "a40114e17aa9247807bbfff3b46451d70c31779e2dbe7cd497cd6eb067c937fc",
+    "refresh_r6_before": "a40114e17aa9247807bbfff3b46451d70c31779e2dbe7cd497cd6eb067c937fc",
+    "train_original_call_count": 1
+  },
+  "metrics": {
+    "acc": {
+      "abs_diff": 0.0,
+      "actual": 0.8592857142857143,
+      "exact": true,
+      "expected": 0.8592857142857143
+    },
+    "ari": {
+      "abs_diff": 0.0,
+      "actual": 0.749533486243257,
+      "exact": true,
+      "expected": 0.749533486243257
+    },
+    "nmi": {
+      "abs_diff": 0.0,
+      "actual": 0.7703779562016145,
+      "exact": true,
+      "expected": 0.7703779562016145
+    }
+  },
+  "repository_unchanged": true,
+  "result": "PASS",
+  "runtime_config": {
+    "batch_size": 256,
+    "dataset": "Caltech-6V",
+    "device": "cuda:0",
+    "epochs": 20,
+    "label_seed": 20,
+    "labels_per_class": 2,
+    "learning_rate": 0.0001,
+    "native_lambda1": 0.01,
+    "refresh_interval": 100,
+    "training_seed": 30
+  },
+  "schema": "r6-a2-seed30-validation-v1",
+  "scientific_payload": {
+    "M_v": {
+      "exact": true,
+      "max_abs_diff": 0.0
+    },
+    "current_final_r6_hash": "a40114e17aa9247807bbfff3b46451d70c31779e2dbe7cd497cd6eb067c937fc",
+    "final_predictions": {
+      "exact": true,
+      "max_abs_diff": null
+    },
+    "prediction_logical_sha256": "baf7753b58dba1d30f8fffbe812910f44b31d358560e62580d775600a26941bb",
+    "q_aligned": {
+      "exact": true,
+      "max_abs_diff": 0.0
+    },
+    "q_local": {
+      "exact": true,
+      "max_abs_diff": 0.0
+    },
+    "sample_ids": {
+      "exact": true,
+      "max_abs_diff": null
+    }
+  },
+  "seed30_run": true,
+  "seed50_run": false
+}

@@ -1,0 +1,21 @@
+Historical seed30 reference:
+
+outputs/final_core/f0_a0_exact_replay_seed30
+
+Prediction logical SHA256:
+baf7753b58dba1d30f8fffbe812910f44b31d358560e62580d775600a26941bb
+
+ACC:
+0.8592857142857143
+
+NMI:
+0.7703779562016145
+
+ARI:
+0.749533486243257
+
+Historical whole-file audit SHA:
+REFERENCE ONLY.
+
+Historical whole-file seal SHA:
+REFERENCE ONLY.

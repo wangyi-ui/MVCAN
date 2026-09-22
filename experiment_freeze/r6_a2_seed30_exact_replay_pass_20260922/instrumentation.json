@@ -1,0 +1,15 @@
+{
+  "final_post_b_historical_hash": "49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1",
+  "final_post_b_r6_hash": "a40114e17aa9247807bbfff3b46451d70c31779e2dbe7cd497cd6eb067c937fc",
+  "initial_historical_hash": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+  "initial_r6_hash": "a1bc9f464019856a933975333a8e8ebfbb4fac316fa2e5b0700247a25ab12ddb",
+  "load_original_call_count": 1,
+  "r6_expected_final_model_sha256": null,
+  "r6_expected_final_model_sha256_classification": "unavailable: no pre-existing historical R6-namespace final state; replaced by mandatory historical canonical post-B exact gate",
+  "refresh_historical_after": "49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1",
+  "refresh_historical_before": "49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1",
+  "refresh_original_call_count": 1,
+  "refresh_r6_after": "a40114e17aa9247807bbfff3b46451d70c31779e2dbe7cd497cd6eb067c937fc",
+  "refresh_r6_before": "a40114e17aa9247807bbfff3b46451d70c31779e2dbe7cd497cd6eb067c937fc",
+  "train_original_call_count": 1
+}
