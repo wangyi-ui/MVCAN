@@ -1,0 +1,609 @@
+{
+  "explicit_checks": {
+    "r3_utility_interface_does_not_construct_semantics": true,
+    "r4_pure_relation_objective": true,
+    "r5_does_not_redefine_r2_r3_r4": true,
+    "r5_owns_optimizer_backward_phase_order": true,
+    "r6_orchestration_only": true,
+    "r7_release_core_files_absent": true
+  },
+  "failures": [],
+  "files": [
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R4",
+      "file": "release_core/action/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [
+        {
+          "module": "release_core.semantics.relations",
+          "owner": "R3"
+        }
+      ],
+      "declared_owner": "R4",
+      "file": "release_core/action/relation.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "_reference_tensor",
+          "build_action_weight",
+          "relation_bce",
+          "utility_conditioned_relation_loss"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": true,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/backbone/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/backbone/autoencoder.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "__init__",
+          "clustering",
+          "decoder",
+          "encoder",
+          "forward"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/backbone/clustering.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "initialize_kmeans_centers",
+          "match",
+          "native_refresh_from_latents",
+          "new_p",
+          "student_t_posterior",
+          "target_distribution"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/backbone/multiview.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "__init__",
+          "forward_view",
+          "load_state_dicts",
+          "per_view_outputs",
+          "state_dicts",
+          "to_device"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/backbone/native_objective.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "native_objective"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/config/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/config/native.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "get_native_config"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/data/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/data/contracts.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "infer_dataset_contract"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/data/loaders.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "_load",
+          "load_bdgp",
+          "load_caltech",
+          "load_dataset",
+          "load_msrc_v1"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/data/sample_ids.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "canonical_sample_ids",
+          "validate_sample_ids"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/data/weak_quality.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "_corrupt",
+          "_positive_integer",
+          "_validate_seed",
+          "_validate_views",
+          "apply_half_gaussian_corruption",
+          "apply_heterogeneous_gaussian_corruption",
+          "generate_balanced_corruption_mask",
+          "generate_half_corruption_mask",
+          "ndarray_sha256"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/evaluation/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R1",
+      "file": "release_core/evaluation/clustering.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "acc"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R6",
+      "file": "release_core/runtime/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "__post_init__",
+          "_optional_sha256",
+          "_payload_sha256",
+          "_positive_float",
+          "_positive_integer",
+          "evaluate_postseal",
+          "run_pre_gt"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": true,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [
+        {
+          "module": "release_core.backbone",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.backbone.clustering",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.config",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.data.contracts",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.data.sample_ids",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.semantics",
+          "owner": "R3"
+        },
+        {
+          "module": "release_core.semantics",
+          "owner": "R3"
+        },
+        {
+          "module": "release_core.training",
+          "owner": "R5"
+        },
+        {
+          "module": "release_core.training",
+          "owner": "R5"
+        }
+      ],
+      "declared_owner": "R6",
+      "file": "release_core/runtime/entrypoint.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "_configure_determinism",
+          "_contains_string",
+          "_copy_readonly",
+          "_expected_hash",
+          "_file_sha256",
+          "_final_prediction_state",
+          "_jsonable",
+          "_load_action_inputs",
+          "_load_feature_only",
+          "_load_initial_model",
+          "_load_sparse_split",
+          "_load_torch_state",
+          "_model_sha256",
+          "_persist_pre_gt",
+          "_pick_array",
+          "_read_json",
+          "_require",
+          "_source_hashes",
+          "_verify_bound_artifact",
+          "_verify_expected_files",
+          "_verify_file",
+          "_view_keys",
+          "_write_json",
+          "run_pre_gt"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": true,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [
+        {
+          "module": "release_core.data",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.data",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.evaluation",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.evaluation",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.evaluation",
+          "owner": "R1"
+        }
+      ],
+      "declared_owner": "R6",
+      "file": "release_core/runtime/evaluation.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "_file_sha256",
+          "_load_full_gt",
+          "_read_json",
+          "_require",
+          "_validate_sealed_prediction",
+          "_write_json",
+          "evaluate_postseal"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": true,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R3",
+      "file": "release_core/semantics/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [
+        {
+          "module": "release_core.utility.action_space",
+          "owner": "R2"
+        }
+      ],
+      "declared_owner": "R3",
+      "file": "release_core/semantics/relations.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "_integer_matrix",
+          "_readonly",
+          "build_relation_balance_weights",
+          "build_relation_semantics",
+          "build_vote_semantic_state",
+          "compute_view_relations",
+          "fit_sparse_mapping",
+          "sparse_mapping"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R3",
+      "file": "release_core/semantics/sparse_labels.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "__post_init__",
+          "_dataset_name",
+          "_integer",
+          "_readonly_integer_vector",
+          "canonical_split_payload",
+          "digest",
+          "split_sha256",
+          "validate_sparse_label_split"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R5",
+      "file": "release_core/training/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [
+        {
+          "module": "release_core.action",
+          "owner": "R4"
+        },
+        {
+          "module": "release_core.backbone.clustering",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.backbone.native_objective",
+          "owner": "R1"
+        },
+        {
+          "module": "release_core.data.weak_quality",
+          "owner": "R1"
+        }
+      ],
+      "declared_owner": "R5",
+      "file": "release_core/training/alternating.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "_all_gradients_none",
+          "_as_numpy",
+          "_family_parameters",
+          "_finite_positive_float",
+          "_frozen_input_hashes",
+          "_gradient_family_status",
+          "_int64_ids",
+          "_logical_hash",
+          "_model_views",
+          "_optimizer_has_exact_configuration",
+          "_parameter_ids",
+          "_positions",
+          "_positive_integer",
+          "_row_lookup",
+          "_select_rows",
+          "_validate_action_inputs",
+          "_validate_native_state",
+          "_validate_order",
+          "_validate_partition",
+          "_validate_stateless_training_model",
+          "_validate_views",
+          "_zero_gradients",
+          "build_decoupled_optimizers",
+          "initial_native_target_state",
+          "precompute_training_orders",
+          "refresh_native_state_if_due",
+          "run_alternating_epoch",
+          "run_alternating_training",
+          "run_native_consolidation_phase",
+          "run_relation_refinement_phase"
+        ],
+        "optimizer_calls": 5,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": true
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R2",
+      "file": "release_core/utility/__init__.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R2",
+      "file": "release_core/utility/action_space.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "S",
+          "V",
+          "__post_init__",
+          "_canonical_action_array",
+          "_logical_tensor_sha256",
+          "_membership_array",
+          "_view_count",
+          "action_count",
+          "build_directional_actions",
+          "canonical_action_hashes",
+          "generator_membership",
+          "verifier_membership"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    },
+    {
+      "cross_owner_imports": [],
+      "declared_owner": "R2",
+      "file": "release_core/utility/cyclic.py",
+      "relevant_scientific_responsibilities": {
+        "defines": [
+          "_validate_input",
+          "compute_directional_cycle_utility"
+        ],
+        "optimizer_calls": 0,
+        "relation_objective": false,
+        "runtime_entrypoint": false,
+        "training_entrypoint": false
+      }
+    }
+  ],
+  "gate": "ownership_closure",
+  "ownership_partition": {
+    "action": "R4",
+    "backbone": "R1",
+    "config": "R1",
+    "data": "R1",
+    "evaluation": "R1",
+    "runtime": "R6",
+    "semantics": "R3",
+    "training": "R5",
+    "utility": "R2"
+  },
+  "pass": true,
+  "top_level_package_owner": {
+    "basis": "frozen R1 foundation manifest",
+    "release_core/__init__.py": "R1"
+  }
+}

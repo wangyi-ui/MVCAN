@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "backward_gradient_evidence_exact": true,
+    "batch_order_indexing_exact": true,
+    "final_post_b_identity_exact": true,
+    "initial_model_identity_exact": true,
+    "optimizer_topology_exact": true,
+    "phase_schedule_exact": true,
+    "source_identity_bound": true,
+    "three_seeds_exact": true,
+    "training_rerun": false,
+    "trajectory_exact": true
+  },
+  "gate": "r5_training_dynamics_evidence",
+  "manifests": {
+    "r5_a2": {
+      "all_ok": true,
+      "entry_count": 44,
+      "path": "experiment_freeze/r5_a2_frozen_training_dynamics_replay_pass_20260921/freeze_metadata_sha256.txt",
+      "sha256": "48a1fa3a6545c12541a79346e9dd04730e4501ad34e00b8cc15b8ab781a665e2"
+    },
+    "r5_final": {
+      "all_ok": true,
+      "entry_count": 34,
+      "path": "experiment_freeze/r5_final_alternating_trainer_pass_20260922/freeze_metadata_sha256.txt",
+      "sha256": "11374045f9c7e90c799d1b0d85e058df29e1b4d4f623c94ee729430a37300e0e"
+    }
+  },
+  "pass": true,
+  "result": "PASS / INHERITED / SOURCE-IDENTITY-BOUND",
+  "seeds": [
+    20,
+    30,
+    50
+  ]
+}

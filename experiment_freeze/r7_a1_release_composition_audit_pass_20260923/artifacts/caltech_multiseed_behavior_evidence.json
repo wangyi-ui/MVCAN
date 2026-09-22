@@ -1,0 +1,417 @@
+{
+  "condition": {
+    "corrupted_views": 3,
+    "label_count": 14,
+    "label_seed": 20,
+    "labels_per_class": 2,
+    "snr_db": 2.5,
+    "view_count": 6,
+    "weak_quality_seed": 20
+  },
+  "dataset": "Caltech-6V",
+  "exact_seed_count": 3,
+  "gate": "r6_behavior_evidence",
+  "hash_namespace_policy": {
+    "cross_namespace_equality_required": false,
+    "historical_hash_backbone": "authoritative cross-generation identity",
+    "release_model_sha256": "run-local integrity only"
+  },
+  "metrics_only_parity_is_sufficient": false,
+  "pass": true,
+  "required_seed_count": 3,
+  "seeds": {
+    "20": {
+      "arrays": {
+        "M_v": {
+          "array_equal": true,
+          "dtype_actual": "float32",
+          "dtype_equal": true,
+          "dtype_reference": "float32",
+          "max_abs_diff": 0.0,
+          "pass": true,
+          "shape_actual": [
+            6,
+            7,
+            7
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            6,
+            7,
+            7
+          ]
+        },
+        "final_predictions": {
+          "array_equal": true,
+          "dtype_actual": "int64",
+          "dtype_equal": true,
+          "dtype_reference": "int64",
+          "max_abs_diff": null,
+          "pass": true,
+          "shape_actual": [
+            1400
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400
+          ]
+        },
+        "q_aligned": {
+          "array_equal": true,
+          "dtype_actual": "float32",
+          "dtype_equal": true,
+          "dtype_reference": "float32",
+          "max_abs_diff": 0.0,
+          "pass": true,
+          "shape_actual": [
+            1400,
+            6,
+            7
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400,
+            6,
+            7
+          ]
+        },
+        "q_local": {
+          "array_equal": true,
+          "dtype_actual": "float32",
+          "dtype_equal": true,
+          "dtype_reference": "float32",
+          "max_abs_diff": 0.0,
+          "pass": true,
+          "shape_actual": [
+            1400,
+            6,
+            7
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400,
+            6,
+            7
+          ]
+        },
+        "sample_ids": {
+          "array_equal": true,
+          "dtype_actual": "int64",
+          "dtype_equal": true,
+          "dtype_reference": "int64",
+          "max_abs_diff": null,
+          "pass": true,
+          "shape_actual": [
+            1400
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400
+          ]
+        }
+      },
+      "final_refresh_immutability": {
+        "historical_immutable": true,
+        "release_local_immutable": true
+      },
+      "historical_bundle": "/root/autodl-tmp/CVPR24-MVCAN/outputs/final_core/f0_a0_engineering_smoke_seed20/final_core_pre_gt_artifact.npz",
+      "historical_bundle_sha256": "ec78a6102546254c7d0868f4948e1a79a236734ce37ab9d67b350063fefcc010",
+      "metrics": {
+        "acc": {
+          "actual": 0.8614285714285714,
+          "exact": true,
+          "expected": 0.8614285714285714
+        },
+        "ari": {
+          "actual": 0.753482395557614,
+          "exact": true,
+          "expected": 0.753482395557614
+        },
+        "nmi": {
+          "actual": 0.7734181958700173,
+          "exact": true,
+          "expected": 0.7734181958700173
+        }
+      },
+      "model_identity": {
+        "final_exact": true,
+        "final_historical_actual": "7a69d078e9573452cd9a1e98a9d72bbe618bf547dc0ba2bbdae3423bd053e747",
+        "final_historical_expected": "7a69d078e9573452cd9a1e98a9d72bbe618bf547dc0ba2bbdae3423bd053e747",
+        "historical_hash_backbone_is_cross_generation_authority": true,
+        "initial_exact": true,
+        "initial_historical_actual": "a9b1e523c90fc450ba59fa206b78d1c02c5dd410c452766d3942cc37fc1e9d62",
+        "initial_historical_expected": "a9b1e523c90fc450ba59fa206b78d1c02c5dd410c452766d3942cc37fc1e9d62",
+        "release_model_sha256_is_run_local_only": true,
+        "release_namespace_compared_to_historical": false
+      },
+      "pass": true,
+      "prediction_logical_sha256": "b3a40a90c5069a2fe6926b48efe406dc51c670b204ccc1bd53c4d322e830d504",
+      "prediction_logical_sha256_exact": true,
+      "prediction_logical_sha256_expected": "b3a40a90c5069a2fe6926b48efe406dc51c670b204ccc1bd53c4d322e830d504",
+      "release_bundle": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_bundle.npz",
+      "release_bundle_sha256": "d3511417809cb4d5e717bd38f0da1173f61bde81653f0117e37ad5edd5158809"
+    },
+    "30": {
+      "arrays": {
+        "M_v": {
+          "array_equal": true,
+          "dtype_actual": "float32",
+          "dtype_equal": true,
+          "dtype_reference": "float32",
+          "max_abs_diff": 0.0,
+          "pass": true,
+          "shape_actual": [
+            6,
+            7,
+            7
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            6,
+            7,
+            7
+          ]
+        },
+        "final_predictions": {
+          "array_equal": true,
+          "dtype_actual": "int64",
+          "dtype_equal": true,
+          "dtype_reference": "int64",
+          "max_abs_diff": null,
+          "pass": true,
+          "shape_actual": [
+            1400
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400
+          ]
+        },
+        "q_aligned": {
+          "array_equal": true,
+          "dtype_actual": "float32",
+          "dtype_equal": true,
+          "dtype_reference": "float32",
+          "max_abs_diff": 0.0,
+          "pass": true,
+          "shape_actual": [
+            1400,
+            6,
+            7
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400,
+            6,
+            7
+          ]
+        },
+        "q_local": {
+          "array_equal": true,
+          "dtype_actual": "float32",
+          "dtype_equal": true,
+          "dtype_reference": "float32",
+          "max_abs_diff": 0.0,
+          "pass": true,
+          "shape_actual": [
+            1400,
+            6,
+            7
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400,
+            6,
+            7
+          ]
+        },
+        "sample_ids": {
+          "array_equal": true,
+          "dtype_actual": "int64",
+          "dtype_equal": true,
+          "dtype_reference": "int64",
+          "max_abs_diff": null,
+          "pass": true,
+          "shape_actual": [
+            1400
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400
+          ]
+        }
+      },
+      "final_refresh_immutability": {
+        "historical_immutable": true,
+        "release_local_immutable": true
+      },
+      "historical_bundle": "/root/autodl-tmp/CVPR24-MVCAN/outputs/final_core/f0_a0_exact_replay_seed30/final_core_pre_gt_artifact.npz",
+      "historical_bundle_sha256": "5a2c7819d664ece6d03bab62a669a9973208649ed6a13895296ecc4cf7c2a84a",
+      "metrics": {
+        "acc": {
+          "actual": 0.8592857142857143,
+          "exact": true,
+          "expected": 0.8592857142857143
+        },
+        "ari": {
+          "actual": 0.749533486243257,
+          "exact": true,
+          "expected": 0.749533486243257
+        },
+        "nmi": {
+          "actual": 0.7703779562016145,
+          "exact": true,
+          "expected": 0.7703779562016145
+        }
+      },
+      "model_identity": {
+        "final_exact": true,
+        "final_historical_actual": "49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1",
+        "final_historical_expected": "49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1",
+        "historical_hash_backbone_is_cross_generation_authority": true,
+        "initial_exact": true,
+        "initial_historical_actual": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+        "initial_historical_expected": "606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a",
+        "release_model_sha256_is_run_local_only": true,
+        "release_namespace_compared_to_historical": false
+      },
+      "pass": true,
+      "prediction_logical_sha256": "baf7753b58dba1d30f8fffbe812910f44b31d358560e62580d775600a26941bb",
+      "prediction_logical_sha256_exact": true,
+      "prediction_logical_sha256_expected": "baf7753b58dba1d30f8fffbe812910f44b31d358560e62580d775600a26941bb",
+      "release_bundle": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed30/pre_gt_bundle.npz",
+      "release_bundle_sha256": "83a0fb0a1ba16a98ba17d57379fee3eec53ebd2f8eb7620fb212cf13a4696e1b"
+    },
+    "50": {
+      "arrays": {
+        "M_v": {
+          "array_equal": true,
+          "dtype_actual": "float32",
+          "dtype_equal": true,
+          "dtype_reference": "float32",
+          "max_abs_diff": 0.0,
+          "pass": true,
+          "shape_actual": [
+            6,
+            7,
+            7
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            6,
+            7,
+            7
+          ]
+        },
+        "final_predictions": {
+          "array_equal": true,
+          "dtype_actual": "int64",
+          "dtype_equal": true,
+          "dtype_reference": "int64",
+          "max_abs_diff": null,
+          "pass": true,
+          "shape_actual": [
+            1400
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400
+          ]
+        },
+        "q_aligned": {
+          "array_equal": true,
+          "dtype_actual": "float32",
+          "dtype_equal": true,
+          "dtype_reference": "float32",
+          "max_abs_diff": 0.0,
+          "pass": true,
+          "shape_actual": [
+            1400,
+            6,
+            7
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400,
+            6,
+            7
+          ]
+        },
+        "q_local": {
+          "array_equal": true,
+          "dtype_actual": "float32",
+          "dtype_equal": true,
+          "dtype_reference": "float32",
+          "max_abs_diff": 0.0,
+          "pass": true,
+          "shape_actual": [
+            1400,
+            6,
+            7
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400,
+            6,
+            7
+          ]
+        },
+        "sample_ids": {
+          "array_equal": true,
+          "dtype_actual": "int64",
+          "dtype_equal": true,
+          "dtype_reference": "int64",
+          "max_abs_diff": null,
+          "pass": true,
+          "shape_actual": [
+            1400
+          ],
+          "shape_equal": true,
+          "shape_reference": [
+            1400
+          ]
+        }
+      },
+      "final_refresh_immutability": {
+        "historical_immutable": true,
+        "release_local_immutable": true
+      },
+      "historical_bundle": "/root/autodl-tmp/CVPR24-MVCAN/outputs/final_core/f0_a0_exact_replay_seed50/final_core_pre_gt_artifact.npz",
+      "historical_bundle_sha256": "b2a6aa3c46cc94c3382687d151b2666018e2743181098c761b2c7928ef9721cb",
+      "metrics": {
+        "acc": {
+          "actual": 0.8607142857142858,
+          "exact": true,
+          "expected": 0.8607142857142858
+        },
+        "ari": {
+          "actual": 0.7538086225874288,
+          "exact": true,
+          "expected": 0.7538086225874288
+        },
+        "nmi": {
+          "actual": 0.7763024116674858,
+          "exact": true,
+          "expected": 0.7763024116674858
+        }
+      },
+      "model_identity": {
+        "final_exact": true,
+        "final_historical_actual": "0c44f569fc564ee4649e3c1882e2580e0a05dabc9850dce6826158ee17168062",
+        "final_historical_expected": "0c44f569fc564ee4649e3c1882e2580e0a05dabc9850dce6826158ee17168062",
+        "historical_hash_backbone_is_cross_generation_authority": true,
+        "initial_exact": true,
+        "initial_historical_actual": "41c98952c143c149d639451a16a5902fd25281013a6a937559f9835365ed1ca5",
+        "initial_historical_expected": "41c98952c143c149d639451a16a5902fd25281013a6a937559f9835365ed1ca5",
+        "release_model_sha256_is_run_local_only": true,
+        "release_namespace_compared_to_historical": false
+      },
+      "pass": true,
+      "prediction_logical_sha256": "d2bfa6ae66d2541f07d8a630f81e69693115ce3fff15ede76140c3cdbd5a6f89",
+      "prediction_logical_sha256_exact": true,
+      "prediction_logical_sha256_expected": "d2bfa6ae66d2541f07d8a630f81e69693115ce3fff15ede76140c3cdbd5a6f89",
+      "release_bundle": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed50/pre_gt_bundle.npz",
+      "release_bundle_sha256": "1b216661fe891bc0a18b2546e949b051d3a1e52fcbbbde3c589b9b68b47daaed"
+    }
+  }
+}

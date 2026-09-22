@@ -1,0 +1,19 @@
+R7-A1 independent review:
+
+R7 tests:
+9 passed
+
+Full release_core regression:
+284 passed
+
+Training:
+NOT RUN
+
+20-epoch replay:
+NOT RUN
+
+Evaluator:
+NOT RUN
+
+release_core:
+UNCHANGED

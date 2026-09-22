@@ -1,0 +1,27 @@
+R7-A1 is validation only.
+
+Sparse labels determine semantic direction/content.
+
+Frozen U_cycle determines action validity.
+
+R7-A1 introduces:
+- no new Information Utility;
+- no U_cycle recalibration;
+- no U_tilde;
+- no feature/fusion gating;
+- no pseudo-label supervision;
+- no memory;
+- no new scientific loss;
+- no training-path modification.
+
+R3 may consume frozen R2 ActionSpace metadata for action-axis consistency.
+R3 does not consume or redefine U_cycle.
+
+Caltech-6V:
+EXACT_FULL_CHAIN_3_OF_3
+
+MSRC-v1:
+BOUNDED_ONLY
+
+BDGP:
+BOUNDED_ONLY

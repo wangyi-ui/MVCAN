@@ -1,0 +1,44 @@
+{
+  "gate": "gt_firewall",
+  "pass": true,
+  "pass_count": 3,
+  "required_count": 3,
+  "seeds": {
+    "20": {
+      "checks": {
+        "audit_full_gt_loaded_false": true,
+        "audit_full_gt_present_in_bundle_false": true,
+        "audit_metrics_computed_false": true,
+        "seal_audit_sha256_exact": true,
+        "seal_bundle_sha256_exact": true,
+        "seal_full_gt_loaded_before_seal_false": true,
+        "seal_metrics_computed_before_seal_false": true
+      },
+      "pass": true
+    },
+    "30": {
+      "checks": {
+        "audit_full_gt_loaded_false": true,
+        "audit_full_gt_present_in_bundle_false": true,
+        "audit_metrics_computed_false": true,
+        "seal_audit_sha256_exact": true,
+        "seal_bundle_sha256_exact": true,
+        "seal_full_gt_loaded_before_seal_false": true,
+        "seal_metrics_computed_before_seal_false": true
+      },
+      "pass": true
+    },
+    "50": {
+      "checks": {
+        "audit_full_gt_loaded_false": true,
+        "audit_full_gt_present_in_bundle_false": true,
+        "audit_metrics_computed_false": true,
+        "seal_audit_sha256_exact": true,
+        "seal_bundle_sha256_exact": true,
+        "seal_full_gt_loaded_before_seal_false": true,
+        "seal_metrics_computed_before_seal_false": true
+      },
+      "pass": true
+    }
+  }
+}

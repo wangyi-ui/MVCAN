@@ -1,0 +1,12 @@
+NEW R7 TESTS
+command: conda run -n mvcan env PYTHONPATH=. pytest -q tests/release_core/test_r7_dependency_closure.py tests/release_core/test_r7_ownership_closure.py tests/release_core/test_r7_evidence_closure.py tests/release_core/test_r7_behavior_evidence.py
+result: 9 passed in 8.52s
+scientific gates skipped: 0
+xfail used to hide a gate: no
+
+FULL RELEASE_CORE SUITE
+command: conda run -n mvcan env PYTHONPATH=. pytest -q tests/release_core
+result: 284 passed, 1 warning in 21.94s
+scientific gates skipped: 0
+xfail used to hide a gate: no
+20-epoch training executed: no

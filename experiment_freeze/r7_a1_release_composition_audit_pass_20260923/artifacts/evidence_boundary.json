@@ -1,0 +1,8 @@
+{
+  "BDGP": "BOUNDED_ONLY",
+  "Caltech-6V": "EXACT_FULL_CHAIN_3_OF_3",
+  "MSRC-v1": "BOUNDED_ONLY",
+  "gate": "evidence_boundary",
+  "metrics_only_parity_is_sufficient": false,
+  "pass": true
+}

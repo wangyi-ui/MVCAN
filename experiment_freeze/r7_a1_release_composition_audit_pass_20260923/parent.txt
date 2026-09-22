@@ -1,0 +1,8 @@
+branch:
+release/frozen-core-extraction
+
+parent_commit:
+bf79149b0afbb4bdc27518a1261651f28d28e404
+
+parent_tag:
+r7-a0-full-frozen-behavior-equivalence-preregistered-20260922

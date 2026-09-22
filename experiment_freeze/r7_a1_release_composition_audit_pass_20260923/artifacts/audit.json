@@ -1,0 +1,11 @@
+{
+  "dependency_closure": true,
+  "evidence_boundary": true,
+  "gt_firewall": true,
+  "lineage_integrity": true,
+  "overall_pass": true,
+  "ownership_closure": true,
+  "r5_training_dynamics_evidence": true,
+  "r6_behavior_evidence": true,
+  "source_identity": true
+}

@@ -1,0 +1,171 @@
+{
+  "final_freezes": {
+    "R1": {
+      "all_ok": true,
+      "entry_count": 26,
+      "path": "experiment_freeze/r1_final_backbone_data_foundation_pass_20260919/freeze_metadata_sha256.txt",
+      "sha256": "c8ad480f688b87f7e90da3a8e6cf1f988b47c458944713aa8621260bd51494c7"
+    },
+    "R2": {
+      "all_ok": true,
+      "entry_count": 34,
+      "path": "experiment_freeze/r2_final_directional_cyclic_utility_pass_20260920/freeze_metadata_sha256.txt",
+      "sha256": "c22acd81a1fc0e1abeaa90f3a6a64e69a5b56745fadfd0c9b529a6bffb694246"
+    },
+    "R3": {
+      "all_ok": true,
+      "entry_count": 42,
+      "path": "experiment_freeze/r3_final_sparse_relation_semantics_pass_20260921/freeze_metadata_sha256.txt",
+      "sha256": "6a8c2d2b091c129cfb972da4d94026dea172615499c61bb9a30d848ce0f6e5a2"
+    },
+    "R4": {
+      "all_ok": true,
+      "entry_count": 36,
+      "path": "experiment_freeze/r4_final_utility_conditioned_relation_action_pass_20260921/freeze_metadata_sha256.txt",
+      "sha256": "8debc5df93cbf671bcaad9ecd981edd6c15c7cf82fce38492d8af2191892ca1b"
+    },
+    "R5": {
+      "all_ok": true,
+      "entry_count": 34,
+      "path": "experiment_freeze/r5_final_alternating_trainer_pass_20260922/freeze_metadata_sha256.txt",
+      "sha256": "11374045f9c7e90c799d1b0d85e058df29e1b4d4f623c94ee729430a37300e0e"
+    },
+    "R6": {
+      "all_ok": true,
+      "entry_count": 18,
+      "path": "experiment_freeze/r6_final_runtime_entrypoint_pass_20260922/freeze_metadata_sha256.txt",
+      "sha256": "f2fa1c60d051ac8890dd95fc291a614cfda80852cc6068d59d87c40f65db3215"
+    },
+    "R7-A0": {
+      "all_ok": true,
+      "entry_count": 17,
+      "path": "experiment_freeze/r7_a0_full_frozen_behavior_equivalence_preregistered_20260922/freeze_metadata_sha256.txt",
+      "sha256": "ab6768dc6988ff0af021f298892c4f9c3b0f455cc9c3d47d51c23c12b2a07ce0"
+    }
+  },
+  "gate": "lineage_and_source_identity",
+  "lineage_integrity": true,
+  "pass": true,
+  "source_identity": true,
+  "source_manifests": {
+    "R1": {
+      "all_ok": true,
+      "entry_count": 15,
+      "path": "experiment_freeze/r1_final_backbone_data_foundation_pass_20260919/r1_production_source_sha256.txt",
+      "sha256": "12c251e7b1525aa8b304015df109396efe0dce33067f4a95741463cfc102bbe9"
+    },
+    "R2": {
+      "all_ok": true,
+      "entry_count": 3,
+      "path": "experiment_freeze/r2_final_directional_cyclic_utility_pass_20260920/r2_source_sha256.txt",
+      "sha256": "5de4a6cf89f1e5741ecc559a6ee2d11b2586ce7c3d1535d21db16d4dc961fa64"
+    },
+    "R3": {
+      "all_ok": true,
+      "entry_count": 3,
+      "path": "experiment_freeze/r3_final_sparse_relation_semantics_pass_20260921/r3_production_sha256.txt",
+      "sha256": "ebb03fb2eccbd21fce7d2c355ec0a1bd8f8bdf721b1fc7b80ff9d42d0f4796d7"
+    },
+    "R4": {
+      "all_ok": true,
+      "entry_count": 2,
+      "path": "experiment_freeze/r4_final_utility_conditioned_relation_action_pass_20260921/r4_source_sha256.txt",
+      "sha256": "819b150f61d34bbfef31a4534bef073b751c7a5eb0645f9df7a9d332bd4820d7"
+    },
+    "R5": {
+      "all_ok": true,
+      "entry_count": 2,
+      "path": "experiment_freeze/r5_final_alternating_trainer_pass_20260922/r5_source_sha256.txt",
+      "sha256": "8c179fe5fe326ffd2f7e875bfe35767b7d4660773eecde5fa3719dd97a12179c"
+    },
+    "R6": {
+      "all_ok": true,
+      "entry_count": 3,
+      "path": "experiment_freeze/r6_a1_clean_runtime_entrypoint_pass_20260922/r6_source_sha256.txt",
+      "sha256": "c8afab5754cee671f8ffc9c225c7546cffdeab53ba27b8c86849ac60c28c8d2a"
+    }
+  },
+  "tags": {
+    "R1": {
+      "actual": "65ba7e8a79e4b344b90d2ad771433d8561cff6c5",
+      "exact": true,
+      "expected": "65ba7e8a79e4b344b90d2ad771433d8561cff6c5",
+      "tag": "r1-final-backbone-data-foundation-pass-20260919"
+    },
+    "R2": {
+      "actual": "f3620448968b8589aa7b49ad99dac927024d1ba1",
+      "exact": true,
+      "expected": "f3620448968b8589aa7b49ad99dac927024d1ba1",
+      "tag": "r2-final-directional-cyclic-utility-pass-20260920"
+    },
+    "R3": {
+      "actual": "efb61fe3c9b98c37448ee50194c9947f461d34d8",
+      "exact": true,
+      "expected": "efb61fe3c9b98c37448ee50194c9947f461d34d8",
+      "tag": "r3-final-sparse-relation-semantics-pass-20260921"
+    },
+    "R4": {
+      "actual": "23c9306192feb313d34a751d873bac5764c4f967",
+      "exact": true,
+      "expected": "23c9306192feb313d34a751d873bac5764c4f967",
+      "tag": "r4-final-utility-conditioned-relation-action-pass-20260921"
+    },
+    "R5": {
+      "actual": "c446c9026c3c75fd534a428198348599a0b42732",
+      "exact": true,
+      "expected": "c446c9026c3c75fd534a428198348599a0b42732",
+      "tag": "r5-final-alternating-trainer-pass-20260922"
+    },
+    "R6": {
+      "actual": "68cc714bda18ff1a1b24556eb0dd94dca0830dfd",
+      "exact": true,
+      "expected": "68cc714bda18ff1a1b24556eb0dd94dca0830dfd",
+      "tag": "r6-final-runtime-entrypoint-pass-20260922"
+    },
+    "R7-A0": {
+      "actual": "bf79149b0afbb4bdc27518a1261651f28d28e404",
+      "exact": true,
+      "expected": "bf79149b0afbb4bdc27518a1261651f28d28e404",
+      "tag": "r7-a0-full-frozen-behavior-equivalence-preregistered-20260922"
+    }
+  },
+  "test_identity": true,
+  "test_manifests": {
+    "R1": {
+      "all_ok": true,
+      "entry_count": 11,
+      "path": "experiment_freeze/r1_final_backbone_data_foundation_pass_20260919/r1_test_sha256.txt",
+      "sha256": "03d9c3e3e11801565cdd85acdbbbdf7d218a7cf587d28f37d96adcb6c477522c"
+    },
+    "R2": {
+      "all_ok": true,
+      "entry_count": 4,
+      "path": "experiment_freeze/r2_final_directional_cyclic_utility_pass_20260920/r2_test_sha256.txt",
+      "sha256": "290b2e541f9d8027ec009dae517b5add2df40d4eb223fabf31b185b27f44eeef"
+    },
+    "R3": {
+      "all_ok": true,
+      "entry_count": 4,
+      "path": "experiment_freeze/r3_final_sparse_relation_semantics_pass_20260921/r3_test_sha256.txt",
+      "sha256": "638b5f0965ab411e28caadcd076196e082d0faae8d5976be2b9a6295bb7fe2c8"
+    },
+    "R4": {
+      "all_ok": true,
+      "entry_count": 4,
+      "path": "experiment_freeze/r4_final_utility_conditioned_relation_action_pass_20260921/r4_test_sha256.txt",
+      "sha256": "3b51f697b02d1c27d525aa58efeb46962ef8554507517a6f1ce75dff41b03a64"
+    },
+    "R5": {
+      "all_ok": true,
+      "entry_count": 7,
+      "path": "experiment_freeze/r5_final_alternating_trainer_pass_20260922/r5_test_sha256.txt",
+      "sha256": "2f308abd326319ee71627631f277ca571a39d06a3b74ae02ea891811c815af53"
+    },
+    "R6": {
+      "all_ok": true,
+      "entry_count": 3,
+      "path": "experiment_freeze/r6_a1_clean_runtime_entrypoint_pass_20260922/r6_test_sha256.txt",
+      "sha256": "e3718d8454b7cbec8cdb4a18fd5232954788a24a8329fd9cf65baf9836f5e939"
+    }
+  }
+}
