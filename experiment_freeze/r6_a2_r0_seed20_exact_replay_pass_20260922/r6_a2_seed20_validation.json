@@ -1,0 +1,99 @@
+{
+  "current_pre_gt": {
+    "audit": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_audit.json",
+    "audit_sha256": "81dfd4dbb37d9ff7fc4298c65cc88150cc5b58acbb489446e34a0b9a3e26a59b",
+    "audit_valid": true,
+    "bundle": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_bundle.npz",
+    "bundle_sha256": "d3511417809cb4d5e717bd38f0da1173f61bde81653f0117e37ad5edd5158809",
+    "bundle_valid": true,
+    "full_gt_loaded_before_seal": false,
+    "r6_final_model_sha256": "4d1bdb06710046cbc652b0c8d9e5c8f018e3060f7f94b177e09a5fb20aa34d24",
+    "seal": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_seal.json",
+    "seal_sha256": "c3219bd4da9342ef198716411640f8f15d372a8b49f47fc0247758c8c75ff6fb",
+    "seal_valid": true
+  },
+  "hash_namespace_bridge_protocol": {
+    "path": "/tmp/r6_a2_replay/hash_namespace_bridge_protocol.txt",
+    "sha256": "eed98b5ba6487c0dfcca0b03a3d7ea2fd40978133af90956720045f5ee465621"
+  },
+  "historical_whole_file_sha_policy": {
+    "audit": "reference only",
+    "seal": "reference only"
+  },
+  "instrumentation": {
+    "final_post_b_historical_hash": "7a69d078e9573452cd9a1e98a9d72bbe618bf547dc0ba2bbdae3423bd053e747",
+    "final_post_b_r6_hash": "4d1bdb06710046cbc652b0c8d9e5c8f018e3060f7f94b177e09a5fb20aa34d24",
+    "initial_historical_hash": "a9b1e523c90fc450ba59fa206b78d1c02c5dd410c452766d3942cc37fc1e9d62",
+    "initial_r6_hash": "64faa7cb90c1319478575ce579d134b475ab9f78484cd1bb1cb7e86e1e06f991",
+    "load_original_call_count": 1,
+    "r6_expected_final_model_sha256": null,
+    "r6_expected_final_model_sha256_classification": "unavailable: no pre-existing historical R6-namespace final state; replaced by mandatory historical canonical post-B exact gate",
+    "refresh_historical_after": "7a69d078e9573452cd9a1e98a9d72bbe618bf547dc0ba2bbdae3423bd053e747",
+    "refresh_historical_before": "7a69d078e9573452cd9a1e98a9d72bbe618bf547dc0ba2bbdae3423bd053e747",
+    "refresh_original_call_count": 1,
+    "refresh_r6_after": "4d1bdb06710046cbc652b0c8d9e5c8f018e3060f7f94b177e09a5fb20aa34d24",
+    "refresh_r6_before": "4d1bdb06710046cbc652b0c8d9e5c8f018e3060f7f94b177e09a5fb20aa34d24",
+    "train_original_call_count": 1
+  },
+  "metrics": {
+    "acc": {
+      "abs_diff": 0.0,
+      "actual": 0.8614285714285714,
+      "exact": true,
+      "expected": 0.8614285714285714
+    },
+    "ari": {
+      "abs_diff": 0.0,
+      "actual": 0.753482395557614,
+      "exact": true,
+      "expected": 0.753482395557614
+    },
+    "nmi": {
+      "abs_diff": 0.0,
+      "actual": 0.7734181958700173,
+      "exact": true,
+      "expected": 0.7734181958700173
+    }
+  },
+  "repository_unchanged": true,
+  "result": "PASS",
+  "runtime_config": {
+    "batch_size": 256,
+    "dataset": "Caltech-6V",
+    "device": "cuda:0",
+    "epochs": 20,
+    "label_seed": 20,
+    "labels_per_class": 2,
+    "learning_rate": 0.0001,
+    "native_lambda1": 0.01,
+    "refresh_interval": 100,
+    "training_seed": 20
+  },
+  "schema": "r6-a2-r0-seed20-validation-v1",
+  "scientific_payload": {
+    "M_v": {
+      "exact": true,
+      "max_abs_diff": 0.0
+    },
+    "current_final_r6_hash": "4d1bdb06710046cbc652b0c8d9e5c8f018e3060f7f94b177e09a5fb20aa34d24",
+    "final_predictions": {
+      "exact": true,
+      "max_abs_diff": null
+    },
+    "prediction_logical_sha256": "b3a40a90c5069a2fe6926b48efe406dc51c670b204ccc1bd53c4d322e830d504",
+    "q_aligned": {
+      "exact": true,
+      "max_abs_diff": 0.0
+    },
+    "q_local": {
+      "exact": true,
+      "max_abs_diff": 0.0
+    },
+    "sample_ids": {
+      "exact": true,
+      "max_abs_diff": null
+    }
+  },
+  "seed30_run": false,
+  "seed50_run": false
+}

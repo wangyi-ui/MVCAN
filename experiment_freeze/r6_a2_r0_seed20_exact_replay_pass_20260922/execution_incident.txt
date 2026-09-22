@@ -1,0 +1,15 @@
+An initial harness launch terminated during Python import because /tmp did not
+contain the release repository root on sys.path.
+
+At that point:
+- no scientific gate had started;
+- run_pre_gt had not been called;
+- no training had started;
+- no namespace bridge protocol had been materialized;
+- no R6-A2 output directory had been created;
+- no GT had been loaded.
+
+The temporary validation harness import path was corrected.
+
+The subsequent scientific seed20 execution occurred exactly once.
+No production/release source was modified.

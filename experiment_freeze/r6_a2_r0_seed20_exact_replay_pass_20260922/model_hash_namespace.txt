@@ -1,0 +1,26 @@
+R6-A2-R0 MODEL HASH NAMESPACE BRIDGE
+
+Historical canonical hash implementation:
+/root/autodl-tmp/CVPR24-MVCAN/irv/b3_audit.py
+e098a32e7f1fd39770951f47383f1cc2fc88093f66d2e30cf10b875e75478d0b  /root/autodl-tmp/CVPR24-MVCAN/irv/b3_audit.py
+
+R6 internal hash implementation:
+/root/autodl-tmp/UCRR-MVC-release/release_core/runtime/entrypoint.py
+ac0fb8ff6358865e410911fc568003c5bd6fa7a3756c345d0a903b89cf2aedfb  /root/autodl-tmp/UCRR-MVC-release/release_core/runtime/entrypoint.py
+
+Historical initial model SHA256:
+a9b1e523c90fc450ba59fa206b78d1c02c5dd410c452766d3942cc37fc1e9d62
+
+R6 initial model SHA256:
+64faa7cb90c1319478575ce579d134b475ab9f78484cd1bb1cb7e86e1e06f991
+
+Historical final post-B model SHA256:
+7a69d078e9573452cd9a1e98a9d72bbe618bf547dc0ba2bbdae3423bd053e747
+
+R6 final model SHA256:
+RUN-LOCAL INTEGRITY ONLY; exact value preserved in validation record.
+
+Policy:
+Cross-generation model identity is gated by historical hash_backbone.
+R6 _model_sha256 is not compared cross-namespace.
+R6 hash is used for run-local integrity and final-refresh immutability.

@@ -1,0 +1,16 @@
+The namespace bridge protocol and seed20 harness are validation-only evidence.
+
+They are NOT production release code.
+They are NOT part of R1-R6 scientific implementation.
+They do not redefine Information Utility.
+They do not introduce a new loss, action, or training path.
+
+The harness only instruments the frozen R6 runtime to observe and validate:
+- historical hash_backbone namespace;
+- R6 internal model-hash namespace;
+- exact post-B model identity;
+- final-refresh immutability;
+- exact frozen scientific outputs.
+
+All original wrapped functions were invoked exactly once and their outputs were
+returned unchanged.

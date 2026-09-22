@@ -1,0 +1,30 @@
+Historical seed20 reference:
+
+outputs/final_core/f0_a0_engineering_smoke_seed20
+
+Historical artifact SHA256:
+ec78a6102546254c7d0868f4948e1a79a236734ce37ab9d67b350063fefcc010
+
+Historical audit SHA256:
+255234648a40e393059d097bfecba0e0ee822b38f3b6edae1c5f9a40c87302d4
+
+Historical seal SHA256:
+a85828fa1c914194b97df5704c99bfbabef720e33fdf60359d1c4916a870e54f
+
+Historical prediction logical SHA256:
+b3a40a90c5069a2fe6926b48efe406dc51c670b204ccc1bd53c4d322e830d504
+
+Historical ACC:
+0.8614285714285714
+
+Historical NMI:
+0.7734181958700173
+
+Historical ARI:
+0.753482395557614
+
+Historical whole-file audit SHA:
+REFERENCE ONLY for clean R6 replay.
+
+Historical whole-file seal SHA:
+REFERENCE ONLY for clean R6 replay.

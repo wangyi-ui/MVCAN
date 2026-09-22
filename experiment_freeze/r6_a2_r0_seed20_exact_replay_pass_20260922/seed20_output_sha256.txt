@@ -1,0 +1,5 @@
+3c1489a796a4bcba0a864293106e011a436e1837ebd0b8f15906993816c53c18  /root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/r6_a2_seed20_validation.json
+d3511417809cb4d5e717bd38f0da1173f61bde81653f0117e37ad5edd5158809  /root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_bundle.npz
+81dfd4dbb37d9ff7fc4298c65cc88150cc5b58acbb489446e34a0b9a3e26a59b  /root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_audit.json
+c3219bd4da9342ef198716411640f8f15d372a8b49f47fc0247758c8c75ff6fb  /root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_seal.json
+51d91be0440609b7f6ec0db664cae446fd993dca6fe5c39cfe1e2c71fd43533b  /root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/postseal_metrics.json

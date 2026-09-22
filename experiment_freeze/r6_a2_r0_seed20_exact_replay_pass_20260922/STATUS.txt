@@ -1,0 +1,87 @@
+R6-A2-R0
+MODEL HASH NAMESPACE BRIDGE
+CALTECH SEED20 EXACT END-TO-END FROZEN REPLAY
+
+Parent:
+R6-A1 / GIT-FROZEN / REMOTE-BACKED-UP
+
+Parent commit:
+1d1916a122bf5270a65eb3f4000875cc8fa9717f
+
+Dataset:
+Caltech-6V
+
+Training seed:
+20
+
+Model hash namespaces:
+DISTINCT / EXPLICITLY SEPARATED
+
+Historical initial model:
+EXACT
+
+R6 initial model:
+EXACT
+
+Historical final post-B model:
+EXACT
+
+R6 final model:
+RUN-LOCAL INTEGRITY ONLY
+
+Final refresh model immutability:
+EXACT IN BOTH HASH NAMESPACES
+
+Sample IDs:
+EXACT
+
+Final predictions:
+EXACT
+
+q_local:
+EXACT / MAX_ABS_DIFF=0.0
+
+q_aligned:
+EXACT / MAX_ABS_DIFF=0.0
+
+M_v:
+EXACT / MAX_ABS_DIFF=0.0
+
+Prediction logical SHA:
+EXACT
+
+Current pre-GT seal:
+VALID
+
+Full GT before seal:
+NO
+
+ACC:
+0.8614285714285714 / EXACT
+
+NMI:
+0.7734181958700173 / EXACT
+
+ARI:
+0.753482395557614 / EXACT
+
+Historical audit whole-file SHA:
+REFERENCE ONLY
+
+Historical seal whole-file SHA:
+REFERENCE ONLY
+
+Tracked release source:
+UNCHANGED
+
+seed30:
+NOT RUN
+
+seed50:
+NOT RUN
+
+Decision:
+PASS / EXACT END-TO-END FROZEN REPLAY / SEED20 ONLY
+
+Next:
+GIT-FREEZE THIS EVIDENCE, THEN PREPARE SEED30.

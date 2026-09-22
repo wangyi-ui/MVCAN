@@ -1,0 +1,4 @@
+full_gt_loaded_before_seal = false
+metrics_computed_before_seal = false
+full_gt_present_in_bundle = false
+GT FIREWALL: PASS

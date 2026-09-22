@@ -1,0 +1,17 @@
+{
+  "dataset": "Caltech-6V",
+  "full_gt_used_for_training": false,
+  "metrics": {
+    "acc": 0.8614285714285714,
+    "ari": 0.753482395557614,
+    "nmi": 0.7734181958700173
+  },
+  "post_gt_mutation_path_present": false,
+  "pre_gt_audit_sha256": "81dfd4dbb37d9ff7fc4298c65cc88150cc5b58acbb489446e34a0b9a3e26a59b",
+  "pre_gt_bundle_sha256": "d3511417809cb4d5e717bd38f0da1173f61bde81653f0117e37ad5edd5158809",
+  "pre_gt_seal_sha256": "c3219bd4da9342ef198716411640f8f15d372a8b49f47fc0247758c8c75ff6fb",
+  "prediction_logical_sha256": "b3a40a90c5069a2fe6926b48efe406dc51c670b204ccc1bd53c4d322e830d504",
+  "sample_id_logical_sha256": "67de0d9b6b01553e746fd2b96c2dfc22566ffdb48d03a679583e030f42283e6c",
+  "schema": "release-core-postseal-metrics-v1",
+  "seal_verified_before_full_gt_load": true
+}

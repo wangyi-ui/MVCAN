@@ -1,0 +1,23 @@
+{
+  "audit_path": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_audit.json",
+  "audit_sha256": "81dfd4dbb37d9ff7fc4298c65cc88150cc5b58acbb489446e34a0b9a3e26a59b",
+  "bundle_keys": [
+    "sample_ids",
+    "final_predictions",
+    "labeled_ids",
+    "q_local",
+    "q_aligned",
+    "M_v",
+    "input_sha256",
+    "initial_model_sha256",
+    "final_model_sha256"
+  ],
+  "bundle_path": "/root/autodl-tmp/UCRR-MVC-release/outputs/release_validation/r6_a2/seed20/pre_gt_bundle.npz",
+  "bundle_sha256": "d3511417809cb4d5e717bd38f0da1173f61bde81653f0117e37ad5edd5158809",
+  "full_gt_loaded_before_seal": false,
+  "hash_algorithm": "SHA256",
+  "metrics_computed_before_seal": false,
+  "prediction_logical_sha256": "b3a40a90c5069a2fe6926b48efe406dc51c670b204ccc1bd53c4d322e830d504",
+  "sample_id_logical_sha256": "67de0d9b6b01553e746fd2b96c2dfc22566ffdb48d03a679583e030f42283e6c",
+  "schema": "release-core-pre-gt-seal-v1"
+}
