@@ -1,0 +1,4 @@
+Each epoch uses distinct deterministic generator objects for semantic Phase-A and native Phase-B scheduling.
+For seeds 20, 30, and 50, every historical Phase-A filtered-order hash and Phase-B order hash matches exactly.
+Corresponding full-order values are identical while generator objects remain distinct.
+Order replay: EXACT across 20 epochs per run.

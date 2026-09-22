@@ -1,0 +1,32 @@
+E1:
+R5 schedule / optimizer / gradient contract
+ESTABLISHED
+
+E2:
+synthetic clean execution / structural parity
+EXACT
+
+E3:
+Caltech seed20 full training replay
+EXACT
+
+E4:
+Caltech seed30 full training replay
+EXACT
+
+E5:
+Caltech seed50 full training replay
+EXACT
+
+E6:
+MSRC
+SEALED_RUNTIME_AUDIT_ONLY
+
+E7:
+BDGP
+SEALED_RUNTIME_AUDIT_ONLY
+
+Final:
+EXACT CALTECH MULTI-SEED TRAINING REPLAY
++
+BOUNDED MULTI-DATASET STRUCTURAL EVIDENCE

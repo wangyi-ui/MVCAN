@@ -1,0 +1,13 @@
+Release worktree:
+/root/autodl-tmp/UCRR-MVC-release
+
+Post-replay / pre-freeze:
+tracked diff empty
+staged diff empty
+git diff --check PASS
+
+R1-R5-A1 source/test/reference/freeze manifests:
+ALL PASS
+
+The R5-A2 addition is metadata only.
+Production source/tests and existing replay outputs were not modified.

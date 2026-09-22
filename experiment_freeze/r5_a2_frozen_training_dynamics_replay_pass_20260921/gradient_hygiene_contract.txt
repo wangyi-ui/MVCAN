@@ -1,0 +1,6 @@
+At every epoch boundary and phase transition, required gradients are clear.
+Phase A: encoder and cluster gradient paths active; decoder path inactive.
+Phase B: encoder, decoder, and cluster gradient paths active.
+Pre-refresh and post-refresh gradients are clear.
+All transitions clean for seeds 20, 30, and 50.
+Decision: EXACT.

@@ -1,0 +1,13 @@
+Dataset:
+Caltech-6V
+
+Seeds:
+20, 30, 50
+
+Classification:
+EXACT_TRAINING_REPLAY
+
+Multi-seed decision:
+3 / 3 EXACT
+
+Scope includes initial model state, sealed input identity, deterministic order replay, phase sequence, coverage, gradient transitions, scheduled native-target refresh, q_local trajectory, and final post-B model state.

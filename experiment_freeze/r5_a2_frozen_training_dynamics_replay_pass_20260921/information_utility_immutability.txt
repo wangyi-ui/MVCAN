@@ -1,0 +1,4 @@
+U_cycle hashes before and after training are identical for every run.
+U_cycle: UNCHANGED.
+New utility: NO.
+The R5 trainer consumes frozen upstream information utility and does not own or mutate it.

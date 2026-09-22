@@ -1,0 +1,4 @@
+Initial view weights are six values of 1.0.
+The one scheduled native-target refresh establishes the post-refresh view weights.
+That target/view-weight state is reused for the remaining epochs.
+This is native target state, not a new utility, memory mechanism, or pseudo-label expansion.

@@ -1,0 +1,5 @@
+All three input audits state full_GT_loaded: false.
+All three replay audits state full_GT_loaded: false.
+All three artifacts are pre-GT training evidence.
+Performance metrics were not run.
+No ACC, NMI, ARI, or AUC was computed for R5-A2.

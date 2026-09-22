@@ -1,0 +1,6 @@
+For every Caltech replay, feature view shapes/content, sample IDs, labeled IDs, unlabeled IDs, U_cycle, PredRelation_true, and relation_balance_weights_true match the sealed authoritative inputs.
+Feature NPZ artifacts contain views and sample_ids only; labels and corruption masks are absent.
+Sample IDs are exact int64 arange(1400).
+Full GT loaded: false.
+Scientific metric loaded: false.
+Input identity: EXACT / 3 OF 3.

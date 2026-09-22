@@ -1,0 +1,7 @@
+POST-REPLAY REGRESSION:
+COMPLETED BEFORE INTERRUPTION
+
+Final-core regression:
+PASS / 171 passed / 0 failed
+
+No rerun was performed during interruption recovery.

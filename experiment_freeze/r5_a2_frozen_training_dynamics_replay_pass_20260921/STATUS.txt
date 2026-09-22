@@ -1,0 +1,114 @@
+R5-A2
+FROZEN TRAINING DYNAMICS / REPLAY EVIDENCE CLOSURE
+
+Parent:
+R5-A1 CLEAN EXTRACTION / GIT-FROZEN
+
+Parent commit:
+1a2c04b3801de79865a2c276d975e635e76f9ff5
+
+R5 scientific role:
+ALTERNATING OPTIMIZATION ORCHESTRATION
+
+Phase order:
+A -> CONDITIONAL REFRESH -> B
+
+Caltech seed20:
+EXACT TRAINING DYNAMICS REPLAY
+
+Caltech seed30:
+EXACT TRAINING DYNAMICS REPLAY
+
+Caltech seed50:
+EXACT TRAINING DYNAMICS REPLAY
+
+Caltech multi-seed:
+3 / 3 EXACT
+
+Initial model identity:
+EXACT
+
+Input identity:
+EXACT
+
+Order replay:
+EXACT
+
+Phase sequence:
+EXACT
+
+Query/native coverage:
+EXACT
+
+Gradient hygiene:
+EXACT
+
+Refresh timing:
+POST-A / PRE-B / EXACT
+
+Refresh count:
+1 PER 20-EPOCH TRAINING RUN
+
+Q_LOCAL trajectory:
+EXACT
+
+Trajectory max_abs_diff:
+0.0
+
+Final post-B model hash:
+EXACT
+
+Optimizer topology:
+EXACT
+
+Historical optimizer final-state identity:
+NOT CLAIMED / NOT PERSISTED
+
+U_cycle:
+UNCHANGED
+
+PredRelation:
+UNCHANGED
+
+Balance:
+UNCHANGED
+
+New utility:
+NO
+
+Pseudo-label expansion:
+NO
+
+Memory:
+NO
+
+Additive joint loss:
+NO
+
+Full GT:
+NOT LOADED
+
+Performance metrics:
+NOT RUN
+
+MSRC:
+SEALED_RUNTIME_AUDIT_ONLY
+
+BDGP:
+SEALED_RUNTIME_AUDIT_ONLY
+
+R5 final evidence:
+BOUNDED MULTI-DATASET /
+EXACT CALTECH MULTI-SEED TRAINING REPLAY
+
+Implementation mismatch:
+NONE OBSERVED
+
+Scientific behavior mismatch:
+NONE OBSERVED
+
+R5-A2:
+PASS / TRAINING DYNAMICS EVIDENCE CLOSED
+
+Readiness:
+READY_FOR_R5_FINAL_WITH_BOUNDED_MULTI_DATASET_EVIDENCE

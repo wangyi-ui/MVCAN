@@ -1,0 +1,8 @@
+Dataset:
+MSRC-v1
+
+R5 evidence classification:
+SEALED_RUNTIME_AUDIT_ONLY
+
+No MSRC exact historical training replay is claimed.
+No performance claim is made.

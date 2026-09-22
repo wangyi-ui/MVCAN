@@ -1,0 +1,13 @@
+Forbidden claims:
+three-dataset exact historical training replay
+MSRC exact historical training replay
+BDGP exact historical training replay
+historical final optimizer-state exact identity
+performance improvement claim
+new R5 loss
+new utility
+pseudo-label expansion
+memory
+additive joint loss
+full GT training
+R5-owned final evaluation

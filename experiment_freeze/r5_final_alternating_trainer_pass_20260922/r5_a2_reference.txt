@@ -1,0 +1,11 @@
+R5-A2 freeze:
+experiment_freeze/r5_a2_frozen_training_dynamics_replay_pass_20260921
+
+Status:
+PASS / TRAINING DYNAMICS EVIDENCE CLOSED
+
+Parent:
+1a2c04b3801de79865a2c276d975e635e76f9ff5
+
+Freeze manifest SHA256:
+48a1fa3a6545c12541a79346e9dd04730e4501ad34e00b8cc15b8ab781a665e2

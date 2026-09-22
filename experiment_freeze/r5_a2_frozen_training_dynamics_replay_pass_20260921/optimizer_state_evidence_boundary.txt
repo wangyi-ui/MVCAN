@@ -1,0 +1,3 @@
+Clean optimizer states are populated, finite, and separated by semantic/native optimizer mapping.
+Exact historical final optimizer-state identity is NOT CLAIMED because the historical final optimizer state was not persisted.
+This boundary does not weaken the exact initial model, q_local trajectory, or final post-B model-state evidence.

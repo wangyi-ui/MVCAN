@@ -1,0 +1,4 @@
+R5-A2 closes frozen training-dynamics replay evidence for the clean R5 alternating trainer.
+Caltech seeds 20, 30, and 50 are exact full-training replays against authoritative frozen evidence.
+MSRC-v1 and BDGP remain bounded to sealed structural/runtime audit evidence.
+No performance metric, full ground truth, new method component, or R6 claim is part of this freeze.

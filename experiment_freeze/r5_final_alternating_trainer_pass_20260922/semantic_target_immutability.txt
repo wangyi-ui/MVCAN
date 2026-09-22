@@ -1,0 +1,6 @@
+PredRelation and relation balance weight hashes before and after training are identical for every run.
+PredRelation: UNCHANGED.
+Balance: UNCHANGED.
+Pseudo-label expansion: NO.
+Memory: NO.
+Additive joint loss: NO.

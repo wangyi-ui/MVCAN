@@ -1,0 +1,20 @@
+Dataset: Caltech-6V
+Runs: seeds 20, 30, 50
+Epochs per run: 20
+Views: 6
+Batch size: 256
+Batches per phase per epoch: 6
+
+Phase-A query population:
+1386 sample IDs exactly once per epoch.
+
+Phase-B native population:
+1400 sample IDs exactly once per epoch.
+
+Phase-A backward calls per run: 120
+Phase-A optimizer.step calls per run: 720
+Phase-B backward calls per run: 120
+Phase-B optimizer.step calls per run: 720
+
+Decision:
+QUERY/NATIVE COVERAGE EXACT / 3 OF 3.

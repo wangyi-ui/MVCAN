@@ -1,0 +1,8 @@
+Required per-epoch event sequence:
+PHASE_A -> SNAPSHOT_POST_A -> REFRESH_IF_DUE -> PHASE_B -> SNAPSHOT_POST_B
+
+Observed:
+EXACT for every epoch of seeds 20, 30, and 50.
+
+Scientific phase summary:
+A -> CONDITIONAL REFRESH -> B.

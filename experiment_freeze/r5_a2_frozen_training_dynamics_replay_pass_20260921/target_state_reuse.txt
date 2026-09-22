@@ -1,0 +1,3 @@
+The native target state created by the single zero-based epoch-0 refresh is reused unchanged for epochs 1 through 19.
+No additional in-training refresh occurs.
+No snapshot operation triggers a refresh.

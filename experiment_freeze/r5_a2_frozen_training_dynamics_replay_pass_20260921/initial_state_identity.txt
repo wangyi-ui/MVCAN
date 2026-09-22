@@ -1,0 +1,11 @@
+Caltech seed20 historical == clean:
+a9b1e523c90fc450ba59fa206b78d1c02c5dd410c452766d3942cc37fc1e9d62
+
+Caltech seed30 historical == clean:
+606d94ee66396505ba0b0bd446420774e68e5763d0f2cd6a510e3188614d997a
+
+Caltech seed50 historical == clean:
+41c98952c143c149d639451a16a5902fd25281013a6a937559f9835365ed1ca5
+
+Decision:
+EXACT / 3 OF 3

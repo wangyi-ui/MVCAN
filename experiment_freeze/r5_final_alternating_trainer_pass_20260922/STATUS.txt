@@ -1,0 +1,95 @@
+R5 FINAL
+ALTERNATING TWO-PHASE TRAINER
+
+Parent:
+R5-A1 CLEAN EXTRACTION / GIT-FROZEN
+
+Parent commit:
+1a2c04b3801de79865a2c276d975e635e76f9ff5
+
+R5-A2:
+PASS / TRAINING DYNAMICS EVIDENCE CLOSED
+
+Scientific role:
+ALTERNATING OPTIMIZATION ORCHESTRATION
+
+Phase A:
+UTILITY-CONDITIONED RELATION REFINEMENT
+
+Phase B:
+NATIVE MVCAN CONSOLIDATION
+
+Phase order:
+A -> CONDITIONAL REFRESH -> B
+
+Optimizer state:
+DECOUPLED
+
+Model parameters:
+SEQUENTIALLY SHARED
+
+Caltech seed20:
+EXACT TRAINING DYNAMICS REPLAY
+
+Caltech seed30:
+EXACT TRAINING DYNAMICS REPLAY
+
+Caltech seed50:
+EXACT TRAINING DYNAMICS REPLAY
+
+Caltech multi-seed:
+3 / 3 EXACT
+
+Q_LOCAL trajectory:
+EXACT
+
+Trajectory max_abs_diff:
+0.0
+
+Final post-B model hash:
+EXACT
+
+U_cycle:
+UNCHANGED
+
+PredRelation:
+UNCHANGED
+
+Balance:
+UNCHANGED
+
+New utility:
+NO
+
+Pseudo-label expansion:
+NO
+
+Memory:
+NO
+
+Additive joint loss:
+NO
+
+Full GT during training:
+NO
+
+MSRC:
+SEALED_RUNTIME_AUDIT_ONLY
+
+BDGP:
+SEALED_RUNTIME_AUDIT_ONLY
+
+Final evidence:
+EXACT CALTECH MULTI-SEED TRAINING REPLAY / BOUNDED MULTI-DATASET EVIDENCE
+
+Implementation mismatch:
+NONE OBSERVED
+
+Scientific behavior mismatch:
+NONE OBSERVED
+
+R5:
+PASS / CLOSED WITH BOUNDED MULTI-DATASET EVIDENCE
+
+Readiness:
+READY_FOR_R6_A0

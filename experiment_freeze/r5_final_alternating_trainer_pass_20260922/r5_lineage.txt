@@ -1,0 +1,13 @@
+R4 FINAL:
+23c9306192feb313d34a751d873bac5764c4f967
+r4-final-utility-conditioned-relation-action-pass-20260921
+
+R5-A1:
+1a2c04b3801de79865a2c276d975e635e76f9ff5
+r5-a1-clean-alternating-trainer-pass-20260921
+
+R5-A2:
+PASS / TRAINING DYNAMICS EVIDENCE CLOSED
+
+R5-A2 freeze manifest SHA256:
+48a1fa3a6545c12541a79346e9dd04730e4501ad34e00b8cc15b8ab781a665e2

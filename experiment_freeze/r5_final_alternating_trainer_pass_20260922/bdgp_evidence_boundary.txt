@@ -1,0 +1,8 @@
+Dataset:
+BDGP
+
+R5 evidence classification:
+SEALED_RUNTIME_AUDIT_ONLY
+
+No BDGP exact historical training replay is claimed.
+No performance claim is made.

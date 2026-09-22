@@ -1,0 +1,6 @@
+In-training native-target refresh count: 1 per 20-epoch run.
+Refresh epoch: zero-based epoch 0.
+Timing: POST-A / PRE-B.
+The refresh uses the post-Phase-A model.
+No post-training final-prediction refresh was executed.
+Decision: EXACT / 3 OF 3.

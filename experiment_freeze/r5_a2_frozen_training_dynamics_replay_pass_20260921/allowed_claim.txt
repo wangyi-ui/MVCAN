@@ -1,0 +1,3 @@
+The clean R5 alternating trainer exactly reproduces the authoritative Caltech frozen training dynamics across training seeds 20, 30, and 50, including phase ordering, deterministic minibatch scheduling, gradient transitions, scheduled native-target refresh timing, q_local trajectory, and final post-Phase-B model state.
+
+MSRC-v1 and BDGP provide sealed structural/runtime evidence only.

@@ -1,0 +1,15 @@
+Artifact key:
+q_local_snapshots
+
+Shape:
+[41,1400,6,7]
+
+Dtype:
+float32
+
+Snapshot sequence:
+INITIAL, followed by POST_A and POST_B for each of 20 epochs.
+
+Snapshots are CPU-contiguous, finite, created under no_grad, require no gradient, and have no grad_fn.
+Each snapshot preserves model parameters, model buffers, model training flags, optimizer state, and RNG state.
+Snapshot-triggered native refresh: false.

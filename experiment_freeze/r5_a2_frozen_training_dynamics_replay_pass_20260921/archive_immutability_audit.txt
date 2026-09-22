@@ -1,0 +1,11 @@
+Canonical archive:
+/root/autodl-tmp/CVPR24-MVCAN
+
+Post-replay / pre-freeze status:
+tracked and untracked status output empty.
+
+git diff --check:
+PASS
+
+Historical F0 evidence was read and SHA256-verified in place.
+No archive file was modified.

@@ -1,0 +1,9 @@
+Before R5-A2 freeze creation:
+git status --short --untracked-files=all: EMPTY
+git diff --name-only: EMPTY
+git diff --cached --name-only: EMPTY
+git diff --check: PASS
+
+Expected after creation:
+only the metadata-only R5-A2 freeze may appear according to repository ignore policy.
+No files are staged.

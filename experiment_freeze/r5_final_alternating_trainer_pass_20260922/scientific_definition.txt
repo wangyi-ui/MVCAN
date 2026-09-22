@@ -1,0 +1,25 @@
+R5 SCIENTIFIC ROLE:
+ALTERNATING OPTIMIZATION ORCHESTRATION
+
+R2 defines WHETHER:
+U_cycle = action validity.
+
+R3 defines WHAT:
+PredRelation = semantic direction/content.
+
+R4 defines the utility-conditioned semantic relation objective.
+
+R5 defines WHEN/HOW the frozen semantic and native objectives act.
+
+Training recurrence:
+A_t -> conditional native-target refresh -> B_t -> A_{t+1}
+
+Phase A:
+utility-conditioned relation refinement.
+
+Phase B:
+native MVCAN consolidation.
+
+R5 introduces no new utility and no new scientific loss.
+
+Optimizer states are decoupled while model parameters are sequentially shared.

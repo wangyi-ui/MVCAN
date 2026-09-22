@@ -1,0 +1,29 @@
+CALTECH SEED50:
+PASS / EXACT TRAINING DYNAMICS REPLAY
+
+Initial model SHA256:
+41c98952c143c149d639451a16a5902fd25281013a6a937559f9835365ed1ca5
+
+Final post-B model SHA256:
+0c44f569fc564ee4649e3c1882e2580e0a05dabc9850dce6826158ee17168062
+
+Q_LOCAL logical SHA256:
+69345c4b144e355aaf122aa199646730e66124f457de407a8f8e78ece7b54e67
+
+Q_LOCAL shape/dtype:
+[41,1400,6,7] / float32
+
+Q_LOCAL max_abs_diff:
+0.0
+
+Existing output files verified against persistent resume snapshot:
+97c169d2ea0d6e82f360f50c5e97b4a1bff8e93077f69dcd23a5be59023f1d9e  outputs/release_validation/r5_a2/seed50/STATUS.txt
+956116b26c55037953a93e4f9d8c019da0c7fb584abbfd5cf1267be08cf5b7e7  outputs/release_validation/r5_a2/seed50/gradient_audit.json
+4df698efae336bb6d549800061cd3e80d9e46806aab258e232492800fa65bd3b  outputs/release_validation/r5_a2/seed50/input_identity.json
+ffe99deeca426c2a3ad52ec69adb297d096bb34746a5c69ee403cda6e40c28b9  outputs/release_validation/r5_a2/seed50/loss_trace_audit.json
+7e2d2bc5ded49d45f5092d35b5106672d20f33c15c02dc3fd3736891c5f0e025  outputs/release_validation/r5_a2/seed50/model_hashes.txt
+7bd4aa47384214b0ca99d34ebf56e7b4b517c052f31755c80f940d4671943df9  outputs/release_validation/r5_a2/seed50/order_audit.json
+978d54f20f2f49c98d55660d88ffc2b7167a592d174b0daad27efa22afcc4a14  outputs/release_validation/r5_a2/seed50/replay_audit.json
+3768dbf6c6c5fe7adc047cdf2d8a9361a0539f16cf182097bf3accffff503303  outputs/release_validation/r5_a2/seed50/target_refresh_audit.json
+00af56e1071e4c75549f6ee3c17f77f96dd9cad3da6f12534738c8049cf3f846  outputs/release_validation/r5_a2/seed50/trajectory_logical_sha256.txt
+2dcfd5c3cda3d0fc22932cba07931ff18117ac8ced0ce1492a1d9fe38d4d5768  outputs/release_validation/r5_a2/seed50/trajectory_pre_gt.npz

@@ -1,0 +1,20 @@
+Caltech seed20 q_local logical SHA256:
+5b780817c2735485da845756eff686e569c0656ef68a84656bc14a48917965b2
+
+Caltech seed30 q_local logical SHA256:
+14b05464404e577067bab90235e5657982f0451730059af82de56f25a8188465
+
+Caltech seed50 q_local logical SHA256:
+69345c4b144e355aaf122aa199646730e66124f457de407a8f8e78ece7b54e67
+
+For all three runs:
+array_equal: true
+shape_equal: true
+dtype_equal: true
+snapshot_epoch_equal: true
+snapshot_phase_equal: true
+logical_sha256_equal: true
+max_abs_diff: 0.0
+
+Decision:
+Q_LOCAL TRAJECTORY EXACT / 3 OF 3.

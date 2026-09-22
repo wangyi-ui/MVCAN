@@ -1,0 +1,11 @@
+For every run:
+view count: 6
+semantic optimizer count: 6
+native optimizer count: 6
+optimizer type/configuration: exact Adam configuration
+parameter objects per corresponding view: identical
+semantic/native optimizer objects: separate
+semantic/native state mappings: separate
+
+Decision:
+OPTIMIZER TOPOLOGY EXACT / 3 OF 3.

@@ -1,0 +1,4 @@
+R5 owns alternating optimization orchestration and its bounded replay evidence.
+R5-A2 does not begin R5-FINAL and does not begin R6.
+No release assembly, final evaluation, or performance-claim work is authorized by this freeze.
+Next step requires independent review and separate authorization.

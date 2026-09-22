@@ -1,0 +1,11 @@
+Caltech seed20 historical == clean:
+7a69d078e9573452cd9a1e98a9d72bbe618bf547dc0ba2bbdae3423bd053e747
+
+Caltech seed30 historical == clean:
+49f8621bc6699009da2f9605e945feea5376cb0b64220b83e145ec57b6487ce1
+
+Caltech seed50 historical == clean:
+0c44f569fc564ee4649e3c1882e2580e0a05dabc9850dce6826158ee17168062
+
+Decision:
+FINAL POST-B MODEL HASH EXACT / 3 OF 3.
