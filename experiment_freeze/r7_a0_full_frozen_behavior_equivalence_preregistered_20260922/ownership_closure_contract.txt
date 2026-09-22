@@ -1,0 +1,34 @@
+E2 — OWNERSHIP CLOSURE CONTRACT
+
+R1 owns:
+backbone; data contracts; native objective; native clustering/refresh; sample
+IDs; weak-quality realization; clustering evaluation primitives.
+
+R2 owns:
+directional action space; frozen U_cycle/action validity.
+
+R3 owns:
+sparse-label semantic direction; cluster-to-class mapping; PredRelation;
+relation balancing.
+
+R4 owns:
+pure utility-conditioned relation objective only.
+
+R5 owns:
+optimizer ownership; backward; Phase A / refresh / Phase B ordering; training
+cadence; training execution.
+
+R6 owns:
+runtime orchestration; deterministic setup; frozen input loading; checkpoint
+orchestration; one final native refresh; pre-GT bundle/audit/seal; post-seal
+evaluation.
+
+R7 owns:
+validation only.
+
+For every scientific operation o:
+
+|Owner(o)| = 1
+
+No duplicate scientific implementation is permitted across layers. R7 owns no
+scientific transformation.

@@ -1,0 +1,35 @@
+R7-A0 REQUIRED PARENT LINEAGE
+
+R1
+tag: r1-final-backbone-data-foundation-pass-20260919
+commit: 65ba7e8a79e4b344b90d2ad771433d8561cff6c5
+freeze: experiment_freeze/r1_final_backbone_data_foundation_pass_20260919
+
+R2
+tag: r2-final-directional-cyclic-utility-pass-20260920
+commit: f3620448968b8589aa7b49ad99dac927024d1ba1
+freeze: experiment_freeze/r2_final_directional_cyclic_utility_pass_20260920
+
+R3
+tag: r3-final-sparse-relation-semantics-pass-20260921
+commit: efb61fe3c9b98c37448ee50194c9947f461d34d8
+freeze: experiment_freeze/r3_final_sparse_relation_semantics_pass_20260921
+
+R4
+tag: r4-final-utility-conditioned-relation-action-pass-20260921
+commit: 23c9306192feb313d34a751d873bac5764c4f967
+freeze: experiment_freeze/r4_final_utility_conditioned_relation_action_pass_20260921
+
+R5
+tag: r5-final-alternating-trainer-pass-20260922
+commit: c446c9026c3c75fd534a428198348599a0b42732
+freeze: experiment_freeze/r5_final_alternating_trainer_pass_20260922
+
+R6
+tag: r6-final-runtime-entrypoint-pass-20260922
+commit: 68cc714bda18ff1a1b24556eb0dd94dca0830dfd
+freeze: experiment_freeze/r6_final_runtime_entrypoint_pass_20260922
+
+R7-A0 parent:
+tag: r6-final-runtime-entrypoint-pass-20260922
+commit: 68cc714bda18ff1a1b24556eb0dd94dca0830dfd

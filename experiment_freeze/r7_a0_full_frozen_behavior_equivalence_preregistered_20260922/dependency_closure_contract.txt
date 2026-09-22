@@ -1,0 +1,23 @@
+E1 — DEPENDENCY CLOSURE CONTRACT
+
+Allowed final release execution dependencies:
+- release_core/**
+- Python standard library
+- frozen approved third-party dependencies
+- immutable frozen artifacts, data, and checkpoints
+
+Forbidden final release scientific execution dependencies:
+- experiments/**
+- irv/**
+- historical model.py
+- historical train_*.py
+- historical final_core protocol/trainer modules
+- any other archive scientific Python implementation
+
+Historical artifacts may be consumed only as immutable input evidence.
+Historical scientific Python code may not be an execution dependency.
+
+artifact dependency != scientific source dependency
+
+R7 dependency validation must fail closed on any forbidden scientific source
+dependency.

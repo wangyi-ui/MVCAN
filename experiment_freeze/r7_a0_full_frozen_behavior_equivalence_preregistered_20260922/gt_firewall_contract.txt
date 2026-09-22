@@ -1,0 +1,20 @@
+GT FIREWALL CONTRACT
+
+R7 preserves the frozen R6 GT boundary.
+
+Before a pre-GT seal is materialized and validated:
+- full GT must not be loaded;
+- metrics must not be computed;
+- full GT must not be present in scientific pre-GT payloads.
+
+Only the post-seal evaluation boundary may consume full GT.
+
+Frozen Caltech evidence:
+seed20: PASS
+seed30: PASS
+seed50: PASS
+
+Required:
+3 / 3 PASS
+
+Any GT access before the validated seal fails R7 closed.

@@ -1,0 +1,25 @@
+R7-A1 IMPLEMENTATION BOUNDARY
+
+R7-A1 may add validation/audit infrastructure only.
+
+Permitted check classes:
+1. dependency/import closure audit;
+2. scientific ownership audit;
+3. R1-R6 source/freeze/tag lineage audit;
+4. inherited R5 training-dynamics evidence audit;
+5. inherited R6 Caltech 3-seed end-to-end evidence audit;
+6. GT-firewall evidence audit;
+7. evidence-boundary audit.
+
+R7-A1 may not:
+- mutate R1-R6 production scientific source;
+- create a new scientific training path;
+- change any frozen scientific mechanism or contract;
+- rerun expensive 20-epoch training unless a genuinely missing gate is
+  discovered.
+
+When unchanged execution-source identity is established, R7-A1 must reuse the
+already frozen R5/R6 exact replay evidence.
+
+R7-A1 status at this preregistration:
+NOT STARTED

@@ -1,0 +1,36 @@
+E3 — SCIENTIFIC BEHAVIOR CONTRACT
+
+Authoritative exact full-chain evidence scope:
+
+Dataset: Caltech-6V
+Primary weak-quality condition: SNR = 2.5 dB
+Corrupted views per sample: exactly 3 / 6
+Weak-quality realization seed: 20
+Sparse labels: 2 per class / 14 total
+Label seed: 20
+Training seeds: 20, 30, 50
+
+For every training seed, exact equality is required for:
+- sample_ids
+- final_predictions
+- q_local
+- q_aligned
+- M_v
+- historical initial model identity
+- historical final post-B model identity
+- prediction logical SHA
+- ACC
+- NMI
+- ARI
+- final-refresh model immutability
+- GT firewall
+
+For floating arrays with an exact reference:
+np.array_equal == True
+max_abs_diff == 0.0
+
+R7 inherits R5-A2 frozen training-dynamics evidence, including exact q_local
+trajectory equality and exact final post-B model identity for all three seeds.
+
+Metrics-only parity is insufficient. All preregistered scientific observables
+must pass.

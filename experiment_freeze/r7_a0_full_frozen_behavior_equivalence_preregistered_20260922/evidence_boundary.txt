@@ -1,0 +1,26 @@
+E4 — EVIDENCE CLOSURE AND DATASET BOUNDARY
+
+Verified at preregistration:
+- R1-R6 final tags resolve exactly to their required commits;
+- all six final freeze manifests pass sha256sum -c;
+- R1-R6 production source identities remain frozen;
+- R1-R6 frozen test identities remain valid;
+- R5 exact multi-seed training-dynamics evidence remains intact;
+- R6 exact Caltech multi-seed end-to-end evidence remains intact;
+- R6 Caltech GT firewall evidence is 3 / 3 PASS;
+- the working tree was clean before R7-A0 creation;
+- no prior frozen evidence was modified.
+
+Caltech-6V allowed final claim target:
+3 / 3 training seeds exact full-chain end-to-end behavioral equivalence under
+the preregistered Primary condition.
+
+MSRC-v1:
+Full same-state R7 end-to-end exact replay is not established. Retain only its
+previously frozen bounded evidence.
+
+BDGP:
+Full same-state R7 end-to-end exact replay is not established. Retain only its
+previously frozen bounded evidence.
+
+R7 must not silently upgrade MSRC-v1 or BDGP evidence.

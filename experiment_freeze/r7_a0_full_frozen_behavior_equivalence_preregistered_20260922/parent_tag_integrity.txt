@@ -1,0 +1,34 @@
+R1-R6 FINAL TAG INTEGRITY
+
+r1-final-backbone-data-foundation-pass-20260919
+expected: 65ba7e8a79e4b344b90d2ad771433d8561cff6c5
+actual:   65ba7e8a79e4b344b90d2ad771433d8561cff6c5
+result: PASS / EXACT
+
+r2-final-directional-cyclic-utility-pass-20260920
+expected: f3620448968b8589aa7b49ad99dac927024d1ba1
+actual:   f3620448968b8589aa7b49ad99dac927024d1ba1
+result: PASS / EXACT
+
+r3-final-sparse-relation-semantics-pass-20260921
+expected: efb61fe3c9b98c37448ee50194c9947f461d34d8
+actual:   efb61fe3c9b98c37448ee50194c9947f461d34d8
+result: PASS / EXACT
+
+r4-final-utility-conditioned-relation-action-pass-20260921
+expected: 23c9306192feb313d34a751d873bac5764c4f967
+actual:   23c9306192feb313d34a751d873bac5764c4f967
+result: PASS / EXACT
+
+r5-final-alternating-trainer-pass-20260922
+expected: c446c9026c3c75fd534a428198348599a0b42732
+actual:   c446c9026c3c75fd534a428198348599a0b42732
+result: PASS / EXACT
+
+r6-final-runtime-entrypoint-pass-20260922
+expected: 68cc714bda18ff1a1b24556eb0dd94dca0830dfd
+actual:   68cc714bda18ff1a1b24556eb0dd94dca0830dfd
+result: PASS / EXACT
+
+Overall:
+R1-R6 LINEAGE EXACT / PASS

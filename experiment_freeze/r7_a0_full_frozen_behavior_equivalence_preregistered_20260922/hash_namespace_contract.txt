@@ -1,0 +1,20 @@
+HASH NAMESPACE CONTRACT
+
+R7 introduces no model-hash namespace and reuses the frozen R6 policy.
+
+Historical hash_backbone:
+authoritative cross-generation model identity.
+
+Clean release _model_sha256:
+run-local integrity only.
+
+Forbidden cross-namespace gate:
+historical_hash == release_hash
+
+Required cross-generation identity gate:
+H_hist(theta_release) == H_hist(theta_reference)
+
+Allowed release-local integrity gate:
+H_release(theta_before) == H_release(theta_after)
+
+Hash equality is required only within its declared namespace and purpose.

@@ -1,0 +1,26 @@
+R7 SCIENTIFIC ROLE
+
+R7 is the final validation stage of the clean-code extraction route.
+
+R7 introduces no new scientific mechanism and owns no scientific transformation.
+It validates that the independently extracted R1-R6 components compose into a
+dependency-closed, ownership-closed, scientifically frozen, behaviorally
+equivalent clean release within the preregistered evidence scope.
+
+Frozen semantic contract:
+
+- Sparse labels determine semantic direction/content.
+- Frozen U_cycle determines action validity.
+- Information Utility is unchanged.
+
+Information Utility is not:
+- generic feature importance;
+- pseudo-label confidence;
+- a continuous posterior weight;
+- memory-write confidence;
+- pseudo-anchor priority.
+
+R7 must not change or introduce Information Utility, U_cycle recalibration,
+U_tilde, feature/fusion gating, pseudo-label supervision, memory, losses,
+optimization objectives, phase order, target refresh, seed policy,
+hyperparameters, or dataset evidence scope.

@@ -1,0 +1,23 @@
+R7 FROZEN-BEHAVIOR EQUIVALENCE DEFINITION
+
+Let:
+
+F_hist(X, C, xi)
+
+denote historical frozen behavior, and let:
+
+F_rel(X, C, xi)
+
+denote extracted release behavior.
+
+R7 does not require source-code textual equality.
+
+R7 requires equality of the preregistered scientific observables:
+
+Pi_Omega(F_rel) = Pi_Omega(F_hist)
+
+within the frozen evidence scope defined by scientific_observables_contract.txt
+and evidence_boundary.txt.
+
+Full behavior must not be reduced to metrics-only parity. Metrics equality alone
+is insufficient.

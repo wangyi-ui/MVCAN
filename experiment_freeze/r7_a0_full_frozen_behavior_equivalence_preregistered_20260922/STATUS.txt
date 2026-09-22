@@ -1,0 +1,31 @@
+R7-A0
+FULL FROZEN-BEHAVIOR EQUIVALENCE CONTRACT
+
+PREREGISTERED
+
+Parent:
+R6 FINAL
+
+Parent commit:
+68cc714bda18ff1a1b24556eb0dd94dca0830dfd
+
+Scientific mechanism:
+UNCHANGED
+
+Information Utility:
+UNCHANGED
+
+Training:
+NOT RUN
+
+R7-A1 implementation:
+NOT STARTED
+
+Caltech evidence target:
+3 / 3 exact full-chain behavioral equivalence
+
+MSRC/BDGP:
+BOUNDED EVIDENCE ONLY
+
+Decision:
+PREREGISTRATION COMPLETE / READY FOR INDEPENDENT REVIEW

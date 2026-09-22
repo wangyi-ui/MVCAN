@@ -1,0 +1,27 @@
+FAIL-CLOSED CONTRACT
+
+R7 fails closed if any required gate fails, including:
+- an R1-R6 tag mismatch;
+- an R1-R6 freeze-manifest mismatch;
+- production source drift;
+- a legacy scientific Python dependency in the release execution path;
+- duplicate scientific ownership;
+- Information Utility semantic drift;
+- q/prediction/state non-exactness where exact evidence is required;
+- GT leakage before seal;
+- altered seed or data realization;
+- altered tolerance;
+- expected outputs changed after observation;
+- any new scientific mechanism added during R7.
+
+No majority vote is permitted.
+
+R7_PASS =
+G_dependency
+AND G_ownership
+AND G_source
+AND G_behavior
+AND G_GT
+AND G_evidence
+
+Every gate must be true.

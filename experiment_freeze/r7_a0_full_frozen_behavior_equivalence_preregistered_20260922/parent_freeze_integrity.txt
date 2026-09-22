@@ -1,0 +1,43 @@
+R1-R6 FINAL FREEZE INTEGRITY
+
+R1
+manifest: experiment_freeze/r1_final_backbone_data_foundation_pass_20260919/freeze_metadata_sha256.txt
+manifest_sha256: c8ad480f688b87f7e90da3a8e6cf1f988b47c458944713aa8621260bd51494c7
+sha256sum -c: PASS / ALL FILES OK
+
+R2
+manifest: experiment_freeze/r2_final_directional_cyclic_utility_pass_20260920/freeze_metadata_sha256.txt
+manifest_sha256: c22acd81a1fc0e1abeaa90f3a6a64e69a5b56745fadfd0c9b529a6bffb694246
+sha256sum -c: PASS / ALL FILES OK
+
+R3
+manifest: experiment_freeze/r3_final_sparse_relation_semantics_pass_20260921/freeze_metadata_sha256.txt
+manifest_sha256: 6a8c2d2b091c129cfb972da4d94026dea172615499c61bb9a30d848ce0f6e5a2
+sha256sum -c: PASS / ALL FILES OK
+
+R4
+manifest: experiment_freeze/r4_final_utility_conditioned_relation_action_pass_20260921/freeze_metadata_sha256.txt
+manifest_sha256: 8debc5df93cbf671bcaad9ecd981edd6c15c7cf82fce38492d8af2191892ca1b
+sha256sum -c: PASS / ALL FILES OK
+
+R5
+manifest: experiment_freeze/r5_final_alternating_trainer_pass_20260922/freeze_metadata_sha256.txt
+manifest_sha256: 11374045f9c7e90c799d1b0d85e058df29e1b4d4f623c94ee729430a37300e0e
+sha256sum -c: PASS / ALL FILES OK
+
+R6
+manifest: experiment_freeze/r6_final_runtime_entrypoint_pass_20260922/freeze_metadata_sha256.txt
+manifest_sha256: f2fa1c60d051ac8890dd95fc291a614cfda80852cc6068d59d87c40f65db3215
+sha256sum -c: PASS / ALL FILES OK
+
+Independent current-tree identity checks:
+- R1-R5 frozen production-source checksum manifests: PASS / ALL FILES OK
+- R1-R5 frozen test-source checksum manifests: PASS / ALL FILES OK
+- R6 frozen runtime-source checksum manifest: PASS / ALL FILES OK
+- R6 frozen test-source checksum manifest: PASS / ALL FILES OK
+
+Overall:
+R1-R6 FREEZE INTEGRITY PASS
+PRODUCTION SOURCE IDENTITIES FROZEN
+FROZEN TEST IDENTITIES VALID
+NO PRIOR FROZEN EVIDENCE MODIFIED
