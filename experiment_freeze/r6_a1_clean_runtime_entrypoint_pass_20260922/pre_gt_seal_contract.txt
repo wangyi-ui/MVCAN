@@ -1,0 +1,4 @@
+Filename: pre_gt_seal.json
+SHA256 cryptographically binds the current pre_gt_bundle.npz and pre_gt_audit.json.
+Seal binds exact bundle schema plus prediction and sample-ID logical hashes.
+Evaluator must verify all bindings before GT access.

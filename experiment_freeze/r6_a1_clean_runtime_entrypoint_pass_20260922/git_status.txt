@@ -1,0 +1,10 @@
+Expected uncommitted additions only:
+release_core/runtime/__init__.py
+release_core/runtime/entrypoint.py
+release_core/runtime/evaluation.py
+tests/release_core/test_r6_entrypoint.py
+tests/release_core/test_r6_gt_firewall.py
+tests/release_core/test_r6_frozen_reference_parity.py
+experiment_freeze/r6_a1_clean_runtime_entrypoint_pass_20260922/
+
+No tracked or staged modifications.

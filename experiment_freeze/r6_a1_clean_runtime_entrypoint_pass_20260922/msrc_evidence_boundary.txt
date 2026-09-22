@@ -1,0 +1,3 @@
+Classification: SEALED_POSTSEAL_EVALUATION_AVAILABLE.
+Existing metrics are diagnostic/non-gating.
+No new MSRC training or evaluation was run by R6-A1.

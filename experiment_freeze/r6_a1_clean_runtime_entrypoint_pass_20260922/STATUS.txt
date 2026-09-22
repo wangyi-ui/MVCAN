@@ -1,0 +1,92 @@
+R6-A1
+CLEAN TRAINING / EVALUATION ENTRYPOINT EXTRACTION
+
+Parent:
+R5 FINAL / GIT-FROZEN / REMOTE-BACKED-UP
+
+Parent commit:
+c446c9026c3c75fd534a428198348599a0b42732
+
+Scientific role:
+EXPERIMENT / RUNTIME ORCHESTRATION
+
+New scientific mechanism:
+NO
+
+New information utility:
+NO
+
+New training loss:
+NO
+
+R1-R5:
+FROZEN / UNCHANGED
+
+R5 invocation:
+EXACTLY ONCE
+
+Final prediction refresh:
+R6 ORCHESTRATION / R1 PRIMITIVE
+
+Final prediction:
+SECOND-PASS NATIVE KMEANS IDS
+
+Full GT accepted by run_pre_gt:
+NO
+
+Full GT before seal:
+FORBIDDEN
+
+Pre-GT bundle:
+IMPLEMENTED
+
+Pre-GT audit:
+IMPLEMENTED
+
+Pre-GT seal:
+IMPLEMENTED
+
+Post-seal evaluator:
+SEPARATE
+
+Metrics:
+POST-SEAL ONLY
+
+Historical whole-file audit SHA equality:
+NOT REQUIRED FOR CLEAN CODE
+
+Historical whole-file seal SHA equality:
+NOT REQUIRED FOR CLEAN CODE
+
+Scientific payload parity:
+PRESERVED BY CONTRACT
+
+Formal Caltech 20-epoch replay:
+NOT RUN
+
+MSRC formal training:
+NOT RUN
+
+BDGP formal training:
+NOT RUN
+
+Implementation:
+PASS
+
+Dedicated tests:
+PASS
+
+Release regression:
+PASS
+
+Generic regression:
+PASS
+
+Final-core regression:
+PASS
+
+R6-A1:
+PASS / CLEAN EXTRACTION FROZEN
+
+Next:
+R6-A2 END-TO-END FROZEN REPLAY

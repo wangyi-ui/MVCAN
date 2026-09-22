@@ -1,0 +1,4 @@
+Filename: pre_gt_bundle.npz
+Exact whitelist: sample_ids, final_predictions, labeled_ids, q_local, q_aligned, M_v, input_sha256, initial_model_sha256, final_model_sha256.
+Write -> fsync -> reload -> exact key/value verification -> SHA256.
+No full GT, metrics, trajectory snapshots, or optimizer state.

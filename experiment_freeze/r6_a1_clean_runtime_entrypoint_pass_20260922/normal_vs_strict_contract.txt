@@ -1,0 +1,3 @@
+Normal and strict modes execute the identical R1-R5 training, refresh, and prediction path.
+Strict mode only adds expected source/input/model/prediction identity gates.
+No strict-mode branch changes optimizer, seed, U, loss, order, refresh count, dtype, or prediction rule.

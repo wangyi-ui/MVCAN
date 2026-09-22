@@ -1,0 +1,4 @@
+run_pre_gt consumes only a feature NPZ plus bound provenance audit.
+Feature whitelist: sample_ids and contiguous view_0..view_n or X1..Xn arrays.
+Y, GT, labels, full_gt, ground_truth and y_true keys fail closed.
+Strict Caltech validates V=6, N=1400, dimensions, float32, canonical IDs, k=3 and SNR=2.5 provenance.

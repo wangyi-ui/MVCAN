@@ -1,0 +1,2 @@
+Fail closed on invalid/nonfinite config; existing output; missing/unbound/hash-mismatched provenance; GT-bearing feature artifact; bad dataset/IDs/split/checkpoint/U/relation/balance; R5 missing/wrong state; R5 final refresh; final-refresh model mutation; nonfinite/wrong-shaped prediction state; bundle reload mismatch; audit/seal failure; or GT/metrics before a valid seal.
+No fallback is implemented.

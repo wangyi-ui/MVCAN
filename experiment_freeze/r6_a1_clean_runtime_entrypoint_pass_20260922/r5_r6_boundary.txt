@@ -1,0 +1,3 @@
+R5 returns trained model + last in-training NativeTargetState + TrainingAudit.
+R5 final_prediction_refresh_executed must be false.
+R6 then performs exactly one no-grad final R1 refresh and seals its prediction state.

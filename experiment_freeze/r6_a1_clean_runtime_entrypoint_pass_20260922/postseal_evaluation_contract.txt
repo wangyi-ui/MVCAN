@@ -1,0 +1,3 @@
+evaluate_postseal accepts SealedPredictionPaths plus full_gt_path.
+It verifies existence, seal schema, artifact/audit SHA256, bundle whitelist and payload hashes before loading GT.
+It then calls frozen R1 acc/nmi/ari and exclusively writes postseal_metrics.json.

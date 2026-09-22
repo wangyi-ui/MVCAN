@@ -1,0 +1,7 @@
+CUBLAS_WORKSPACE_CONFIG=:4096:8 before runtime torch import when import order permits.
+OMP/MKL/OPENBLAS/NUMEXPR threads=1.
+random, NumPy, torch, CUDA and CUDA-all receive training_seed.
+cuDNN deterministic=true; benchmark=false.
+torch deterministic algorithms=true; intra/inter-op threads=1; CUDA/cuDNN TF32=false.
+PYTHONHASHSEED is not added.
+Audit records whether torch was already imported by the embedding process.

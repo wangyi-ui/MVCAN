@@ -1,0 +1,2 @@
+run_pre_gt calls release_core.training.run_alternating_training exactly once.
+R6 passes frozen model/views/IDs/U/relation/balance/config and does not implement optimizer, order, Phase A, scheduled refresh, Phase B, or recurrence logic.

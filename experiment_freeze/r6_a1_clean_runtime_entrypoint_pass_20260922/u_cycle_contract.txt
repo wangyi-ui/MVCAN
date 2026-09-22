@@ -1,0 +1,3 @@
+U is loaded from a provenance-bound artifact as float64 [Nu,S] or [N,S].
+Its unlabeled axis must equal the frozen split and values must be finite/nonnegative.
+R6 performs no normalization, temperature, threshold, top-k, EMA, smoothing, calibration, or learned correction.

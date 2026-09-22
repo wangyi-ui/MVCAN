@@ -1,0 +1,4 @@
+PredRelation is immutable bool [Nu,L,S].
+balance is immutable positive finite float64 [Nu,L,S].
+Query and anchor IDs must exactly equal R3 split axes; S must equal the utility action axis.
+R6 does not reinterpret sparse semantic meaning.

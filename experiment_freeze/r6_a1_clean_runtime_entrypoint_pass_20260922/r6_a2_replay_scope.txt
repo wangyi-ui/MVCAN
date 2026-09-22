@@ -1,0 +1,5 @@
+R6-A2 may run the frozen Caltech 20-epoch seeds 20/30/50 replay only after independent R6-A1 review.
+Exact gates: input identity, initial/final model hashes, prediction/sample arrays, q/M payload where persisted, and prediction logical hash.
+Clean audit fields compare fieldwise; current seal binding must verify.
+Historical whole-file audit and seal SHA values remain reference only.
+MSRC and BDGP evidence must not be upgraded without separately authorized work.

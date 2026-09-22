@@ -1,0 +1,6 @@
+Default device: cuda:0; requested CUDA must exist.
+Feature/model/q/M tensors: float32.
+U and balance: float64 CPU immutable arrays.
+PredRelation: bool CPU immutable array.
+Predictions/sample IDs: int64 CPU arrays.
+P_global and Match from refresh are detached; final refresh has no optimizer or gradient.

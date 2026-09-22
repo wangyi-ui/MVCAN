@@ -1,0 +1,6 @@
+Command:
+PYTHONPATH=. pytest -q tests/release_core/test_r6_entrypoint.py tests/release_core/test_r6_gt_firewall.py tests/release_core/test_r6_frozen_reference_parity.py
+
+Result:
+26 passed, 0 failed, 1 non-blocking PyTorch TypedStorage deprecation warning.
+No full 20-epoch training was run.

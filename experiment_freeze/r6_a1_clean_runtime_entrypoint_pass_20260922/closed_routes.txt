@@ -1,0 +1,1 @@
+ABSENT: direct feature/fusion gating; scalar transformed utility; pseudo CE; pseudo-anchor expansion; memory writes; class prototypes; continuous utility posterior aggregation; control routes; alternative R4 losses; new view reliability.

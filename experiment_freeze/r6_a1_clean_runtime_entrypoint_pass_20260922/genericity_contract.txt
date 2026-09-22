@@ -1,0 +1,3 @@
+Synthetic structural tests pass for V=2 BDGP, V=5 MSRC-v1, and V=6 Caltech-6V.
+Normal mode validates view count and internally consistent dimensions/sample axes.
+Strict mode additionally pins full historical dataset contracts and hashes.

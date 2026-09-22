@@ -1,0 +1,6 @@
+Scientific payload arrays: exact comparison where a reference exists.
+Audit scientific fields: fieldwise exact comparison where corresponding.
+Current audit/seal: current cryptographic binding must verify.
+Historical whole-file audit SHA: reference only.
+Historical whole-file seal SHA: reference only.
+Historical provenance is never copied to manufacture byte equality.

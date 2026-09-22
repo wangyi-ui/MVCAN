@@ -1,0 +1,3 @@
+Final prediction is the int64 [N] second-pass native KMeans ID array returned by the frozen R1 refresh.
+It is not q argmax, aligned-q argmax, majority vote, or a new fusion rule.
+q_local [N,V,K], M_v [V,K,K], and q_aligned [N,V,K] are materialized read-only after R5.

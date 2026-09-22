@@ -1,0 +1,4 @@
+run_pre_gt has no GT or metric argument and imports no dataset/GT loader or metric evaluator.
+Full GT is absent from pre-GT inputs and bundle.
+Corrupt artifact, audit, seal, schema, prediction hash, or sample-ID hash fails before the first GT load.
+After GT load the evaluator contains no model, optimizer, R5, U, relation, or balance object.

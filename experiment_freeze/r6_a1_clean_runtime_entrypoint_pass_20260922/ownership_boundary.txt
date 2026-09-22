@@ -1,0 +1,6 @@
+R1: data/sample IDs, backbone, native refresh, clustering metrics.
+R2: action space and directional cyclic utility.
+R3: sparse split, relation targets, balance.
+R4: utility-conditioned relation objective.
+R5: optimizers, orders, Phase A, scheduled refresh, Phase B, recurrence.
+R6: paths/configuration, checkpoint orchestration, one R5 call, final R1 refresh, prediction bundle/audit/seal, separate post-seal evaluator.

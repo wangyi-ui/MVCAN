@@ -1,0 +1,3 @@
+R6 computes no reliability, confidence-as-validity, transformed utility, or learned utility correction.
+Sparse labels determine semantic content; frozen U determines action validity.
+R6 determines neither.

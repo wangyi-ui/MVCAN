@@ -1,0 +1,5 @@
+Checkpoint files and their audit are hash validated.
+R1 MultiViewBackbone is instantiated from the dataset contract.
+Each checkpoint is loaded on CPU and applied with strict=True before device transfer.
+Initial model hash may be pinned in strict mode.
+No historical optimizer state is loaded; R5 creates fresh optimizers.

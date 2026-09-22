@@ -1,0 +1,6 @@
+Release parent sources R1-R5: UNCHANGED
+Authorized production additions: exactly 3
+Authorized test additions: exactly 3
+Additional additions: this metadata-only R6-A1 freeze
+Tracked/staged changes: NONE
+git diff --check: PASS

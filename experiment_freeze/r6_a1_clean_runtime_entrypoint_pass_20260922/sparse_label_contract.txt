@@ -1,0 +1,4 @@
+Only explicit labeled_ids, labeled_targets and canonical-complement unlabeled_ids are loaded.
+R3 SparseLabelSplit performs validation and supplies its digest.
+R6 performs no labeled-row selection or reshuffle and never uses full GT to construct the split.
+Strict Caltech requires L=14 and Nu=1386.

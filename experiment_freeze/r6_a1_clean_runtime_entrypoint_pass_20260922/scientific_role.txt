@@ -1,0 +1,2 @@
+R6 owns experiment/runtime orchestration only.
+R6 introduces no scientific mechanism, information utility, training loss, optimizer rule, training order, or refresh mathematics.

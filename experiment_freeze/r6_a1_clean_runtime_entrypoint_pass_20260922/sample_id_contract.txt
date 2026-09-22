@@ -1,0 +1,3 @@
+sample_ids are one-dimensional int64, unique, complete, and exact canonical arange(N).
+Sparse, utility, semantic, prediction and GT arrays preserve the same global row identity.
+Minibatch-local indices are never interpreted as sample IDs.

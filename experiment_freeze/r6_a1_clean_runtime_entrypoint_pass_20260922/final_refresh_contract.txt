@@ -1,0 +1,5 @@
+Owner: R6 orchestration / R1 scientific primitive.
+Timing: strictly after R5 return and final Phase B.
+Count: exactly one.
+Gradient: off. Optimizer: absent. Backward: absent.
+Model hash must be identical before and after refresh.
