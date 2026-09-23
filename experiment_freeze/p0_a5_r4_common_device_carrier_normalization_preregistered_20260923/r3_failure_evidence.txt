@@ -1,0 +1,10 @@
+Preserved failed log:
+outputs/paper/diagnostics/p0_a5_msrc_pre_r2_carrier_temporal_alignment_seed20_r3.log
+SHA256: 3a7f123a7d696965062fdc07340bd9f3257e07cec0f7d6a58d8e5f821039dc89
+
+Failure terminal exception:
+RuntimeError: HISTORICAL_CARRIER_REPLAY_NOT_EXACT
+
+Historical replay, epoch-1000 capture/update/coordinate, and H R2/R3 were
+completed. The false gate was caused by R2 being invoked with a CPU tensor in
+the diagnostic wrapper; no F/W/T real arm or carrier decision followed.

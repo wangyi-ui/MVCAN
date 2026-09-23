@@ -1,0 +1,16 @@
+No-training sentinel input: frozen A6 legacy_pre_r2_state q_aligned.
+
+Expected historical hashes:
+U_cycle 3552d88de9f894276d0d1ccae8f4c55147e98aac9a8ae146eaa1cf54dcc9dd10
+PredRelation_true cbd2d2de1dfd51abba9b8e80fcc1ee82f4e902df6532ca2af388e1266ff0d2b8
+relation_balance_weights_true 2d69642382947465851d69fe9f151df440979ce626481f9ad4c060909f92ff9a
+
+CPU U_cycle SHA256: 7b61f22b29503ce804072d78f37633ea86e6552df7c33037d66c906e6216179a
+CPU expected U match: false
+CUDA:0 U_cycle SHA256: 3552d88de9f894276d0d1ccae8f4c55147e98aac9a8ae146eaa1cf54dcc9dd10
+CUDA expected U match: true
+PredRelation and balance match expected on CPU and CUDA. y_gen is CPU/CUDA
+array_equal. U max_abs_diff is 1.4901161193847656e-08.
+
+Conclusion: DIAGNOSTIC_R2_DEVICE_SEMANTICS_MISMATCH, not a historical replay,
+carrier, R2/R3 science, method, or initializer failure.

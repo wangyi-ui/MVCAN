@@ -1,0 +1,13 @@
+Focused P0-A5 tests: 42 passed (CUDA no-training sentinel passed)
+pytest -q tests/paper/: 108 passed, 1 environment deprecation warning
+Artifact-independent release regression: 239 passed, 1 environment deprecation warning
+
+The focused suite covers requested R2 device placement, F_PROVENANCE vs F_ARM,
+normalized-only comparison, atomic GT-free partial evidence without formal
+output creation, and a CUDA-skip-if-unavailable frozen A6 CPU/CUDA sentinel.
+
+ARTIFACT_DEPENDENT_TEST_SKIPPED_FROM_REGRESSION_GATE:
+tests/release_core/test_r1_frozen_reference_parity.py
+tests/release_core/test_r2_caltech_frozen_parity.py
+tests/release_core/test_r3_frozen_semantics_parity.py
+tests/release_core/test_r7_behavior_evidence.py

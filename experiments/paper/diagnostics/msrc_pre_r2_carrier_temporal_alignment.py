@@ -9,6 +9,7 @@ import argparse
 import copy
 import json
 import os
+import tempfile
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -80,6 +81,26 @@ def _write_json_exclusive(path, value):
         stream.flush()
         os.fsync(stream.fileno())
 
+
+
+def _write_partial_evidence(output_dir, evidence):
+    """Atomically update evidence without creating the formal output directory."""
+    target = Path(str(Path(output_dir)) + ".partial.json")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary = tempfile.mkstemp(
+        prefix=target.name + ".", suffix=".tmp", dir=str(target.parent)
+    )
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+            json.dump(evidence, stream, indent=2, sort_keys=True, allow_nan=False)
+            stream.write("\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, target)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+    return target
 
 def _historical_sparse_split(historical, legacy):
     """Construct the release R3 contract from validated historical inputs."""
@@ -218,9 +239,12 @@ def _fresh_matches(model, full_views, weights):
     return np.ascontiguousarray(matrices, dtype=np.float32)
 
 
-def _carrier_from_aligned(q_local, q_aligned, matrix, split):
+def _carrier_from_aligned(q_local, q_aligned, matrix, split, *, device):
     actions = build_directional_actions(5)
-    cycle = compute_directional_cycle_utility(torch.from_numpy(q_aligned), actions)
+    q_tensor = torch.from_numpy(
+        np.ascontiguousarray(q_aligned, dtype=np.float32)
+    ).to(device)
+    cycle = compute_directional_cycle_utility(q_tensor, actions)
     y_gen = _numpy(cycle["y_gen"], np.int64)
     semantics = build_relation_semantics(y_gen, split, actions)
     return {
@@ -233,6 +257,27 @@ def _carrier_from_aligned(q_local, q_aligned, matrix, split):
         "relation_balance_weights_true": _numpy(semantics.balance_weights, np.float64),
     }
 
+
+
+def _partial_evidence(capture, device):
+    return {
+        "schema": "paper-p0-a5-partial-evidence-v1",
+        "stage_reached": "H0_H4_CAPTURED",
+        "failure_class": None,
+        "device": str(device),
+        "full_gt_loaded": False,
+        "historical_H0_H4": _capture_report(capture),
+        "observed_historical_H_hashes": None,
+        "expected_historical_H_hashes": EXPECTED_HISTORICAL_ACTION_HASHES,
+        "current_provenance_gate": "NOT_RUN",
+        "completed_arms": [],
+    }
+
+
+def _fail_with_partial(output_dir, evidence, failure_class):
+    evidence["failure_class"] = failure_class
+    _write_partial_evidence(output_dir, evidence)
+    raise RuntimeError(failure_class)
 
 def compare_arm(left, right):
     return {name: compare_arrays(left[name], right[name]) for name in ARM_ARRAYS}
@@ -402,25 +447,55 @@ def run_audit(output_dir, device="cuda:0"):
             legacy.MSRC_RUNTIME_SPEC,
         )
     h = capture.require_complete()
+    partial = _partial_evidence(h, device)
+    _write_partial_evidence(target, partial)
     historical_split = _historical_sparse_split(historical, legacy)
     _, current_views, _, materialized_current_split = load_materialized_inputs(
         protocol.MSRC_INPUT_DIR
     )
     current_split = validate_sparse_label_split(materialized_current_split)
-    _require_sparse_split_parity(historical_split, current_split)
+    if not _sparse_split_exact(historical_split, current_split):
+        _fail_with_partial(
+            target, partial, "HISTORICAL_CURRENT_SPARSE_SPLIT_CONTRACT_MISMATCH"
+        )
     H = _carrier_from_aligned(
         h["H4_final_q_local"], h["H4_final_q_aligned_retained_M"],
-        h["H2_refresh_M_v"], historical_split,
+        h["H2_refresh_M_v"], historical_split, device=device,
     )
     historical_exact, historical_hashes = _historical_h5_exact(H)
-    _require(historical_exact, "HISTORICAL_CARRIER_REPLAY_NOT_EXACT")
+    partial.update({
+        "stage_reached": "H_R2_R3_COMPLETED",
+        "observed_historical_H_hashes": historical_hashes,
+        "completed_arms": ["H"],
+    })
+    _write_partial_evidence(target, partial)
+    if not historical_exact:
+        _fail_with_partial(target, partial, "HISTORICAL_CARRIER_REPLAY_NOT_EXACT")
 
     manifest = verify_current_true_u()
-    F, reconstructed_current_split = reconstruct_current_msrc(device)
-    _require_sparse_split_parity(current_split, reconstructed_current_split)
-    current_identity = validate_reconstruction_against_manifest(F, manifest)
-    _require(all(item["exact"] for item in current_identity.values()),
-             "CURRENT_RECONSTRUCTION_NOT_EXACT")
+    F_PROVENANCE, reconstructed_current_split = reconstruct_current_msrc(device)
+    if not _sparse_split_exact(current_split, reconstructed_current_split):
+        _fail_with_partial(
+            target, partial, "HISTORICAL_CURRENT_SPARSE_SPLIT_CONTRACT_MISMATCH"
+        )
+    current_identity = validate_reconstruction_against_manifest(
+        F_PROVENANCE, manifest
+    )
+    if not all(item["exact"] for item in current_identity.values()):
+        partial["current_provenance_gate"] = {
+            "state": "FAILED", "checks": current_identity,
+        }
+        _fail_with_partial(target, partial, "CURRENT_RECONSTRUCTION_NOT_EXACT")
+    F_ARM = _carrier_from_aligned(
+        F_PROVENANCE["q_local"], F_PROVENANCE["q_aligned"],
+        F_PROVENANCE["M_v"], current_split, device=device,
+    )
+    partial.update({
+        "stage_reached": "F_PROVENANCE_AND_F_ARM_COMPLETED",
+        "current_provenance_gate": {"state": "PASS", "checks": current_identity},
+        "completed_arms": ["H", "F"],
+    })
+    _write_partial_evidence(target, partial)
     initialization = verify_initialization(protocol.MSRC_INIT_DIR)
     current_model = initialization["model"]
     current_model.to_device(device)
@@ -439,13 +514,14 @@ def run_audit(output_dir, device="cuda:0"):
         "q_local": compare_arrays(_numpy(q_current_local, np.float32), H["q_local"]),
     }
     post_exact = post_comparisons["model"]["exact"] and post_comparisons["q_local"]["array_equal"]
-    _require(post_exact, "POST_NATIVE_MODEL_OR_QLOCAL_CONTRADICTION")
+    if not post_exact:
+        _fail_with_partial(target, partial, "POST_NATIVE_MODEL_OR_QLOCAL_CONTRADICTION")
 
     W_matrix = _fresh_matches(current_model, current_full_views, h["H1_incoming_weights"])
     W_local, W_aligned = legacy.coordinate_snapshot(
         current_model, current_full_views, torch.from_numpy(W_matrix).to(device)
     )
-    W = _carrier_from_aligned(W_local, W_aligned, W_matrix, current_split)
+    W = _carrier_from_aligned(W_local, W_aligned, W_matrix, current_split, device=device)
     pre_model = _build_cpu_clone(
         native["model"], h["H0_pre_refresh_state_dict_cpu"],
         h["H0_pre_refresh_model"],
@@ -456,9 +532,9 @@ def run_audit(output_dir, device="cuda:0"):
     T_local, T_aligned = legacy.coordinate_snapshot(
         pre_model, historical_cpu_views, torch.from_numpy(T_matrix)
     )
-    T = _carrier_from_aligned(T_local, T_aligned, T_matrix, historical_split)
-    comparisons = {"H_vs_F": compare_arm(H, F), "H_vs_W": compare_arm(H, W),
-                   "H_vs_T": compare_arm(H, T), "F_vs_W": compare_arm(F, W)}
+    T = _carrier_from_aligned(T_local, T_aligned, T_matrix, historical_split, device=device)
+    comparisons = {"H_vs_F": compare_arm(H, F_ARM), "H_vs_W": compare_arm(H, W),
+                   "H_vs_T": compare_arm(H, T), "F_vs_W": compare_arm(F_ARM, W)}
     decision = classify_carrier_alignment(
         historical_exact=historical_exact, current_exact=True,
         post_model_and_q_local_exact=post_exact,
@@ -467,8 +543,11 @@ def run_audit(output_dir, device="cuda:0"):
         w_equals_h=arm_exact(comparisons["H_vs_W"]),
         f_equals_w=arm_exact(comparisons["F_vs_W"]),
     )
-    _require(decision != "FINAL_REFRESH_REPLAY_NOT_EXACT",
-             "FINAL_REFRESH_REPLAY_NOT_EXACT")
+    if decision == "FINAL_REFRESH_REPLAY_NOT_EXACT":
+        _fail_with_partial(target, partial, "FINAL_REFRESH_REPLAY_NOT_EXACT")
+    partial.update({"stage_reached": "H_F_W_T_COMPLETED",
+                    "completed_arms": ["H", "F", "W", "T"]})
+    _write_partial_evidence(target, partial)
     record = {
         "schema": "paper-p0-a5-msrc-pre-r2-carrier-temporal-alignment-v1",
         "training_seed": EXPECTED_SEED, "full_gt_loaded": False,
@@ -479,6 +558,9 @@ def run_audit(output_dir, device="cuda:0"):
         "expected_historical_h5_action_hashes": EXPECTED_HISTORICAL_ACTION_HASHES,
         "historical_q_carrier_semantics": "post-final q_local aligned with retained epoch-1000 pre-update refresh M_v",
         "current_f_semantics": "post-final model fresh refresh with reset all-ones weights",
+        "current_provenance_gate": current_identity,
+        "F_ARM_semantics": "F_PROVENANCE q_local/q_aligned/M_v recomputed through common diagnostic device",
+        "common_diagnostic_device": str(device),
         "post_native_model_and_q_local": post_comparisons,
         "comparisons": comparisons, "decision": decision,
     }

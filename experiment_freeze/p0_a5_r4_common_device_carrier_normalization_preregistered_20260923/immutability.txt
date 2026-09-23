@@ -1,0 +1,6 @@
+release_core git diff: empty
+historical CVPR24-MVCAN git status: empty
+
+No release_core source, historical adapter/archive, current initializer, R2/R3
+formula, R4/R5 source, arm definition, decision rule, pipeline, or
+hyperparameter was modified. This is diagnostic wrapper normalization only.

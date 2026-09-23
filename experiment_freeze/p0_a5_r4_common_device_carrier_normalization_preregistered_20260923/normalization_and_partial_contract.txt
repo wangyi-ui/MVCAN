@@ -1,0 +1,13 @@
+F_PROVENANCE remains reconstruct_current_msrc(device) and is used only for
+validate_reconstruction_against_manifest(). It is not compared directly to H.
+
+F_ARM is rebuilt from F_PROVENANCE q_local/q_aligned/M_v by the same
+_carrier_from_aligned(..., device="cuda:0") used for H, W, and T. All four
+diagnostic arms therefore share CUDA R2/R3 numerical semantics; H/F/W/T carrier
+comparisons use H_ARM/F_ARM/W_ARM/T_ARM only.
+
+After the expensive historical replay returns, a sibling
+<output-dir>.partial.json is atomically written using a temp file plus
+os.replace. It records H0-H4 hashes, observed/expected H hashes, current
+provenance state, completed arms, device, failure class, and full_gt_loaded=false.
+The formal output directory is never created on a failure path.
