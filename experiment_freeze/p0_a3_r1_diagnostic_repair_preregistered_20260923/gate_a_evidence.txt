@@ -1,0 +1,13 @@
+Gate A execution status: COMPLETED by operator before P0-A3-R1.
+Execution failure: NO.
+Current action provenance self-consistency: PASS exact.
+Canonical generator membership: current == historical exact.
+Canonical verifier membership: current == historical exact.
+Current versus historical U_cycle: NOT EQUAL; allclose_1e-8 false;
+max_abs_diff approximately 0.22532737255096436.
+PredRelation_true: NOT EQUAL.
+relation_balance_weights_true: NOT EQUAL.
+Final predictions/q/M: NOT EQUAL.
+Historical G0-B0 artifact does not carry pre-R2 q_local, q_aligned, M_v, or y_gen.
+Gate A decision: CURRENT_CONDITION_NATIVE_INITIALIZATION_OR_STATE_TRAJECTORY.
+

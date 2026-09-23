@@ -1,0 +1,20 @@
+A6.1 read-only scientific-array audit: PASS
+Historical native initializer replay: NOT RUN
+
+sample_ids: array_equal true
+X1: array_equal true, max_abs_diff 0.0
+X2: array_equal true, max_abs_diff 0.0
+X3: array_equal true, max_abs_diff 0.0
+X4: array_equal true, max_abs_diff 0.0
+X5: array_equal true, max_abs_diff 0.0
+labeled_ids: array_equal true
+labeled_targets: array_equal true
+unlabeled_ids: array_equal true
+corruption_mask: array_equal true
+corruption_mask logical SHA256:
+d64f5fbf95518e5a77e44a1fe18a15dee9924b8c2a341e930f86f20ce5ac9e9d
+
+Container-byte policy: scientific arrays are the gate. Different sparse-split
+NPZ whole-file bytes are not a failure because the paper carrier additionally
+contains sample_ids; shared split arrays are exact.
+

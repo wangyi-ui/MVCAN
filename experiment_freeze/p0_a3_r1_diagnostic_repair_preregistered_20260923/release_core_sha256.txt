@@ -1,0 +1,6 @@
+release_core_manifest experiment_freeze/p0_a3_cross_dataset_parity_semantic_diagnostic_preregistered_20260923/release_core_sha256.txt
+release_core_manifest_sha256 0fc051ac62391261cb8742faf4396b85803748a45280fe5939dca63f1a4f3647
+manifest_entry_count 28
+verification_policy Verify the bound parent manifest SHA, then verify every listed release_core source SHA.
+release_core_change NONE
+

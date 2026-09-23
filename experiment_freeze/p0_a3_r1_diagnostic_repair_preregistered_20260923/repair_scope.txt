@@ -1,0 +1,18 @@
+Allowed changes:
+- experiments/paper/diagnostics/caltech_seed20_exact_sentinel.py
+- experiments/paper/diagnostics/msrc_native_initializer_parity_replay.py
+- tests/paper/test_p0_a3_r1_hash_namespace.py
+- tests/paper/test_p0_a3_r1_msrc_native_parity.py
+- this repair freeze and its .gitignore exception
+
+B0 separates value identity, diagnostic ndarray hashing, and canonical payload hashing.
+
+A6 verifies frozen source/input SHAs; compares scientific input arrays; calls the
+original historical generic_final_core_adapter.prepare_native_backbone implementation;
+validates replayed U/Pred/balance against frozen historical logical hashes; compares
+legacy/current pre-R2 q/M; and cross-calls historical versus release R2/R3 on the
+same state. It never loads full GT.
+
+Forbidden: release_core changes, formula copies or changes, parameter tuning,
+thresholds, method changes, real Gate C, and overwriting failed output.
+

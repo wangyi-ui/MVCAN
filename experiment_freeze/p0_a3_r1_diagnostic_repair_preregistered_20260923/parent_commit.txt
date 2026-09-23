@@ -1,0 +1,4 @@
+parent_commit 1b99e4748d27b37b136689da45220987160aaa52
+parent_tag p0-a3-cross-dataset-parity-semantic-diagnostic-preregistered-20260923
+parent_subject Preregister P0-A3 cross-dataset parity semantic diagnostic
+

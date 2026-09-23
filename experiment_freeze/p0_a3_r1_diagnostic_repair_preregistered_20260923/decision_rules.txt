@@ -1,0 +1,14 @@
+Case I: legacy replay exact; legacy/current pre-R2 state differs; same-state R2/R3
+cross-call exact -> NATIVE_INITIALIZATION_MIGRATION_DIVERGENCE.
+
+Case II: same-state historical/release R2 differs -> R2_MIGRATION_DIVERGENCE,
+FAIL CLOSED.
+
+Case III: R2 same but R3 differs -> R3_MIGRATION_DIVERGENCE, FAIL CLOSED.
+
+Case IV: scientific input arrays differ -> INPUT_MATERIALIZATION_DIVERGENCE;
+do not run the initializer.
+
+Case V: legacy replay cannot recover frozen historical U/Pred/balance hashes ->
+HISTORICAL_REPLAY_NONDETERMINISM_OR_ENVIRONMENT_DIVERGENCE; do not compare current.
+

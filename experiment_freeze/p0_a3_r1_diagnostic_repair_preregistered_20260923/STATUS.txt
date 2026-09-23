@@ -1,0 +1,10 @@
+P0-A3-R1 DIAGNOSTIC REPAIR PREREGISTRATION
+
+implementation/preparation only
+Caltech sentinel r1 real replay = NOT RUN
+MSRC historical native full replay = NOT RUN
+Gate C = NOT RUN
+1000 permutation = NOT RUN
+method modification = NONE
+release_core modification = NONE
+

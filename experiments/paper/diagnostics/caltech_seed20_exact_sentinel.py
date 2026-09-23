@@ -13,6 +13,7 @@ from release_core.data.weak_quality import ndarray_sha256
 from release_core.runtime import (
     ProvenanceConfig,
     RuntimeConfig,
+    _payload_sha256,
     evaluate_postseal,
     run_pre_gt,
 )
@@ -69,6 +70,11 @@ def _materialize_split_adapter(root):
     return artifact, audit
 
 
+def canonical_prediction_payload_sha256(value):
+    """Use the exact length-framed runtime namespace frozen by the R6 harness."""
+    return _payload_sha256(value)
+
+
 def compare_payload(sealed):
     comparisons = {}
     with np.load(sealed.bundle, allow_pickle=False) as current, np.load(
@@ -85,10 +91,25 @@ def compare_payload(sealed):
             _require(equal, "Caltech scientific payload mismatch: " + name)
             _require(maximum in (None, 0.0), "Caltech float payload is not exact: " + name)
             comparisons[name] = {"array_equal": equal, "max_abs_diff": maximum}
-        prediction_hash = ndarray_sha256(current["final_predictions"])
-    _require(prediction_hash == protocol.CALTECH_EXPECTED_PREDICTION,
-             "Caltech prediction logical SHA256 mismatch")
-    comparisons["prediction_logical_sha256"] = prediction_hash
+        diagnostic_hash = ndarray_sha256(current["final_predictions"])
+        canonical_hash = canonical_prediction_payload_sha256(
+            current["final_predictions"]
+        )
+        reference_canonical_hash = canonical_prediction_payload_sha256(
+            reference["final_predictions"]
+        )
+    _require(reference_canonical_hash == protocol.CALTECH_EXPECTED_PREDICTION,
+             "historical reference prediction hash namespace mismatch")
+    _require(canonical_hash == protocol.CALTECH_EXPECTED_PREDICTION,
+             "Caltech canonical prediction payload SHA256 mismatch")
+    comparisons["prediction_hashes"] = {
+        "ndarray_sha256_diagnostic_only": diagnostic_hash,
+        "canonical_prediction_payload_sha256": canonical_hash,
+        "historical_reference_canonical_prediction_payload_sha256": (
+            reference_canonical_hash
+        ),
+        "exact_replay_gate_namespace": "release_core.runtime._payload_sha256",
+    }
     return comparisons
 
 
@@ -96,6 +117,8 @@ def run_sentinel(output_dir, device="cuda:0"):
     """Run exactly one seed20 replay; this function intentionally trains."""
     output = Path(output_dir)
     _require(not output.exists(), "refusing to overwrite sentinel output")
+    _require(output.resolve() == protocol.CALTECH_SENTINEL_R1_OUTPUT.resolve(),
+             "repaired sentinel must use the frozen r1 output directory")
     verified = verify_frozen_inputs()
     with tempfile.TemporaryDirectory(prefix="p0_a3_caltech_split_") as temporary:
         split, split_audit = _materialize_split_adapter(temporary)

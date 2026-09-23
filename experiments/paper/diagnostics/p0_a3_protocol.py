@@ -98,6 +98,8 @@ CALTECH_EXPECTED_METRICS = {
 OUTPUT_ROOT = REPOSITORY_ROOT / (
     "outputs/paper/diagnostics/p0_a3_cross_dataset_seed20"
 )
+CALTECH_FAILED_SENTINEL_OUTPUT = OUTPUT_ROOT / "caltech_seed20_exact_sentinel"
+CALTECH_SENTINEL_R1_OUTPUT = OUTPUT_ROOT / "caltech_seed20_exact_sentinel_r1"
 PERMUTATION_SEED = 20
 PERMUTATION_COUNT = 1000
 

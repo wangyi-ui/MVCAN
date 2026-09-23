@@ -1,0 +1,28 @@
+Classification: HASH_NAMESPACE_MISMATCH
+Failed-output classification: FAILED_DIAGNOSTIC_WRAPPER_HASH_NAMESPACE
+
+The R6 expected prediction digest is the canonical runtime payload hash:
+SHA256 over three length-framed components in order:
+1. ASCII dtype string
+2. ASCII comma-separated shape
+3. contiguous C-order array bytes
+Each component is prefixed by its unsigned 64-bit big-endian byte length.
+
+Incorrect diagnostic namespace: release_core.data.weak_quality.ndarray_sha256
+Historical reference ndarray_sha256: ac90606029eba45fe69ef56b0cf4a25cd56aa85cd2146f17771267ac8302edc7
+Correct exact-replay namespace: release_core.runtime._payload_sha256
+Expected canonical prediction payload SHA256:
+b3a40a90c5069a2fe6926b48efe406dc51c670b204ccc1bd53c4d322e830d504
+
+The old wrapper passed exact np.array_equal gates for sample_ids,
+final_predictions, q_local, q_aligned, and M_v before failing its wrong hash gate.
+
+Preserved failed output (never overwrite or delete):
+outputs/paper/diagnostics/p0_a3_cross_dataset_seed20/caltech_seed20_exact_sentinel
+pre_gt_bundle.npz d3511417809cb4d5e717bd38f0da1173f61bde81653f0117e37ad5edd5158809
+pre_gt_audit.json 1f0e59b3a8c1e9599c5feb4eb1792b47ffcfe49a5029a9109509ffb58b0c255f
+pre_gt_seal.json 742259cdd68b3f7f59ad7fd639ca94e0aecf4c89c43ffcb7d52e41c9e491f784
+
+Repaired output is exclusive and must use:
+outputs/paper/diagnostics/p0_a3_cross_dataset_seed20/caltech_seed20_exact_sentinel_r1
+
