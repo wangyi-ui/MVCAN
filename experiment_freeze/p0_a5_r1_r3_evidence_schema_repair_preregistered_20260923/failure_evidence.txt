@@ -1,0 +1,10 @@
+Preserved failed log:
+outputs/paper/diagnostics/p0_a5_msrc_pre_r2_carrier_temporal_alignment_seed20.log
+SHA256: dd2948562485f77db7e400199075700d1dddd2cafd2765d43b136e85bcb67f7f
+
+Traceback terminal exception:
+RuntimeError: P0-A4 r3 exact-initialization evidence mismatch
+
+The exception arose in _verify_p0_a4_r3_evidence() before load_frozen_legacy_adapter,
+historical input validation, prepare_native_backbone, or any H/F/W/T construction.
+Therefore this run observed no scientific replay or carrier result.

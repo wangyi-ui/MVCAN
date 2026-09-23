@@ -1,0 +1,18 @@
+Frozen P0-A4-r3 report schema accepted by P0-A5-R1 only:
+- schema == paper-msrc-p0-a4-stagewise-parity-v1
+- dataset == MSRC
+- training_seed == 20
+- historical_training_seed == 20
+- release_code_modified == false
+- release_core_source_sha256 exactly equals the current frozen release manifest
+- whole report SHA256 == efe21bd367a535a98413b8bfd0430b1d345a155ef221c69b5137de470e2e242c
+- whole log SHA256 == 3afd7a01fe2a96d1bbbb93d94b704616edd986c399c5b6a08dbe9491ef6d991e
+
+The exact result belongs only to record["first_divergence"]:
+- decision == EXACT_INITIALIZATION_PARITY
+- last_exact_stage == S14_FINAL_PRE_R2
+- first_divergent_stage is null
+- first_divergent_components == []
+- first_divergent_paths == []
+
+There is intentionally no root-level decision fallback.

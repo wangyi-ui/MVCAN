@@ -17,6 +17,7 @@ import numpy as np
 import torch
 
 from experiments.paper.transfer_audit.input_artifacts import load_materialized_inputs
+from experiments.paper.transfer_diagnostics import materialize_msrc_current_condition_init as current_initializer
 from experiments.paper.transfer_diagnostics.materialize_msrc_current_condition_init import (
     verify_initialization,
 )
@@ -50,6 +51,8 @@ P0_A4_R3_REPORT_SHA256 = (
 P0_A4_R3_LOG_SHA256 = (
     "3afd7a01fe2a96d1bbbb93d94b704616edd986c399c5b6a08dbe9491ef6d991e"
 )
+P0_A4_R3_SCHEMA = "paper-msrc-p0-a4-stagewise-parity-v1"
+P0_A4_R3_DATASET = "MSRC"
 EXPECTED_SEED = 20
 ARM_ARRAYS = ("q_local", "q_aligned", "M_v", "U_cycle", "y_gen",
               "PredRelation_true", "relation_balance_weights_true")
@@ -261,6 +264,31 @@ def _build_cpu_clone(final_model, state_dict):
     clone.train()
     return clone
 
+def _validate_p0_a4_r3_record(record, release_source_sha256):
+    """Accept only the frozen nested first-divergence schema."""
+    _require(isinstance(record, dict), "P0-A4 r3 report must be a JSON object")
+    _require(
+        record["schema"] == P0_A4_R3_SCHEMA
+        and record["dataset"] == P0_A4_R3_DATASET
+        and record["training_seed"] == EXPECTED_SEED
+        and record["historical_training_seed"] == EXPECTED_SEED
+        and record["release_code_modified"] is False
+        and record["release_core_source_sha256"] == release_source_sha256,
+        "P0-A4 r3 root evidence metadata mismatch",
+    )
+    first = record.get("first_divergence")
+    _require(isinstance(first, dict),
+             "P0-A4 r3 first_divergence must be an object")
+    _require(
+        first["decision"] == "EXACT_INITIALIZATION_PARITY"
+        and first["last_exact_stage"] == "S14_FINAL_PRE_R2"
+        and first["first_divergent_stage"] is None
+        and first["first_divergent_components"] == []
+        and first["first_divergent_paths"] == [],
+        "P0-A4 r3 exact-initialization evidence mismatch",
+    )
+    return first
+
 
 def _verify_p0_a4_r3_evidence():
     from experiments.paper.transfer_audit.input_artifacts import file_sha256
@@ -272,13 +300,19 @@ def _verify_p0_a4_r3_evidence():
              "P0-A4 r3 log identity mismatch")
     with report.open("r", encoding="utf-8") as stream:
         record = json.load(stream)
-    _require(record.get("decision") == "EXACT_INITIALIZATION_PARITY"
-             and record.get("last_exact_stage") == "S14_FINAL_PRE_R2",
-             "P0-A4 r3 exact-initialization evidence mismatch")
+    first = _validate_p0_a4_r3_record(
+        record, current_initializer._release_source_hashes()
+    )
     return {"report_sha256": P0_A4_R3_REPORT_SHA256,
             "log_sha256": P0_A4_R3_LOG_SHA256,
-            "decision": record["decision"],
-            "last_exact_stage": record["last_exact_stage"]}
+            "schema": record["schema"],
+            "dataset": record["dataset"],
+            "training_seed": record["training_seed"],
+            "historical_training_seed": record["historical_training_seed"],
+            "release_core_source_sha256": record["release_core_source_sha256"],
+            "decision": first["decision"],
+            "last_exact_stage": first["last_exact_stage"]}
+
 
 
 def run_audit(output_dir, device="cuda:0"):

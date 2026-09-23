@@ -1,0 +1,8 @@
+Root cause: the old wrapper read record.get("decision") and record.get("last_exact_stage")
+from the report root. Those fields belong only to the nested first_divergence object.
+
+Minimal repair: add _validate_p0_a4_r3_record(), require the nested object and
+all five exact-parity fields, retain whole-file SHA checks, and validate root
+schema/dataset/seeds/release manifest fields. No H/F/W/T definitions, decisions,
+scientific formulas, hyperparameters, pipeline, release_core, or historical
+adapter were changed.
