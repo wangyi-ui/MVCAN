@@ -11,7 +11,6 @@ import json
 import os
 from contextlib import contextmanager
 from pathlib import Path
-from types import SimpleNamespace
 
 import numpy as np
 import torch
@@ -23,9 +22,12 @@ from experiments.paper.transfer_diagnostics.materialize_msrc_current_condition_i
 )
 from release_core.backbone.clustering import native_refresh_from_latents
 from release_core.data.weak_quality import ndarray_sha256
-from release_core.semantics import build_relation_semantics
+from release_core.semantics import (
+    SparseLabelSplit,
+    build_relation_semantics,
+    validate_sparse_label_split,
+)
 from release_core.utility import build_directional_actions, compute_directional_cycle_utility
-
 from . import p0_a3_protocol as protocol
 from .msrc_g0b0_parity_audit import (
     compare_arrays,
@@ -79,13 +81,37 @@ def _write_json_exclusive(path, value):
         os.fsync(stream.fileno())
 
 
-def _split(value):
-    return SimpleNamespace(
-        labeled_ids=np.asarray(value["labeled_ids"], dtype=np.int64),
-        labeled_targets=np.asarray(value["labeled_targets"], dtype=np.int64),
-        unlabeled_ids=np.asarray(value["unlabeled_ids"], dtype=np.int64),
+def _historical_sparse_split(historical, legacy):
+    """Construct the release R3 contract from validated historical inputs."""
+    split = historical["split"]
+    result = SparseLabelSplit(
+        sample_ids=np.asarray(historical["sample_ids"], dtype=np.int64),
+        labeled_ids=np.asarray(split["labeled_ids"], dtype=np.int64),
+        labeled_targets=np.asarray(split["labeled_targets"], dtype=np.int64),
+        unlabeled_ids=np.asarray(split["unlabeled_ids"], dtype=np.int64),
+        class_count=int(historical["contract"].K),
+        labels_per_class=int(historical["contract"].labels_per_class),
+        label_seed=EXPECTED_SEED,
+        dataset_name=legacy.MSRC_RUNTIME_SPEC.dataset_name,
+    )
+    return validate_sparse_label_split(result)
+
+
+def _sparse_split_exact(left, right):
+    left = validate_sparse_label_split(left)
+    right = validate_sparse_label_split(right)
+    arrays = ("sample_ids", "labeled_ids", "labeled_targets", "unlabeled_ids")
+    metadata = ("class_count", "labels_per_class", "label_seed", "dataset_name")
+    return (
+        all(np.array_equal(getattr(left, name), getattr(right, name))
+            for name in arrays)
+        and all(getattr(left, name) == getattr(right, name) for name in metadata)
     )
 
+
+def _require_sparse_split_parity(historical_split, current_split):
+    _require(_sparse_split_exact(historical_split, current_split),
+             "HISTORICAL_CURRENT_SPARSE_SPLIT_CONTRACT_MISMATCH")
 
 def _state_dict_cpu(model):
     autoencoders = tuple(model.autoencoders)
@@ -376,7 +402,12 @@ def run_audit(output_dir, device="cuda:0"):
             legacy.MSRC_RUNTIME_SPEC,
         )
     h = capture.require_complete()
-    historical_split = _split(historical["split"])
+    historical_split = _historical_sparse_split(historical, legacy)
+    _, current_views, _, materialized_current_split = load_materialized_inputs(
+        protocol.MSRC_INPUT_DIR
+    )
+    current_split = validate_sparse_label_split(materialized_current_split)
+    _require_sparse_split_parity(historical_split, current_split)
     H = _carrier_from_aligned(
         h["H4_final_q_local"], h["H4_final_q_aligned_retained_M"],
         h["H2_refresh_M_v"], historical_split,
@@ -385,7 +416,8 @@ def run_audit(output_dir, device="cuda:0"):
     _require(historical_exact, "HISTORICAL_CARRIER_REPLAY_NOT_EXACT")
 
     manifest = verify_current_true_u()
-    F, current_split = reconstruct_current_msrc(device)
+    F, reconstructed_current_split = reconstruct_current_msrc(device)
+    _require_sparse_split_parity(current_split, reconstructed_current_split)
     current_identity = validate_reconstruction_against_manifest(F, manifest)
     _require(all(item["exact"] for item in current_identity.values()),
              "CURRENT_RECONSTRUCTION_NOT_EXACT")
@@ -394,7 +426,6 @@ def run_audit(output_dir, device="cuda:0"):
     current_model.to_device(device)
     for autoencoder in current_model.autoencoders:
         autoencoder.train()
-    _, current_views, _, _ = load_materialized_inputs(protocol.MSRC_INPUT_DIR)
     current_full_views = [torch.from_numpy(view).to(device) for view in current_views]
     current_snapshot = model_state_snapshot(current_model)
     q_current_local, _ = legacy.coordinate_snapshot(

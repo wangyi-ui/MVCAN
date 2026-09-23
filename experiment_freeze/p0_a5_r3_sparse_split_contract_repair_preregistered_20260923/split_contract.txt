@@ -1,0 +1,18 @@
+Historical construction uses only validated historical materialization values:
+SparseLabelSplit(sample_ids=historical["sample_ids"],
+labeled_ids=historical["split"]["labeled_ids"],
+labeled_targets=historical["split"]["labeled_targets"],
+unlabeled_ids=historical["split"]["unlabeled_ids"],
+class_count=historical["contract"].K,
+labels_per_class=historical["contract"].labels_per_class,
+label_seed=20,
+dataset_name=legacy.MSRC_RUNTIME_SPEC.dataset_name), then
+validate_sparse_label_split(...).
+
+Before H/F/W/T, historical and current validated SparseLabelSplit objects must
+match exactly on sample_ids, labeled_ids, labeled_targets, unlabeled_ids,
+class_count, labels_per_class, label_seed, and dataset_name. Mismatch fails
+closed as HISTORICAL_CURRENT_SPARSE_SPLIT_CONTRACT_MISMATCH.
+
+No historical hash namespace is compared; only scientific arrays and metadata.
+H/T use historical split; F/W use current split. GT remains unavailable.

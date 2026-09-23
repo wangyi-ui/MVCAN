@@ -1,0 +1,10 @@
+Preserved failed log:
+outputs/paper/diagnostics/p0_a5_msrc_pre_r2_carrier_temporal_alignment_seed20_r2.log
+SHA256: 3d545cc7c8911d0a65335c1178149a3a90633a1dcef3e66775254c076da9f698
+
+Traceback terminal exception:
+ValueError: split must be a SparseLabelSplit
+
+The failure is at H -> build_relation_semantics -> validate_sparse_label_split,
+after historical prepare_native_backbone returned and H0-H4 were captured. No
+R3 semantic output, F/W/T arm, or scientific P0-A5 decision was produced.
