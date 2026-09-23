@@ -1,0 +1,2 @@
+tag=r7-final-extraction-closure-pass-20260923
+commit=de1d9879942ac7fb01d93876427c780e7fb226be

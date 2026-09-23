@@ -1,0 +1,37 @@
+P0-A0 / P0-A1 MSRC-v1 FROZEN-CORE TRANSFER PROTOCOL
+
+Dataset:
+MSRC-v1, explicit path only, no fallback.
+
+Primary condition:
+N=210 V=5 K=7 view_dims=[24,576,512,256,254]
+label_seed=20 labels_per_class=2 L=14 Nu=196
+weak_quality_seed=20 SNR=2.5 dB S(V)=20
+training_seed=20 epochs=20 batch_size=256 learning_rate=1e-4
+refresh_interval=100 native_lambda1=0.01
+
+Corruption:
+525/1050 pairs; 105 rows x2; 105 rows x3; per-view=[105,105,105,105,105]
+logical SHA256=d64f5fbf95518e5a77e44a1fe18a15dee9924b8c2a341e930f86f20ce5ac9e9d
+
+Sparse split:
+labeled_ids=[17,20,30,42,60,81,96,107,139,142,153,175,182,201]
+labeled_targets=[0,0,1,1,2,2,3,3,4,4,5,5,6,6]
+split SHA256=4f16e8b1b8213591a7ea1d36115335ccee43bf568d32bbcb007f929bc9b15231
+
+Arms:
+BASE=no R4 objective; no Phase A optimizer/execution; frozen native Phase B.
+TRUE_U=true U_cycle + true PredRelation + true balance.
+UNIFORM=ones_like(U_cycle) + true PredRelation + true balance.
+
+All arms share the same materialized data, sparse split, frozen transfer
+initialization, training seed, native Phase B, second-pass native KMeans final
+prediction rule, pre-GT seal, and post-seal evaluator.
+
+The transfer initialization is the registered B6-WQ0 Canonical Frozen Baseline
+seed20 state. Its historical source condition was snr2p5_k2_seed20 (the older
+40-percent MSRC mask). It is used only as a fixed transfer initialization; this
+protocol does not claim that it was trained on the new 50-percent mask.
+
+Formal training and scientific performance conclusions are not authorized by
+this infrastructure freeze.

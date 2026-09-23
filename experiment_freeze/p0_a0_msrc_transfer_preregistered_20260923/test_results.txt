@@ -1,0 +1,6 @@
+paper_tests=PASS (19 passed in 1.64s)
+release_regression_full=ENVIRONMENT_INCOMPLETE (245 passed, 6 failed, 33 errors; missing local historical datasets/artifacts)
+release_regression_artifact_independent=PASS (239 passed, 1 warning in 11.51s)
+git_diff_check=PASS (no output)
+formal_training_run=NO
+scientific_performance_result=NONE

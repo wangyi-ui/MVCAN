@@ -1,0 +1,5 @@
+path=/root/autodl-tmp/CVPR24-MVCAN/data/MSRC_v1.mat
+whole_file_sha256=38d89aa41ae984f0b026f4baa8b5dcb7c569c471e2fb42b73a0f6743398e9103
+size_bytes=1114705
+fallback_allowed=false
+copy_into_paper_worktree=false

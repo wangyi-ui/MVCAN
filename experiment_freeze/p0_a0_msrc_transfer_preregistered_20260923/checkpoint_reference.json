@@ -1,0 +1,29 @@
+{
+  "audit_schema": "paper-msrc-p0-checkpoint-reference-v1",
+  "checkpoint_paths": [
+    "/root/autodl-tmp/CVPR24-MVCAN/outputs/b2_weak_quality/snr2p5_k2_seed20/models/MSRC-v11V.pth",
+    "/root/autodl-tmp/CVPR24-MVCAN/outputs/b2_weak_quality/snr2p5_k2_seed20/models/MSRC-v12V.pth",
+    "/root/autodl-tmp/CVPR24-MVCAN/outputs/b2_weak_quality/snr2p5_k2_seed20/models/MSRC-v13V.pth",
+    "/root/autodl-tmp/CVPR24-MVCAN/outputs/b2_weak_quality/snr2p5_k2_seed20/models/MSRC-v14V.pth",
+    "/root/autodl-tmp/CVPR24-MVCAN/outputs/b2_weak_quality/snr2p5_k2_seed20/models/MSRC-v15V.pth"
+  ],
+  "checkpoint_sha256": [
+    "eb75aa4c607256acd576fd036306a4654c6a5a748fd9f3e0e36a3a2b2b420c1f",
+    "c309f37326f6ccc3e3b6c360b088eda07d1294b463908669b9fc57e8d51a5ca7",
+    "003f77ed027da8f8ac235a77a6c5c74ba89f1dfba37cddbf1c69991839bb4d3d",
+    "496ad10012120a04d10aef6f74c2c6ab759ec7ffa76a748d384155ac1b99ffa8",
+    "ff450b868021daef13b013fc369d59b4fcd16804752bd330b85480290422094c"
+  ],
+  "checkpoint_count": 5,
+  "dataset": "MSRC-v1",
+  "historical_backbone_sha256": "f4f026f47938c619bfdfb868cfcdb5eac354652a51d71199edbc997c0a5de0ab",
+  "release_runtime_initial_model_sha256": "626eaf912284cc5f8f536b542ecf3d10fe4ae40f61eaecdabcc8e5bf4a438031",
+  "source_condition": "snr2p5_k2_seed20",
+  "source_is_transfer_initialization_only": true,
+  "source_mask_is_new_half_mask": false,
+  "source_manifest": "experiments/b6_weak_quality/b6_wq0_frozen_baseline_manifest.json",
+  "source_manifest_sha256": "f7ba5bd25dfe4dfdbbb3db1f4956c601db33bf3fffce8f456ff2447c4ffa187e",
+  "source_provenance": "/root/autodl-tmp/CVPR24-MVCAN/outputs/b6_weak_quality/wq0_frozen_baseline_provenance/seed20_provenance.json",
+  "source_provenance_sha256": "6796be2c72c2a2039ab975fb4e24a55595592038497507b2ba295fdaaf05bac5",
+  "strict_release_core_load": true
+}

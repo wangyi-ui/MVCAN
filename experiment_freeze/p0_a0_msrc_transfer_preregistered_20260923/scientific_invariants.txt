@@ -1,0 +1,18 @@
+Sparse labels determine semantic direction/content.
+Frozen U_cycle determines action validity.
+
+TRUE_U and UNIFORM order:
+Phase A -> conditional target refresh -> Phase B.
+
+BASE authoritative historical control:
+no R4 objective / no Phase A; conditional target refresh -> native Phase B.
+
+U_cycle detached=true
+PredRelation detached=true
+balance detached=true
+anchor stop-gradient=true
+query gradient enabled=true
+final prediction=second-pass native KMeans IDs
+full GT before pre-GT seal=false
+auto tuning=false
+new scientific formula=false

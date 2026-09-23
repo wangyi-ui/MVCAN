@@ -62,7 +62,9 @@ outputs/
 
 # Local formal/freeze archives
 # Scientific source is versioned separately in experiments/ and tests/.
-experiment_freeze/
+experiment_freeze/*
+!experiment_freeze/p0_a0_msrc_transfer_preregistered_20260923/
+!experiment_freeze/p0_a0_msrc_transfer_preregistered_20260923/**
 
 # Temporary files
 *.tmp

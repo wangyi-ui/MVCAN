@@ -1,0 +1,11 @@
+P0-A0 MSRC TRANSFER PROTOCOL / INFRASTRUCTURE PREPARATION
+
+parent_r7_final=de1d9879942ac7fb01d93876427c780e7fb226be
+formal_results=NONE
+MSRC_seed20_smoke=NOT_RUN
+multi_seed_formal=NOT_RUN
+scientific_performance_decision=NONE
+release_core_modified=NO
+
+This status records infrastructure preparation only. Unit/regression test PASS
+must not be interpreted as scientific performance PASS.
