@@ -1,0 +1,14 @@
+r2_reported_decision=NATIVE_UPDATE_ORCHESTRATION_DIVERGENCE
+last_exact_stage=S6_PRE_NATIVE_0_UPDATE
+first_divergent_stage=S7_POST_NATIVE_0
+first_divergent_components=["native_update"]
+first_divergent_paths=[
+  "native_update[0].losses.total",
+  "native_update[1].losses.total",
+  "native_update[2].losses.total",
+  "native_update[3].losses.total",
+  "native_update[4].losses.total"
+]
+
+No model, optimizer, gradient, parameter, reconstruction, clustering, latent,
+q, refresh, or batch-order path was reported as divergent.

@@ -1,0 +1,24 @@
+ROOT CAUSE
+
+Historical instrumentation converted reconstruction and clustering tensors to
+Python floats and then computed total with Python float arithmetic. Current
+instrumentation computed total in float32 tensor arithmetic and only then
+converted it to Python float. Exact component values therefore produced
+different least-significant total representations.
+
+CLASSIFICATION
+
+DIAGNOSTIC_DERIVED_TOTAL_LOSS_REPRESENTATION_MISMATCH
+
+MINIMAL TRACER REPAIR
+
+1. canonical_native_total(reconstruction, clustering, lambda1) computes
+   float(reconstruction) + float(lambda1) * float(clustering).
+2. Both paths persist reconstruction, clustering, and canonical_total using
+   the same helper and already recorded component values.
+3. Both paths may retain raw_total_tensor_value for diagnosis.
+4. raw_total_tensor_value is excluded recursively from scientific parity.
+5. model, optimizer, gradient, parameter before/after, reconstruction,
+   clustering, canonical_total, refresh, latent, and q remain compared.
+
+No scientific loss, gradient, optimizer update, or initializer code changed.

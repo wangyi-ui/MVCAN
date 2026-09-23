@@ -103,6 +103,11 @@ def preview_first_batch_ids(generator, sample_count, batch_size):
     return [int(value) for value in order[:min(int(batch_size), 32)]]
 
 
+def canonical_native_total(reconstruction, clustering, lambda1):
+    """Derive a path-independent diagnostic total from persisted components."""
+    return float(reconstruction) + float(lambda1) * float(clustering)
+
+
 def static_audit_table():
     """Frozen A-H static audit; dynamic-looking differences are not decisions."""
     return [
@@ -256,13 +261,18 @@ class TraceController:
                 )
         return result
 
-    def capture_loss(self, view_id, rec, clu):
+    def capture_loss(self, view_id, rec, clu, raw_total):
         if self.phase != "native" or self.native_epoch not in SELECTED_NATIVE_UPDATES:
             return
+        reconstruction = float(rec.detach().cpu().item())
+        clustering = float(clu.detach().cpu().item())
         self.losses.setdefault(str(self.native_epoch), {})[str(view_id)] = {
-            "reconstruction": float(rec.detach().cpu().item()),
-            "clustering": float(clu.detach().cpu().item()),
-            "total": float((rec + self.native_lambda1 * clu).detach().cpu().item()),
+            "reconstruction": reconstruction,
+            "clustering": clustering,
+            "canonical_total": canonical_native_total(
+                reconstruction, clustering, self.native_lambda1
+            ),
+            "raw_total_tensor_value": float(raw_total.detach().cpu().item()),
         }
 
     def before_refresh(self):
@@ -357,6 +367,7 @@ def _instrument_path(module, controller, historical):
         return result
 
     mse_counter = {"epoch": None, "count": 0}
+    historical_reconstruction_tensors = {}
 
     def mse_wrapper(input_value, target, *args, **kwargs):
         result = original_mse(input_value, target, *args, **kwargs)
@@ -371,10 +382,19 @@ def _instrument_path(module, controller, historical):
             record["reconstruction" if loss_id == 0 else "clustering"] = float(
                 result.detach().cpu().item()
             )
+            tensor_key = (controller.native_epoch, view_id)
+            if loss_id == 0:
+                historical_reconstruction_tensors[tensor_key] = result.detach()
             if loss_id == 1:
-                record["total"] = (
-                    record["reconstruction"]
-                    + controller.native_lambda1 * record["clustering"]
+                record["canonical_total"] = canonical_native_total(
+                    record["reconstruction"], record["clustering"],
+                    controller.native_lambda1,
+                )
+                record["raw_total_tensor_value"] = float(
+                    (
+                        historical_reconstruction_tensors.pop(tensor_key)
+                        + controller.native_lambda1 * result.detach()
+                    ).cpu().item()
                 )
             mse_counter["count"] += 1
         return result
@@ -382,7 +402,7 @@ def _instrument_path(module, controller, historical):
     def objective_wrapper(reconstruction, target, q_local, p_local, lambda1):
         result = original_objective(reconstruction, target, q_local, p_local, lambda1)
         view_id = len(controller.losses.get(str(controller.native_epoch), {}))
-        controller.capture_loss(view_id, result[1], result[2])
+        controller.capture_loss(view_id, result[1], result[2], result[0])
         return result
 
     module._build_optimizers = build_wrapper
@@ -411,7 +431,7 @@ def _remove_diagnostic_statistics(value):
         return {
             key: _remove_diagnostic_statistics(item)
             for key, item in value.items()
-            if not key.startswith("_") and key != "python_random_hash" and not key.endswith("_statistics")
+            if not key.startswith("_") and key not in ("python_random_hash", "raw_total_tensor_value") and not key.endswith("_statistics")
         }
     if isinstance(value, list):
         return [_remove_diagnostic_statistics(item) for item in value]
