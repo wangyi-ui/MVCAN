@@ -1,0 +1,27 @@
+P0-A2 PREREGISTERED DIAGNOSTIC RULES
+
+No absolute ACC/NMI/ARI threshold is used.
+
+For each of ACC, NMI, and ARI record:
+DeltaRelation = UNIFORM - BASE
+DeltaUtility = TRUE_U - UNIFORM
+DeltaFull = TRUE_U - BASE
+
+The diagnostic case is selected from ACC ordering only:
+
+Case A: TRUE_U > UNIFORM > BASE
+Interpretation: same-condition initialization restores positive relation and
+utility contributions. Prefer initialization mismatch as the explanation for
+P0-A1; do not modify R2-R5.
+
+Case B: UNIFORM > BASE and TRUE_U <= UNIFORM
+Interpretation: relation transfer is positive while action-specific U still
+requires an R2 diagnosis on MSRC.
+
+Case C: all remaining orderings, including BASE >= UNIFORM and/or the absence
+of the Case-A/Case-B pattern.
+Interpretation: the semantic relation path does not establish a stable positive
+gain under the same-condition initialization; only then proceed to layered
+R3/R4/R2 diagnosis.
+
+No case directly authorizes a method or hyperparameter change.

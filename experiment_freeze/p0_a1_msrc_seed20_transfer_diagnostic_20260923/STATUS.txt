@@ -1,0 +1,9 @@
+P0-A1 = COMPLETED
+formal multi-seed = NOT RUN
+method modification = NONE
+hyperparameter tuning = NONE
+performance ordering = BASE > UNIFORM > TRUE_U
+scientific conclusion = DIAGNOSTIC ONLY
+
+P0-A1 is historical-initialization zero-tuning diagnostic evidence. It is not
+a final method-failure conclusion and must not be overwritten or reclassified.

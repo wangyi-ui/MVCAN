@@ -1,0 +1,15 @@
+SOLE CHANGED EXPERIMENTAL VARIABLE
+P0-A1 initialization source=historical snr2p5_k2_seed20 40-percent condition
+P0-A2 initialization source=current MSRC Primary 50-percent condition
+
+FIXED ACROSS P0-A1 AND P0-A2
+dataset, input feature artifact, corruption, sparse split, arm definitions,
+training_seed=20, epochs=20, batch_size=256, learning_rate=0.0001,
+refresh_interval=100, native_lambda1=0.01, label_seed=20,
+weak_quality_seed=20, SNR=2.5, R2/R3/R4/R5 formulas, GT firewall,
+second-pass native KMeans final prediction, and post-seal evaluation.
+
+All P0-A2 arms must bind identical initialization checkpoint hashes and the
+same combined initial-model SHA256. TRUE_U and UNIFORM must additionally bind
+identical q_local, q_aligned, M_v, true U_cycle, PredRelation, and balance.
+Their sole within-P0-A2 difference is selected utility: true U versus ones.

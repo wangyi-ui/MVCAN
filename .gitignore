@@ -65,6 +65,10 @@ outputs/
 experiment_freeze/*
 !experiment_freeze/p0_a0_msrc_transfer_preregistered_20260923/
 !experiment_freeze/p0_a0_msrc_transfer_preregistered_20260923/**
+!experiment_freeze/p0_a1_msrc_seed20_transfer_diagnostic_20260923/
+!experiment_freeze/p0_a1_msrc_seed20_transfer_diagnostic_20260923/**
+!experiment_freeze/p0_a2_msrc_same_condition_init_preregistered_20260923/
+!experiment_freeze/p0_a2_msrc_same_condition_init_preregistered_20260923/**
 
 # Temporary files
 *.tmp

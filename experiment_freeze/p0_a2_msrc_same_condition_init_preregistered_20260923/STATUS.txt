@@ -1,0 +1,9 @@
+P0-A2 SAME-CONDITION INITIALIZATION DIAGNOSTIC
+implementation/preparation only
+initialization run = NOT RUN
+three-arm training = NOT RUN
+formal multi-seed = NOT RUN
+method modification = NONE
+hyperparameter tuning = NONE
+scientific performance result = NONE
+release_core modified = NO

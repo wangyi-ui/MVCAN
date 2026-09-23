@@ -1,0 +1,8 @@
+paper_tests=PASS (38 passed, 1 warning in 2.16s)
+artifact_independent_release_regression=PASS (239 passed, 1 warning in 11.80s)
+cli_help=PASS
+git_diff_check=PASS (no output)
+initialization_run=NO
+three_arm_training=NO
+postseal_metrics=NO
+scientific_performance_result=NONE

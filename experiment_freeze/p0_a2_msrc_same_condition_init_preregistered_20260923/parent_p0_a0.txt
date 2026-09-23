@@ -1,0 +1,3 @@
+tag=p0-a0-msrc-transfer-preregistered-20260923
+tag_object=edbc481ce1cfff114d7b0b841a6eb1f501903e93
+commit=cf59ad7a41fd0b0347c03e63036c558800ba7735

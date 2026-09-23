@@ -1,0 +1,30 @@
+P0-A2 MSRC-v1 SAME-CONDITION INITIALIZATION DIAGNOSTIC
+
+Parent=P0-A0 commit cf59ad7a41fd0b0347c03e63036c558800ba7735
+P0-A1 evidence is preserved byte-for-byte and is diagnostic only.
+
+Primary input is reused, not rematerialized:
+feature SHA256=2a225229de5b4c4d87ac530860691c351a0e8e3c1a015f1ecd290673f663755d
+dataset SHA256=38d89aa41ae984f0b026f4baa8b5dcb7c569c471e2fb42b73a0f6743398e9103
+mask logical SHA256=d64f5fbf95518e5a77e44a1fe18a15dee9924b8c2a341e930f86f20ce5ac9e9d
+split logical SHA256=4f16e8b1b8213591a7ea1d36115335ccee43bf568d32bbcb007f929bc9b15231
+
+Current-condition native initialization:
+independent per-view release MultiViewBackbone
+AE reconstruction initialization epochs=200
+KMeans n_clusters=7 n_init=100 random_state=20
+native config epoch=1000
+historical native loop=epoch 0..1000 inclusive, 1001 iterations
+native target refresh epochs=0,100,200,300,400,500,600,700,800,900,1000
+native target refresh count=11
+learning_rate=0.0001 lambda1=0.01 batch_size=256 seed=20
+full GT=false sparse labels=false U_cycle=false Relation=false
+
+Diagnostic arms reuse P0-A1 semantics/configuration exactly:
+BASE=no R4/no semantic optimizer/no Phase A; refresh then native Phase B.
+TRUE_U=true frozen U_cycle + true PredRelation + true balance.
+UNIFORM=ones_like(TRUE_U U_cycle) + identical PredRelation/balance.
+Closed-loop order=Phase A -> conditional refresh -> Phase B.
+Final prediction=second-pass native KMeans IDs.
+
+No training or scientific result is authorized by this preregistration freeze.

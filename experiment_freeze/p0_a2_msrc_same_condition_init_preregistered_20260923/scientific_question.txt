@@ -1,0 +1,7 @@
+If the dataset-native MVCAN initialization is prepared on the exact current
+MSRC Primary 50-percent weak-quality feature artifact, does the relationship
+among BASE, UNIFORM, and TRUE_U change relative to P0-A1?
+
+This diagnostic asks only about initialization-condition mismatch. It does not
+authorize changes to U_cycle, relation semantics, loss, schedule, architecture,
+hyperparameters, or the frozen release core.

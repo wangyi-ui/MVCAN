@@ -1,0 +1,9 @@
+P0-A1 compared BASE, TRUE_U, and UNIFORM under one fixed zero-tuning seed20
+protocol. All arms shared the current 50-percent MSRC input condition but used
+transfer initialization checkpoints whose historical source was the older
+snr2p5_k2_seed20 40-percent condition.
+
+The observed ordering BASE > UNIFORM > TRUE_U is diagnostic evidence only.
+It does not identify a final method failure because initialization-condition
+mismatch remains a controlled alternative explanation. No method modification,
+hyperparameter selection, or formal multi-seed inference is licensed by P0-A1.
