@@ -1,0 +1,37 @@
+CALTECH SEED20 EXACT SENTINEL R1
+output=outputs/paper/diagnostics/p0_a3_cross_dataset_seed20/caltech_seed20_exact_sentinel_r1
+result=PASS
+ACC=0.8614285714285714
+NMI=0.7734181958700173
+ARI=0.753482395557614
+sample_ids_exact=true
+final_predictions_exact=true
+q_local_exact=true
+q_aligned_exact=true
+M_v_exact=true
+floating_max_abs_diff=0.0
+canonical_prediction_payload_sha256=b3a40a90c5069a2fe6926b48efe406dc51c670b204ccc1bd53c4d322e830d504
+conclusion=broad release_core migration failure is not supported
+
+MSRC A6 CASE I
+output=outputs/paper/diagnostics/p0_a3_cross_dataset_seed20/msrc_native_initializer_parity_replay_r1
+decision=NATIVE_INITIALIZATION_MIGRATION_DIVERGENCE
+input_scientific_arrays_equal=true
+historical_replay_frozen_action_exact=true
+r2_cross_call_exact=true
+r3_cross_call_exact=true
+pre_r2_state_exact=false
+full_gt_loaded=false
+conclusion=first divergence is inside native initialization/preparation
+
+INPUT EXACTNESS
+sample_ids=array_equal,max_abs_diff=0.0
+corruption_mask=array_equal,max_abs_diff=0.0
+labeled_ids=array_equal,max_abs_diff=0.0
+labeled_targets=array_equal,max_abs_diff=0.0
+unlabeled_ids=array_equal,max_abs_diff=0.0
+view_1=array_equal,max_abs_diff=0.0
+view_2=array_equal,max_abs_diff=0.0
+view_3=array_equal,max_abs_diff=0.0
+view_4=array_equal,max_abs_diff=0.0
+view_5=array_equal,max_abs_diff=0.0

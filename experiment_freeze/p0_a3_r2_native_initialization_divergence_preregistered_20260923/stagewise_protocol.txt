@@ -1,0 +1,34 @@
+STAGEWISE SNAPSHOT PROTOCOL
+
+S0  after construction, before any optimizer step
+S1  after AE epoch 0's only minibatch update
+S2  after AE epoch 1
+S3  after AE epoch 10
+S4  after AE epoch 199 / AE completion
+S5  immediately after per-view KMeans center initialization
+S6  after native refresh 0, before native epoch 0 update
+S7  after native epoch 0
+S8  after native epoch 1
+S9  after native epoch 99
+S10 after refresh at native epoch 100, before its update
+S11 after native epoch 100
+S12 after native epoch 500
+S13 after native epoch 1000
+S14 final pre-R2 state
+
+Each stage stores canonical logical hashes for aggregate model state; five
+per-view model, encoder, decoder and cluster states; aggregate and per-parameter
+Adam state including step/exp_avg/exp_avg_sq; DataLoader generator; NumPy;
+torch CPU/CUDA RNG; per-view latent and q_local.
+
+The first 32 first-batch sample IDs are stored for AE epochs 0,1,10,199 and
+native epochs 0,1,99,100,500,1000. KMeans calls store input, label and center
+hashes. Refresh snapshots additionally name global latent concatenation,
+global IDs/centers, view weights, M_v, P_global and per-view P_local hashes.
+Selected native updates store REC, CLU and total losses plus per-view gradient,
+parameter-before/after and optimizer-before/after hashes.
+
+No full checkpoints are persisted. Numeric tensor statistics are retained only
+for the last exact and first divergent stages. Python random state is recorded
+but excluded from scientific parity because neither initializer's numerical
+path consumes Python random.

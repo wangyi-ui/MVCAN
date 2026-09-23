@@ -1,0 +1,52 @@
+A-H STATIC AUDIT
+
+A RNG initialization
+Historical seeds NumPy and torch CPU/CUDA, enables deterministic algorithms and
+deterministic cuDNN, and disables TF32. Current additionally seeds Python random,
+fixes torch/BLAS threads, and explicitly selects the
+CUDA device. This is an observable wrapper difference; stage hashes decide
+whether it changes scientific state.
+
+B Model construction order
+Both instantiate views 0..4, reset torch CPU/CUDA seed to 20 before each AE,
+construct the same FC layers/cluster tensor in the same order, move all views
+after construction, and use float32. No obvious scientific difference.
+
+C Optimizer
+Both create one torch.optim.Adam per view after model/data construction and
+before AE training. Both specify only lr=1e-4, hence share Adam defaults. No
+all-view optimizer exists. No obvious optimizer topology difference.
+
+D DataLoader
+Both build TensorDataset from the same five exact feature arrays. Both create
+one CPU torch.Generator seeded 20, reuse it continuously from AE into native,
+create a new shuffled DataLoader each epoch, use batch_size=256,
+drop_last=False, and leave num_workers/pin_memory at defaults. No obvious
+generator or order difference.
+
+E AE pretraining
+Both execute 200 epochs indexed 0..199, then batch loop then view loop 0..4.
+Each view uses mean-reduced MSE, zero_grad(set_to_none=True), backward, step.
+Because N=210 and batch_size=256, each epoch has one batch. No obvious order
+or objective difference.
+
+F KMeans center initialization
+Both use raw post-AE latent (no MinMax), views 0..4, n_clusters=7, n_init=100,
+random_state=20, and copy centers at the cluster tensor dtype/device.
+Historical reuses one KMeans estimator object for five fit_predict calls;
+current constructs a fresh helper-owned estimator for each view. This is a
+real call-structure difference and must be resolved by S4/S5 hashes.
+
+G Native loop
+Both execute epoch indices 0..1000 inclusive (1001 updates), refresh at
+0,100,...,1000 before that epoch's DataLoader/update, then batch loop and
+view loop 0..4. Both form P_local=P_global @ M_v[view], detach targets, and
+run zero_grad/backward/step per view. No obvious refresh/update order difference.
+
+H Optimizer continuity / refresh implementation
+Both reuse the exact same five Adam instances from AE through native; neither
+recreates or clears optimizer state. Historical refresh recomputes latent/q
+inside each of its two passes and mutates a weight list. Current computes
+latent/q once before a two-pass helper and returns tuple weights. The model is
+unchanged within refresh, so this is superficially equivalent but requires
+S6/S10 refresh hashes. There is no obvious optimizer continuity difference.

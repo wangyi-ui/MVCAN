@@ -1,0 +1,25 @@
+FIRST_DIVERGENCE is the first stage S0..S14 at which any compared scientific
+state/hash differs. The report records last_exact_stage,
+first_divergent_stage, first_divergent_components and exact divergent paths.
+
+Allowed decisions only:
+MODEL_CONSTRUCTION_DIVERGENCE
+DATALOADER_RNG_TRAJECTORY_DIVERGENCE
+AE_OPTIMIZATION_DIVERGENCE
+OPTIMIZER_STATE_CONTINUITY_DIVERGENCE
+KMEANS_INITIALIZATION_DIVERGENCE
+NATIVE_REFRESH_DIVERGENCE
+NATIVE_UPDATE_ORCHESTRATION_DIVERGENCE
+NUMERICAL_NONDETERMINISM
+EXACT_INITIALIZATION_PARITY
+
+Priority rules:
+- S0 model mismatch -> MODEL_CONSTRUCTION_DIVERGENCE.
+- Any first-batch/DataLoader-generator mismatch -> DATALOADER_RNG_TRAJECTORY_DIVERGENCE.
+- S1..S4 model/representation mismatch -> AE_OPTIMIZATION_DIVERGENCE.
+- S4 optimizer-only mismatch while the AE200 model remains exact, followed by post-native0 model drift -> OPTIMIZER_STATE_CONTINUITY_DIVERGENCE.
+- S5 mismatch -> KMEANS_INITIALIZATION_DIVERGENCE.
+- S6/S10 pre-update refresh mismatch -> NATIVE_REFRESH_DIVERGENCE.
+- S7..S13 post-update mismatch -> NATIVE_UPDATE_ORCHESTRATION_DIVERGENCE.
+- Otherwise an RNG/numerical-only first mismatch -> NUMERICAL_NONDETERMINISM.
+- No mismatch through S14 -> EXACT_INITIALIZATION_PARITY.

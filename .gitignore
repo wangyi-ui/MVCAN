@@ -75,6 +75,8 @@ experiment_freeze/*
 !experiment_freeze/p0_a3_cross_dataset_parity_semantic_diagnostic_preregistered_20260923/**
 !experiment_freeze/p0_a3_r1_diagnostic_repair_preregistered_20260923/
 !experiment_freeze/p0_a3_r1_diagnostic_repair_preregistered_20260923/**
+!experiment_freeze/p0_a3_r2_native_initialization_divergence_preregistered_20260923/
+!experiment_freeze/p0_a3_r2_native_initialization_divergence_preregistered_20260923/**
 
 # Temporary files
 *.tmp

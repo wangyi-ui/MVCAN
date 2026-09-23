@@ -1,0 +1,15 @@
+P0-A4 MSRC NATIVE INITIALIZATION STAGEWISE EXACT PARITY AUDIT
+
+Status: PREREGISTERED / IMPLEMENTED / NOT EXECUTED
+Date: 2026-09-23
+Branch: experiments/paper-main-results
+Parent: a58a52f1aa55fe67db8ab0d41a50649241b18bb2
+Parent tag: p0-a3-r1-diagnostic-repair-preregistered-20260923
+
+The only authorized next scientific execution is the single MSRC seed20
+historical/current stagewise diagnostic command recorded in
+unexecuted_cli.txt.  It was deliberately NOT run during implementation.
+
+No initializer fix is authorized by this freeze.  Gate C, multi-seed runs,
+hyperparameter tuning, and edits to R2/R3/R4/R5 are prohibited until the
+first divergence has been observed and separately preregistered.

@@ -1,0 +1,4 @@
+branch=experiments/paper-main-results
+parent_commit=a58a52f1aa55fe67db8ab0d41a50649241b18bb2
+parent_tag=p0-a3-r1-diagnostic-repair-preregistered-20260923
+date=2026-09-23

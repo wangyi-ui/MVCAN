@@ -1,0 +1,10 @@
+Focused P0-A4 tests: PASS - 9 tests included in final paper run
+Complete paper tests: PASS - 60 passed, 1 warning in 2.31s
+Artifact-independent release regression: PASS - 226 passed, 1 warning in 6.91s
+Python compilation: PASS
+Diagnostic CLI --help dry-run: PASS
+
+MSRC historical/current full stagewise replay: NOT RUN
+Gate C: NOT RUN
+Multi-seed: NOT RUN
+Initializer fix: NOT ATTEMPTED
