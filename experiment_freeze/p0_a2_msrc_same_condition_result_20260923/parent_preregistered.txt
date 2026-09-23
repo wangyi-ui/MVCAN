@@ -1,0 +1,6 @@
+parent_commit b089ce8620f205209a7eb678c68ecb56e23a60c5
+parent_tag p0-a2-msrc-same-condition-init-preregistered-20260923
+parent_freeze experiment_freeze/p0_a2_msrc_same_condition_init_preregistered_20260923
+preserved_output outputs/paper/transfer_diagnostics/MSRC-v1/p0_a2_same_condition_init_seed20
+overwrite_or_rerun NONE
+

@@ -1,0 +1,10 @@
+Implementation tests: PASS — 46 passed, 1 warning (conda run -n mvcan python -m pytest -q tests/paper/)
+Artifact-independent release regression: PASS — 226 passed, 1 warning
+CLI --help smoke checks: PASS — 4/4
+Historical MSRC whole-file SHA checks: PASS — 3/3
+Historical Caltech whole-file SHA checks: PASS — 14/14
+Real Gate A run: NOT RUN
+Real Gate B sentinel: NOT RUN
+Real Gate C diagnostics/permutations: NOT RUN
+Training: NOT RUN
+

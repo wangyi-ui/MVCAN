@@ -1,0 +1,5 @@
+commit b089ce8620f205209a7eb678c68ecb56e23a60c5
+tag p0-a2-msrc-same-condition-init-preregistered-20260923
+result_freeze experiment_freeze/p0_a2_msrc_same_condition_result_20260923
+initial_combined_model_sha256 bfd692fa6da54f48539701d2f7c4e71500ec43b8de091e6e84864f4e4e53d7b7
+

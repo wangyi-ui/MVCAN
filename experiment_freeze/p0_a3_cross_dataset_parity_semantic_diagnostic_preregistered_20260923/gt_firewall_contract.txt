@@ -1,0 +1,8 @@
+Gate A: full GT is unavailable and never loaded.
+
+Gate B: full GT may be loaded only after current pre-GT bundle/audit/seal validation and exact comparison to the historical scientific payload.
+
+Gate C: full GT may be loaded only after current/historical artifacts, seals, whole-file hashes, and reconstructed action hashes are verified. GT is used only to construct C, G, and E and aggregate diagnostic statistics.
+
+GT is forbidden for model updates, U generation, relation generation, action selection, threshold selection, parameter changes, or training.
+

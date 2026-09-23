@@ -1,0 +1,11 @@
+P0-A3 CROSS-DATASET PARITY AND SEMANTIC DIAGNOSTIC
+
+implementation/preparation only
+MSRC parity audit = NOT RUN
+Caltech exact sentinel = NOT RUN
+GT semantic diagnostic = NOT RUN
+training = NOT RUN
+formal multi-seed = NOT RUN
+method modification = NONE
+hyperparameter tuning = NONE
+

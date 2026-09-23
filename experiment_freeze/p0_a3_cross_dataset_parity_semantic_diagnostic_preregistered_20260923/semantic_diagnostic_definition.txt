@@ -1,0 +1,17 @@
+G[i,l,s] = 1[y_i == y_l], shape [Nu,L,S]
+E[i,l,s] = 1[PredRelation[i,l,s] == G[i,l,s]], shape [Nu,L,S]
+C[i,s] = 1[class_pred[i,s] == y_i], shape [Nu,S]
+R[i,s] = sum_l b[i,l,s] E[i,l,s] / sum_l b[i,l,s], shape [Nu,S]
+
+Q_uniform = sum bE / sum b
+Q_U = sum U*b*E / sum U*b
+utility semantic lift = Q_U - Q_uniform
+
+Report ROC-AUC and Average Precision for U versus C when both classes exist, plus Spearman(U,R).
+
+Strata: U==0 separately. Positive entries are stably ranked by (U value, flat index) and np.array_split into Q1,Q2,Q3,Q4. This deterministic rule introduces no selected threshold.
+
+Per action in canonical order report ID, generator, verifier, mean U, zero fraction, closure rate, class accuracy, relation correctness, utility-weighted relation correctness, and sample count.
+
+Permutation negative control: RandomState(20), 1000 permutations; independently shuffle U[:,s] over the unlabeled sample axis for each action. Report true Q_U, shuffle mean/std, difference, and one-sided empirical p=(1+#shuffle>=true)/(1001).
+

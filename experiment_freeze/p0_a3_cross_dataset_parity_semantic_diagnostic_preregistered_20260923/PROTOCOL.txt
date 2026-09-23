@@ -1,0 +1,11 @@
+Order is Gate A -> Gate B -> Gate C.
+
+Gate A reconstructs current MSRC initial R2/R3 state without training or full GT, verifies it against the preserved TRUE_U manifest, then compares it to historical G0-B0.
+Historical G0-B0 carries frozen U/Pred/balance/action membership and final post-R5 q/M/predictions, but not pre-R2 q/M or y_gen. Missing carriers must be reported as unavailable; final q must never be misrepresented as initial q.
+
+Gate B is one exact Caltech-6V seed20 replay through the current frozen release_core. It compares sample_ids, final_predictions, q_local, q_aligned, and M_v exactly, then evaluates GT only after seal validation. Seed30 and seed50 are not rerun.
+
+Gate C is post-seal diagnostic only. It applies the same frozen definitions to MSRC and historical Caltech seed20. It performs no training, selection, pruning, thresholding, tuning, or model mutation.
+
+If Gate A or Gate B exposes a scientific implementation mismatch, fail closed. Gate C must not be used to justify a method change.
+

@@ -1,0 +1,6 @@
+A1 If U_cycle, PredRelation, and balance are exact but final predictions/q/M_v differ: R4/R5 or paper training orchestration; not R2/R3.
+A2 If U_cycle differs, inspect action space, q_aligned, and y_gen. Equal actions with different q state: current-condition native initialization/state trajectory; do not attribute directly to the U formula.
+A3 Equal y_gen/PredRelation/balance with only small U numerical error: NUMERICAL_UTILITY_ONLY and record max_abs_diff.
+A4 Any action membership or order mismatch: FAIL CLOSED migration error.
+A5 Exact final predictions: historical G0-B0 behavior parity PASS.
+

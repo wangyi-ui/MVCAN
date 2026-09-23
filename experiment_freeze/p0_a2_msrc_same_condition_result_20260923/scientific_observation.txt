@@ -1,0 +1,2 @@
+The seed20 ACC ordering is TRUE_U > BASE > UNIFORM, while BASE retains higher NMI and ARI than TRUE_U. This is diagnostic evidence only. It is not a formal multi-seed result and does not authorize changes to utility, relation semantics, loss, action admission, or hyperparameters.
+

@@ -1,0 +1,10 @@
+P0-A2 MSRC SAME-CONDITION RESULT FREEZE
+
+diagnostic only
+formal multi-seed = NOT RUN
+method modification = NONE
+hyperparameter tuning = NONE
+initialization parity across arms = PASS
+GT firewall = PASS
+training in this freeze operation = NOT RUN
+
