@@ -1,0 +1,9 @@
+Focused normalization/first-divergence tests: PASS - 7 passed in 1.64s
+Complete paper tests: PASS - 66 passed, 1 warning in 4.67s
+Artifact-independent release regression: PASS - 226 passed, 1 warning in 6.95s
+Python compilation: PASS
+
+P0-A4 r3 full replay: NOT RUN
+Gate C: NOT RUN
+Multi-seed: NOT RUN
+Initializer repair: NOT ATTEMPTED

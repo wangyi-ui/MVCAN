@@ -1,0 +1,23 @@
+COMPLETED
+- r2 JSON/log SHA256 frozen and reverified
+- S6 scientific exactness independently reverified
+- S7 five-view rec/clu/total and scientific-state audit recorded
+- diagnostic total normalization implemented
+- raw total excluded from scientific comparison
+- focused normalization tests passed
+- complete tests/paper passed
+- artifact-independent release regression passed
+
+COMPLETED AFTER INTERRUPTION
+- implementation SHA256 record
+- release_core/historical integrity record
+- final test-results record
+- exact repair-change record
+- final diff/status checks
+
+NOT EXECUTED BY DESIGN
+- P0-A4 r3 full replay
+- Gate C
+- multi-seed
+- initializer repair
+- hyperparameter tuning

@@ -1,0 +1,22 @@
+experiments/paper/diagnostics/msrc_native_stagewise_parity.py
+
+1. Added canonical_native_total(reconstruction, clustering, lambda1):
+   float(reconstruction) + float(lambda1) * float(clustering).
+2. Current instrumentation persists reconstruction, clustering,
+   canonical_total, and raw_total_tensor_value.
+3. Historical instrumentation persists the same four fields; canonical_total
+   uses the shared helper, while raw_total_tensor_value reproduces tensor
+   arithmetic from the captured tensors.
+4. Removed independently defined scientific field losses.total.
+5. Comparator recursively excludes raw_total_tensor_value.
+6. Comparator continues to include reconstruction, clustering,
+   canonical_total, model, optimizer, gradients, parameters, refresh, latent,
+   and q.
+
+tests/paper/test_p0_a4_loss_diagnostic_normalization.py
+
+1. Proves Python component arithmetic can differ from float32 tensor-style
+   arithmetic using the exact r2 view-0 values.
+2. Proves both paths obtain an exact canonical_total from the same helper.
+3. Proves raw_total_tensor_value cannot trigger FIRST_DIVERGENCE.
+4. Proves canonical_total remains scientific and does trigger divergence.
