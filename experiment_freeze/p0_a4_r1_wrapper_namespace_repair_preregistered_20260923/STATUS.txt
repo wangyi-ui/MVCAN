@@ -1,0 +1,12 @@
+P0-A4-R1 DIAGNOSTIC WRAPPER NAMESPACE REPAIR
+
+Status: PREREGISTERED / IMPLEMENTED / FULL REPLAY NOT EXECUTED
+Date: 2026-09-23
+FAIL_CLASS=DIAGNOSTIC_WRAPPER_PROTOCOL_NAMESPACE_BUG
+old_output_directory=NOT_CREATED
+scientific_replay=NOT_COMPLETED
+first_divergence=NOT_OBSERVED
+
+This repair changes only the paper-side P0-A4 diagnostic wrapper and its
+tests. It does not authorize an initializer change, Gate C, multi-seed,
+hyperparameter tuning, or edits to R2/R3/R4/R5.

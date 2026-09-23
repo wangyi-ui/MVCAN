@@ -1,0 +1,3 @@
+NOT EXECUTED DURING REPAIR:
+
+nohup conda run -n mvcan env PYTHONPATH=. python -m experiments.paper.diagnostics.msrc_native_stagewise_parity --device cuda:0 --output-dir outputs/paper/diagnostics/p0_a4_msrc_native_stagewise_parity_seed20_r2 > outputs/paper/diagnostics/p0_a4_msrc_native_stagewise_parity_seed20_r2.log 2>&1 &

@@ -1,0 +1,9 @@
+Focused wrapper repair tests: PASS - 3 passed in 3.85s
+Complete paper tests: PASS - 63 passed, 1 warning in 4.45s
+Artifact-independent release regression: PASS - 226 passed, 1 warning in 6.90s
+Python compilation: PASS
+
+P0-A4 r2 full replay: NOT RUN
+Gate C: NOT RUN
+Multi-seed: NOT RUN
+Initializer repair: NOT ATTEMPTED

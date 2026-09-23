@@ -32,7 +32,6 @@ from sklearn.cluster import KMeans
 from experiments.paper.transfer_diagnostics import (
     materialize_msrc_current_condition_init as current_initializer,
 )
-from . import p0_a3_protocol
 from .msrc_native_initializer_parity_replay import (
     HISTORICAL_INPUT_DIR,
     load_frozen_legacy_adapter,
@@ -575,6 +574,19 @@ def _strip_all_statistics(trace):
     return result
 
 
+def validate_frozen_training_seeds(legacy):
+    """Fail closed unless current and historical protocols both freeze seed20."""
+    current_seed = int(current_initializer.protocol.TRAINING_SEED)
+    historical_seed = int(
+        legacy.MSRC_RUNTIME_SPEC.expected_config["training"]["seed"]
+    )
+    _require(current_seed == 20, "current P0-A2 training seed is not frozen at 20")
+    _require(historical_seed == 20, "historical training seed is not frozen at 20")
+    _require(current_seed == historical_seed,
+             "historical/current frozen training seeds differ")
+    return current_seed, historical_seed
+
+
 def run_stagewise(output_dir, device="cuda:0"):
     """Run the explicitly authorized full diagnostic replay."""
     output = Path(output_dir)
@@ -583,6 +595,7 @@ def run_stagewise(output_dir, device="cuda:0"):
     release_verification = current_initializer.verify_initialization()
 
     legacy = load_frozen_legacy_adapter()
+    current_seed, historical_seed = validate_frozen_training_seeds(legacy)
     historical_inputs = legacy.validate_materialized_inputs(
         HISTORICAL_INPUT_DIR, legacy.MSRC_RUNTIME_SPEC
     )
@@ -593,7 +606,7 @@ def run_stagewise(output_dir, device="cuda:0"):
     with _instrument_path(legacy, historical_controller, historical=True):
         legacy.prepare_native_backbone(
             historical_inputs["views"], historical_inputs["contract"],
-            torch.device(device), p0_a3_protocol.TRAINING_SEED,
+            torch.device(device), current_seed,
             legacy.MSRC_RUNTIME_SPEC,
         )
     historical_trace = historical_controller.finish()
@@ -619,7 +632,8 @@ def run_stagewise(output_dir, device="cuda:0"):
         "schema": "paper-msrc-p0-a4-stagewise-parity-v1",
         "diagnostic_only": True,
         "dataset": "MSRC",
-        "training_seed": p0_a3_protocol.TRAINING_SEED,
+        "training_seed": current_seed,
+        "historical_training_seed": historical_seed,
         "device": device,
         "release_code_modified": False,
         "release_core_source_sha256": release_verification["manifest"]["release_core_source_sha256"],

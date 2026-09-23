@@ -1,0 +1,11 @@
+FAILED R1
+log=outputs/paper/diagnostics/p0_a4_msrc_native_stagewise_parity_seed20_r1.log
+log_preserved=true
+output_directory=outputs/paper/diagnostics/p0_a4_msrc_native_stagewise_parity_seed20_r1
+output_directory_created=false
+
+AUTHORIZED R2
+output_directory=outputs/paper/diagnostics/p0_a4_msrc_native_stagewise_parity_seed20_r2
+log=outputs/paper/diagnostics/p0_a4_msrc_native_stagewise_parity_seed20_r2.log
+reuse_r1_log=false
+executed_during_repair=false

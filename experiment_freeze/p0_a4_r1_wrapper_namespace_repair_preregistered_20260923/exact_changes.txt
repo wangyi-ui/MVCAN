@@ -1,0 +1,22 @@
+experiments/paper/diagnostics/msrc_native_stagewise_parity.py
+
+- Removed the unused import of experiments.paper.diagnostics.p0_a3_protocol.
+- Lines 577-587: added validate_frozen_training_seeds(legacy).
+- Line 579: current seed comes from
+  current_initializer.protocol.TRAINING_SEED.
+- Lines 580-582: historical seed comes from
+  legacy.MSRC_RUNTIME_SPEC.expected_config["training"]["seed"].
+- Lines 583-586: fail closed on current != 20, historical != 20, or inequality.
+- Line 598: validate both seeds before input validation and either replay.
+- Line 609: historical prepare_native_backbone receives validated current_seed.
+- Line 635: report.training_seed comes from validated current_seed.
+- Line 636: report also records historical_training_seed.
+
+tests/paper/test_p0_a4_wrapper_namespace_repair.py
+
+- Verifies the runner no longer references p0_a3_protocol.TRAINING_SEED.
+- Verifies current frozen seed == 20.
+- Loads the hash-pinned historical adapter in an isolated process and verifies
+  historical frozen seed == 20 and current == historical.
+- Verifies both current-seed and historical-seed mismatches fail closed.
+- Verifies release_core has no worktree changes.

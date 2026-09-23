@@ -1,0 +1,27 @@
+ROOT CAUSE
+
+msrc_native_stagewise_parity.py incorrectly read TRAINING_SEED from
+experiments.paper.diagnostics.p0_a3_protocol, where that symbol does not
+exist. The correct frozen owner is
+current_initializer.protocol (msrc_p0_a2_protocol), whose TRAINING_SEED is 20.
+
+CLASSIFICATION
+
+DIAGNOSTIC_WRAPPER_PROTOCOL_NAMESPACE_BUG
+
+This is not a scientific divergence, initializer failure, RNG divergence, or
+method failure.
+
+MINIMAL REPAIR
+
+1. Remove the now-unused p0_a3_protocol import.
+2. Read current_seed from current_initializer.protocol.TRAINING_SEED.
+3. Read historical_seed from
+   legacy.MSRC_RUNTIME_SPEC.expected_config["training"]["seed"].
+4. Fail closed unless current_seed == 20, historical_seed == 20, and the two
+   seeds are equal.
+5. Pass current_seed to historical prepare_native_backbone.
+6. Populate report.training_seed from current_seed and record the validated
+   historical_training_seed separately.
+
+No seed is inferred, rewritten, or automatically corrected.

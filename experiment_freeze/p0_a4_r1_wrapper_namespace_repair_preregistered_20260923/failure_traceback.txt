@@ -1,0 +1,19 @@
+Preserved source log:
+outputs/paper/diagnostics/p0_a4_msrc_native_stagewise_parity_seed20_r1.log
+
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/mvcan/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/root/miniconda3/envs/mvcan/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/root/autodl-tmp/UCRR-MVC-paper/experiments/paper/diagnostics/msrc_native_stagewise_parity.py", line 655, in <module>
+    main()
+  File "/root/autodl-tmp/UCRR-MVC-paper/experiments/paper/diagnostics/msrc_native_stagewise_parity.py", line 650, in main
+    report = run_stagewise(args.output_dir, args.device)
+  File "/root/autodl-tmp/UCRR-MVC-paper/experiments/paper/diagnostics/msrc_native_stagewise_parity.py", line 596, in run_stagewise
+    torch.device(device), p0_a3_protocol.TRAINING_SEED,
+AttributeError: module 'experiments.paper.diagnostics.p0_a3_protocol' has no attribute 'TRAINING_SEED'
+
+The exception occurred while Python evaluated the historical initializer call
+arguments. The historical full replay did not begin, no scientific trajectory
+completed, and the requested r1 output directory was not created.
