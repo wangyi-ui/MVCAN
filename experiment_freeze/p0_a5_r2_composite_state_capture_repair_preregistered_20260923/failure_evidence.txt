@@ -1,0 +1,10 @@
+Preserved failed log:
+outputs/paper/diagnostics/p0_a5_msrc_pre_r2_carrier_temporal_alignment_seed20_r1.log
+SHA256: 53c580ebf9affa4e4dcd01c679faa1d98b6d4af05e9242044f2535867fdd75bf
+
+Traceback terminal exception:
+AttributeError: 'MvCAN' object has no attribute 'state_dict'
+
+Failure location: H0 pre-epoch1000-final-refresh capture. The historical
+prepare_native_backbone replay had started, but the final refresh body had not
+started; no H/F/W/T scientific carrier result was produced.

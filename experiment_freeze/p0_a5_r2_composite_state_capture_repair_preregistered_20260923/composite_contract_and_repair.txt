@@ -1,0 +1,17 @@
+MvCAN is a composite object, not torch.nn.Module. Its ordered scientific state
+lives in model.autoencoders[view_id], each of which is an nn.Module.
+
+Capture: save an ordered tuple of non-empty dictionaries, one per view, mapping
+each autoencoder state_dict parameter/buffer name to detach().cpu().clone().
+View namespaces and order 0..V-1 are retained.
+
+Restore: deepcopy the composite, require exact view count, then for each view
+call autoencoder.cpu(), autoencoder.load_state_dict(per_view_state, strict=True),
+and autoencoder.train(). Require every parameter/buffer on CPU and training=True.
+
+Identity gate: model_state_snapshot(restored) must match H0 exactly at aggregate
+and per-view model_hash, encoder_parameter_hash, decoder_parameter_hash, and
+cluster_centers_hash. Otherwise RESTORED_H0_MODEL_NOT_EXACT fails closed and T
+is not allowed.
+
+H/F/W/T scientific definitions and carrier decision rules are unchanged.

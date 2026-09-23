@@ -88,8 +88,15 @@ def _split(value):
 
 
 def _state_dict_cpu(model):
-    return {name: value.detach().cpu().clone()
-            for name, value in model.state_dict().items()}
+    autoencoders = tuple(model.autoencoders)
+    states = tuple(
+        {name: value.detach().cpu().clone()
+         for name, value in autoencoder.state_dict().items()}
+        for autoencoder in autoencoders
+    )
+    _require(len(states) == len(autoencoders) and all(states),
+             "H0 per-view state capture is incomplete")
+    return states
 
 
 class HistoricalFinalRefreshCapture:
@@ -254,15 +261,51 @@ def _capture_report(capture):
         "H3_post_update_model": capture["H3_post_update_model"],
         "H4_final_coordinate_snapshot": {
             "q_local_logical_sha256": ndarray_sha256(capture["H4_final_q_local"]),
-            "q_aligned_retained_M_logical_sha256": ndarray_sha256(capture["H4_final_q_aligned_retained_M"]),
+            "q_aligned_retained_M_logical_sha256": ndarray_sha256(
+                capture["H4_final_q_aligned_retained_M"]
+            ),
         },
     }
 
-def _build_cpu_clone(final_model, state_dict):
-    clone = copy.deepcopy(final_model).cpu()
-    clone.load_state_dict(state_dict, strict=True)
-    clone.train()
+def _snapshot_exact(actual, expected):
+    required = (
+        "model_hash", "encoder_parameter_hash", "decoder_parameter_hash",
+        "cluster_centers_hash",
+    )
+    return (
+        actual["aggregate_hash"] == expected["aggregate_hash"]
+        and len(actual["per_view"]) == len(expected["per_view"])
+        and all(
+            current["view_id"] == frozen["view_id"]
+            and all(current[name] == frozen[name] for name in required)
+            for current, frozen in zip(actual["per_view"], expected["per_view"])
+        )
+    )
+
+def _build_cpu_clone(final_model, per_view_state, expected_snapshot):
+    clone = copy.deepcopy(final_model)
+    autoencoders = tuple(clone.autoencoders)
+    _require(len(per_view_state) == len(autoencoders),
+             "H0 per-view state count mismatch")
+    for autoencoder, state in zip(autoencoders, per_view_state):
+        _require(isinstance(state, dict) and state,
+                 "H0 per-view state is missing or empty")
+        autoencoder.cpu()
+        result = autoencoder.load_state_dict(state, strict=True)
+        _require(not result.missing_keys and not result.unexpected_keys,
+                 "H0 per-view strict restore mismatch")
+        autoencoder.train()
+        _require(
+            all(value.device.type == "cpu" for value in (
+                tuple(autoencoder.parameters()) + tuple(autoencoder.buffers())
+            )) and autoencoder.training,
+            "H0 restored autoencoder CPU/training contract mismatch",
+        )
+    restored = model_state_snapshot(clone)
+    _require(_snapshot_exact(restored, expected_snapshot),
+             "RESTORED_H0_MODEL_NOT_EXACT")
     return clone
+
 
 def _validate_p0_a4_r3_record(record, release_source_sha256):
     """Accept only the frozen nested first-divergence schema."""
@@ -372,7 +415,10 @@ def run_audit(output_dir, device="cuda:0"):
         current_model, current_full_views, torch.from_numpy(W_matrix).to(device)
     )
     W = _carrier_from_aligned(W_local, W_aligned, W_matrix, current_split)
-    pre_model = _build_cpu_clone(native["model"], h["H0_pre_refresh_state_dict_cpu"])
+    pre_model = _build_cpu_clone(
+        native["model"], h["H0_pre_refresh_state_dict_cpu"],
+        h["H0_pre_refresh_model"],
+    )
     historical_cpu_views = [torch.from_numpy(np.ascontiguousarray(view))
                             for view in historical["views"]]
     T_matrix = _fresh_matches(pre_model, historical_cpu_views, h["H1_incoming_weights"])

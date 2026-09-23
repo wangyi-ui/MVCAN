@@ -1,0 +1,5 @@
+release_core git diff: empty
+historical CVPR24-MVCAN git status: empty
+
+No release_core source, historical adapter/archive, current initializer, or
+R2/R3/R4/R5 source was modified. This is a diagnostic-wrapper API repair only.

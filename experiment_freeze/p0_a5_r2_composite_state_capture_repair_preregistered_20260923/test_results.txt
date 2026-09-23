@@ -1,0 +1,15 @@
+Focused P0-A5 tests: 30 passed
+pytest -q tests/paper/: 96 passed, 1 environment deprecation warning
+Artifact-independent release regression: 239 passed, 1 environment deprecation warning
+
+The focused composite fake has autoencoders that are nn.Modules while the
+CompositeModel top level intentionally has no state_dict/load_state_dict/cpu/train.
+It verifies capture, restore, view order, strict loading, exact aggregate and
+per-view hashes, CPU placement, training state, missing/corrupt/count failures,
+and normal/exception monkeypatch restoration.
+
+ARTIFACT_DEPENDENT_TEST_SKIPPED_FROM_REGRESSION_GATE:
+tests/release_core/test_r1_frozen_reference_parity.py
+tests/release_core/test_r2_caltech_frozen_parity.py
+tests/release_core/test_r3_frozen_semantics_parity.py
+tests/release_core/test_r7_behavior_evidence.py
