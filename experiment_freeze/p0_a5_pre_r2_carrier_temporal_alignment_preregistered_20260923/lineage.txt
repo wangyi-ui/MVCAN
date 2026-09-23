@@ -1,0 +1,9 @@
+parent branch: experiments/paper-main-results
+parent HEAD: 0df2bb5bd2cfee4f4ddf9e8ac8abdc11fc17495f
+P0-A4-R3 evidence: EXACT_INITIALIZATION_PARITY
+P0-A4-R3 last exact stage: S14_FINAL_PRE_R2
+
+The historical callable is invoked once by the P0-A5 run wrapper:
+legacy.prepare_native_backbone(...). All H0--H4 collection is a temporary
+monkeypatch around that single call, restored by finally on normal and
+exception paths.

@@ -1,0 +1,5 @@
+NOT EXECUTED:
+PYTHONPATH=/root/autodl-tmp/UCRR-MVC-paper conda run -n mvcan python -m experiments.paper.diagnostics.msrc_pre_r2_carrier_temporal_alignment --device cuda:0 --output-dir outputs/paper/diagnostics/p0_a5_msrc_pre_r2_carrier_temporal_alignment_seed20
+
+The wrapper fails closed if the output directory already exists. This command
+is the only P0-A5 real diagnostic CLI preregistered by this freeze.

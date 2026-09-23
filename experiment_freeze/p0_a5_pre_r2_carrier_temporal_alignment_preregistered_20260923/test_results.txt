@@ -1,0 +1,14 @@
+Focused P0-A5 tests (mvcan, PYTHONPATH repository root): 14 passed
+pytest -q tests/paper/: 80 passed, 1 environment deprecation warning
+
+Artifact-independent release regression (mvcan): 239 passed, 1 environment
+deprecation warning. Explicitly excluded as
+ARTIFACT_DEPENDENT_TEST_SKIPPED_FROM_REGRESSION_GATE:
+- tests/release_core/test_r1_frozen_reference_parity.py
+- tests/release_core/test_r2_caltech_frozen_parity.py
+- tests/release_core/test_r3_frozen_semantics_parity.py
+- tests/release_core/test_r7_behavior_evidence.py
+
+Those four files require absent external frozen assets (including Caltech.mat,
+historical pre-GT artifacts/checkpoints, and r6/r7 output bundles); they are
+not a P0-A5 code regression.

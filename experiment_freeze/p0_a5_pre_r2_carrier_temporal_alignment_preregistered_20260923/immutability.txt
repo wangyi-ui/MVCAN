@@ -1,0 +1,11 @@
+release_core: unchanged; aggregate SHA256 of sorted *.py records at preregistration
+0fc051ac62391261cb8742faf4396b85803748a45280fe5939dca63f1a4f3647
+
+historical generic_final_core_adapter.py:
+85a97cb72505ef7296c14442a322a6cb54c013697e51b181e0b7cf7962ffa3b6
+historical structural archive SHA256:
+b04f107f6279839d534e55500fbb0f9aba94d7686944ab20f255337a511af234
+
+The P0-A5 wrapper delegates historical preparation/coordinate snapshot to the
+frozen adapter and fresh refresh/R2/R3 to public release primitives. No
+release_core or historical archive source is modified.

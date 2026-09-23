@@ -1,0 +1,16 @@
+Historical frozen adapter semantics:
+- At epoch 1000, native_refresh occurs before that epoch's model updates.
+- H1 is the incoming retained view-weight vector to that refresh.
+- H2 is the refresh output M_v/p/prediction/outgoing weights.
+- After the epoch-1000 updates, coordinate_snapshot recomputes post-final q_local
+  and aligns it with the retained H2 M_v. This is a retained refresh carrier,
+  not a stale-carrier bug.
+
+Current P0-A2 reconstruction semantics:
+- It loads the P0-A2 post-final checkpoint, recomputes latent/q, and calls
+  native_refresh_from_latents with (1,1,1,1,1). F therefore uses a fresh
+  post-final M_v and reset all-ones weights.
+
+Arms: H = post-final q_local + retained historical M_v; F = current fresh,
+ones-weight M_v; W = post-final model + historical incoming weights; T =
+historical pre-update model + historical incoming weights.
