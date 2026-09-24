@@ -1,0 +1,6 @@
+git diff --name-only -- release_core: empty
+/root/autodl-tmp/CVPR24-MVCAN git status --short: empty
+
+No release_core source, historical archive or adapter, current initializer,
+P0-A2 frozen protocol, R2/R3/R4/R5 formula, arm definition, decision rule,
+pipeline, or hyperparameter was modified.

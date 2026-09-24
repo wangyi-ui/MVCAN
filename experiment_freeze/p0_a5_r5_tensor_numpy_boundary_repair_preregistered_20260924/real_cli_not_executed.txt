@@ -1,0 +1,8 @@
+NOT EXECUTED:
+conda run -n mvcan env PYTHONPATH=/root/autodl-tmp/UCRR-MVC-paper python -m experiments.paper.diagnostics.msrc_pre_r2_carrier_temporal_alignment --device cuda:0 --output-dir outputs/paper/diagnostics/p0_a5_msrc_pre_r2_carrier_temporal_alignment_seed20_r5
+
+The next replay must use only this output directory and the sibling paths:
+outputs/paper/diagnostics/p0_a5_msrc_pre_r2_carrier_temporal_alignment_seed20_r5.partial.json
+outputs/paper/diagnostics/p0_a5_msrc_pre_r2_carrier_temporal_alignment_seed20_r5.log
+
+The preserved R4 log and partial must not be overwritten.

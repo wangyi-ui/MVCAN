@@ -46,7 +46,7 @@ def test_carrier_builder_places_r2_input_on_requested_device(monkeypatch):
 def test_f_provenance_is_separate_from_normalized_f_arm_and_all_arms_share_device():
     source = Path(audit.__file__).read_text(encoding="utf-8")
     assert "F_PROVENANCE, reconstructed_current_split" in source
-    assert "validate_reconstruction_against_manifest(\n        F_PROVENANCE, manifest" in source
+    assert "validate_reconstruction_against_manifest(\n            F_PROVENANCE, manifest" in source
     assert "F_PROVENANCE[\"q_local\"], F_PROVENANCE[\"q_aligned\"]" in source
     assert '"H_vs_F": compare_arm(H, F_ARM)' in source
     assert '"H_vs_F": compare_arm(H, F_PROVENANCE)' not in source

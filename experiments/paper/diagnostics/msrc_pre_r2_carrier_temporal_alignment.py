@@ -241,9 +241,14 @@ def _fresh_matches(model, full_views, weights):
 
 def _carrier_from_aligned(q_local, q_aligned, matrix, split, *, device):
     actions = build_directional_actions(5)
-    q_tensor = torch.from_numpy(
-        np.ascontiguousarray(q_aligned, dtype=np.float32)
-    ).to(device)
+    if isinstance(q_aligned, torch.Tensor):
+        q_tensor = q_aligned.detach().to(
+            device=device, dtype=torch.float32
+        ).contiguous()
+    else:
+        q_tensor = torch.from_numpy(
+            np.ascontiguousarray(q_aligned, dtype=np.float32)
+        ).to(device)
     cycle = compute_directional_cycle_utility(q_tensor, actions)
     y_gen = _numpy(cycle["y_gen"], np.int64)
     semantics = build_relation_semantics(y_gen, split, actions)
@@ -278,6 +283,36 @@ def _fail_with_partial(output_dir, evidence, failure_class):
     evidence["failure_class"] = failure_class
     _write_partial_evidence(output_dir, evidence)
     raise RuntimeError(failure_class)
+
+
+
+
+def _diagnostic_exception_failure_class(exc):
+    message = str(exc).lower()
+    if "cuda" in message and "tensor" in message and "numpy" in message:
+        return "DIAGNOSTIC_TENSOR_NUMPY_BOUNDARY_MISMATCH"
+    return "DIAGNOSTIC_EXECUTION_EXCEPTION"
+
+
+def _carrier_with_partial_evidence(
+        q_local, q_aligned, matrix, split, *, device, output_dir, evidence,
+        stage_reached, completed_arms):
+    """Run one diagnostic R2/R3 carrier and persist unexpected failures."""
+    try:
+        return _carrier_from_aligned(
+            q_local, q_aligned, matrix, split, device=device
+        )
+    except Exception as exc:
+        if evidence.get("failure_class") is None:
+            evidence.update({
+                "failure_class": _diagnostic_exception_failure_class(exc),
+                "failure_exception_type": type(exc).__name__,
+                "failure_exception_message": str(exc),
+                "stage_reached": stage_reached,
+                "completed_arms": list(completed_arms),
+            })
+            _write_partial_evidence(output_dir, evidence)
+        raise
 
 def compare_arm(left, right):
     return {name: compare_arrays(left[name], right[name]) for name in ARM_ARRAYS}
@@ -449,105 +484,127 @@ def run_audit(output_dir, device="cuda:0"):
     h = capture.require_complete()
     partial = _partial_evidence(h, device)
     _write_partial_evidence(target, partial)
-    historical_split = _historical_sparse_split(historical, legacy)
-    _, current_views, _, materialized_current_split = load_materialized_inputs(
-        protocol.MSRC_INPUT_DIR
-    )
-    current_split = validate_sparse_label_split(materialized_current_split)
-    if not _sparse_split_exact(historical_split, current_split):
-        _fail_with_partial(
-            target, partial, "HISTORICAL_CURRENT_SPARSE_SPLIT_CONTRACT_MISMATCH"
+    try:
+        historical_split = _historical_sparse_split(historical, legacy)
+        _, current_views, _, materialized_current_split = load_materialized_inputs(
+            protocol.MSRC_INPUT_DIR
         )
-    H = _carrier_from_aligned(
-        h["H4_final_q_local"], h["H4_final_q_aligned_retained_M"],
-        h["H2_refresh_M_v"], historical_split, device=device,
-    )
-    historical_exact, historical_hashes = _historical_h5_exact(H)
-    partial.update({
-        "stage_reached": "H_R2_R3_COMPLETED",
-        "observed_historical_H_hashes": historical_hashes,
-        "completed_arms": ["H"],
-    })
-    _write_partial_evidence(target, partial)
-    if not historical_exact:
-        _fail_with_partial(target, partial, "HISTORICAL_CARRIER_REPLAY_NOT_EXACT")
+        current_split = validate_sparse_label_split(materialized_current_split)
+        if not _sparse_split_exact(historical_split, current_split):
+            _fail_with_partial(
+                target, partial, "HISTORICAL_CURRENT_SPARSE_SPLIT_CONTRACT_MISMATCH"
+            )
+        H = _carrier_with_partial_evidence(
+            h["H4_final_q_local"], h["H4_final_q_aligned_retained_M"],
+            h["H2_refresh_M_v"], historical_split, device=device, output_dir=target,
+            evidence=partial, stage_reached="H_R2_R3_STARTED", completed_arms=[],
+        )
+        historical_exact, historical_hashes = _historical_h5_exact(H)
+        partial.update({
+            "stage_reached": "H_R2_R3_COMPLETED",
+            "observed_historical_H_hashes": historical_hashes,
+            "completed_arms": ["H"],
+        })
+        _write_partial_evidence(target, partial)
+        if not historical_exact:
+            _fail_with_partial(target, partial, "HISTORICAL_CARRIER_REPLAY_NOT_EXACT")
 
-    manifest = verify_current_true_u()
-    F_PROVENANCE, reconstructed_current_split = reconstruct_current_msrc(device)
-    if not _sparse_split_exact(current_split, reconstructed_current_split):
-        _fail_with_partial(
-            target, partial, "HISTORICAL_CURRENT_SPARSE_SPLIT_CONTRACT_MISMATCH"
+        manifest = verify_current_true_u()
+        F_PROVENANCE, reconstructed_current_split = reconstruct_current_msrc(device)
+        if not _sparse_split_exact(current_split, reconstructed_current_split):
+            _fail_with_partial(
+                target, partial, "HISTORICAL_CURRENT_SPARSE_SPLIT_CONTRACT_MISMATCH"
+            )
+        current_identity = validate_reconstruction_against_manifest(
+            F_PROVENANCE, manifest
         )
-    current_identity = validate_reconstruction_against_manifest(
-        F_PROVENANCE, manifest
-    )
-    if not all(item["exact"] for item in current_identity.values()):
-        partial["current_provenance_gate"] = {
-            "state": "FAILED", "checks": current_identity,
+        if not all(item["exact"] for item in current_identity.values()):
+            partial["current_provenance_gate"] = {
+                "state": "FAILED", "checks": current_identity,
+            }
+            _fail_with_partial(target, partial, "CURRENT_RECONSTRUCTION_NOT_EXACT")
+        F_ARM = _carrier_with_partial_evidence(
+            F_PROVENANCE["q_local"], F_PROVENANCE["q_aligned"],
+            F_PROVENANCE["M_v"], current_split, device=device, output_dir=target,
+            evidence=partial, stage_reached="F_PROVENANCE_AND_F_ARM_STARTED",
+            completed_arms=["H"],
+        )
+        partial.update({
+            "stage_reached": "F_PROVENANCE_AND_F_ARM_COMPLETED",
+            "current_provenance_gate": {"state": "PASS", "checks": current_identity},
+            "completed_arms": ["H", "F"],
+        })
+        _write_partial_evidence(target, partial)
+        initialization = verify_initialization(protocol.MSRC_INIT_DIR)
+        current_model = initialization["model"]
+        current_model.to_device(device)
+        for autoencoder in current_model.autoencoders:
+            autoencoder.train()
+        current_full_views = [torch.from_numpy(view).to(device) for view in current_views]
+        current_snapshot = model_state_snapshot(current_model)
+        q_current_local, _ = legacy.coordinate_snapshot(
+            current_model, current_full_views,
+            torch.from_numpy(h["H2_refresh_M_v"]).to(device),
+        )
+        post_comparisons = {
+            "model": {"historical": h["H3_post_update_model"]["aggregate_hash"],
+                      "current": current_snapshot["aggregate_hash"],
+                      "exact": h["H3_post_update_model"]["aggregate_hash"] == current_snapshot["aggregate_hash"]},
+            "q_local": compare_arrays(_numpy(q_current_local, np.float32), H["q_local"]),
         }
-        _fail_with_partial(target, partial, "CURRENT_RECONSTRUCTION_NOT_EXACT")
-    F_ARM = _carrier_from_aligned(
-        F_PROVENANCE["q_local"], F_PROVENANCE["q_aligned"],
-        F_PROVENANCE["M_v"], current_split, device=device,
-    )
-    partial.update({
-        "stage_reached": "F_PROVENANCE_AND_F_ARM_COMPLETED",
-        "current_provenance_gate": {"state": "PASS", "checks": current_identity},
-        "completed_arms": ["H", "F"],
-    })
-    _write_partial_evidence(target, partial)
-    initialization = verify_initialization(protocol.MSRC_INIT_DIR)
-    current_model = initialization["model"]
-    current_model.to_device(device)
-    for autoencoder in current_model.autoencoders:
-        autoencoder.train()
-    current_full_views = [torch.from_numpy(view).to(device) for view in current_views]
-    current_snapshot = model_state_snapshot(current_model)
-    q_current_local, _ = legacy.coordinate_snapshot(
-        current_model, current_full_views,
-        torch.from_numpy(h["H2_refresh_M_v"]).to(device),
-    )
-    post_comparisons = {
-        "model": {"historical": h["H3_post_update_model"]["aggregate_hash"],
-                  "current": current_snapshot["aggregate_hash"],
-                  "exact": h["H3_post_update_model"]["aggregate_hash"] == current_snapshot["aggregate_hash"]},
-        "q_local": compare_arrays(_numpy(q_current_local, np.float32), H["q_local"]),
-    }
-    post_exact = post_comparisons["model"]["exact"] and post_comparisons["q_local"]["array_equal"]
-    if not post_exact:
-        _fail_with_partial(target, partial, "POST_NATIVE_MODEL_OR_QLOCAL_CONTRADICTION")
+        post_exact = post_comparisons["model"]["exact"] and post_comparisons["q_local"]["array_equal"]
+        if not post_exact:
+            _fail_with_partial(target, partial, "POST_NATIVE_MODEL_OR_QLOCAL_CONTRADICTION")
 
-    W_matrix = _fresh_matches(current_model, current_full_views, h["H1_incoming_weights"])
-    W_local, W_aligned = legacy.coordinate_snapshot(
-        current_model, current_full_views, torch.from_numpy(W_matrix).to(device)
-    )
-    W = _carrier_from_aligned(W_local, W_aligned, W_matrix, current_split, device=device)
-    pre_model = _build_cpu_clone(
-        native["model"], h["H0_pre_refresh_state_dict_cpu"],
-        h["H0_pre_refresh_model"],
-    )
-    historical_cpu_views = [torch.from_numpy(np.ascontiguousarray(view))
-                            for view in historical["views"]]
-    T_matrix = _fresh_matches(pre_model, historical_cpu_views, h["H1_incoming_weights"])
-    T_local, T_aligned = legacy.coordinate_snapshot(
-        pre_model, historical_cpu_views, torch.from_numpy(T_matrix)
-    )
-    T = _carrier_from_aligned(T_local, T_aligned, T_matrix, historical_split, device=device)
-    comparisons = {"H_vs_F": compare_arm(H, F_ARM), "H_vs_W": compare_arm(H, W),
-                   "H_vs_T": compare_arm(H, T), "F_vs_W": compare_arm(F_ARM, W)}
-    decision = classify_carrier_alignment(
-        historical_exact=historical_exact, current_exact=True,
-        post_model_and_q_local_exact=post_exact,
-        h_equals_f=arm_exact(comparisons["H_vs_F"]),
-        t_equals_h=arm_exact(comparisons["H_vs_T"]),
-        w_equals_h=arm_exact(comparisons["H_vs_W"]),
-        f_equals_w=arm_exact(comparisons["F_vs_W"]),
-    )
-    if decision == "FINAL_REFRESH_REPLAY_NOT_EXACT":
-        _fail_with_partial(target, partial, "FINAL_REFRESH_REPLAY_NOT_EXACT")
-    partial.update({"stage_reached": "H_F_W_T_COMPLETED",
-                    "completed_arms": ["H", "F", "W", "T"]})
-    _write_partial_evidence(target, partial)
+        W_matrix = _fresh_matches(current_model, current_full_views, h["H1_incoming_weights"])
+        W_local, W_aligned = legacy.coordinate_snapshot(
+            current_model, current_full_views, torch.from_numpy(W_matrix).to(device)
+        )
+        W = _carrier_with_partial_evidence(
+            W_local, W_aligned, W_matrix, current_split, device=device,
+            output_dir=target, evidence=partial, stage_reached="W_R2_R3_STARTED",
+            completed_arms=["H", "F"],
+        )
+        pre_model = _build_cpu_clone(
+            native["model"], h["H0_pre_refresh_state_dict_cpu"],
+            h["H0_pre_refresh_model"],
+        )
+        historical_cpu_views = [torch.from_numpy(np.ascontiguousarray(view))
+                                for view in historical["views"]]
+        T_matrix = _fresh_matches(pre_model, historical_cpu_views, h["H1_incoming_weights"])
+        T_local, T_aligned = legacy.coordinate_snapshot(
+            pre_model, historical_cpu_views, torch.from_numpy(T_matrix)
+        )
+        T = _carrier_with_partial_evidence(
+            T_local, T_aligned, T_matrix, historical_split, device=device,
+            output_dir=target, evidence=partial, stage_reached="T_R2_R3_STARTED",
+            completed_arms=["H", "F", "W"],
+        )
+        comparisons = {"H_vs_F": compare_arm(H, F_ARM), "H_vs_W": compare_arm(H, W),
+                       "H_vs_T": compare_arm(H, T), "F_vs_W": compare_arm(F_ARM, W)}
+        decision = classify_carrier_alignment(
+            historical_exact=historical_exact, current_exact=True,
+            post_model_and_q_local_exact=post_exact,
+            h_equals_f=arm_exact(comparisons["H_vs_F"]),
+            t_equals_h=arm_exact(comparisons["H_vs_T"]),
+            w_equals_h=arm_exact(comparisons["H_vs_W"]),
+            f_equals_w=arm_exact(comparisons["F_vs_W"]),
+        )
+        if decision == "FINAL_REFRESH_REPLAY_NOT_EXACT":
+            _fail_with_partial(target, partial, "FINAL_REFRESH_REPLAY_NOT_EXACT")
+        partial.update({"stage_reached": "H_F_W_T_COMPLETED",
+                        "completed_arms": ["H", "F", "W", "T"]})
+        _write_partial_evidence(target, partial)
+    except Exception as exc:
+        if partial.get("failure_class") is None:
+            partial.update({
+                "failure_class": _diagnostic_exception_failure_class(exc),
+                "failure_exception_type": type(exc).__name__,
+                "failure_exception_message": str(exc),
+            })
+            _write_partial_evidence(target, partial)
+        raise
+
     record = {
         "schema": "paper-p0-a5-msrc-pre-r2-carrier-temporal-alignment-v1",
         "training_seed": EXPECTED_SEED, "full_gt_loaded": False,

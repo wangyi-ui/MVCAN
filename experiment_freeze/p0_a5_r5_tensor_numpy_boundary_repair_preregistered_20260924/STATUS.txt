@@ -1,0 +1,37 @@
+P0-A5-R5 CUDA TENSOR / NUMPY BOUNDARY REPAIR
+
+parent commit: d12dcba370780111f22307780f54c53579e7f7fe
+parent tag: p0-a5-r4-common-device-carrier-normalization-preregistered-20260923
+
+FAIL_CLASS = DIAGNOSTIC_TENSOR_NUMPY_BOUNDARY_MISMATCH
+ROOT_CAUSE_CONFIRMED = YES
+IMPLEMENTATION = COMPLETE
+PREREGISTRATION = COMPLETE
+
+R4 preserved log SHA256:
+33493ca54d6e64461d9519b48eda00d1803d7aafc6e8665dcd76c18f19474f22
+R4 preserved partial SHA256:
+7546be8a410c5c3bc4b87c97ae0f07186eed20e4b0de07dbe07e1169b5f14816
+
+R4 H completed = YES
+R4 F completed = YES
+R4 W entered = YES
+R4 W completed = NO
+R4 T completed = NO
+R4 scientific decision = NOT OBSERVED
+R4 partial failure_class = null because its last checkpoint preceded the W exception.
+
+H observed hashes exactly equal the frozen expected hashes:
+U_cycle = 3552d88de9f894276d0d1ccae8f4c55147e98aac9a8ae146eaa1cf54dcc9dd10
+PredRelation_true = cbd2d2de1dfd51abba9b8e80fcc1ee82f4e902df6532ca2af388e1266ff0d2b8
+relation_balance_weights_true = 2d69642382947465851d69fe9f151df440979ce626481f9ad4c060909f92ff9a
+F_PROVENANCE manifest gate = PASS
+
+R5 real replay = NOT RUN
+R5 formal output directory = NOT CREATED
+R5 sibling partial = NOT CREATED
+R5 log = NOT CREATED
+P0-A5 scientific carrier decision = NOT OBSERVED
+PIPELINE FIX = NOT PERFORMED
+GATE C = NOT RUN
+TUNING = NONE

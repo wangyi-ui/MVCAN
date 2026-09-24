@@ -1,0 +1,32 @@
+The R4 W-arm failure occurred because CUDA q_aligned was passed to
+np.ascontiguousarray before compute_directional_cycle_utility.  This is a
+diagnostic Tensor/NumPy boundary mismatch, not a historical replay, carrier,
+R2/R3, initializer, or method failure.
+
+R5 normalizes q_aligned by input type only:
+
+* torch.Tensor: q_aligned.detach().to(device=device, dtype=torch.float32)
+  .contiguous().  It does not call CPU, NumPy, np.asarray, or
+  np.ascontiguousarray before R2.
+* ndarray: torch.from_numpy(np.ascontiguousarray(q_aligned,
+  dtype=np.float32)).to(device).
+
+The existing _numpy helper is the only serialization boundary for q_local,
+q_aligned, M_v, and diagnostic results.  It detaches Tensor values and copies
+them to CPU only when writing the carrier dictionary.
+
+H, F, W, and T continue to call the same release
+compute_directional_cycle_utility on the requested frozen cuda:0 device.
+F_PROVENANCE remains the raw reconstruction used only by
+validate_reconstruction_against_manifest.  F_ARM is still rebuilt from its
+q_local/q_aligned/M_v through the common-device carrier builder; comparisons
+continue to use F_ARM, never raw provenance U.
+
+After H0-H4 capture has made partial evidence available, run_audit now guards
+the whole H/F/W/T diagnostic execution interval.  Any unexpected exception
+atomically updates the sibling partial JSON with failure_class,
+failure_exception_type, failure_exception_message, stage_reached, and
+completed_arms, then re-raises the original exception.  The formal output
+directory is created only after that interval.  No traceback or full ground
+truth is serialized.  The CUDA-Tensor/NumPy error maps to
+DIAGNOSTIC_TENSOR_NUMPY_BOUNDARY_MISMATCH.
