@@ -1,0 +1,9 @@
+NOT EXECUTED:
+cd /root/autodl-tmp/UCRR-MVC-paper
+conda activate mvcan
+export R7_OUT=outputs/paper/diagnostics/p0_a5_msrc_hfw_carrier_root_cause_seed20_r7
+export R7_LOG=outputs/paper/diagnostics/p0_a5_msrc_hfw_carrier_root_cause_seed20_r7.log
+set -o pipefail
+conda run -n mvcan env PYTHONUNBUFFERED=1 PYTHONPATH=/root/autodl-tmp/UCRR-MVC-paper python -u -m experiments.paper.diagnostics.msrc_hfw_carrier_root_cause_audit --device cuda:0 --output-dir "$R7_OUT" 2>&1 | tee "$R7_LOG"
+STATUS=${PIPESTATUS[0]}
+echo "R7 FINISHED: EXIT CODE = $STATUS"

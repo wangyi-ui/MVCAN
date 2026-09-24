@@ -1,0 +1,31 @@
+R7 is a standalone cheap diagnostic.  It deliberately excludes T carrier from
+its classifier: H uses H3 post-update q with retained H2 M_v, whereas old T
+uses H0 pre-update q.  R6 already validates the H2 retained-refresh provenance
+under CUDA semantics.
+
+H_ARM is reconstructed only from the hash-pinned frozen
+legacy_pre_r2_state.npz q_local/q_aligned/M_v and the common CUDA carrier
+builder.  It must reproduce frozen U_cycle, PredRelation_true, and
+relation_balance_weights_true hashes exactly.  No historical q is recomputed
+and the module contains no legacy.prepare_native_backbone call.
+
+F_PROVENANCE is manifest-gated first, then F_ARM is rebuilt by the common CUDA
+carrier builder.  F_REPLAY_ONES performs an independent fresh refresh on the
+same post-final current model/views with a separately copied all-ones list and
+must equal F_ARM over all seven carrier arrays.  Before W, the current H3 model
+hash plus q_local/q_aligned with retained H M_v must reproduce H exactly.
+
+W uses the same post-final current model, views, seed, and fresh refresh helper
+as F_REPLAY_ONES; its only intervention is a separate copy of historical H1
+incoming weights loaded from the validated R6 H0 artifact.
+
+Every H_vs_F, H_vs_W, and W_vs_F comparison contains, in causal order, M_v,
+q_local, q_aligned, U_cycle, y_gen, PredRelation_true, and
+relation_balance_weights_true.  Each is reported via shape, dtype, exactness,
+allclose, max-absolute difference, and logical SHA256.  R7's independent
+classifier is frozen to PRE_R2_CARRIER_EXACT_PARITY,
+VIEW_WEIGHT_CARRIER_RESET_MISMATCH, FINAL_REFRESH_TEMPORAL_STATE_MISMATCH,
+COMBINED_FINAL_REFRESH_CARRIER_MISMATCH, or FAIL_CLOSED_UNCLASSIFIED.
+
+U_cycle statistics and pairwise changed-entry statistics for U_cycle, y_gen,
+and PredRelation_true are descriptive only; no threshold or tuning is added.

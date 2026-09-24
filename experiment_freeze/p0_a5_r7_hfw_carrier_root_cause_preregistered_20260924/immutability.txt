@@ -1,0 +1,6 @@
+git diff --name-only -- release_core: empty
+/root/autodl-tmp/CVPR24-MVCAN git status --short: empty
+
+Old P0-A5 wrapper and classifier, R6 audit, release_core, historical archive,
+R2/R3/R4/R5 semantics, initializers, pipeline, BASE/UNIFORM/TRUE_U, Gate C,
+training seed, hyperparameters, and method behavior are unchanged.
