@@ -1,0 +1,4 @@
+P1-A2 changes execution clarification only. No P1-A0 scientific value or
+release_core source changed. No U_cycle formula, relation semantics, R4 loss,
+R5 ordering, hyperparameter, threshold, calibration, U_tilde, gating,
+pseudo-label CE, memory bank, prototype, or result-driven choice was added.

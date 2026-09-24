@@ -1,0 +1,9 @@
+NATIVE_GENERATOR_CONTINUITY_RESOLVED
+
+Frozen source: experiments/generic_contract/generic_final_core_adapter.py,
+prepare_native_backbone.
+
+generator = torch.Generator(device="cpu") is constructed once and seeded once
+with formal training_seed. The same generator is passed to every AE-init and
+native-loop DataLoader. It is not recreated/reseeded between stages or epochs.
+Dataset-native model config seed remains distinct from training_seed.

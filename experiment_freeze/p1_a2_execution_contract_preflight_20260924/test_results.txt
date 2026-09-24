@@ -1,0 +1,7 @@
+Focused P1-A0/P1-A1/P1-A2 tests: 27 passed in 0.17s
+tests/paper: 169 passed, 1 unrelated TypedStorage warning, in 5.53s
+Artifact-independent release regression: 239 passed, 1 unrelated TypedStorage
+warning, in 11.99s.
+
+No real formal training, action materialization, native preparation, or metric
+evaluation was executed.

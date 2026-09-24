@@ -17,6 +17,7 @@ from . import p1_a0_formal_protocol as protocol
 from . import p1_a1_action_materialization as actions
 from . import p1_a1_base_runtime as base_runtime
 from . import p1_a1_native_preparation as preparation
+from . import p1_a2_execution_contract as execution
 
 
 ROOT = Path("outputs/paper/formal")
@@ -41,6 +42,7 @@ def formal_arms():
 def validate_request(run):
     if protocol.validate_formal_protocol() is not True:
         raise RuntimeError("FORMAL_PROTOCOL_UNRESOLVED")
+    execution.validate_execution_contract()
     if _dataset(run.dataset) is None:
         raise RuntimeError("FORMAL_DATASET_NOT_AUTHORIZED")
     if run.training_seed not in protocol.FORMAL_TRAINING_SEEDS:
@@ -53,6 +55,9 @@ def validate_request(run):
 def slug(dataset):
     return dataset.lower().replace("-", "").replace("_", "")
 
+
+def execution_capability(run):
+    return execution.arm_capability(run.dataset, run.arm)
 
 def paths_for(run):
     base = ROOT / "main" / slug(run.dataset) / ("seed" + str(run.training_seed))
@@ -90,7 +95,7 @@ def plan(run):
             "label_seed": protocol.SPARSE_LABEL_PROTOCOL["label_seed"],
             "native_schedule": protocol.NATIVE_PREPARATION_PROTOCOL,
             "alternating_schedule": protocol.ALTERNATING_PROTOCOL.__dict__,
-            "gt_firewall": protocol.EVALUATION_PROTOCOL, "status": "PLAN VALID"}
+            "gt_firewall": protocol.EVALUATION_PROTOCOL, "execution_capability": execution_capability(run)[0], "blocked_reason": execution_capability(run)[1], "native_generator_contract": execution.NATIVE_DATALOADER_GENERATOR_CONTRACT, "action_carrier_contract": execution.ACTION_CARRIER_CONTRACT, "status": "PLAN VALID"}
 
 
 def _sha256(path):
@@ -121,6 +126,9 @@ def run_formal(run):
     """Run exactly one authorized pre-GT arm; existing paths are never overwritten."""
     validate_request(run)
     paths = paths_for(run)
+    capability, reason = execution_capability(run)
+    if capability != "AUTHORIZED":
+        raise RuntimeError(reason)
     if paths["output"].exists():
         raise RuntimeError("FORMAL_OUTPUT_ALREADY_EXISTS")
     print("[P1-A1] START", flush=True)
@@ -138,7 +146,7 @@ def run_formal(run):
         else:
             true_action = actions.verify_true_action(paths["action"], dataset=run.dataset, training_seed=run.training_seed, initial_model_sha256=initialization["initial_model_sha256"])
             print("[P1-A1] true R2/R3 state verified/built", flush=True)
-            selected = actions.select_arm_utility(true_action, run.arm, protocol.ARM_PROTOCOL["ablation"])
+            selected = actions.select_arm_utility(true_action, run.arm, protocol.ARM_PROTOCOL["ablation"], dataset=run.dataset)
             print("[P1-A1] arm utility materialized", flush=True)
             print("[P1-A1] pre-GT training started", flush=True)
             sealed = run_pre_gt(runtime, selected["provenance"])

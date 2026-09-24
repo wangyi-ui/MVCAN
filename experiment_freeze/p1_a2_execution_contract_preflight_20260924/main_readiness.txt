@@ -1,0 +1,5 @@
+MAIN_AUTHORIZED_COUNT = 18 / 18
+MAIN decision = FORMAL_MAIN_RUNNER_READY
+
+Main consists only of BASE and OURS_TRUE_U over all 3 datasets x 3 seeds.
+Optional SHUFFLE_U ablation ambiguity does not block main-result readiness.

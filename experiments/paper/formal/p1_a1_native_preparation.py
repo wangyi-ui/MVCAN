@@ -55,4 +55,4 @@ def build_initialization(*_args, **_kwargs):
     # P1-A0 deliberately owns science.  It does not yet expose the historical
     # DataLoader-generator continuity required by P1-A1 §8, so guessing would
     # silently create a new native-preparation method.
-    raise RuntimeError("FORMAL_NATIVE_GENERATOR_SEMANTICS_UNRESOLVED")
+    raise RuntimeError("FORMAL_NATIVE_PREPARATION_BUILDER_NOT_IMPLEMENTED")

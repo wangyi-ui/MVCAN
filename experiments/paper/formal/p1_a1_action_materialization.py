@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+from . import p1_a2_execution_contract as execution
 from pathlib import Path
 
 
@@ -38,16 +39,21 @@ def verify_true_action(root, *, dataset, training_seed, initial_model_sha256):
 
 def build_true_action(*_args, **_kwargs):
     """Reject a fresh build until P1-A0 exposes refresh-carrier semantics."""
-    raise RuntimeError("FORMAL_ACTION_CARRIER_SEMANTICS_UNRESOLVED")
+    raise RuntimeError("FORMAL_ACTION_MATERIALIZATION_BUILDER_NOT_IMPLEMENTED")
 
 
-def select_arm_utility(true_action, arm, arm_protocol):
+def select_arm_utility(true_action, arm, arm_protocol, *, dataset=None):
     """Permit no undeclared arm transform; SHUFFLE_U needs frozen seed/axis."""
+    if dataset is not None:
+        capability, reason = execution.arm_capability(dataset, arm)
+        if capability != "AUTHORIZED":
+            raise RuntimeError(reason)
     if arm == "OURS_TRUE_U":
         return {"kind": "true", "source": true_action["artifact"]}
     if arm == "TRUE_UNIFORM":
         return {"kind": "uniform", "source": true_action["artifact"]}
-    if arm == "SHUFFLE_U":
-        if "shuffle_seed" not in arm_protocol or "shuffle_axis" not in arm_protocol:
-            raise RuntimeError("FORMAL_ARM_SEMANTICS_UNRESOLVED")
+    if arm == "SHUFFLE_U" and dataset == "Caltech-6V":
+        return {"kind": "shuffle_relation", "source": true_action["artifact"],
+                "utility": "true U_cycle", "relation": "historical fixed shuffled sparse targets"}
+    raise RuntimeError("FORMAL_ARM_SEMANTICS_UNRESOLVED")
     raise RuntimeError("FORMAL_ARM_SEMANTICS_UNRESOLVED")

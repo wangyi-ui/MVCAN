@@ -1,0 +1,6 @@
+FORMAL_ABLATION_PARTIALLY_BLOCKED
+
+TRUE_UNIFORM is authorized for all 9 dataset x seed cells: true relation and
+balance remain unchanged; utility is ones_like(true U_cycle).
+SHUFFLE_U is authorized only for Caltech (3 cells), and blocked for MSRC/BDGP
+(6 cells) because no frozen cross-dataset sparse-target shuffle rule exists.

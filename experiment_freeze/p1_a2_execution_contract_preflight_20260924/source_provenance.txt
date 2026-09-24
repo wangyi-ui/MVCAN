@@ -1,0 +1,11 @@
+P1-A2 authoritative sources:
+- experiments/generic_contract/generic_final_core_adapter.py: generator
+  continuity, zero-based native loop, pre-update refresh, retained M carrier,
+  post-final coordinate_snapshot.
+- experiments/cyclic_utility/c3_b0_relation_action_protocol.py and
+  c3_a0_utility_conditioned_action_granularity_protocol.py: SHUFFLE_U uses
+  shuffled semantic relation/balance, not shuffled U_cycle.
+- experiments/cyclic_utility/c2_a0_sparse_label_utility_protocol.py:
+  Caltech FIXED_SHUFFLED_TARGETS and negative-control validation.
+- P0-A5 R6/R7 freezes: fresh post-final carrier is not interchangeable with
+  retained carrier.

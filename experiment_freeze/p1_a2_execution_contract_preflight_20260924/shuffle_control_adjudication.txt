@@ -1,0 +1,11 @@
+SHUFFLE_U ADJUDICATION
+
+SHUFFLE_U retains true frozen U_cycle. It does not shuffle U rows, columns, or
+action axis. It independently rebuilds PredRelation_shuffle and shuffled balance
+from shuffled sparse labeled targets.
+
+Caltech-6V: RESOLVED. FIXED_SHUFFLED_TARGETS =
+(6,2,3,0,4,1,5,6,3,0,2,5,1,4); histogram is 2/class and it is not a global
+class permutation.
+MSRC-v1: SHUFFLE control unresolved and BLOCKED.
+BDGP: SHUFFLE control unresolved and BLOCKED.

@@ -1,0 +1,12 @@
+ACTION_CARRIER_SEMANTICS_RESOLVED
+
+Native loop is zero-based 0..native_config_epoch. At epoch 1000, the scheduled
+refresh runs before the native update. M_v/P_global/view_weights from that
+refresh are retained; the epoch-1000 update then changes the model.
+
+R2/R3 carrier is post-final q_local plus retained M_v:
+q_aligned[v] = post_final_q_local[v] @ retained_M_v[v].T
+
+P_global is not an R2 input. Fresh post-final native refresh and resetting
+incoming view weights to ones are forbidden. This preserves the P0-A5 R6/R7
+carrier evidence boundary.
