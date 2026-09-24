@@ -1,0 +1,9 @@
+2fd755f60c7c3bd907a56a6a04d2d064aa7453cffa4cc7034da7ce268fb96673  experiments/paper/formal/p1_a0_formal_protocol.py
+813d76df8e2380355944c74e1a4721dff73c51ecdb374653e9a0f2d0c1261589  experiments/paper/formal/p1_a1_runner.py
+0856a648c6f276fc4d07b5649703c9b0638123adb89ad5755c9d7aa36e198d61  experiments/paper/formal/p1_a1_native_preparation.py
+f83b0e5a20170e84980b2990ae8f45d47dfee157c0ed33b09abfc05a1e25e7fd  experiments/paper/formal/p1_a1_action_materialization.py
+780fc16036a16a63d42a39a15b3c3d79d2970e4a77750c921ccab19ca94b53e0  experiments/paper/formal/p1_a1_base_runtime.py
+439f0c1a359e24e23d2c9efb0cea618dabb221f8ae4e89799674e234dd1874f1  tests/paper/test_p1_a1_formal_runner.py
+
+release_core source: unchanged (git diff --name-only -- release_core is empty).
+P1-A0 protocol source: unchanged (git diff --name-only -- experiments/paper/formal/p1_a0_formal_protocol.py is empty).

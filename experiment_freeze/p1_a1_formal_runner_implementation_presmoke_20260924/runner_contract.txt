@@ -1,0 +1,11 @@
+P1-A1 receives only dataset, training_seed, arm, device, and optional plan-only.
+It calls p1_a0_formal_protocol.validate_formal_protocol before planning/running.
+No CLI scientific override exists. RuntimeConfig receives explicit values from
+P1-A0: alternating epochs, batch size, lr, refresh interval, label seed,
+labels/class, and dataset-native lambda1. The runner imports no evaluator and
+accepts no full-GT path/array. Existing formal output paths fail closed.
+
+Formal objects are namespaced by dataset x training seed: initialization is
+shared across all arms; canonical true action state is shared by semantic arms;
+feature and sparse split paths are shared across all seeds for one dataset.
+BASE dispatch has Phase A skipped and no semantic optimizer contract.

@@ -1,0 +1,8 @@
+Focused P1-A0/P1-A1 tests: 20 passed in 0.15s
+tests/paper: 162 passed, 1 unrelated TypedStorage warning, in 5.30s
+Artifact-independent release regression: 239 passed, 1 unrelated TypedStorage
+warning, in 11.81s.
+
+No real formal run occurred. Regression excludes only modules dependent on
+missing historical data/artifacts: R1 frozen reference parity, R2 Caltech
+artifact parity, R3 frozen semantics parity, and R7 behavior evidence.

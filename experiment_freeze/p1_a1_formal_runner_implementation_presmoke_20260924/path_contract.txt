@@ -1,0 +1,10 @@
+inputs: outputs/paper/formal/inputs/<dataset_slug>/
+initialization: outputs/paper/formal/preparation/<dataset_slug>/seed<training_seed>/
+canonical action: outputs/paper/formal/actions/<dataset_slug>/seed<training_seed>/true_action_state/
+arm result: outputs/paper/formal/main/<dataset_slug>/seed<training_seed>/<arm>/
+failure sibling: <arm-output>.failed.json
+
+All paths are centrally derived. Output directories cannot be selected by CLI.
+Existing output means FORMAL_OUTPUT_ALREADY_EXISTS; incomplete initialization
+means FORMAL_INITIALIZATION_INCOMPLETE; missing formal inputs means
+FORMAL_INPUT_NOT_MATERIALIZED. No automatic overwrite or partial repair exists.

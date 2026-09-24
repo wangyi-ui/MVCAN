@@ -1,0 +1,12 @@
+P1-A1 FORMAL RUNNER IMPLEMENTED
+REAL FORMAL RUNS = NONE
+
+The runner is non-overwriting, pre-GT, protocol-derived, and provenance gated.
+No Caltech, MSRC, BDGP, BASE, OURS_TRUE_U, TRUE_UNIFORM, SHUFFLE_U, native
+preparation, R2/R3 materialization, or post-seal metric run was executed.
+
+Fail-closed implementation boundaries retained for real execution:
+FORMAL_INPUT_NOT_MATERIALIZED
+FORMAL_NATIVE_GENERATOR_SEMANTICS_UNRESOLVED
+FORMAL_ACTION_CARRIER_SEMANTICS_UNRESOLVED
+FORMAL_ARM_SEMANTICS_UNRESOLVED (SHUFFLE_U lacks frozen seed/axis in P1-A0)

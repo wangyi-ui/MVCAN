@@ -1,0 +1,4 @@
+CLI has no epochs, lr, lambda1, batch size, refresh interval, SNR, label seed,
+or labels/class override. P1-A1 adds no scientific loss, threshold, utility
+transformation, U_tilde, gating, pseudo-label CE, memory bank, prototype, or
+additive semantic/native joint objective.

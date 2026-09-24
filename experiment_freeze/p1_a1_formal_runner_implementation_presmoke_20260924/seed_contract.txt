@@ -1,0 +1,4 @@
+native_config_seed is dataset-specific: Caltech-6V=5, MSRC-v1=20, BDGP=1.
+training_seed is formal: 20, 30, 50; it owns KMeans and order seeds.
+weak_quality_seed=20 and label_seed=20 remain fixed across training seeds/arms.
+The runner audit plan records all five values separately.

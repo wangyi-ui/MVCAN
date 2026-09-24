@@ -1,0 +1,6 @@
+Main arms: BASE, OURS_TRUE_U.
+Ablation arms: TRUE_UNIFORM, SHUFFLE_U.
+BASE is a native-only control: Phase A skipped, semantic optimizer absent.
+OURS_TRUE_U consumes canonical true U; TRUE_UNIFORM is a declared control.
+SHUFFLE_U is not guessed: its P1-A0 entry lacks exact seed/axis, so it fails
+FORMAL_ARM_SEMANTICS_UNRESOLVED until a source-level protocol adjudication.

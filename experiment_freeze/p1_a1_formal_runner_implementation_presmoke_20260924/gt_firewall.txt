@@ -1,0 +1,4 @@
+No runner function or CLI takes GT paths, labels_full, y_true, or evaluator.
+No evaluator/metric module is imported. The intended output boundary is pre-GT
+bundle, audit, seal, then formal manifest; post-seal metrics remain separate.
+Failed runs create only a sibling .failed.json and never a success seal.
