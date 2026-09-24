@@ -1,0 +1,4 @@
+Focused P1-A1/A2/A3 wiring tests: 19 passed in 1.53s
+tests/paper: 172 passed, 1 unrelated TypedStorage warning, in 5.48s
+Artifact-independent release regression: 239 passed, 1 unrelated TypedStorage
+warning, in 12.00s. No real formal training ran.

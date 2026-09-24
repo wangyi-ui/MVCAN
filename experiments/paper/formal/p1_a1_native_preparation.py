@@ -50,9 +50,7 @@ def verify_initialization(root, *, dataset, training_seed):
             "initial_model_sha256": manifest.get("combined_model_sha256"), "manifest": manifest}
 
 
-def build_initialization(*_args, **_kwargs):
-    """Reserved real-build entrypoint: rejects missing P1-A0 generator semantics."""
-    # P1-A0 deliberately owns science.  It does not yet expose the historical
-    # DataLoader-generator continuity required by P1-A1 §8, so guessing would
-    # silently create a new native-preparation method.
-    raise RuntimeError("FORMAL_NATIVE_PREPARATION_BUILDER_NOT_IMPLEMENTED")
+def build_initialization(**kwargs):
+    """P1-A3 native-preparation builder entrypoint."""
+    from .p1_a3_runtime_wiring import build_initialization as implementation
+    return implementation(**kwargs)

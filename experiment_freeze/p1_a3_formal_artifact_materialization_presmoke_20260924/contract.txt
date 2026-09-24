@@ -1,0 +1,5 @@
+P1-A3 adds non-overwriting formal input sealing, retained-carrier action wiring,
+and release ProvenanceConfig construction. Input features are GT-free; split
+materialization is the sole conceptual full-GT boundary. Native generator,
+retained M/post-final q carrier, and arm capability remain sourced from P1-A2.
+BASE remains Phase-A skipped with no semantic optimizer contract.

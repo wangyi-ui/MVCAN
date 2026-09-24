@@ -13,4 +13,4 @@ def base_audit_contract():
 
 def run_base_pre_gt(*_args, **_kwargs):
     """Real BASE must be supplied only after the native generator contract is frozen."""
-    raise RuntimeError("FORMAL_NATIVE_GENERATOR_SEMANTICS_UNRESOLVED")
+    raise RuntimeError("FORMAL_BASE_REQUIRES_SEALED_INITIALIZATION")

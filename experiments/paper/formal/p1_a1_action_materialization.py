@@ -37,10 +37,10 @@ def verify_true_action(root, *, dataset, training_seed, initial_model_sha256):
     return {**paths, "artifact_sha256": _sha256(paths["artifact"]), "audit": audit}
 
 
-def build_true_action(*_args, **_kwargs):
-    """Reject a fresh build until P1-A0 exposes refresh-carrier semantics."""
-    raise RuntimeError("FORMAL_ACTION_MATERIALIZATION_BUILDER_NOT_IMPLEMENTED")
-
+def build_true_action(**kwargs):
+    """P1-A3 canonical retained-carrier R2/R3 builder entrypoint."""
+    from .p1_a3_runtime_wiring import build_true_action as implementation
+    return implementation(**kwargs)
 
 def select_arm_utility(true_action, arm, arm_protocol, *, dataset=None):
     """Permit no undeclared arm transform; SHUFFLE_U needs frozen seed/axis."""

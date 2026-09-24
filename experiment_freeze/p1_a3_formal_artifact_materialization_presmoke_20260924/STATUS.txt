@@ -1,0 +1,5 @@
+P1-A3 FORMAL ARTIFACT PIPELINE IMPLEMENTED
+REAL FORMAL TRAINING = NONE
+
+No Caltech inputs, native preparation, canonical action materialization, BASE,
+OURS_TRUE_U, or post-seal metric evaluation was executed in this presmoke.
