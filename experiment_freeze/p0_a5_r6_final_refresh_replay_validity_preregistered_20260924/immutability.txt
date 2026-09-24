@@ -1,0 +1,6 @@
+git diff --name-only -- release_core: empty
+/root/autodl-tmp/CVPR24-MVCAN git status --short: empty
+
+The old P0-A5 wrapper/classifier, release_core, historical adapter/archive,
+R2/R3/R4/R5 formulas, pipeline, BASE/UNIFORM/TRUE_U, seed, hyperparameters,
+and method behavior remain unchanged.  R6 is a new diagnostic module only.

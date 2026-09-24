@@ -1,0 +1,33 @@
+The R5 H carrier combines H3 post-update q_local/q_aligned with retained H2
+pre-update M_v.  The former T control restored H0 and immediately took a
+coordinate snapshot.  Since R5 evidence proves H0 and H3 have different state
+hashes, full-carrier H_vs_T equality cannot validate replay of H2 refresh.
+
+R6 is an independent module.  It does not import or alter the old
+classify_carrier_alignment rule and does not use full T-carrier equality as a
+validity gate.
+
+Historical reference H_REFRESH contains H2 P_all, M_v, prediction, and
+outgoing weights.  T_CPU_NATIVE and T_CUDA_NATIVE each strictly restore the
+same H0 state, use the same historical views, a separate copied H1 incoming
+weight list, seed 20, and the same frozen legacy.native_refresh entrypoint.
+T_CPU_NATIVE uses CPU model/views/device; T_CUDA_NATIVE uses cuda:0
+model/views/device.
+
+Each refresh output comparison records array_equal, max_abs_diff, and logical
+SHA256.  Refresh exact requires all P_all, M_v, prediction, and outgoing
+weights exact; M_v exact is necessarily required.
+
+Decisions:
+* CUDA exact and CPU nonexact: FINAL_REFRESH_DEVICE_BACKEND_MISMATCH.
+* CUDA exact and CPU exact: FINAL_REFRESH_REPLAY_EXACT_DEVICE_INVARIANT.
+* CUDA nonexact: FINAL_REFRESH_REPLAY_STILL_NOT_EXACT.
+
+CPU/CUDA per-view latent and q_local comparisons record exactness, allclose
+at 1e-8, max absolute difference, and argmax exactness as diagnostic evidence
+only.  They are not a scientific gate.
+
+The H0 diagnostic-only sibling artifact contains CPU H0 state dictionaries,
+H1 weights, sample IDs, adapter provenance hashes, and full_gt_loaded=false.
+It is atomically persisted after H0 capture, before controls, and is never
+used by training or the method pipeline.

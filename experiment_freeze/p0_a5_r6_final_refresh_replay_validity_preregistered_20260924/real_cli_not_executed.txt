@@ -1,0 +1,7 @@
+NOT EXECUTED:
+conda run -n mvcan env PYTHONPATH=/root/autodl-tmp/UCRR-MVC-paper python -m experiments.paper.diagnostics.msrc_final_refresh_replay_validity_audit --device cuda:0 --output-dir outputs/paper/diagnostics/p0_a5_msrc_final_refresh_replay_validity_seed20_r6
+
+Sibling pre-formal artifacts for that single authorized future run:
+outputs/paper/diagnostics/p0_a5_msrc_final_refresh_replay_validity_seed20_r6.h0_state.pt
+outputs/paper/diagnostics/p0_a5_msrc_final_refresh_replay_validity_seed20_r6.partial.json
+outputs/paper/diagnostics/p0_a5_msrc_final_refresh_replay_validity_seed20_r6.log

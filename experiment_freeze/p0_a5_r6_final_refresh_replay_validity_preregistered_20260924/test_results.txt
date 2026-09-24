@@ -1,0 +1,17 @@
+Focused P0-A5/R6 tests: 59 passed.
+pytest -q tests/paper/: 125 passed, 1 environment deprecation warning.
+Artifact-independent release regression: 239 passed, 1 environment
+deprecation warning.
+
+Coverage includes CPU/CUDA exact H0 restore, CPU/CUDA model and view contracts,
+independent mutable incoming-weight copies, same legacy.native_refresh
+entrypoint, all four refresh-output comparisons, M_v exact necessity, all three
+R6 decisions, non-use of full T carrier as validity gate, partial-before-formal
+output, GT-free H0 artifact and exact artifact SHA, CUDA skip-if-unavailable,
+and protected-tree checks.
+
+Artifact-dependent tests intentionally excluded from release regression:
+tests/release_core/test_r1_frozen_reference_parity.py
+tests/release_core/test_r2_caltech_frozen_parity.py
+tests/release_core/test_r3_frozen_semantics_parity.py
+tests/release_core/test_r7_behavior_evidence.py
