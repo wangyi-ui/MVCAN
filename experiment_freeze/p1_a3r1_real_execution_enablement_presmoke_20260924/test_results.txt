@@ -1,0 +1,15 @@
+Focused P1-A3R1: PYTHONPATH=. conda run -n mvcan pytest -q tests/paper/test_p1_a3_materialization_wiring.py tests/paper/test_p1_a3r1_real_execution.py
+Result: 5 passed (synthetic tiny/mock only; no Caltech data).
+
+Paper suite: PYTHONPATH=. conda run -n mvcan pytest -q tests/paper/
+Result: 174 passed.
+
+Artifact-independent release regression: PYTHONPATH=. conda run -n mvcan pytest -q tests/release_core --ignore=test_r1_frozen_reference_parity.py --ignore=test_r2_caltech_frozen_parity.py --ignore=test_r3_frozen_semantics_parity.py --ignore=test_r7_behavior_evidence.py
+Result: 239 passed.
+
+Full tests/release_core was intentionally not a valid artifact-independent check in this workspace: 245 passed, 6 failed, 33 errors because data/Caltech.mat and historical frozen output artifacts are absent.
+
+git diff --check: PASS
+release_core diff: empty
+P1-A0 protocol diff: empty
+P1-A2 execution contract diff: empty

@@ -18,6 +18,7 @@ from . import p1_a1_action_materialization as actions
 from . import p1_a1_base_runtime as base_runtime
 from . import p1_a1_native_preparation as preparation
 from . import p1_a2_execution_contract as execution
+from . import p1_a3_runtime_wiring as wiring
 
 
 ROOT = Path("outputs/paper/formal")
@@ -68,6 +69,7 @@ def paths_for(run):
         "initialization": ROOT / "preparation" / slug(run.dataset) / ("seed" + str(run.training_seed)),
         "action": ROOT / "actions" / slug(run.dataset) / ("seed" + str(run.training_seed)) / "true_action_state",
         "output": base / run.arm,
+        "adapter": base / "_adapters" / run.arm,
     }
 
 
@@ -139,17 +141,12 @@ def run_formal(run):
         initialization = preparation.verify_initialization(paths["initialization"], dataset=run.dataset, training_seed=run.training_seed)
         print("[P1-A1] initialization verified/built", flush=True)
         runtime = runtime_config(run)
-        if run.arm == "BASE":
-            print("[P1-A1] arm utility materialized (BASE skips Phase A)", flush=True)
-            print("[P1-A1] pre-GT training started", flush=True)
-            sealed = base_runtime.run_base_pre_gt(runtime, paths, initialization)
-        else:
-            true_action = actions.verify_true_action(paths["action"], dataset=run.dataset, training_seed=run.training_seed, initial_model_sha256=initialization["initial_model_sha256"])
-            print("[P1-A1] true R2/R3 state verified/built", flush=True)
-            selected = actions.select_arm_utility(true_action, run.arm, protocol.ARM_PROTOCOL["ablation"], dataset=run.dataset)
-            print("[P1-A1] arm utility materialized", flush=True)
-            print("[P1-A1] pre-GT training started", flush=True)
-            sealed = run_pre_gt(runtime, selected["provenance"])
+        true_action = actions.verify_true_action(paths["action"], dataset=run.dataset, training_seed=run.training_seed, initial_model_sha256=initialization["initial_model_sha256"])
+        adapter = wiring.materialize_ours_true_u_adapter(true_action=true_action, output_dir=paths["adapter"])
+        provenance = wiring.arm_provenance(feature=paths["features"], feature_audit=paths["feature_audit"], split=paths["split"], split_audit=paths["split_audit"], utility=adapter["utility"], utility_audit=adapter["utility_audit"], semantic=adapter["semantic"], semantic_audit=adapter["semantic_audit"], initialization=initialization, output=paths["output"])
+        print("[P1-A1] canonical action and provenance verified", flush=True)
+        print("[P1-A1] pre-GT training started", flush=True)
+        sealed = base_runtime.run_base_pre_gt(runtime, provenance) if run.arm == "BASE" else run_pre_gt(runtime, provenance)
         print("[P1-A1] pre-GT training completed", flush=True)
         print("[P1-A1] final refresh completed", flush=True)
         print("[P1-A1] seal completed", flush=True)

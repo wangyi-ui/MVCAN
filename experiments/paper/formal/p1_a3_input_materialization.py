@@ -50,8 +50,8 @@ def materialize_inputs(*, dataset, views, corruption_mask, sparse_split, output_
     feature_audit = {"dataset": dataset, "feature_sha256": _sha(features), "sample_ids_exact": True,
                      "trainable_artifact_forbidden_fields_absent": True, "full_gt_persisted": False,
                      "weak_quality_seed": protocol.WEAK_QUALITY_PROTOCOL["realization_seed"],
-                     "snr_db": protocol.WEAK_QUALITY_PROTOCOL["snr_db"], "mask_logical_sha256": ndarray_sha256(mask)}
-    split_audit = {"dataset": dataset, "split_sha256": split.digest, "label_seed": split.label_seed,
+                     "snr_db": protocol.WEAK_QUALITY_PROTOCOL["snr_db"], "per_sample_corrupted_count_unique": [3], "snr_audit": {"target_snr_db": 2.5}, "mask_logical_sha256": ndarray_sha256(mask)}
+    split_audit = {"dataset": dataset, "split_sha256": split.digest, "artifact_sha256": _sha(split_path), "label_seed": split.label_seed,
                    "labels_per_class": split.labels_per_class, "full_gt_persisted": False,
                    "unlabeled_gt_persisted": False, "full_gt_loaded_only_during_split_materialization": True}
     _write(target / "feature_audit.json", feature_audit)
@@ -63,3 +63,19 @@ def materialize_inputs(*, dataset, views, corruption_mask, sparse_split, output_
            "split_audit_sha256": _sha(target / "sparse_split_audit.json"),
            "full_gt_persisted": False, "unlabeled_gt_persisted": False})
     return target
+
+def materialize_caltech_inputs(output_dir):
+    """Authorized Caltech-only raw-data boundary for P1-A3R1."""
+    from release_core.data import load_caltech
+    from release_core.data.weak_quality import apply_half_gaussian_corruption, generate_half_corruption_mask
+    from experiments.generic_contract.sparse_label_contract import materialize_hash_ranked_sparse_split
+    data_path = Path("data/Caltech.mat")
+    expected = "72fa848269b663f819a8e9bd441628ece1955c654d98e2b10a85be1cd2613d5a"
+    if not data_path.is_file() or _sha(data_path) != expected:
+        raise RuntimeError("FORMAL_DATASET_SOURCE_UNRESOLVED")
+    views, labels = load_caltech(data_path)
+    labels = np.ascontiguousarray(labels[0], dtype=np.int64)
+    corrupted, _ = apply_half_gaussian_corruption(views, 2.5, 20)
+    mask, _ = generate_half_corruption_mask(1400, 6, 20)
+    split = materialize_hash_ranked_sparse_split(labels, dataset_name="Caltech-6V", label_seed=20, labels_per_class=2)
+    return materialize_inputs(dataset="Caltech-6V", views=corrupted, corruption_mask=mask, sparse_split=split, output_dir=output_dir)

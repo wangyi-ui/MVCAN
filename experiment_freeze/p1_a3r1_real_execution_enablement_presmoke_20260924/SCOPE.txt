@@ -1,0 +1,9 @@
+Scope: P1-A3R1 execution enablement only.
+
+Implemented: native-initialization and canonical-action writers, native-only generic BASE, OURS_TRUE_U immutable adapter materialization, strict release ProvenanceConfig wiring, and runner dispatch.
+
+Invariants: canonical true_action_state remains immutable; BASE and OURS consume the same sealed feature/split/checkpoint initialization identity; BASE has no Phase A and no semantic optimizer; OURS calls release_core.runtime.run_pre_gt(runtime, provenance).
+
+No changes: release_core/**, experiments/paper/formal/p1_a0_formal_protocol.py, experiments/paper/formal/p1_a2_execution_contract.py, historical archive.
+
+No authorized real execution: Caltech input materialization NONE; formal training NONE; post-seal evaluation NONE.
