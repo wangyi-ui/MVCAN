@@ -1,0 +1,11 @@
+P1-A0 FORMAL PROTOCOL RESOLVED
+
+Decision: FORMAL_PROTOCOL_RESOLVED
+Protocol audit: outputs/paper/protocol/p1_a0_formal_protocol_recovery.json
+Protocol audit SHA256: a1b9c36143d1ab21121765c700155f78550c4e79fac3dd7f84d107766eb5f538
+
+This freeze recovers protocol only.  No formal training, BASE/OURS run,
+multi-seed run, tuning, full-GT evaluation, or scientific-core change occurred.
+
+P0-A5 is CLOSED; P0-A5-R7 is PASS.  No further P0 diagnostic is authorized
+unless P1 exposes a genuine protocol contradiction.

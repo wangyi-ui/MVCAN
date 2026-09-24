@@ -1,0 +1,10 @@
+P0-A5 = CLOSED
+R7 = PASS
+NO FURTHER P0 DIAGNOSTIC AUTHORIZED
+
+R7 decision: COMBINED_FINAL_REFRESH_CARRIER_MISMATCH
+R7 full_gt_loaded: false
+R7 exit code: 0
+
+The result is a successful causal diagnosis: final-refresh temporal state and
+view-weight reset both alter the carrier.  It is not a method failure.

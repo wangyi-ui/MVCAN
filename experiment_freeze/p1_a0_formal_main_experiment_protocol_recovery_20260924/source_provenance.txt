@@ -1,0 +1,37 @@
+SOURCE PROVENANCE AUDITED FOR P1-A0
+
+release_core/config/native.py
+  _TRAINING supplies (seed, lambda1); native schedule is batch=256,
+  init_epoch=200, T_1=2, T_2=100, epoch=1000, lr=1e-4.
+release_core/runtime/__init__.py
+  RuntimeConfig defaults are interfaces only; its epochs default was not used
+  as the sole formal-evidence source. evaluate_postseal is separate/lazy.
+release_core/runtime/entrypoint.py
+  R5 is followed by one no-gradient final native refresh; prediction source is
+  second-pass native KMeans IDs; bundle/audit/seal precede post-seal evaluation.
+release_core/training/alternating.py
+  refresh_native_state_if_due uses zero-based epoch % interval; each epoch is
+  Phase A, refresh, Phase B; targets are detached.
+release_core/backbone/clustering.py
+  native_refresh_from_latents implements the two-pass KMeans refresh.
+experiments/generic_contract/generic_final_core_adapter.py
+  supporting native/generic reference: formal legacy final-core schedule used
+  20 alternating epochs and a final native refresh.
+
+Formal epoch evidence (controlling provenance):
+experiment_freeze/f0_a1_multiseed_formal_pass_20260914/MULTISEED_DYNAMICS_SUMMARY.json
+  nine formal runs, seeds 20/30/50, and B20 fields per seed. This is formal
+  frozen evidence for 20 alternating epochs, not an inference from RuntimeConfig.
+
+R2/R3/R4/R5 provenance:
+experiment_freeze/r2_final_directional_cyclic_utility_pass_20260920
+experiment_freeze/r3_final_sparse_relation_semantics_pass_20260921
+experiment_freeze/r4_final_utility_conditioned_relation_action_pass_20260921
+experiment_freeze/r5_final_alternating_trainer_pass_20260922
+
+Runtime/extraction provenance:
+experiment_freeze/r6_final_runtime_entrypoint_pass_20260922
+experiment_freeze/r7_final_extraction_closure_pass_20260923
+
+BDGP mask provenance:
+experiment_freeze/g0_b1_bdgp_structural_pilot_pre_gt_pass_20260917/structural_logical_hashes.txt

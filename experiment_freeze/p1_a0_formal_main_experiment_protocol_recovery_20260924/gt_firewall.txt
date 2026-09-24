@@ -1,0 +1,6 @@
+FULL-GT FIREWALL
+
+The formal pre-GT runner accepts no full-GT input and emits pre_gt_bundle,
+audit, then seal. Canonical sample IDs align final predictions exactly and
+prediction length is N. Only after seal may evaluate_postseal load full GT and
+compute ACC, NMI, and ARI. q argmax is never the final paper prediction.

@@ -1,0 +1,8 @@
+parent P0-R7 preregistration tag:
+p0-a5-r7-hfw-carrier-root-cause-preregistered-20260924
+
+R6 refresh provenance gate:
+FINAL_REFRESH_DEVICE_BACKEND_MISMATCH
+
+R7 real output:
+outputs/paper/diagnostics/p0_a5_msrc_hfw_carrier_root_cause_seed20_r7/

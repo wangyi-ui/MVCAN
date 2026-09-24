@@ -1,0 +1,11 @@
+RESOLVED FIELDS
+
+dataset matrix; native seeds and lambda1; native batch/init/T1/T2/epoch/lr;
+same-condition native preparation; KMeans and DataLoader seed ownership;
+formal training seeds; weak-quality SNR/seed/corruption counts/mask hashes;
+sparse-label count/seed/totals; per-dataset x training-seed R2/R3 freshness;
+R2/R3 freeze during R5; R5 epoch count; A->Refresh->B order; zero-based
+refresh cadence; final refresh and prediction semantics; pre-GT seal and
+post-seal-only metrics; main/ablation arm separation; no-tuning contract.
+
+All fields are RESOLVED.  See protocol_matrix.txt and source_provenance.txt.

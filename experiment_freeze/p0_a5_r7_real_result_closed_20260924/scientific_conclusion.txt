@@ -1,0 +1,7 @@
+R7 completed with COMBINED_FINAL_REFRESH_CARRIER_MISMATCH and no full GT.
+
+H_vs_F, H_vs_W, and W_vs_F first diverge at M_v.  The causal conclusion is
+that both retained historical final-refresh temporal state and current reset
+of view weights contribute to the H/F carrier discrepancy.  P0 provenance and
+root-cause diagnosis is closed; no P0-A8/P0-A9 or further carrier diagnostic is
+authorized absent a genuine P1 protocol contradiction.

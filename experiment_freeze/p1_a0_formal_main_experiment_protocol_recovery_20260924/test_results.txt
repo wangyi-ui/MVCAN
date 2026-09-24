@@ -1,0 +1,23 @@
+P1-A0 validation results
+
+Focused static protocol test:
+11 passed in 0.06s
+
+Required tests/paper:
+153 passed, 1 unrelated PyTorch TypedStorage warning, in 5.35s
+
+Artifact-independent release regression:
+239 passed, 1 unrelated PyTorch TypedStorage warning, in 12.00s
+Excluded artifact-dependent modules only:
+test_r1_frozen_reference_parity.py (data/*.mat unavailable)
+test_r2_caltech_frozen_parity.py (frozen historical artifact unavailable)
+test_r3_frozen_semantics_parity.py (frozen historical artifacts unavailable)
+test_r7_behavior_evidence.py (frozen release bundles unavailable)
+
+The unfiltered tests/release_core attempt had 245 passed, 6 failed, and 33
+errors exclusively due to those absent data/artifacts; no release-code
+assertion regression was diagnosed.
+
+git diff --check: PASS
+release_core working-tree diff: EMPTY
+historical archive /root/autodl-tmp/CVPR24-MVCAN status: CLEAN

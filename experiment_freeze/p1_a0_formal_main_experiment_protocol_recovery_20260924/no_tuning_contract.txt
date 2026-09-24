@@ -1,0 +1,11 @@
+NO-TUNING CONTRACT
+
+P1 formal results must not select epochs, learning rate, lambda1, threshold,
+utility transformation, refresh interval, labels, or SNR using ACC, NMI, or
+ARI. No U_tilde, scalar utility calibration, label-gated features, pseudo-label
+CE, memory bank, prototype write, feature/fusion/posterior gating, target
+rewriting, additive joint loss, or result-based tuning is authorized.
+
+Sparse labels determine semantic direction/content. Frozen U_cycle determines
+action validity. Phase A is semantic relation refinement; Phase B is the native
+REC + dataset-native lambda1 * CLU objective.
