@@ -38,7 +38,7 @@ def _runtime_split_from_generic(raw_split, *, sample_ids, class_count):
         raise RuntimeError("FORMAL_SPARSE_SPLIT_CONTENT_CONVERSION_MISMATCH")
     return runtime_split
 
-def materialize_inputs(*, dataset, views, corruption_mask, sparse_split, output_dir):
+def materialize_inputs(*, dataset, views, corruption_mask, sparse_split, output_dir, sparse_split_source="hash-ranked generic materialization", full_gt_loaded_at_input_boundary=False, full_gt_used_to_select_sparse_ids=True):
     """Seal feature-only views plus an explicit sparse split; never persist GT."""
     item = next(value for value in protocol.FORMAL_DATASETS if value.name == dataset)
     target = Path(output_dir)
@@ -64,7 +64,7 @@ def materialize_inputs(*, dataset, views, corruption_mask, sparse_split, output_
                      "snr_db": protocol.WEAK_QUALITY_PROTOCOL["snr_db"], "per_sample_corrupted_count_unique": [3], "snr_audit": {"target_snr_db": 2.5}, "mask_logical_sha256": ndarray_sha256(mask)}
     split_audit = {"dataset": dataset, "split_sha256": split.digest, "artifact_sha256": _sha(split_path), "label_seed": split.label_seed,
                    "labels_per_class": split.labels_per_class, "full_gt_persisted": False,
-                   "unlabeled_gt_persisted": False, "full_gt_loaded_only_during_split_materialization": True}
+                   "unlabeled_gt_persisted": False, "full_gt_loaded_only_during_split_materialization": True, "sparse_split_source": sparse_split_source, "full_gt_loaded_at_input_boundary": bool(full_gt_loaded_at_input_boundary), "full_gt_used_to_select_sparse_ids": bool(full_gt_used_to_select_sparse_ids)}
     _write(target / "feature_audit.json", feature_audit)
     _write(target / "sparse_split_audit.json", split_audit)
     _write(target / "weak_quality_audit.json", {"mask_logical_sha256": ndarray_sha256(mask), "snr_db": 2.5})
@@ -75,22 +75,29 @@ def materialize_inputs(*, dataset, views, corruption_mask, sparse_split, output_
            "full_gt_persisted": False, "unlabeled_gt_persisted": False})
     return target
 
+_CALTECH_LABELED_IDS = np.asarray([67, 82, 90, 111, 200, 365, 440, 513, 536, 983, 1027, 1250, 1316, 1385], dtype=np.int64)
+_CALTECH_LABELED_TARGETS = np.asarray([4, 6, 2, 3, 0, 4, 1, 5, 6, 3, 0, 2, 5, 1], dtype=np.int64)
+
+
+def _caltech_runtime_split():
+    """Use the frozen backward-compatibility split, never a new selector."""
+    from experiments.generic_contract.sparse_label_contract import frozen_caltech_sparse_split
+    raw_split = frozen_caltech_sparse_split()
+    if not (np.array_equal(raw_split.labeled_ids, _CALTECH_LABELED_IDS) and np.array_equal(raw_split.labeled_targets, _CALTECH_LABELED_TARGETS) and raw_split.label_seed == 20 and raw_split.labels_per_class == 2 and raw_split.labeled_ids.size == 14 and np.array_equal(np.bincount(raw_split.labeled_targets, minlength=7), np.full(7, 2, dtype=np.int64))):
+        raise RuntimeError("FORMAL_CALTECH_FROZEN_SPARSE_SPLIT_MISMATCH")
+    return _runtime_split_from_generic(raw_split, sample_ids=np.arange(1400, dtype=np.int64), class_count=7)
+
+
 def materialize_caltech_inputs(output_dir):
-    """Authorized Caltech-only raw-data boundary for P1-A3R1."""
+    """Authorized Caltech input boundary with a frozen sparse split."""
     from release_core.data import load_caltech
     from release_core.data.weak_quality import apply_half_gaussian_corruption, generate_half_corruption_mask
-    from experiments.generic_contract.sparse_label_contract import frozen_caltech_sparse_split, materialize_hash_ranked_sparse_split
     data_path = Path("data/Caltech.mat")
     expected = "72fa848269b663f819a8e9bd441628ece1955c654d98e2b10a85be1cd2613d5a"
     if not data_path.is_file() or _sha(data_path) != expected:
         raise RuntimeError("FORMAL_DATASET_SOURCE_UNRESOLVED")
     views, labels = load_caltech(data_path)
-    labels = np.ascontiguousarray(labels[0], dtype=np.int64)
     corrupted, _ = apply_half_gaussian_corruption(views, 2.5, 20)
     mask, _ = generate_half_corruption_mask(1400, 6, 20)
-    raw_split = materialize_hash_ranked_sparse_split(labels, dataset_name="Caltech-6V", label_seed=20, labels_per_class=2)
-    frozen_split = frozen_caltech_sparse_split()
-    if not (raw_split.split_sha256 == frozen_split.split_sha256 and np.array_equal(raw_split.labeled_ids, frozen_split.labeled_ids) and np.array_equal(raw_split.labeled_targets, frozen_split.labeled_targets) and np.array_equal(raw_split.unlabeled_ids, frozen_split.unlabeled_ids)):
-        raise RuntimeError("FORMAL_CALTECH_SPARSE_SPLIT_PARITY_MISMATCH")
-    runtime_split = _runtime_split_from_generic(raw_split, sample_ids=np.arange(labels.size, dtype=np.int64), class_count=7)
-    return materialize_inputs(dataset="Caltech-6V", views=corrupted, corruption_mask=mask, sparse_split=runtime_split, output_dir=output_dir)
+    runtime_split = _caltech_runtime_split()
+    return materialize_inputs(dataset="Caltech-6V", views=corrupted, corruption_mask=mask, sparse_split=runtime_split, output_dir=output_dir, sparse_split_source="frozen Caltech backward-compatibility split", full_gt_loaded_at_input_boundary=True, full_gt_used_to_select_sparse_ids=False)

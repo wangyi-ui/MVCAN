@@ -111,3 +111,32 @@ def test_generic_sparse_split_crosses_runtime_type_boundary_without_semantic_cha
     assert np.array_equal(frozen_runtime.labeled_ids, frozen.labeled_ids)
     assert np.array_equal(frozen_runtime.labeled_targets, frozen.labeled_targets)
     assert np.array_equal(frozen_runtime.unlabeled_ids, frozen.unlabeled_ids)
+
+
+def test_caltech_path_uses_only_frozen_split_authority_and_truthful_audit(tmp_path, monkeypatch):
+    import release_core.data as release_data
+    import release_core.data.weak_quality as weak_quality
+    import experiments.generic_contract.sparse_label_contract as sparse_contract
+    class FakePath:
+        def is_file(self):
+            return True
+    seen = {}
+    monkeypatch.setattr(inputs, "Path", lambda value: FakePath())
+    monkeypatch.setattr(inputs, "_sha", lambda path: "72fa848269b663f819a8e9bd441628ece1955c654d98e2b10a85be1cd2613d5a")
+    monkeypatch.setattr(release_data, "load_caltech", lambda path: ((), np.zeros((1, 1400), dtype=np.int64)))
+    monkeypatch.setattr(weak_quality, "apply_half_gaussian_corruption", lambda views, snr, seed: (("view",), None))
+    monkeypatch.setattr(weak_quality, "generate_half_corruption_mask", lambda n, v, seed: (np.zeros((n, v), dtype=np.bool_), None))
+    monkeypatch.setattr(sparse_contract, "materialize_hash_ranked_sparse_split", lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("Caltech must not invoke hash-ranked selection")))
+    monkeypatch.setattr(inputs, "materialize_inputs", lambda **kwargs: seen.update(kwargs) or "sealed")
+    assert inputs.materialize_caltech_inputs(tmp_path / "unused") == "sealed"
+    split = seen["sparse_split"]
+    assert np.array_equal(split.labeled_ids, np.array([67, 82, 90, 111, 200, 365, 440, 513, 536, 983, 1027, 1250, 1316, 1385], dtype=np.int64))
+    assert np.array_equal(split.labeled_targets, np.array([4, 6, 2, 3, 0, 4, 1, 5, 6, 3, 0, 2, 5, 1], dtype=np.int64))
+    assert split.digest == frozen_caltech_sparse_split().split_sha256
+    assert (split.labels_per_class, split.label_seed) == (2, 20)
+    assert seen["sparse_split_source"] == "frozen Caltech backward-compatibility split"
+    assert seen["full_gt_loaded_at_input_boundary"] is True
+    assert seen["full_gt_used_to_select_sparse_ids"] is False
+    for dataset in ("MSRC-v1", "BDGP"):
+        generic = materialize_hash_ranked_sparse_split(np.array([0, 0, 0, 1, 1, 1], dtype=np.int64), dataset_name=dataset, label_seed=20, labels_per_class=2)
+        assert generic.labels_per_class == 2 and generic.label_seed == 20

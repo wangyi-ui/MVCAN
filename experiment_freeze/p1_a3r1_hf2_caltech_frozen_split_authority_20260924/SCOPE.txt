@@ -1,0 +1,9 @@
+Scope: P1-A3R1-HF2 Caltech backward-compatibility sparse-split authority repair only.
+
+Caltech formal input construction uses frozen_caltech_sparse_split() exclusively, verifies the fixed labeled IDs and targets, verifies seed20 / 2-per-class / L=14, then crosses only the generic-to-runtime type boundary with exact digest and arrays. Hash-ranked materialization remains unchanged for new generic datasets such as MSRC-v1 and BDGP and is forbidden in the Caltech formal path.
+
+GT firewall: loader labels may be transiently loaded at the input boundary; they are not used to choose frozen sparse IDs, are not persisted, and are not passed into training, U_cycle, or R3.
+
+No changes: release_core/**, P1-A0 protocol, P1-A2 execution contract, U_cycle/R3/R4/R5, native schedule, BASE/OURS, historical archive.
+
+Real formal input materialization NONE; real formal training NONE.
