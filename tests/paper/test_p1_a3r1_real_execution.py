@@ -5,6 +5,10 @@ from types import SimpleNamespace
 import numpy as np
 import torch
 
+from experiments.generic_contract.sparse_label_contract import frozen_caltech_sparse_split, materialize_hash_ranked_sparse_split
+from experiments.paper.formal import p1_a3_input_materialization as inputs
+from release_core.data.weak_quality import ndarray_sha256
+from release_core.semantics import validate_sparse_label_split
 from experiments.paper.formal import p1_a1_action_materialization as actions
 from experiments.paper.formal import p1_a1_base_runtime as base
 from experiments.paper.formal import p1_a1_native_preparation as preparation
@@ -79,3 +83,31 @@ def test_real_execution_stub_names_are_absent_and_protected_sources_stay_clean()
         assert token not in source
     import subprocess
     assert not subprocess.run(["git", "diff", "--name-only", "--", "release_core", "experiments/paper/formal/p1_a0_formal_protocol.py", "experiments/paper/formal/p1_a2_execution_contract.py"], cwd=root, text=True, stdout=subprocess.PIPE, check=True).stdout
+
+
+def test_generic_sparse_split_crosses_runtime_type_boundary_without_semantic_change(tmp_path, monkeypatch):
+    mask = np.zeros((6, 2), dtype=np.bool_)
+    tiny = SimpleNamespace(name="Tiny", n_samples=6, n_views=2, n_clusters=2, view_dims=(2, 2), native_config_seed=5, weak_quality_mask_sha256=ndarray_sha256(mask))
+    monkeypatch.setattr(inputs.protocol, "FORMAL_DATASETS", (tiny,))
+    raw_split = materialize_hash_ranked_sparse_split(np.array([0, 0, 0, 1, 1, 1], dtype=np.int64), dataset_name="Tiny", label_seed=20, labels_per_class=2)
+    runtime_split = inputs._runtime_split_from_generic(raw_split, sample_ids=np.arange(6, dtype=np.int64), class_count=2)
+    validated = validate_sparse_label_split(runtime_split)
+    assert runtime_split.digest == raw_split.split_sha256
+    assert np.array_equal(runtime_split.labeled_ids, raw_split.labeled_ids)
+    assert np.array_equal(runtime_split.labeled_targets, raw_split.labeled_targets)
+    assert np.array_equal(runtime_split.unlabeled_ids, raw_split.unlabeled_ids)
+    assert (runtime_split.labels_per_class, runtime_split.label_seed) == (2, 20)
+    output = inputs.materialize_inputs(dataset="Tiny", views=(np.zeros((6, 2), dtype=np.float32), np.ones((6, 2), dtype=np.float32)), corruption_mask=mask, sparse_split=validated, output_dir=tmp_path / "sealed")
+    with np.load(output / "sparse_split.npz", allow_pickle=False) as archive:
+        assert set(archive.files) == {"sample_ids", "labeled_ids", "labeled_targets", "unlabeled_ids"}
+        assert np.array_equal(archive["labeled_ids"], raw_split.labeled_ids)
+        assert np.array_equal(archive["labeled_targets"], raw_split.labeled_targets)
+        assert np.array_equal(archive["unlabeled_ids"], raw_split.unlabeled_ids)
+    audit = json.loads((output / "sparse_split_audit.json").read_text())
+    assert audit["full_gt_persisted"] is False and audit["unlabeled_gt_persisted"] is False
+    frozen = frozen_caltech_sparse_split()
+    frozen_runtime = inputs._runtime_split_from_generic(frozen, sample_ids=np.arange(1400, dtype=np.int64), class_count=7)
+    assert frozen_runtime.digest == frozen.split_sha256
+    assert np.array_equal(frozen_runtime.labeled_ids, frozen.labeled_ids)
+    assert np.array_equal(frozen_runtime.labeled_targets, frozen.labeled_targets)
+    assert np.array_equal(frozen_runtime.unlabeled_ids, frozen.unlabeled_ids)

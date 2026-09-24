@@ -27,6 +27,17 @@ def _write(path, record):
         stream.write("\n")
 
 
+
+def _runtime_split_from_generic(raw_split, *, sample_ids, class_count):
+    """Cross the generic-contract to release-runtime split type boundary."""
+    runtime_split = SparseLabelSplit(sample_ids=np.ascontiguousarray(sample_ids, dtype=np.int64), labeled_ids=raw_split.labeled_ids, labeled_targets=raw_split.labeled_targets, unlabeled_ids=raw_split.unlabeled_ids, class_count=class_count, labels_per_class=raw_split.labels_per_class, label_seed=raw_split.label_seed, dataset_name=raw_split.dataset_name)
+    runtime_split = validate_sparse_label_split(runtime_split)
+    if runtime_split.digest != raw_split.split_sha256:
+        raise RuntimeError("FORMAL_SPARSE_SPLIT_DIGEST_CONVERSION_MISMATCH")
+    if not (np.array_equal(runtime_split.labeled_ids, raw_split.labeled_ids) and np.array_equal(runtime_split.labeled_targets, raw_split.labeled_targets) and np.array_equal(runtime_split.unlabeled_ids, raw_split.unlabeled_ids)):
+        raise RuntimeError("FORMAL_SPARSE_SPLIT_CONTENT_CONVERSION_MISMATCH")
+    return runtime_split
+
 def materialize_inputs(*, dataset, views, corruption_mask, sparse_split, output_dir):
     """Seal feature-only views plus an explicit sparse split; never persist GT."""
     item = next(value for value in protocol.FORMAL_DATASETS if value.name == dataset)
@@ -68,7 +79,7 @@ def materialize_caltech_inputs(output_dir):
     """Authorized Caltech-only raw-data boundary for P1-A3R1."""
     from release_core.data import load_caltech
     from release_core.data.weak_quality import apply_half_gaussian_corruption, generate_half_corruption_mask
-    from experiments.generic_contract.sparse_label_contract import materialize_hash_ranked_sparse_split
+    from experiments.generic_contract.sparse_label_contract import frozen_caltech_sparse_split, materialize_hash_ranked_sparse_split
     data_path = Path("data/Caltech.mat")
     expected = "72fa848269b663f819a8e9bd441628ece1955c654d98e2b10a85be1cd2613d5a"
     if not data_path.is_file() or _sha(data_path) != expected:
@@ -77,5 +88,9 @@ def materialize_caltech_inputs(output_dir):
     labels = np.ascontiguousarray(labels[0], dtype=np.int64)
     corrupted, _ = apply_half_gaussian_corruption(views, 2.5, 20)
     mask, _ = generate_half_corruption_mask(1400, 6, 20)
-    split = materialize_hash_ranked_sparse_split(labels, dataset_name="Caltech-6V", label_seed=20, labels_per_class=2)
-    return materialize_inputs(dataset="Caltech-6V", views=corrupted, corruption_mask=mask, sparse_split=split, output_dir=output_dir)
+    raw_split = materialize_hash_ranked_sparse_split(labels, dataset_name="Caltech-6V", label_seed=20, labels_per_class=2)
+    frozen_split = frozen_caltech_sparse_split()
+    if not (raw_split.split_sha256 == frozen_split.split_sha256 and np.array_equal(raw_split.labeled_ids, frozen_split.labeled_ids) and np.array_equal(raw_split.labeled_targets, frozen_split.labeled_targets) and np.array_equal(raw_split.unlabeled_ids, frozen_split.unlabeled_ids)):
+        raise RuntimeError("FORMAL_CALTECH_SPARSE_SPLIT_PARITY_MISMATCH")
+    runtime_split = _runtime_split_from_generic(raw_split, sample_ids=np.arange(labels.size, dtype=np.int64), class_count=7)
+    return materialize_inputs(dataset="Caltech-6V", views=corrupted, corruption_mask=mask, sparse_split=runtime_split, output_dir=output_dir)

@@ -1,0 +1,9 @@
+Scope: minimal formal sparse-split runtime type-boundary repair only.
+
+The frozen generic hash-ranked split algorithm is unchanged. At the formal input boundary, generic-contract SparseLabelSplit is reconstructed as release_core.semantics.SparseLabelSplit using identical sample IDs, labels, seed, budget, and dataset identity.
+
+Gates: runtime digest equals raw split_sha256; labeled_ids, labeled_targets, and unlabeled_ids are exact; Caltech raw split must exactly equal frozen_caltech_sparse_split before conversion.
+
+No changes: release_core/**, P1-A0 protocol, P1-A2 execution contract, historical archive.
+
+No authorized real execution: Caltech materialization NONE; formal training NONE.
