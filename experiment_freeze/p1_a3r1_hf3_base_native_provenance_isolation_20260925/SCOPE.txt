@@ -1,0 +1,11 @@
+Scope: P1-A3R1-HF3 formal runtime provenance isolation only.
+
+BASE uses paper-local BaseProvenanceConfig containing only sealed feature/split artifacts, initialization audit, initialization checkpoints, output path, strict hashes, and the initial model hash. It does not expose or bind action, utility, relation, or semantic artifacts. BASE retains frozen native refresh and Phase-B helpers, skips Phase A, and creates no semantic optimizer.
+
+OURS_TRUE_U continues to verify the immutable canonical action, materialize its adapter, construct release_core.runtime.ProvenanceConfig, and call release runtime pre-GT training. TRUE_UNIFORM and SHUFFLE_U fail closed pending their own runtime wiring.
+
+Read-only formal artifact verification: all 19 entries in /root/autodl-tmp/UCRR-MVC-HF3-WIP-20260924/formal_artifacts_sha256.txt passed sha256sum -c.
+
+No changes: release_core/**, P1-A0 protocol, P1-A2 execution contract, U_cycle/R3/R4/R5, native schedule, existing formal artifacts.
+
+Real BASE training NONE; real OURS training NONE.

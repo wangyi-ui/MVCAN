@@ -1,15 +1,43 @@
 """Generic, native-only BASE runtime over frozen release primitives."""
 
+from dataclasses import dataclass
+from pathlib import Path
+
 import numpy as np
 import torch
 
-from release_core.runtime import ProvenanceConfig, RuntimeConfig
+from release_core.runtime import RuntimeConfig
 from release_core.runtime import entrypoint as entry
 from release_core.training import initial_native_target_state, precompute_training_orders, refresh_native_state_if_due, run_native_consolidation_phase
 
 
+@dataclass(frozen=True)
+class BaseProvenanceConfig:
+    feature_artifact: Path
+    feature_audit: Path
+    sparse_split_artifact: Path
+    sparse_split_audit: Path
+    checkpoint_paths: tuple
+    checkpoint_audit: Path
+    output_root: Path
+    strict_replay: bool = False
+    expected_file_sha256: tuple = ()
+    expected_initial_model_sha256: str = None
+
+    def __post_init__(self):
+        for name in ("feature_artifact", "feature_audit", "sparse_split_artifact", "sparse_split_audit", "checkpoint_audit", "output_root"):
+            object.__setattr__(self, name, Path(getattr(self, name)))
+        checkpoints = tuple(Path(path) for path in self.checkpoint_paths)
+        if not checkpoints:
+            raise ValueError("checkpoint_paths must not be empty")
+        object.__setattr__(self, "checkpoint_paths", checkpoints)
+        object.__setattr__(self, "expected_file_sha256", tuple((Path(path), str(digest)) for path, digest in self.expected_file_sha256))
+        if not isinstance(self.strict_replay, bool):
+            raise TypeError("strict_replay must be boolean")
+
+
 def base_audit_contract():
-    return {"phase_a_executed": False, "semantic_optimizer_created": False, "phase_b_executed": True, "phase_order": ("PHASE_A_SKIPPED", "REFRESH", "PHASE_B"), "full_gt_loaded": False, "final_prediction_source": "final native refresh second-pass KMeans prediction IDs"}
+    return {"action_artifact_loaded": False, "utility_artifact_loaded": False, "semantic_artifact_loaded": False, "phase_a_executed": False, "semantic_optimizer_created": False, "phase_b_executed": True, "phase_order": ("PHASE_A_SKIPPED", "REFRESH", "PHASE_B"), "full_gt_loaded": False, "final_prediction_source": "final native refresh second-pass KMeans prediction IDs"}
 
 
 def _native_optimizers(model, learning_rate):
@@ -17,9 +45,9 @@ def _native_optimizers(model, learning_rate):
 
 
 def run_base_pre_gt(runtime, provenance):
-    """Execute BASE: no Phase A or semantic optimizer; refresh then Phase B."""
-    if not isinstance(runtime, RuntimeConfig) or not isinstance(provenance, ProvenanceConfig):
-        raise TypeError("BASE requires RuntimeConfig and ProvenanceConfig")
+    """Execute BASE: native files only; no Phase A or semantic optimizer."""
+    if not isinstance(runtime, RuntimeConfig) or not isinstance(provenance, BaseProvenanceConfig):
+        raise TypeError("BASE requires RuntimeConfig and BaseProvenanceConfig")
     entry._require(not provenance.output_root.exists(), "refusing to overwrite an existing run")
     entry._verify_expected_files(provenance)
     views_numpy, sample_ids, contract, feature_hash = entry._load_feature_only(runtime, provenance)

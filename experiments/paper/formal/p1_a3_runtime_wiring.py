@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from release_core.runtime import ProvenanceConfig
+from .p1_a1_base_runtime import BaseProvenanceConfig
 
 
 def _sha(path):
@@ -58,3 +59,10 @@ def arm_provenance(*, feature, feature_audit, split, split_audit, utility, utili
     required = (feature, feature_audit, split, split_audit, utility, utility_audit, semantic, semantic_audit, initialization["audit"], *initialization["checkpoint_paths"])
     expected = tuple((Path(path), _sha(path)) for path in required)
     return ProvenanceConfig(feature_artifact=feature, feature_audit=feature_audit, sparse_split_artifact=split, sparse_split_audit=split_audit, utility_artifact=utility, utility_audit=utility_audit, semantic_artifact=semantic, semantic_audit=semantic_audit, checkpoint_paths=tuple(initialization["checkpoint_paths"]), checkpoint_audit=initialization["audit"], output_root=output, strict_replay=True, expected_file_sha256=expected, expected_initial_model_sha256=initialization["initial_model_sha256"])
+
+
+def base_provenance(*, feature, feature_audit, split, split_audit, initialization, output):
+    """Construct strict native-only provenance for the BASE wrapper."""
+    required = (feature, feature_audit, split, split_audit, initialization["audit"], *initialization["checkpoint_paths"])
+    expected = tuple((Path(path), _sha(path)) for path in required)
+    return BaseProvenanceConfig(feature_artifact=feature, feature_audit=feature_audit, sparse_split_artifact=split, sparse_split_audit=split_audit, checkpoint_paths=tuple(initialization["checkpoint_paths"]), checkpoint_audit=initialization["audit"], output_root=output, strict_replay=True, expected_file_sha256=expected, expected_initial_model_sha256=initialization["initial_model_sha256"])

@@ -1,0 +1,16 @@
+Focused HF3: PYTHONPATH=. conda run -n mvcan pytest -q tests/paper/test_p1_a3r1_real_execution.py tests/paper/test_p1_a1_formal_runner.py tests/paper/test_p1_a3_materialization_wiring.py
+Result: 17 passed.
+
+Paper suite: PYTHONPATH=. conda run -n mvcan pytest -q tests/paper/
+Result: 177 passed.
+
+Artifact-independent release regression: PYTHONPATH=. conda run -n mvcan pytest -q tests/release_core --ignore=test_r1_frozen_reference_parity.py --ignore=test_r2_caltech_frozen_parity.py --ignore=test_r3_frozen_semantics_parity.py --ignore=test_r7_behavior_evidence.py
+Result: 239 passed.
+
+Formal artifacts: sha256sum -c /root/autodl-tmp/UCRR-MVC-HF3-WIP-20260924/formal_artifacts_sha256.txt
+Result: all 19 entries OK.
+
+git diff --check: PASS
+release_core diff: empty
+P1-A0 protocol diff: empty
+P1-A2 execution-contract diff: empty.

@@ -61,6 +61,8 @@ def test_synthetic_writer_seals_adapter_and_dispatches_without_caltech(tmp_path,
     dispatched = {}
     monkeypatch.setattr(runner, "run_pre_gt", lambda runtime, value: dispatched.setdefault("ours", value))
     assert runner.run_pre_gt(RuntimeConfig(dataset="Caltech-6V", training_seed=20, device="cpu"), provenance) is provenance
+    base_provenance = wiring.base_provenance(feature=feature, feature_audit=feature_audit, split=split_path, split_audit=split_audit, initialization=initialization, output=tmp_path / "base")
+    assert not hasattr(base_provenance, "utility_artifact") and not hasattr(base_provenance, "semantic_artifact")
     contract = SimpleNamespace(n_views=2, n_clusters=2)
     split = SparseLabelSplit(np.arange(6, dtype=np.int64), np.array([0, 1, 3, 4], dtype=np.int64), np.array([0, 0, 1, 1], dtype=np.int64), np.array([2, 5], dtype=np.int64), 2, 2, 20, "Caltech-6V")
     model = real.MultiViewBackbone(_tiny_config(), 2, (2, 2), 2, seed=5).to_device(torch.device("cpu"))
@@ -71,9 +73,12 @@ def test_synthetic_writer_seals_adapter_and_dispatches_without_caltech(tmp_path,
     monkeypatch.setattr(base.entry, "_load_initial_model", lambda runtime, value, loaded_contract, device: (model, initialization["initial_model_sha256"], tuple("c" * 64 for _ in range(2)), "a" * 64))
     monkeypatch.setattr(base.entry, "_final_prediction_state", lambda model, views, state, seed, device: (np.zeros(6, dtype=np.int64), np.zeros((6, 2, 2), dtype=np.float32), np.zeros((6, 2, 2), dtype=np.float32), np.zeros((2, 2, 2), dtype=np.float32), {}))
     monkeypatch.setattr(base.entry, "_persist_pre_gt", lambda output, arrays, audit: (arrays, audit))
-    result = base.run_base_pre_gt(RuntimeConfig(dataset="Caltech-6V", training_seed=20, epochs=1, batch_size=6, refresh_interval=100, device="cpu"), provenance)
+    result = base.run_base_pre_gt(RuntimeConfig(dataset="Caltech-6V", training_seed=20, epochs=1, batch_size=6, refresh_interval=100, device="cpu"), base_provenance)
     assert result[1]["base"]["phase_a_executed"] is False
     assert result[1]["base"]["semantic_optimizer_created"] is False
+    assert result[1]["base"]["action_artifact_loaded"] is False
+    assert result[1]["base"]["utility_artifact_loaded"] is False
+    assert result[1]["base"]["semantic_artifact_loaded"] is False
 
 
 def test_real_execution_stub_names_are_absent_and_protected_sources_stay_clean():
@@ -140,3 +145,49 @@ def test_caltech_path_uses_only_frozen_split_authority_and_truthful_audit(tmp_pa
     for dataset in ("MSRC-v1", "BDGP"):
         generic = materialize_hash_ranked_sparse_split(np.array([0, 0, 0, 1, 1, 1], dtype=np.int64), dataset_name=dataset, label_seed=20, labels_per_class=2)
         assert generic.labels_per_class == 2 and generic.label_seed == 20
+
+
+def test_runner_isolates_base_provenance_and_keeps_ours_true_u_intact(tmp_path, monkeypatch):
+    monkeypatch.setattr(runner, "ROOT", tmp_path / "formal")
+    base_run = runner.FormalRun("Caltech-6V", 20, "BASE", "cpu")
+    base_paths = runner.paths_for(base_run)
+    for key in ("features", "feature_audit", "split", "split_audit"):
+        base_paths[key].parent.mkdir(parents=True, exist_ok=True)
+        base_paths[key].write_bytes(b"x")
+    checkpoint_paths = tuple(tmp_path / ("checkpoint_" + str(index)) for index in range(6))
+    for path in checkpoint_paths:
+        path.write_bytes(b"checkpoint")
+    audit = tmp_path / "initialization_audit.json"
+    audit.write_bytes(b"audit")
+    initialization = {"audit": audit, "checkpoint_paths": checkpoint_paths, "initial_model_sha256": "a" * 64}
+    monkeypatch.setattr(preparation, "verify_initialization", lambda *args, **kwargs: initialization)
+    monkeypatch.setattr(actions, "verify_true_action", lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("BASE touched action")))
+    monkeypatch.setattr(wiring, "materialize_ours_true_u_adapter", lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("BASE built adapter")))
+    captured = {}
+    monkeypatch.setattr(base_runtime := runner.base_runtime, "run_base_pre_gt", lambda runtime, provenance: captured.setdefault("base", provenance))
+    assert runner.run_formal(base_run) is captured["base"]
+    base_provenance = captured["base"]
+    assert isinstance(base_provenance, base.BaseProvenanceConfig)
+    expected_paths = {path for path, _ in base_provenance.expected_file_sha256}
+    assert expected_paths == {base_paths["features"], base_paths["feature_audit"], base_paths["split"], base_paths["split_audit"], audit, *checkpoint_paths}
+    assert all("action" not in str(path) and "utility" not in str(path) and "semantic" not in str(path) for path in expected_paths)
+    ours_run = runner.FormalRun("Caltech-6V", 20, "OURS_TRUE_U", "cpu")
+    ours_paths = runner.paths_for(ours_run)
+    for key in ("features", "feature_audit", "split", "split_audit"):
+        ours_paths[key].parent.mkdir(parents=True, exist_ok=True)
+        ours_paths[key].write_bytes(b"y")
+    ours_initialization = {"audit": audit, "checkpoint_paths": checkpoint_paths, "initial_model_sha256": "a" * 64}
+    monkeypatch.setattr(preparation, "verify_initialization", lambda *args, **kwargs: ours_initialization)
+    true_action = {"artifact": tmp_path / "true_action_state.npz", "artifact_sha256": "b" * 64}
+    true_action["artifact"].write_bytes(b"action")
+    monkeypatch.setattr(actions, "verify_true_action", lambda *args, **kwargs: true_action)
+    adapter_root = tmp_path / "ours_adapter"
+    adapter_root.mkdir()
+    adapter = {"utility": adapter_root / "utility.npz", "utility_audit": adapter_root / "utility_audit.json", "semantic": adapter_root / "semantics.npz", "semantic_audit": adapter_root / "semantic_audit.json"}
+    for path in adapter.values():
+        path.write_bytes(b"adapter")
+    monkeypatch.setattr(wiring, "materialize_ours_true_u_adapter", lambda **kwargs: adapter)
+    monkeypatch.setattr(runner, "run_pre_gt", lambda runtime, provenance: captured.setdefault("ours", provenance))
+    assert runner.run_formal(ours_run) is captured["ours"]
+    assert captured["ours"].utility_artifact == adapter["utility"]
+    assert captured["ours"].semantic_artifact == adapter["semantic"]
