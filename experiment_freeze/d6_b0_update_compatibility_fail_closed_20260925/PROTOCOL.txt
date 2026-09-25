@@ -1,0 +1,15 @@
+Parent commit: 665633fa17aee758f350d9e4f48e24723ffe3f60
+
+Scientific evidence authority
+- Sole authoritative namespace: outputs/paper/diagnostics/d6_b0_update_compatibility_recovery1/
+- The prior experiment_freeze/d6_b0_first_attempt_incomplete_20260925/ is engineering-incomplete only, unchanged, and excluded from all scientific gates.
+- Recovery1 contains the complete 3 datasets x 3 seeds replay set.
+
+Frozen protocol
+- Frozen v1 only; no UMP, no GT, and no metrics.
+- refresh_interval = 100. U_cycle and R3 are unchanged. release_core is unchanged.
+- Parameter families are encoder-only, cluster-center-only, and their combined shared parameters; decoder is excluded.
+- Gate 1: all nine final pre-GT prediction logical SHA256 values exactly match frozen v1.
+- Gate 2: for >=2 seeds, MSRC combined median cosine is lower than Caltech and BDGP, and its combined conflict fraction is strictly higher than both.
+- Gate 3: for >=2 seeds, MSRC combined median retention is lower than Caltech and BDGP.
+- Gate 4: no GT/metrics, frozen source/artifact integrity, frozen runtime, and wrapper restoration.

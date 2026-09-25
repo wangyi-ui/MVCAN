@@ -1,0 +1,9 @@
+Old namespace is immutable and excluded. Recovery1 must run all nine cells under one new root.
+No scientific/mathematical change is authorized; only output-root and verified-resume plumbing may change.
+
+First-attempt execution inventory (preserved but excluded):
+- completed geometry: Caltech-6V seed20, seed30, seed50; MSRC-v1 seed20.
+- incomplete: MSRC-v1 seed30 reached sealed pre-GT final output but did not write geometry.json.
+- missing at interruption: MSRC-v1 seed50; BDGP seed20, seed30, seed50.
+- every observed old-namespace artifact is listed with path and SHA256 in PARTIAL_MANIFEST.txt.
+- SOURCE_SHA256.txt records the diagnostic source and complete release_core hash state.

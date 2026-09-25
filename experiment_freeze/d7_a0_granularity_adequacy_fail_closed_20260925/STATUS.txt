@@ -1,0 +1,7 @@
+D7-A0 GRANULARITY ADEQUACY: FINAL SCIENTIFIC FREEZE
+AUTHORITATIVE EVIDENCE: outputs/paper/diagnostics/d7_a0_granularity_adequacy/
+Gate1: PASS
+Gate2: FAIL
+Gate3: FAIL
+Gate4: FAIL
+FINAL: FAIL-CLOSED

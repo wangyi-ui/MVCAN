@@ -1,0 +1,6 @@
+Authoritative evidence is limited to outputs/paper/diagnostics/d7_a0_granularity_adequacy/.
+Frozen v1 formal inputs, initialization carriers, sparse splits, and true-action states were verified before read-only use.
+For each frozen q_aligned action representation, p_gen is the exact generator-view mean; its argmax exactly equals frozen y_gen.
+A deterministic Ward hierarchy was cut only at coarse=ceil(K/2), native=K, and fine=2K.
+Sparse anchors classify structural clusters as strong/singleton/conflict/orphan only after hierarchy construction. Frozen U_cycle is then mass-aggregated only over unlabeled samples.
+No training, optimizer, GT, clustering metrics, pseudo-label propagation, pseudo-label CE, memory bank, U recalibration, or release_core change is permitted.

@@ -1,0 +1,12 @@
+D6-B0 FAIL-CLOSED.
+Semantic Phase-A and native Phase-B updates exhibit substantial
+opposition across all three datasets, rather than an MSRC-specific
+conflict pattern. In particular, the preregistered MSRC-relative
+opposition and retention gates are not satisfied. Therefore
+generic semantic-native update conflict is not supported as the
+discriminative cause of MSRC negative transfer, and no
+action-structure compatibility correction is authorized.
+
+Audit facts: no GT; no metrics; frozen v1 only; refresh_interval=100;
+U/R3 unchanged; release_core unchanged; first incomplete attempt preserved;
+recovery1 only used for scientific gates.

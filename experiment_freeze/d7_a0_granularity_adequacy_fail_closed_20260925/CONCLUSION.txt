@@ -1,0 +1,10 @@
+The tested coarse/native/fine structural granularity hypothesis
+is not supported as the explanation of MSRC negative transfer.
+
+Native granularity remains the modal descriptive preference for
+Caltech-6V, MSRC-v1 and BDGP.
+
+No D7-A1 granularity-aware training pilot is authorized.
+
+Audit constraints upheld: no training; no optimizer; no GT; no clustering metrics;
+no release_core modification; no pseudo-label propagation.
