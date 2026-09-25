@@ -1,0 +1,9 @@
+Scope: P1-A4-HF4 paper-local post-seal BASE audit compatibility only.
+
+OURS_TRUE_U uses frozen release sealed-prediction validation. BASE uses an equivalent strict seal-first structural validation plus its paper-local native-only provenance audit gate. Both paths validate all seal, SHA256, bundle whitelist, payload hash, canonical sample-axis, prediction, q-state, M_v, and GT-firewall gates before the first full-GT load.
+
+Metrics are imported only from release_core.evaluation: acc, nmi, ari. Arm/schema binding is fail-closed: BASE accepts p1-a3-base-pre-gt-audit-v1 only; OURS_TRUE_U accepts release-core-pre-gt-audit-v1 only.
+
+No changes: release_core/**, P1-A0 protocol, P1-A2 execution contract, R2/R3/R4/R5, metrics implementation, or existing formal sealed artifacts.
+
+No real post-seal evaluation was executed; real post-seal metrics NONE.
