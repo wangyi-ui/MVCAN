@@ -1,0 +1,14 @@
+D7-C1 FINAL: FAIL-CLOSED-PREFLIGHT
+
+Zero-utility labeled-anchor evidence:
+Caltech-6V:
+seed30: 200
+seed50: 200, 1027
+
+MSRC-v1:
+seed20: 17, 96, 107, 142, 153, 175
+seed30: 42
+seed50: 96, 107, 139, 142, 153
+
+Stage 0 fails on the first chronological failing cell Caltech-6V seed30, labeled anchor 200.
+Stage 1 training was not authorized and was not executed.

@@ -1,0 +1,4 @@
+D7-C1 Stage 0 was a read-only preflight over frozen true-action U_cycle, y_gen, sparse anchors, and exact formal provenance.
+The preregistered per-labeled-anchor positive directional-utility contract was mandatory before candidate construction.
+Forbidden fallbacks: uniform fallback; epsilon normalization; old-vote substitution; arbitrary replacement.
+D7-C0 diagnostic support remains valid; it does not override the D7-C1 zero-utility contract.

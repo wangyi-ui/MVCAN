@@ -1,0 +1,12 @@
+The per-anchor utility-normalized sparse-orientation candidate
+is not well-defined on the frozen experimental state because
+valid sparse semantic anchors may have zero directional utility
+mass. This distinguishes semantic authority from action validity:
+a ground-truth sparse anchor remains semantically authoritative
+even when its current cross-view action utility is zero.
+
+Therefore D7-C1 is FAIL-CLOSED-PREFLIGHT and must not be
+repaired in place.
+
+D7-C0 support remains valid. D7-C1 candidate fails. No training, GT, optimizer,
+metrics, release_core modification, or formal artifact modification occurred.
