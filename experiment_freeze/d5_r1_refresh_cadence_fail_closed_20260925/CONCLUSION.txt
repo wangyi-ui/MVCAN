@@ -1,0 +1,7 @@
+D5-R1 FAIL-CLOSED.
+Increasing native structural refresh cadence from 100 to 1
+does not resolve MSRC-v1 negative transfer and degrades the
+three-seed mean relative to BASE.
+The stale-structural-target hypothesis is therefore not supported
+as the primary correction mechanism.
+refresh_interval=1 is not promoted.

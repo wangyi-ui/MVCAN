@@ -1,0 +1,1 @@
+Only refresh_interval changed from 100 to 1; all v1 sources were reused.

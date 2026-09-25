@@ -1,0 +1,2 @@
+D5-R1 FAIL-CLOSED
+refresh_interval=1 is not promoted.
