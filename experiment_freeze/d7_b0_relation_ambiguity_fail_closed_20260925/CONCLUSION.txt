@@ -1,0 +1,16 @@
+D7-B0 FAIL-CLOSED.
+Frozen R3 semantic relations are internally action-consistent:
+utility-weighted class consensus is exactly one and effective
+same/different contradiction mass is zero for every dataset/seed.
+Therefore relation contradiction is not supported as the
+discriminative explanation of MSRC negative transfer.
+
+However, the preregistered descriptive weak-quantity analysis
+reveals substantially lower sparse-mapping stability and margins
+for MSRC-v1 than for Caltech-6V and BDGP. This observation does
+not rescue D7-B0 and does not authorize a method change. It may
+only motivate a separately preregistered semantic-orientation
+robustness diagnosis.
+
+No GT; no training; no optimizer; no metrics; no R2/R3 regeneration;
+release_core unchanged.

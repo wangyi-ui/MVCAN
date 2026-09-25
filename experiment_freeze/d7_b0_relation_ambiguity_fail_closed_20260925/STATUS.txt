@@ -1,0 +1,7 @@
+D7-B0 SEMANTIC RELATION AMBIGUITY: FINAL SCIENTIFIC FREEZE
+AUTHORITATIVE EVIDENCE: outputs/paper/diagnostics/d7_b0_relation_ambiguity/
+Gate1: PASS
+Gate2: FAIL
+Gate3: FAIL
+Gate4: PASS (descriptive only)
+FINAL: FAIL-CLOSED

@@ -1,0 +1,4 @@
+Authoritative evidence is limited to the completed D7-B0 read-only namespace.
+Frozen R3 was reconstructed from the exact sealed y_gen and sparse split through build_vote_semantic_state, fit_sparse_mapping, and build_relation_semantics; stored PredRelation_true and relation_balance_weights_true were required to match exactly.
+Utility-weighted consensus, balanced/raw relation contradiction, and deterministic leave-one-sparse-anchor-out mapping stability were diagnostic only.
+No GT, training, optimizer, metrics, R2/R3 regeneration, or release_core modification occurred.
