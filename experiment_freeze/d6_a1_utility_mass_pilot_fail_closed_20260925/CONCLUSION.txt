@@ -1,0 +1,8 @@
+D6-A1 FAIL-CLOSED.
+Preserving absolute utility mass partially improves the
+three-seed NMI/ARI mean relative to frozen v1 OURS, but does
+not recover BASE-relative NMI/ARI performance.
+Therefore loss-strength normalization contributes to negative
+transfer but is insufficient as the primary correction mechanism.
+No denominator variant, semantic lambda, refresh modification,
+or cross-dataset v2 replay is authorized.

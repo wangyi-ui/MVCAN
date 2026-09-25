@@ -1,0 +1,14 @@
+Dataset = MSRC-v1; seeds = 20, 30, 50.
+Only the R4 denominator changed in a paper-local process-scoped substitution:
+sum(U_cycle * balance) -> sum(balance).
+refresh_interval remained 100; epochs, batch size, LR, initialization,
+native objective, target schedule, final refresh, labels, orders and KMeans seed
+remained frozen v1 values.
+
+BASE was not retrained.  Frozen v1 OURS was not retrained.
+U_cycle was not regenerated.  R3 PredRelation/balance semantics were not regenerated.
+release_core source was not modified.  The original relation-loss function was
+restored after every pilot run.
+
+GT was unavailable during pre-GT training and loaded only by the post-seal
+evaluator after seal validation.  Caltech and BDGP v2 were not executed.
