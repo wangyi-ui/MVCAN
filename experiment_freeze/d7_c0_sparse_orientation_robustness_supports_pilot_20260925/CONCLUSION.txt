@@ -1,0 +1,5 @@
+D7-C0 provides diagnostic support that MSRC-v1 exhibits dataset-discriminative sparse semantic orientation fragility.
+
+Caltech-6V and BDGP remain fully stable under all exhaustive class-balanced one-anchor-per-class subsets, whereas MSRC-v1 shows substantial mapping, class-orientation, and frozen-R4 relation-target flips.
+
+This authorizes ONLY an isolated D7-C1 causal pilot. No method promotion is authorized.

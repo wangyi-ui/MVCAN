@@ -1,0 +1,17 @@
+Gate1=PASS
+Gate2=PASS
+Gate3=PASS
+Gate4=PASS
+FINAL=SUPPORTS_SPARSE_ORIENTATION_ROBUSTNESS_PILOT
+
+dataset | seed | subsets | exact stability | F_class median | F_relation median
+--- | ---: | ---: | ---: | ---: | ---:
+Caltech-6V | 20 | 128 | 1 | 0 | 0
+Caltech-6V | 30 | 128 | 1 | 0 | 0
+Caltech-6V | 50 | 128 | 1 | 0 | 0
+MSRC-v1 | 20 | 128 | 0.1875 | 0.28376238793134689 | 0.16552805525018865
+MSRC-v1 | 30 | 128 | 0.28125 | 0.34619566798210144 | 0.20194749648645169
+MSRC-v1 | 50 | 128 | 0.125 | 0.17144222557544708 | 0.10000797119349901
+BDGP | 20 | 32 | 1 | 0 | 0
+BDGP | 30 | 32 | 1 | 0 | 0
+BDGP | 50 | 32 | 1 | 0 | 0

@@ -1,0 +1,2 @@
+Authoritative evidence: outputs/paper/diagnostics/d7_c0_sparse_orientation_robustness/.
+Frozen R3, U_cycle, y_gen, and sparse split were read-only. All class-balanced 1-anchor-per-class subsets were exhausted: 128 for K=7 and 32 for K=5. No GT, training, optimizer, metrics, pseudo labels, R4/R5 execution, or release_core modification.
