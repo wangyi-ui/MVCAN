@@ -1,0 +1,16 @@
+Frozen post-seal utility diagnostics:
+- corr(U_cycle, relation correctness): seed20 about 0.388; seed30 about 0.411;
+  seed50 about 0.347.
+- High-U semantic-relation correctness is about 98--99%.
+- U-weighted relation correctness is materially above uniform-U and balance-only.
+- The odd-V 2->3 and 3->2 utility statistics are symmetric.
+
+Frozen provenance/replay evidence:
+- R7 F-replay exact gates passed for U_cycle, PredRelation_true,
+  relation_balance_weights_true, M_v, q_local, q_aligned, and y_gen.
+- The R5 diagnostic used epochs=20, refresh_interval=100, refresh_count=1.
+- Phase-A R4 loss decreased while Phase-B native loss rose in later epochs.
+
+Inference, not a method change: the current primary unresolved causal hypothesis
+is stale action-to-structure consolidation under continued semantic updates.
+This evidence does not support an U_cycle or R3/R4 semantic failure.

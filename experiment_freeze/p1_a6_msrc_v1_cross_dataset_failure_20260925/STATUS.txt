@@ -1,0 +1,7 @@
+P1-A6 MSRC-v1 CROSS-DATASET FAILURE EVIDENCE FROZEN
+MSRC-v1 v1 transfer is not accepted as successful.
+Evidence does not support U_cycle failure.
+Primary unresolved hypothesis is action-to-structure consolidation dynamics / stale structural target.
+SCIENTIFIC METHOD CHANGE = NONE
+FORMAL ARTIFACT MUTATION = NONE
+REAL BDGP MATERIALIZATION OR TRAINING = NONE

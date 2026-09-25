@@ -6,7 +6,7 @@ from pathlib import Path
 from . import p1_a0_formal_protocol as protocol
 from . import p1_a1_native_preparation as initialization
 from . import p1_a1_action_materialization as actions
-from .p1_a3_input_materialization import materialize_caltech_inputs, materialize_msrc_inputs
+from .p1_a3_input_materialization import materialize_bdgp_inputs, materialize_caltech_inputs, materialize_msrc_inputs
 
 
 def parse_args(argv=None):
@@ -30,11 +30,11 @@ def main(argv=None):
     if args.plan_only:
         print("[P1-A3] PLAN VALID", flush=True)
         return 0
-    if args.dataset not in ("Caltech-6V", "MSRC-v1"):
+    if args.dataset not in ("Caltech-6V", "MSRC-v1", "BDGP"):
         raise RuntimeError("FORMAL_DATASET_SOURCE_UNRESOLVED")
     if args.stage in ("inputs", "all"):
         print("[P1-A3] INPUT START", flush=True)
-        (materialize_caltech_inputs if args.dataset == "Caltech-6V" else materialize_msrc_inputs)(inputs)
+        {"Caltech-6V": materialize_caltech_inputs, "MSRC-v1": materialize_msrc_inputs, "BDGP": materialize_bdgp_inputs}[args.dataset](inputs)
         print("[P1-A3] input seal complete", flush=True)
     if args.stage in ("initialization", "all"):
         print("[P1-A3] NATIVE PREPARATION START", flush=True)

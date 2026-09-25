@@ -131,3 +131,34 @@ def materialize_msrc_inputs(output_dir):
     if runtime_split.labeled_ids.size != 14 or not np.array_equal(np.bincount(runtime_split.labeled_targets, minlength=7), np.full(7, 2)):
         raise RuntimeError("FORMAL_MSRC_SPARSE_SPLIT_CONTRACT_MISMATCH")
     return materialize_inputs(dataset="MSRC-v1", views=corrupted, corruption_mask=mask, sparse_split=runtime_split, output_dir=output_dir, sparse_split_source="generic SHA256-ranked sparse split", full_gt_loaded_at_input_boundary=True, full_gt_used_to_select_sparse_ids=True)
+
+
+def _bdgp_source_path():
+    candidates = (Path("data/BDGP2V_N.mat"),)
+    resolved = tuple(path for path in candidates if path.is_file())
+    if len(resolved) != 1:
+        raise RuntimeError("FORMAL_BDGP_DATASET_SOURCE_UNRESOLVED")
+    return resolved[0]
+
+
+def materialize_bdgp_inputs(output_dir):
+    """Authorized BDGP generic input boundary; never use Caltech split IDs."""
+    from release_core.data import load_bdgp
+    from release_core.data.weak_quality import apply_half_gaussian_corruption, generate_half_corruption_mask
+    from experiments.generic_contract.sparse_label_contract import materialize_hash_ranked_sparse_split
+    item = next(value for value in protocol.FORMAL_DATASETS if value.name == "BDGP")
+    views, label_sets = load_bdgp(_bdgp_source_path())
+    labels = np.ascontiguousarray(label_sets[0], dtype=np.int64)
+    mask, _ = generate_half_corruption_mask(item.n_samples, item.n_views, 20)
+    if not (np.array_equal(mask.sum(axis=1), np.ones(item.n_samples, dtype=np.int64))
+            and int(mask.sum()) == 2500
+            and np.array_equal(mask.sum(axis=0), np.full(2, 1250, dtype=np.int64))
+            and ndarray_sha256(mask) == item.weak_quality_mask_sha256):
+        raise RuntimeError("FORMAL_BDGP_WEAK_QUALITY_CONTRACT_MISMATCH")
+    corrupted, _ = apply_half_gaussian_corruption(views, 2.5, 20)
+    raw_split = materialize_hash_ranked_sparse_split(labels, dataset_name="BDGP", label_seed=20, labels_per_class=2)
+    runtime_split = _runtime_split_from_generic(raw_split, sample_ids=np.arange(item.n_samples, dtype=np.int64), class_count=item.n_clusters)
+    if not (runtime_split.labeled_ids.size == 10
+            and np.array_equal(np.bincount(runtime_split.labeled_targets, minlength=item.n_clusters), np.full(item.n_clusters, 2, dtype=np.int64))):
+        raise RuntimeError("FORMAL_BDGP_SPARSE_SPLIT_CONTRACT_MISMATCH")
+    return materialize_inputs(dataset="BDGP", views=corrupted, corruption_mask=mask, sparse_split=runtime_split, output_dir=output_dir, sparse_split_source="generic SHA256-ranked sparse split", full_gt_loaded_at_input_boundary=True, full_gt_used_to_select_sparse_ids=True)

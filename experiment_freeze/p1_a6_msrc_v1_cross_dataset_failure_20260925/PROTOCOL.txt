@@ -1,0 +1,13 @@
+Dataset = MSRC-v1; formal v1 seeds = 20, 30, 50.
+Compared arms = frozen BASE and frozen OURS_TRUE_U only.
+Evaluation is post-seal only; full GT did not enter the frozen trainable artifacts.
+
+This is an evidence freeze, not an R5 repair or a method promotion.
+U_cycle, PredRelation_true, relation balance, R3, R4, R5, native schedule,
+labels, batch size, epochs, learning rate, and release_core are unchanged.
+
+Candidate follow-up diagnostic only:
+same frozen sources, epochs=20, batch_size=256, lr=1e-4, native lambda1,
+optimizer topology and Phase-A -> Refresh -> Phase-B ordering; only
+refresh_interval changes from v1=100 to D5-R1=1.  No diagnostic replay is
+claimed by this freeze.
