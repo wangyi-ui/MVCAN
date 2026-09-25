@@ -1,0 +1,15 @@
+FOCUSED
+PYTHONPATH=. pytest -q tests/paper/test_p1_a5_msrc_pipeline.py
+10 passed in 1.68s
+
+PAPER
+PYTHONPATH=. pytest -q tests/paper/
+196 passed, 3 warnings in 6.36s
+
+ARTIFACT-INDEPENDENT RELEASE
+PYTHONPATH=. pytest -q tests/release_core [frozen-output dependent suites excluded]
+226 passed, 1 warning in 10.90s
+
+CHECKS
+git diff --check = PASS
+release_core diff = EMPTY

@@ -1,0 +1,18 @@
+PARENT_COMMIT = 3c3f057 Add paper post-seal BASE compatibility evaluator
+DATE = 2026-09-25
+
+MSRC-v1 formal input boundary:
+- Native loader and preprocessing retained.
+- N=210, V=5, K=7, dims=(24,576,512,256,254).
+- Half-corruption SNR=2.5 dB and realization seed=20.
+- Exact odd-view mask validation: 525 pairs; 105 rows at 2 and 105 rows at 3;
+  per-view count [105,105,105,105,105]; logical SHA256
+  d64f5fbf95518e5a77e44a1fe18a15dee9924b8c2a341e930f86f20ce5ac9e9d.
+- Generic SHA256-ranked sparse split only: seed=20, 2/class, 14 total.
+- Caltech frozen split logic is not used by MSRC.
+
+Pipeline boundary:
+- Inputs once; seed order exact; initialization, action, BASE, and OURS use sealed stages.
+- Existing artifacts require canonical verification before resume skip; invalid artifacts fail closed.
+- Both pre-GT arms seal before post-seal full-GT evaluation.
+- No scientific constants or release_core behavior are reimplemented or overridden.
